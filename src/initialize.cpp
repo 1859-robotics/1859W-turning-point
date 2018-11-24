@@ -1,5 +1,4 @@
 #include "main.h"
-#include "apix.h"
 #include "app.hpp"
 
 hc::benzene::Tracker tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, &gyro);
