@@ -1,4 +1,4 @@
-#error get the key from the maker....
+#error PROS is out of date and will not work. Try reinstalling
 /**
  * \file pros/misc.h
  *
