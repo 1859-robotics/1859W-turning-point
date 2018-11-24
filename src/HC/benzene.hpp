@@ -2,10 +2,12 @@
 #define BENZENE_HPP
 
 #include "main.h"
+#include <math.h>
 
 
 #define TORAD(deg) ((deg) * (PI / 180))
 #define TODEG(rad) ((rad) * (180 / PI))
+#define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
 
 namespace hc {
@@ -37,9 +39,10 @@ namespace hc {
               gyro(gyro) {};
 
       void debug();
-
       void track();
     };
+
+    void track(void *tracker);
   }
 }
 

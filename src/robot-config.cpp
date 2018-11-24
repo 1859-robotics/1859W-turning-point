@@ -1,4 +1,4 @@
-#include "port-setup.hpp"
+#include "robot-config.hpp"
 
 pros::Controller master = pros::Controller (CONTROLLER_MASTER);
 
@@ -10,3 +10,5 @@ pros::ADIEncoder rTrackerWheel = pros::ADIEncoder(TRACKER_RIGHT_PORT, TRACKER_RI
 pros::ADIEncoder cTrackerWheel = pros::ADIEncoder(TRACKER_CENTER_PORT, TRACKER_CENTER_PORT + 1);
 
 pros::ADIGyro gyro = pros::ADIGyro(GYRO_PORT);
+
+hc::benzene::Tracker posTracker = hc::benzene::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, &gyro);

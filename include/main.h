@@ -37,6 +37,12 @@
 #include "api.h"
 #include "pros/apix.h"
 
+#define _USE_MATH_DEFINES
+
+#include <cmath>
+
+#define PI M_PI
+
 /**
  * You should add more #includes here
  */

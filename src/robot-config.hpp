@@ -2,6 +2,7 @@
 #define PORT_SETUP_HPP
 
 #include "main.h"
+#include "HC/benzene.hpp"
 
 // port defines
 #define LEFT_DRIVE_PORT 1
@@ -22,5 +23,8 @@ extern pros::ADIEncoder lTrackerWheel;
 extern pros::ADIEncoder rTrackerWheel;
 extern pros::ADIEncoder cTrackerWheel;
 extern pros::ADIGyro gyro;
+
+// abstractions
+extern hc::benzene::Tracker posTracker;
 
 #endif
