@@ -12,3 +12,4 @@ pros::ADIEncoder cTrackerWheel = pros::ADIEncoder(TRACKER_CENTER_PORT, TRACKER_C
 pros::ADIGyro gyro = pros::ADIGyro(GYRO_PORT);
 
 hc::benzene::Tracker posTracker = hc::benzene::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, &gyro);
+hc::methane::Robot robot = hc::methane::Robot(&posTracker);

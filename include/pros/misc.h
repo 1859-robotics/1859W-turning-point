@@ -1,4 +1,3 @@
-#error PROS is out of date and will corrupt V5 brains. Try reinstalling on a different computer.
 /**
  * \file pros/misc.h
  *

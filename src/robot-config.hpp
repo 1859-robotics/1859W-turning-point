@@ -3,6 +3,7 @@
 
 #include "main.h"
 #include "HC/benzene.hpp"
+#include "HC/methane.hpp"
 
 // port defines
 #define LEFT_DRIVE_PORT 1
@@ -26,5 +27,6 @@ extern pros::ADIGyro gyro;
 
 // abstractions
 extern hc::benzene::Tracker posTracker;
+extern hc::methane::Robot robot;
 
 #endif
