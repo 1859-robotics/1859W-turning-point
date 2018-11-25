@@ -1,9 +1,12 @@
 #ifndef PORT_SETUP_HPP
 #define PORT_SETUP_HPP
 
+// util macros:
+
+
+// includes
 #include "main.h"
-#include "HC/benzene.hpp"
-#include "HC/methane.hpp"
+
 
 // port defines
 #define LEFT_DRIVE_PORT 1
@@ -25,8 +28,19 @@ extern pros::ADIEncoder rTrackerWheel;
 extern pros::ADIEncoder cTrackerWheel;
 extern pros::ADIGyro gyro;
 
+// robot config
+#define RIGHT_DRIVE_SET(spd) rightDrive.move(spd)
+#define LEFT_DRIVE_SET(spd) leftDrive.move(spd)
+
+#include "HC/benzene.hpp"
+#include "HC/propene.hpp"
+#include "HC/methane.hpp"
+
 // abstractions
 extern hc::benzene::Tracker posTracker;
 extern hc::methane::Robot robot;
+extern hc::propane::rPID;
+extern hc::propane::tPID;
+
 
 #endif

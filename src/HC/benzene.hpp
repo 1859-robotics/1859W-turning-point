@@ -9,6 +9,7 @@
 #define TODEG(rad) ((rad) * (180 / PI))
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
+#define POINT_LIST(...) __VA_ARGS__
 
 namespace hc {
   namespace benzene {
@@ -18,10 +19,6 @@ namespace hc {
       pros::ADIEncoder *rEncoder;
       pros::ADIEncoder *cEncoder;
       pros::ADIGyro *gyro;
-
-      float x;
-      float y;
-      float a;
 
       float lEncoderVal;
       float rEncoderVal;
@@ -38,13 +35,23 @@ namespace hc {
               cEncoder(cEncoder),
               gyro(gyro) {};
 
+      // for ease of use we make the x, y, and a vars public        
+      float x;
+      float y;
+      float a;
+
       void debug();
       void track();
       void setPos(float x, float y, float a);
       void reset();
     };
-
     void track(void *tracker);
+
+    typedef struct {
+      int x;
+      int y;
+      int a;
+    } Point;
   }
 }
 

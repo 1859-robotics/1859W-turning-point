@@ -11,5 +11,7 @@ pros::ADIEncoder cTrackerWheel = pros::ADIEncoder(TRACKER_CENTER_PORT, TRACKER_C
 
 pros::ADIGyro gyro = pros::ADIGyro(GYRO_PORT);
 
+hc::propane::PID rPID = hc::propane::PID(5.2, 0.0, 0.10, 3.0, 30.0, MIN_SPEED, MAX_SPEED);
+hc::propane::PID tPID = hc::propane::PID(1.5, 0.0, 0.25, 3.0, 30.0, MIN_SPEED, MAX_SPEED);
 hc::benzene::Tracker posTracker = hc::benzene::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, &gyro);
-hc::methane::Robot robot = hc::methane::Robot(&posTracker);
+hc::methane::Robot robot = hc::methane::Robot(&posTracker, &rPID, &tPID);
