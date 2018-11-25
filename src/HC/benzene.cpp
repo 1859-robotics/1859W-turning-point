@@ -35,6 +35,19 @@ namespace hc {
 
   }
 
+  void benzene::Tracker::setPos(float x, float y, float a) {
+    x = x;
+    y = y;
+    a = a;
+  }
+
+  void benzene::tracker::reset() {
+    lEncoder.reset();
+    rEncoder.reset();
+    cEncoder.reset();
+    gyro.reset();
+  }
+
   void benzene::track(void *ptr) {
     benzene::Tracker* tracker = static_cast<benzene::Tracker*>(ptr);
     while(true) {

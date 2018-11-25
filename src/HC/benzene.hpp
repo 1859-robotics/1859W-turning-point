@@ -40,6 +40,8 @@ namespace hc {
 
       void debug();
       void track();
+      void setPos(float x, float y, float a);
+      void reset();
     };
 
     void track(void *tracker);
