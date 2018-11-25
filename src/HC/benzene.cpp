@@ -41,11 +41,11 @@ namespace hc {
     a = a;
   }
 
-  void benzene::tracker::reset() {
-    lEncoder.reset();
-    rEncoder.reset();
-    cEncoder.reset();
-    gyro.reset();
+  void benzene::Tracker::reset() {
+    lEncoder->reset();
+    rEncoder->reset();
+    cEncoder->reset();
+    gyro->reset();
   }
 
   void benzene::track(void *ptr) {

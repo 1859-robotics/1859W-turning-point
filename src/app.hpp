@@ -2,6 +2,7 @@
 #define APP_HPP
 
 #include "HC/benzene.hpp"
+#include "HC/propene.hpp"
 
 #include "robot-config.hpp"
 
