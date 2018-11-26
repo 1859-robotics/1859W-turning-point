@@ -28,19 +28,19 @@ extern pros::ADIEncoder rTrackerWheel;
 extern pros::ADIEncoder cTrackerWheel;
 extern pros::ADIGyro gyro;
 
-// robot config
+// robot config macros
 #define RIGHT_DRIVE_SET(spd) rightDrive.move(spd)
 #define LEFT_DRIVE_SET(spd) leftDrive.move(spd)
 
 #include "HC/benzene.hpp"
 #include "HC/propene.hpp"
-#include "HC/methane.hpp"
 
 // abstractions
 extern hc::benzene::Tracker posTracker;
-extern hc::methane::Robot robot;
-extern hc::propane::rPID;
-extern hc::propane::tPID;
+extern hc::propene::PID rPID;
+extern hc::propene::PID tPID;
 
+#include "HC/methane.hpp"
+extern hc::methane::Robot robot;
 
 #endif

@@ -1,6 +1,7 @@
 #include "methane.hpp"
-// util functions
 
+
+// util functions
 bool withinRange(float target, float current, float error) {
   return abs(target - current) < error;
 }
@@ -70,9 +71,7 @@ namespace hc {
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
     std::cout << "Moving to: " << target.x << ", " << target.y << ")  |   " << targetA;
 
-    redChase(target.x, target.y, targetA)
-
-    std::cout << "moved to: "
+    redChase(target.x, target.y, targetA);
   }
 
 }
