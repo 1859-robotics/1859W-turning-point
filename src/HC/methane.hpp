@@ -37,7 +37,7 @@ namespace hc {
         // turnToFace({4, 6}); - turn to face the point (4, 6)
       // void turnToFace(int angle); // turns to face an angle
         // turnToFace(45); - turn to face 45deg
-      // void moveAlong(Point wayPoints, int a); // moves the bot along a set of way points
+      void moveAlong(::hc::benzene::Point wayPoints[], int size, float a); // moves the bot along a set of way points
         // moveAlong({{1, 4}, {2, 5}}, 0); // move through the points (1, 4) then (2, 5) and end facing 0deg
       // void raiseLiftTo(int height); // rasie lift to a certain amount
       // void shootBall(int spd); // shoots a ball
@@ -45,5 +45,7 @@ namespace hc {
     };
   }
 }
+
+extern hc::methane::Robot robot;
 
 #endif

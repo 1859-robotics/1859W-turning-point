@@ -74,4 +74,14 @@ namespace hc {
     redChase(target.x, target.y, targetA);
   }
 
+  void methane::Robot::moveAlong(::hc::benzene::Point wayPoints[], int size, float endA) {
+    for(int i = 0; i < size; i++ ) {
+        redChase(wayPoints[i].x, wayPoints[i].y, i + 1 < size ? endA :
+          atan2(wayPoints[i].x - wayPoints[i + 1].x, wayPoints[i].y - wayPoints[i + 1].y), false);
+    }
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
+  }
 }
+
+hc::methane::Robot robot = hc::methane::Robot(&posTracker, &rPID, &tPID);
