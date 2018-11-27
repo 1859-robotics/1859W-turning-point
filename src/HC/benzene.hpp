@@ -35,7 +35,7 @@ namespace hc {
               cEncoder(cEncoder),
               gyro(gyro) {};
 
-      // for ease of use we make the x, y, and a vars public        
+      // for ease of use we make the x, y, and a vars public
       float x;
       float y;
       float a;
@@ -50,7 +50,6 @@ namespace hc {
     typedef struct {
       int x;
       int y;
-      int a;
     } Point;
   }
 }

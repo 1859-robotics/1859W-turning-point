@@ -7,8 +7,8 @@
 #include "../robot-config.hpp"
 
 // robot specification macros
-#define MIN_SPEED 10
-#define ZERO_SPEED 10
+#define MIN_SPEED 50
+#define ZERO_SPEED 50
 #define MAX_SPEED 127
 #define A_ERR 5
 #define P_ERR 3.5

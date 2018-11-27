@@ -6,6 +6,6 @@
 
 void autonomous() {
   pros::Task track(hc::benzene::track, &posTracker);
-  robot.moveAlong(new hc::benzene::Point[3]{{2, 2}, {3, 2}, {4, 2}}, 3, 45);
+  robot.moveTo({18, 18}, 45);
 
 }
