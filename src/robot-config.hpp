@@ -1,9 +1,6 @@
 #ifndef PORT_SETUP_HPP
 #define PORT_SETUP_HPP
 
-// util macros:
-
-
 // includes
 #include "main.h"
 

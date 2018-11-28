@@ -60,7 +60,6 @@ namespace hc {
                        MIN_SPEED * SGN(idealVL);
       RIGHT_DRIVE_SET(targetVR);
       LEFT_DRIVE_SET(targetVL);
-      // writeDebugStream("(%f%s%f%s%f%s", tracker->x, ", ", tracker->y, ")    | ", tracker->a, "\n-----\n\n");
     }
     if(end) {
       RIGHT_DRIVE_SET(0);
@@ -81,6 +80,12 @@ namespace hc {
     }
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
+  }
+
+  void methane::Robot::reset() {
+    std::cout << "reseting bot" << std::endl;
+    
+    std::cout << "reset bot" << std::endl;
   }
 }
 

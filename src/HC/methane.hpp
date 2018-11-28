@@ -7,8 +7,8 @@
 #include "../robot-config.hpp"
 
 // robot specification macros
-#define MIN_SPEED 50
-#define ZERO_SPEED 50
+#define MIN_SPEED 10
+#define ZERO_SPEED 10
 #define MAX_SPEED 127
 #define A_ERR 5
 #define P_ERR 3.5
@@ -27,7 +27,7 @@ namespace hc {
             ::hc::propene::PID *tPID) :
             tracker(tracker), rPid(rPID), tPid(tPID) {};
       void redChase(float x, float y, float a, bool end);
-
+      void reset();
       // auton functions
       void moveTo(::hc::benzene::Point target, float targetA); // moves to a point
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg

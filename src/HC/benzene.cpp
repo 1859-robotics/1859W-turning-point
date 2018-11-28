@@ -52,7 +52,7 @@ namespace hc {
     benzene::Tracker* tracker = static_cast<benzene::Tracker*>(ptr);
     while(true) {
       tracker->track();
-
+      tracker->debug();
       pros::delay(20);
     }
   }

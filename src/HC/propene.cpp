@@ -2,7 +2,12 @@
 
 namespace hc {
   void propene::PID::debug() {
-
+    std::cout << "PID: " << std::endl <<
+      "kP: " << kP <<
+    ", kI: " << kI <<
+    ", kD: " << kD <<
+    ", lastValue: " << lastValue <<
+    ", lastSetPoint: " << lastSetPoint << std::endl << std::endl;
   }
 
   float propene::PID::calculate(float current, float target) {
