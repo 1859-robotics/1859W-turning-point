@@ -34,7 +34,7 @@ namespace hc {
           sigma(0),           lastTime(pros::millis()), lastValue(0),
           maxSpeed(maxSpeed), minSpeed(minSpeed) {};
 
-      void debug();
+      void debug(std::string name);
       float calculate(float target, float current);
     };
 

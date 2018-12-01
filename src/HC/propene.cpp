@@ -1,8 +1,8 @@
 #include "propene.hpp"
 
 namespace hc {
-  void propene::PID::debug() {
-    std::cout << "PID: " << std::endl <<
+  void propene::PID::debug(std::string name) {
+    std::cout << "PID: " << name << std::endl <<
       "kP: " << kP <<
     ", kI: " << kI <<
     ", kD: " << kD <<
@@ -40,7 +40,7 @@ namespace hc {
 
     // if the output is larger or smaller than the
     // maximum or minimum speed set the output to that speed
-  	return abs(output) > maxSpeed ? maxSpeed * SGN(output) :
-           abs(output) < minSpeed ? minSpeed * SGN(output) : output;
+  	return fabs(output) > maxSpeed ? maxSpeed * SGN(output) :
+           fabs(output) < minSpeed ? minSpeed * SGN(output) : output;
   }
 }

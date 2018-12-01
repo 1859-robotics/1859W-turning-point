@@ -37,7 +37,7 @@ namespace hc {
       float trans = cos(TORAD(tracker->a) - atan2(tracker->y - y, tracker->x - x));
 
       float speedR = rPid->calculate(a, tracker->a);
-      float speedT = tPid->calculate(-dist(tracker->x, tracker->y, x, y), 0);
+      float speedT = tPid->calculate(dist(tracker->x, tracker->y, x, y), 0);
 
       float idealVR = -((trans * (speedT) + rot * (speedR))) * 2;
       float idealVL = -((trans * (speedT) - rot * (speedR))) * 2;
@@ -60,6 +60,9 @@ namespace hc {
                        MIN_SPEED * SGN(idealVL);
       RIGHT_DRIVE_SET(targetVR);
       LEFT_DRIVE_SET(targetVL);
+
+      rPid->debug("rPid");
+      tPid->debug("tPid");
     }
     if(end) {
       RIGHT_DRIVE_SET(0);
@@ -84,7 +87,7 @@ namespace hc {
 
   void methane::Robot::reset() {
     std::cout << "reseting bot" << std::endl;
-    
+    tracker->reset();
     std::cout << "reset bot" << std::endl;
   }
 }
