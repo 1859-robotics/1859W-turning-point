@@ -86,7 +86,7 @@ namespace hc {
   }
 
   void methane::Robot::reset() {
-    std::cout << "reseting bot" << std::endl;
+    std::cout << "reseting bot..." << std::endl;
     tracker->reset();
     std::cout << "reset bot" << std::endl;
   }
