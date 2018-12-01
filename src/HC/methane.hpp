@@ -4,6 +4,7 @@
 #include "main.h"
 #include "benzene.hpp"
 #include "propene.hpp"
+#include "ethane.hpp"
 #include "../robot-config.hpp"
 
 // robot specification macros
@@ -22,10 +23,13 @@ namespace hc {
       ::hc::propene::PID *tPid;
 
     public:
+      ::hc::ethane::Flywheel *flywheel;
+      
       Robot(::hc::benzene::Tracker *tracker,
             ::hc::propene::PID *rPID,
-            ::hc::propene::PID *tPID) :
-            tracker(tracker), rPid(rPID), tPid(tPID) {};
+            ::hc::propene::PID *tPID,
+            ::hc::ethane::Flywheel *flywheel) :
+            tracker(tracker), rPid(rPID), tPid(tPID), flywheel(flywheel) {};
       void redChase(float x, float y, float a, bool end);
       void reset();
       // auton functions

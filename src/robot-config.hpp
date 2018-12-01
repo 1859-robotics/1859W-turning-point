@@ -39,11 +39,12 @@ extern pros::ADIGyro gyro;
 #include "HC/benzene.hpp"
 #include "HC/propene.hpp"
 #include "HC/methane.hpp"
+#include "HC/ethane.hpp"
 
 // abstractions
 extern hc::benzene::Tracker posTracker;
 extern hc::propene::PID rPID;
 extern hc::propene::PID tPID;
-
+extern hc::ethane::Flywheel flywheel;
 
 #endif
