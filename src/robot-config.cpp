@@ -17,4 +17,4 @@ pros::ADIGyro gyro = pros::ADIGyro(GYRO_PORT);
 hc::propene::PID rPID = hc::propene::PID(3.0, 0.0, 0.15, 3.0, 30.0, MIN_SPEED, MAX_SPEED);
 hc::propene::PID tPID = hc::propene::PID(3.0, 0.0, 0.15, 3.0, 30.0, MIN_SPEED, MAX_SPEED);
 hc::benzene::Tracker posTracker = hc::benzene::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, &gyro);
-hc::ethane::Flywheel flywheel = hc::ethane::Flywheel();
+hc::ethane::Flywheel flywheel = hc::ethane::Flywheel(false);

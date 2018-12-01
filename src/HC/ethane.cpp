@@ -4,14 +4,16 @@
 #include "main.h"
 #include "../robot-config.hpp"
 
-
+bool withinErr(float target, float current, float error) {
+  return abs(target - current) < error;
+}
 
 namespace hc {
   bool ethane::Flywheel::atTargetVel(float vel) {
-    return withinRange(vel, GET_VEL, VEL_ERR);
+    return withinErr(vel, GET_VEL, VEL_ERR);
   }
   bool ethane::Flywheel::atTargetVel() {
-    return withinRange(targetVel, GET_VEL, VEL_ERR);
+    return withinErr(targetVel, GET_VEL, VEL_ERR);
   }
   bool ethane::Flywheel::shouldMaintain() { return overwrite; }
   float ethane::Flywheel::getTargetVel(){ return targetVel; }
@@ -30,9 +32,9 @@ namespace hc {
   void ethane::maintain(void *ptr) {
     ethane::Flywheel* flywheel = static_cast<ethane::Flywheel*>(ptr);
     while(true) {
-      if(!flywheel->atTargetVel() && !flywheel->shouldMaintain()) {
+      if(!flywheel->shouldMaintain()) {
         flywheel->setTargetVel(flywheel->getTargetVel(), [](int i){
-          FLYWHEEL_SET(0);
+          FLYWHEEL_SET(10);
         });
       }
       pros::delay(20);

@@ -7,7 +7,7 @@
 
 #define GET_VEL (flywheelL.get_actual_velocity() + flywheelR.get_actual_velocity()) / 2
 
-#define VEL_ERR 20
+#define VEL_ERR 5
 
 namespace hc {
   namespace ethane {
@@ -16,7 +16,7 @@ namespace hc {
       bool overwrite;
       float targetVel;
     public:
-      Flywheel();
+      Flywheel(bool overwrite) : overwrite(overwrite) {};
       void setTargetVel(float vel, std::function<void(float)>callback);
       void maintainTargetVel();
       bool atTargetVel(float vel);
