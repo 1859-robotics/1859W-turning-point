@@ -23,7 +23,7 @@ namespace hc {
       if (vel - GET_VEL > 0) {
         FLYWHEEL_SET(127);
       } else if(vel - GET_VEL < 0) {
-        break;
+        break; //TODO: make this not bad
       }
     }
     callback(vel);
