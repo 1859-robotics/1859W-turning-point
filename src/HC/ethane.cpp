@@ -23,10 +23,11 @@ namespace hc {
       if (vel - GET_VEL > 0) {
         FLYWHEEL_SET(127);
       } else if(vel - GET_VEL < 0) {
-        FLYWHEEL_SET(0);
+        break;
       }
     }
     callback(vel);
+    targetVel = idleVel;
   }
 
   void ethane::maintain(void *ptr) {
@@ -34,7 +35,7 @@ namespace hc {
     while(true) {
       if(!flywheel->shouldMaintain()) {
         flywheel->setTargetVel(flywheel->getTargetVel(), [](int i){
-          FLYWHEEL_SET(10);
+          FLYWHEEL_SET(60);
         });
       }
       pros::delay(20);
