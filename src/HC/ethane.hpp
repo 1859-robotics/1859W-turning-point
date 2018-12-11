@@ -5,9 +5,11 @@
 
 
 
-#define GET_VEL (flywheelL.get_actual_velocity() + flywheelR.get_actual_velocity()) / 2
+#define GET_VEL (flywheelMotor.get_actual_velocity())
 
-#define VEL_ERR 2
+#define VEL_ERR 0
+#define IDLE_VEL 60
+#define IDLE_SPD 60
 
 namespace hc {
   namespace ethane {
@@ -17,7 +19,7 @@ namespace hc {
       float idleVel;
       float targetVel;
     public:
-      Flywheel(bool overwrite, float idleVel) :
+      Flywheel(bool overwrite, float idleVel = IDLE_VEL) :
         overwrite(overwrite), idleVel(idleVel) {};
       void setTargetVel(float vel, std::function<void(float)>callback);
       void maintainTargetVel();

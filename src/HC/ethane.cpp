@@ -20,14 +20,14 @@ namespace hc {
   void ethane::Flywheel::setTargetVel(float vel, std::function<void(float)>callback) {
     targetVel = vel;
     while(!atTargetVel(vel)) {
-      if (vel - GET_VEL > 0) {
+      if (targetVel - GET_VEL > 0) {
         FLYWHEEL_SET(127);
-      } else if(vel - GET_VEL < 0) {
-        break; //TODO: make this not bad
+      } else if(targetVel - GET_VEL < 0) {
+        FLYWHEEL_SET(IDLE_SPD);
+        // break; //TODO: make this not bad
       }
     }
-    callback(vel);
-    targetVel = idleVel;
+    callback(targetVel);
   }
 
   void ethane::maintain(void *ptr) {
@@ -35,7 +35,7 @@ namespace hc {
     while(true) {
       if(!flywheel->shouldMaintain()) {
         flywheel->setTargetVel(flywheel->getTargetVel(), [](int i){
-          FLYWHEEL_SET(60);
+          FLYWHEEL_SET(IDLE_VEL);
         });
       }
       pros::delay(20);
