@@ -92,4 +92,4 @@ namespace hc {
   }
 }
 
-hc::methane::Robot robot = hc::methane::Robot(&posTracker, &rPID, &tPID, &flywheel);
+hc::methane::Robot robot = hc::methane::Robot(&posTracker, &rPID, &tPID);
