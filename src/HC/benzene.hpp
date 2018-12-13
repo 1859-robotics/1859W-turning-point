@@ -9,6 +9,11 @@
 #define TODEG(rad) ((rad) * (180 / PI))
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
+#define WHEEL_D 41.69
+#define SL 1 // TODO: measure all of these
+#define SR 1
+#define SS 1
+
 #define POINT_LIST(...) __VA_ARGS__
 
 namespace hc {
