@@ -14,20 +14,21 @@ namespace hc {
     float dL = (newL - lEncoderVal) / 41.69;
     float dM = (newM - mEncoderVal) / 41.69;
 
-    rEncoderVal = rEncoder->get_value();
-    lEncoderVal = lEncoder->get_value();
-    mEncoderVal = cEncoder->get_value();
+    rEncoderVal = newR;
+    lEncoderVal = newL;
+    mEncoderVal = newM;
 
-    float dS = (dR + dL) / 2.0;
-    float dA = (gyro->get_value() / 10) - a;
+    float dA = (dL - dR) / SL + SR;
 
-    if(abs(dA) > 100) dA -= -360 * SGN(dA);
+    float dX, dY;
 
-    float avgA = ((dA + a) + a) / 2;
-
-
-    float dX = dS * sin(TORAD(avgA)) - dM * cos(TORAD(avgA));
-    float dY = dS * cos(TORAD(avgA)) + dM * sin(TORAD(avgA));
+    if(dA != 0) {
+    	dX = 2 * sin(dA / 2) * (dM / dA + sS)
+    	dY = 2 * sin(dA / 2) * (dR / dA + sR)
+    } else {
+    	dX = dM
+    	dY = dR
+    }
 
     x += dX;
     y += dY;
