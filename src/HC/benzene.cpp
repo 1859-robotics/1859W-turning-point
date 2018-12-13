@@ -18,7 +18,7 @@ namespace hc {
     lEncoderVal = newL;
     mEncoderVal = newM;
 
-    float dA = (dL - dR) / SL + SR;
+    float dA = (dL - dR) / SL + SR; //TODO: insert reset nodes?
 
     float dX, dY;
 
