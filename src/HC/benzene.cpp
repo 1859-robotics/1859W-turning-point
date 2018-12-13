@@ -18,16 +18,16 @@ namespace hc {
     lEncoderVal = newL;
     mEncoderVal = newM;
 
-    float dA = (dL - dR) / SL + SR; //TODO: insert reset nodes?
+    float dA = (dL - dR) / (SL + SR); //TODO: insert reset nodes?
 
     float dX, dY;
 
     if(dA != 0) {
-    	dX = 2 * sin(dA / 2) * (dM / dA + sS)
-    	dY = 2 * sin(dA / 2) * (dR / dA + sR)
+    	dX = 2 * sin(dA / 2) * (dM / dA + SS);
+    	dY = 2 * sin(dA / 2) * (dR / dA + SR);
     } else {
-    	dX = dM
-    	dY = dR
+    	dX = dM;
+    	dY = dR;
     }
 
     x += dX;

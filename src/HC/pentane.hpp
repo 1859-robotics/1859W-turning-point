@@ -9,7 +9,7 @@
 namespace hc {
   namespace pentane {
     void alert(const char* message);
-    void button(const char* message, std::function<void()> callback);
+    // void button(const char* message, std::function<lv_res_t(lv_obj_t * btn)> callback);
   }
 }
 
