@@ -2,11 +2,12 @@
 #define PROPENE_HPP
 
 #include "main.h"
-#include "methane.hpp"
 #include <functional>
 
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
+#define MIN_SPEED 10
+#define MAX_SPEED 127
 
 namespace hc {
   namespace propene {

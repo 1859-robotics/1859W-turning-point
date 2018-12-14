@@ -5,3 +5,6 @@
 - [x] tracking
 - [ ] turn to angle func
 - [ ] turn to face func
+- [ ] methane::Robot::seek
+- [ ] methane::Robot::moveTo
+- [ ] methane::Robot::moveAlong

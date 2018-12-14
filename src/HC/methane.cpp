@@ -30,63 +30,23 @@ float remap (float value, float from1, float to1, float from2, float to2) {
 
 
 namespace hc {
-  void methane::Robot::redChase(float x, float y, float a, bool end = true) {
-    while(!withinErr(tracker->x, tracker->y, tracker->a, x, y, a)) {
+  void methane::Robot::seek(float x, float y, float a, bool end = true) {
 
-      float rot =   remap(fmod(TORAD(a - tracker->a), PI), -PI, PI, -1, 1);
-      float trans = cos(TORAD(tracker->a) - atan2(tracker->y - y, tracker->x - x));
-
-      float speedR = rPid->calculate(a, tracker->a);
-      float speedT = tPid->calculate(dist(tracker->x, tracker->y, x, y), 0);
-
-      float idealVR = -((trans * (speedT) + rot * (speedR))) * 2;
-      float idealVL = -((trans * (speedT) - rot * (speedR))) * 2;
-
-      if(fabs(idealVL) > MAX_SPEED || fabs(idealVR) > MAX_SPEED) {
-        if(fabs(idealVL) > fabs(idealVR)) {
-          idealVR = (fabs(idealVR) - fabs(fabs(idealVL) - MAX_SPEED)) * SGN(idealVR);
-          idealVL = MAX_SPEED * SGN(idealVL);
-        } else if(fabs(idealVR) > fabs(idealVL)) {
-          idealVL = (fabs(idealVL) - (fabs(idealVR) - MAX_SPEED)) * SGN(idealVL);
-          idealVR = MAX_SPEED * SGN(idealVR);
-        }
-      }
-
-      float targetVR = fabs(idealVR) > MIN_SPEED ? idealVR :
-                       fabs(idealVR) < ZERO_SPEED ? 0 :
-                       MIN_SPEED * SGN(idealVR);
-      float targetVL = fabs(idealVL) > MIN_SPEED ? idealVL :
-                       fabs(idealVR) < ZERO_SPEED ? 0 :
-                       MIN_SPEED * SGN(idealVL);
-      RIGHT_DRIVE_SET(targetVR);
-      LEFT_DRIVE_SET(targetVL);
-
-      rPid->debug("rPid");
-      tPid->debug("tPid");
-    }
-    if(end) {
-      RIGHT_DRIVE_SET(0);
-      RIGHT_DRIVE_SET(0);
-    }
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    std::cout << "Moving to: " << target.x << ", " << target.y << ")  |   " << targetA;
-
-    redChase(target.x, target.y, targetA);
   }
 
   void methane::Robot::moveAlong(::hc::benzene::Point wayPoints[], int size, float endA) {
-    for(int i = 0; i < size; i++ ) {
-        redChase(wayPoints[i].x, wayPoints[i].y, i + 1 < size ? endA :
-          atan2(wayPoints[i].x - wayPoints[i + 1].x, wayPoints[i].y - wayPoints[i + 1].y), false);
-    }
-    RIGHT_DRIVE_SET(0);
-    LEFT_DRIVE_SET(0);
+
   }
 
   void methane::Robot::turnToFace(float deg) {
+    std::cout << "starting turn to face" << std::endl;
+
     pid->doPID(deg, 3, []() -> float {
+      std::cout << "posTracker.a: " << posTracker.a << std::endl;
+
       return posTracker.a;
     }, [] (float output) -> void {
       RIGHT_DRIVE_SET(output);

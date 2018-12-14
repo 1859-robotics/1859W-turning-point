@@ -7,9 +7,7 @@
 #include "../robot-config.hpp"
 
 // robot specification macros
-#define MIN_SPEED 10
 #define ZERO_SPEED 10
-#define MAX_SPEED 127
 #define A_ERR 5
 #define P_ERR 3.5
 
@@ -27,15 +25,15 @@ namespace hc {
       Robot(::hc::benzene::Tracker *tracker,
             ::hc::propene::PID *pid) :
             tracker(tracker), pid(pid) {};
-      void redChase(float x, float y, float a, bool end);
+      void seek(float x, float y, float a, bool end);
       void reset();
       // auton functions
       void moveTo(::hc::benzene::Point target, float targetA); // moves to a point
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg
       // void moveFor(float length); // moves for a distance
         // moveFor(4) - move 4 in forwards
-      void methane::Robot::turnToFace(float deg);
-      void methane::Robot::turnToFace(::hc::benzene::Point point);
+      void turnToFace(float deg);
+      void turnToFace(::hc::benzene::Point point);
       void moveAlong(::hc::benzene::Point wayPoints[], int size, float a); // moves the bot along a set of way points
         // moveAlong({{1, 4}, {2, 5}}, 0); // move through the points (1, 4) then (2, 5) and end facing 0deg
       // void raiseLiftTo(int height); // rasie lift to a certain amount
