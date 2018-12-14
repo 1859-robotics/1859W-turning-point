@@ -79,4 +79,8 @@ namespace hc {
       }
     }
   }
+
+  propene::PID *deepCopy(::hc::propene::PID *pid) {
+    return new propene::PID(pid->kP, pid->kI, pid->kD, pid->epsilonInner, pid->epsilonOuter);
+  }
 }

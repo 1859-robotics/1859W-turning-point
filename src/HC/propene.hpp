@@ -13,14 +13,6 @@ namespace hc {
   namespace propene {
     class PID {
     private:
-      float kP;
-    	float kI;
-    	float kD;
-
-      float epsilonInner;
-    	float epsilonOuter;
-
-      float sigma;
 
       float lastValue;
     	std::uint32_t lastTime;
@@ -29,9 +21,17 @@ namespace hc {
       int maxSpeed;
       int minSpeed;
     public:
+      float kP;
+      float kI;
+      float kD;
+
+      float epsilonInner;
+      float epsilonOuter;
+
+      float sigma;
       PID(float kP,           float kI,           float kD,
           float epsilonInner, float epsilonOuter,
-          int maxSpeed,       int minSpeed) :
+          int maxSpeed = MAX_SPEED,       int minSpeed = MIN_SPEED) :
           kP(kP),             kI(kI),             kD(kD),
           epsilonInner(epsilonInner),             epsilonOuter(epsilonOuter),
           sigma(0),           lastTime(pros::millis()), lastValue(0),
@@ -43,6 +43,7 @@ namespace hc {
       float calculate(float target, float current);
     };
 
+    propene::PID *deepCopy(::hc::propene::PID *pid);
   }
 }
 
