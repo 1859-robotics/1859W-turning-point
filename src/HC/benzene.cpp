@@ -59,11 +59,13 @@ namespace hc {
   }
 
   void benzene::track(void *ptr) {
+    std::cout << "tracking began" << std::endl;
     benzene::Tracker* tracker = static_cast<benzene::Tracker*>(ptr);
     while(true) {
       tracker->track();
       tracker->debug();
       pros::delay(20);
     }
+    std::cout << "tracking ended?" << std::endl;
   }
 }

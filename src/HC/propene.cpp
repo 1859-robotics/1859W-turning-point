@@ -40,8 +40,8 @@ namespace hc {
 
     // if the output is larger or smaller than the
     // maximum or minimum speed set the output to that speed
-  	return fabs(output) > maxSpeed ? maxSpeed * SGN(output) :
-           fabs(output) < minSpeed ? minSpeed * SGN(output) : output;
+  	return ((fabs(output) > maxSpeed) ? (maxSpeed * SGN(output)) :
+           ((fabs(output) < minSpeed) ? (minSpeed * SGN(output)) : output));
   }
 
   void propene::PID::config(float kP,           float kI,           float kD,
@@ -62,12 +62,11 @@ namespace hc {
     bool atSetPoint = false;
     float atTargetTime = pros::millis();
     float timer = pros::millis();
-    float currentVal = 0;
-    float prevVal = current();
+    float currentVal = current();
     while(!atSetPoint) {
       timer = pros::millis();
-
       currentVal = current();
+      // std::cout << currentVal << std::endl;
 
       float output = calculate(currentVal, target);
       action(output);

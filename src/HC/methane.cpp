@@ -45,12 +45,10 @@ namespace hc {
     std::cout << "starting turn to face" << std::endl;
 
     pid->doPID(deg, 3, []() -> float {
-      std::cout << "posTracker.a: " << posTracker.a << std::endl;
-
-      return posTracker.a;
-    }, [] (float output) -> void {
-      RIGHT_DRIVE_SET(output);
-      LEFT_DRIVE_SET(-output);
+      return TODEG(posTracker.a);
+    }, [](float output) -> void {
+      RIGHT_DRIVE_SET(-output);
+      LEFT_DRIVE_SET(output);
     });
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
