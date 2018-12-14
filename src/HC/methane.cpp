@@ -85,6 +85,21 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
+  void methane::Robot::turnToFace(float deg) {
+    pid->doPID(deg, 3, []() -> float {
+      return posTracker.a;
+    }, [] (float output) -> void {
+      RIGHT_DRIVE_SET(output);
+      LEFT_DRIVE_SET(-output);
+    });
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
+  }
+
+  void methane::Robot::turnToFace(::hc::benzene::Point point) {
+    turnToFace(TODEG(atan2(point.x, point.y)));
+  }
+
   void methane::Robot::reset() {
     std::cout << "reseting bot..." << std::endl;
     tracker->reset();
@@ -92,4 +107,4 @@ namespace hc {
   }
 }
 
-hc::methane::Robot robot = hc::methane::Robot(&posTracker, &rPID, &tPID);
+hc::methane::Robot robot = hc::methane::Robot(&posTracker, &mainPID);

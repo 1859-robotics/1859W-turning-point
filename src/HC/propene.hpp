@@ -2,6 +2,8 @@
 #define PROPENE_HPP
 
 #include "main.h"
+#include "methane.hpp"
+#include <functional>
 
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
@@ -34,6 +36,8 @@ namespace hc {
           sigma(0),           lastTime(pros::millis()), lastValue(0),
           maxSpeed(maxSpeed), minSpeed(minSpeed) {};
 
+      void config(float kP, float kI, float kD, float epsilonInner, float epsilonOuter, int maxSpeed, int minSpeed);
+      void doPID(float target, float tolerance, std::function <float()> current, std::function <void(float)> action, float kp = 3, float ki = 0, float kd = 0.15, float epsilonInner = 3, float epsilonOuter = 30, int maxSpeed = MAX_SPEED, int minSpeed = MIN_SPEED);
       void debug(std::string name);
       float calculate(float target, float current);
     };

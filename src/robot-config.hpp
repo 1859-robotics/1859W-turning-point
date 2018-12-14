@@ -15,6 +15,7 @@
 #define TRACKER_RIGHT_PORT 3
 #define TRACKER_CENTER_PORT 5
 
+
 // components
 
 extern pros::Controller master;
@@ -44,7 +45,6 @@ extern pros::ADIEncoder cTrackerWheel;
 
 // abstractions
 extern hc::benzene::Tracker posTracker;
-extern hc::propene::PID rPID;
-extern hc::propene::PID tPID;
+extern hc::propene::PID mainPID;
 
 #endif
