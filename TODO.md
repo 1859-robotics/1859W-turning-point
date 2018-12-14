@@ -2,3 +2,6 @@
 - [ ] styles
 - [ ] general text ui
 - [ ] option ui
+- [x] tracking
+- [ ] turn to angle func
+- [ ] turn to face func
