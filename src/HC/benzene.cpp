@@ -20,7 +20,7 @@ namespace hc {
     rEncoderVal = newR;
     mEncoderVal = newC;
 
-    float newA = (dL - dR) / (SL + SR); // TODO: reset nodes?
+    float newA = a + (dL - dR) / (SL + SR); // TODO: reset nodes?
     float dA = newA - a;
 
     float localOffX, localOffY;
