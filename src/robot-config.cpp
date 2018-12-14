@@ -12,8 +12,6 @@ pros::ADIEncoder lTrackerWheel = pros::ADIEncoder(TRACKER_LEFT_PORT, TRACKER_LEF
 pros::ADIEncoder rTrackerWheel = pros::ADIEncoder(TRACKER_RIGHT_PORT, TRACKER_RIGHT_PORT + 1);
 pros::ADIEncoder cTrackerWheel = pros::ADIEncoder(TRACKER_CENTER_PORT, TRACKER_CENTER_PORT + 1);
 
-pros::ADIGyro gyro = pros::ADIGyro(GYRO_PORT);
-
 hc::propene::PID rPID = hc::propene::PID(3.0, 0.0, 0.15, 3.0, 30.0, MIN_SPEED, MAX_SPEED);
 hc::propene::PID tPID = hc::propene::PID(3.0, 0.0, 0.15, 3.0, 30.0, MIN_SPEED, MAX_SPEED);
-hc::benzene::Tracker posTracker = hc::benzene::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, &gyro);
+hc::benzene::Tracker posTracker = hc::benzene::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel);

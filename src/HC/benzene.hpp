@@ -10,9 +10,9 @@
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
 #define WHEEL_D 41.69
-#define SL 5 // TODO: measure all of these
-#define SR 5
-#define SS 3
+#define SL 4.25 // TODO: measure all of these
+#define SR 4.25
+#define SS 3.625
 
 #define POINT_LIST(...) __VA_ARGS__
 
@@ -23,22 +23,18 @@ namespace hc {
       pros::ADIEncoder *lEncoder;
       pros::ADIEncoder *rEncoder;
       pros::ADIEncoder *cEncoder;
-      pros::ADIGyro *gyro;
 
       float lEncoderVal;
       float rEncoderVal;
       float mEncoderVal;
 
-      float gyroVal;
     public:
       Tracker(pros::ADIEncoder *lEncoder,
               pros::ADIEncoder *rEncoder,
-              pros::ADIEncoder *cEncoder,
-              pros::ADIGyro *gyro) :
+              pros::ADIEncoder *cEncoder) :
               lEncoder(lEncoder),
               rEncoder(rEncoder),
-              cEncoder(cEncoder),
-              gyro(gyro) {};
+              cEncoder(cEncoder) {};
 
       // for ease of use we make the x, y, and a vars public
       float x;

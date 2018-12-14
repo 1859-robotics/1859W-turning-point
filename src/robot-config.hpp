@@ -11,10 +11,9 @@
 #define LEFT_FLYWHEEL_PORT 11
 #define RIGHT_FLYWHEEL_PORT 12
 
-#define TRACKER_LEFT_PORT 1
+#define TRACKER_LEFT_PORT 7
 #define TRACKER_RIGHT_PORT 3
 #define TRACKER_CENTER_PORT 5
-#define GYRO_PORT 8
 
 // components
 
@@ -28,7 +27,6 @@ extern pros::Motor flywheelR;
 extern pros::ADIEncoder lTrackerWheel;
 extern pros::ADIEncoder rTrackerWheel;
 extern pros::ADIEncoder cTrackerWheel;
-extern pros::ADIGyro gyro;
 
 // robot config macros
 #define RIGHT_DRIVE_SET(spd) rightDrive.move(spd)

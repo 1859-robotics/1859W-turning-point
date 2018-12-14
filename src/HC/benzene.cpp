@@ -2,7 +2,7 @@
 
 namespace hc {
   void benzene::Tracker::debug() {
-    std::cout << "(" << x << ", " << y << ")  | " << a << std::endl;
+    std::cout << "(" << x << ", " << y << ")  | " << TODEG(a) << std::endl;
   }
 
   void benzene::Tracker::track() {
@@ -18,13 +18,14 @@ namespace hc {
     lEncoderVal = newL;
     mEncoderVal = newM;
 
-    float dA = (dL - dR) / (SL + SR); //TODO: insert reset nodes?
+    float dA = (dL - dR) / (SL + SR);
 
     float dX, dY;
+    a += dA;
 
     if(dA != 0) {
-    	dX = 2 * sin(dA / 2) * (dM / dA + SS);
-    	dY = 2 * sin(dA / 2) * (dR / dA + SR);
+    	dX = (2 * sin(a / 2) * ((dM / dA) + SS)) * cos(a);
+    	dY = (2 * sin(a / 2) * ((dR / dA) + SR)) * sin(a);
     } else {
     	dX = dM;
     	dY = dR;
@@ -32,8 +33,6 @@ namespace hc {
 
     x += dX;
     y += dY;
-    a += dA;
-
   }
 
   void benzene::Tracker::setPos(float x, float y, float a) {
@@ -46,7 +45,6 @@ namespace hc {
     lEncoder->reset();
     rEncoder->reset();
     cEncoder->reset();
-    gyro->reset();
   }
 
   void benzene::track(void *ptr) {
