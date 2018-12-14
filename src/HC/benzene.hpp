@@ -22,7 +22,7 @@ namespace hc {
     private:
       pros::ADIEncoder *lEncoder;
       pros::ADIEncoder *rEncoder;
-      pros::ADIEncoder *cEncoder;
+      pros::ADIEncoder *mEncoder;
 
       float lEncoderVal;
       float rEncoderVal;
@@ -31,10 +31,10 @@ namespace hc {
     public:
       Tracker(pros::ADIEncoder *lEncoder,
               pros::ADIEncoder *rEncoder,
-              pros::ADIEncoder *cEncoder) :
+              pros::ADIEncoder *mEncoder) :
               lEncoder(lEncoder),
               rEncoder(rEncoder),
-              cEncoder(cEncoder) {};
+              mEncoder(mEncoder) {};
 
       // for ease of use we make the x, y, and a vars public
       float x;

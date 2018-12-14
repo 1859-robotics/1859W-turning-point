@@ -1,3 +1,4 @@
+
 #include "benzene.hpp"
 
 namespace hc {
@@ -6,33 +7,43 @@ namespace hc {
   }
 
   void benzene::Tracker::track() {
-    float newR = rEncoder->get_value();
     float newL = lEncoder->get_value();
-    float newM = cEncoder->get_value();
+    float newR = rEncoder->get_value();
+    float newC = mEncoder->get_value();
 
-    float dR = (newR - rEncoderVal) / 41.69;
-    float dL = (newL - lEncoderVal) / 41.69;
-    float dM = (newM - mEncoderVal) / 41.69;
 
-    rEncoderVal = newR;
+    float dL = (lEncoderVal - newL) / 41.69;
+    float dR = (rEncoderVal - newR) / 41.69;
+    float dC = (mEncoderVal - newC) / 41.69;
+
     lEncoderVal = newL;
-    mEncoderVal = newM;
+    rEncoderVal = newR;
+    mEncoderVal = newC;
 
-    float dA = (dL - dR) / (SL + SR);
+    float newA = (dL - dR) / (SL + SR); // TODO: reset nodes?
+    float dA = newA - a;
 
-    float dX, dY;
-    a += dA;
+    float localOffX, localOffY;
 
     if(dA != 0) {
-    	dX = (2 * sin(a / 2) * ((dM / dA) + SS)) * cos(a);
-    	dY = (2 * sin(a / 2) * ((dR / dA) + SR)) * sin(a);
+      localOffX = 2 * sin(a / 2) * ((dC / dA) + SS);
+      localOffY = 2 * sin(a / 2) * ((dR / dA) + SR);
     } else {
-    	dX = dM;
-    	dY = dR;
+      localOffX = dC;
+      localOffY = dR;
     }
+
+    float avgA = a + (dA / 2);
+
+    float polarR = sqrt((localOffX * localOffX) + (localOffY * localOffY));
+    float polarA = atan2(localOffY, localOffX) - avgA;
+
+    float dX = cos(polarA) * polarR;
+    float dY = sin(polarA) * polarR;
 
     x += dX;
     y += dY;
+    a = newA;
   }
 
   void benzene::Tracker::setPos(float x, float y, float a) {
@@ -44,7 +55,7 @@ namespace hc {
   void benzene::Tracker::reset() {
     lEncoder->reset();
     rEncoder->reset();
-    cEncoder->reset();
+    mEncoder->reset();
   }
 
   void benzene::track(void *ptr) {
