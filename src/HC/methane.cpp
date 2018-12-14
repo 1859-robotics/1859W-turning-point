@@ -31,10 +31,23 @@ float remap (float value, float from1, float to1, float from2, float to2) {
 
 namespace hc {
   void methane::Robot::seek(float x, float y, float a, bool end = true) {
+    float rot =   remap(fmod(TORAD(a - posTracker.a), PI), -PI, PI, -1, 1);
+    float trans = cos(TORAD(posTracker.a) - atan2(posTracker.y - y, posTracker.x - x));
 
+    float idealVR = (trans + rot) * 2;
+    float idealVL = (trans - rot) * 2;
+
+
+    RIGHT_DRIVE_SET(idealVR * 127);
+    LEFT_DRIVE_SET(idealVL * 127);
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
+    while(!withinErr(posTracker.x, posTracker.y, posTracker.a, target.x, target.y, targetA)) {
+      seek(target.x, target.y, targetA);
+    }
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
   }
 
   void methane::Robot::moveAlong(::hc::benzene::Point wayPoints[], int size, float endA) {

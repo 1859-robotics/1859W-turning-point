@@ -11,4 +11,7 @@ void autonomous() {
 
   robot.turnToFace(90);
   robot.turnToFace({1, 1});
+
+
+  // robot.moveTo({ 18, 18 }, 45);
 }

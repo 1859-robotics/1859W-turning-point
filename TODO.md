@@ -3,8 +3,8 @@
 - [ ] general text ui
 - [ ] option ui
 - [x] tracking
-- [ ] turn to angle func
-- [ ] turn to face func
+- [x] turn to angle func
+- [x] turn to face func
 - [ ] methane::Robot::seek
 - [ ] methane::Robot::moveTo
 - [ ] methane::Robot::moveAlong
