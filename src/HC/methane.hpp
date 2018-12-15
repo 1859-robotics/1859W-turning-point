@@ -29,6 +29,7 @@ namespace hc {
       void reset();
       // auton functions
       void moveTo(::hc::benzene::Point target, float targetA); // moves to a point
+      void moveFor(float dist);
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg
       // void moveFor(float length); // moves for a distance
         // moveFor(4) - move 4 in forwards

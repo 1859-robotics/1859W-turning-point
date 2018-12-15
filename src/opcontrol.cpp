@@ -16,6 +16,12 @@ void opcontrol() {
         FLYWHEEL_SET_VEL(257);
     }
 
+    if(master.get_digital(DIGITAL_UP)) {
+      INTAKE_SET(127);
+    } else {
+      INTAKE_SET(0);
+    }
+
 		pros::delay(20);
 	}
 }

@@ -7,6 +7,7 @@ pros::Motor rightDrive = pros::Motor(RIGHT_DRIVE_PORT, E_MOTOR_GEARSET_18, 1);
 
 pros::Motor flywheelR = pros::Motor(RIGHT_FLYWHEEL_PORT, E_MOTOR_GEARSET_06);
 pros::Motor flywheelL = pros::Motor(LEFT_FLYWHEEL_PORT, E_MOTOR_GEARSET_06, 1);
+pros::Motor intake = pros::Motor(INTAKE_PORT, E_MOTOR_GEARSET_18);
 
 pros::ADIEncoder lTrackerWheel = pros::ADIEncoder(TRACKER_LEFT_PORT, TRACKER_LEFT_PORT + 1);
 pros::ADIEncoder rTrackerWheel = pros::ADIEncoder(TRACKER_RIGHT_PORT, TRACKER_RIGHT_PORT + 1);

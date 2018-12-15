@@ -6,10 +6,11 @@
 
 // port defines
 #define LEFT_DRIVE_PORT 1
-#define RIGHT_DRIVE_PORT 10
+#define RIGHT_DRIVE_PORT 2
 
 #define LEFT_FLYWHEEL_PORT 11
 #define RIGHT_FLYWHEEL_PORT 12
+#define INTAKE_PORT 20
 
 #define TRACKER_LEFT_PORT 7
 #define TRACKER_RIGHT_PORT 3
@@ -25,6 +26,8 @@ extern pros::Motor rightDrive;
 extern pros::Motor flywheelL;
 extern pros::Motor flywheelR;
 
+extern pros::Motor intake;
+
 extern pros::ADIEncoder lTrackerWheel;
 extern pros::ADIEncoder rTrackerWheel;
 extern pros::ADIEncoder cTrackerWheel;
@@ -38,6 +41,7 @@ extern pros::ADIEncoder cTrackerWheel;
 
 #define FLYWHEEL_GET_VEL (flywheelR.get_actual_velocity() + flywheelL.get_actual_velocity()) / 2
 
+#define INTAKE_SET(spd) intake.move(spd);
 
 #include "HC/benzene.hpp"
 #include "HC/propene.hpp"

@@ -55,9 +55,21 @@ namespace hc {
 
   }
 
-  void methane::Robot::turnToFace(float deg) {
-    std::cout << "starting turn to face" << std::endl;
+  void methane::Robot::moveFor(float dist) {
+    float initialEL = lTrackerWheel.get_value();
+    float initialER = rTrackerWheel.get_value();
 
+    pid->doPID(dist, 50, [=]() -> float {
+      return (initialEL - lTrackerWheel.get_value() + initialER - rTrackerWheel.get_value()) / 2;
+    }, [](float output) -> void {
+      RIGHT_DRIVE_SET(output);
+      LEFT_DRIVE_SET(output);
+    });
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
+  }
+
+  void methane::Robot::turnToFace(float deg) {
     pid->doPID(deg, 3, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
@@ -73,9 +85,7 @@ namespace hc {
   }
 
   void methane::Robot::reset() {
-    std::cout << "reseting bot..." << std::endl;
     tracker->reset();
-    std::cout << "reset bot" << std::endl;
   }
 }
 
