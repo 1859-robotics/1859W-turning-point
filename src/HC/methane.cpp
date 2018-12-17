@@ -24,8 +24,8 @@ float dot(float x1, float y1, float x2, float y2) {
 
 
 float remap (float value, float from1, float to1, float from2, float to2) {
-      return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
-  }
+  return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+}
 // end util functions
 
 

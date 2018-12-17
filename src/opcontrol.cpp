@@ -10,29 +10,32 @@ void opcontrol() {
     bool autonOverwrite = false;
 
 		if(master.get_digital(DIGITAL_A)) {
-      FLYWHEEL_SET_VEL(410);
+      FLYWHEEL_SET(127);
       if(FLYWHEEL_GET_VEL > 410) {
         master.rumble(".");
         robot.feedBall();
+        FLYWHEEL_SET(60);
         autonOverwrite = true;
       }
     } else if(master.get_digital(DIGITAL_B)) {
-      FLYWHEEL_SET_VEL(350);
+      FLYWHEEL_SET(127);
       if(FLYWHEEL_GET_VEL > 300) {
         master.rumble(".");
         robot.feedBall();
+        FLYWHEEL_SET(60);
         autonOverwrite = true;
       }
     } else if(master.get_digital(DIGITAL_Y)) {
-      FLYWHEEL_SET_VEL(300);
+      FLYWHEEL_SET(127);
       if(FLYWHEEL_GET_VEL > 300) {
         master.rumble(".");
         robot.feedBall();
+        FLYWHEEL_SET(60);
         autonOverwrite = true;
       }
     } else {
-      if(FLYWHEEL_GET_VEL < 257)
-        FLYWHEEL_SET_VEL(257);
+      // if(FLYWHEEL_GET_VEL < 257)
+        FLYWHEEL_SET(60);
     }
 
     if(!autonOverwrite) {
