@@ -43,6 +43,14 @@ extern pros::ADIEncoder cTrackerWheel;
 
 #define INTAKE_SET(spd) intake.move(spd);
 
+// flywheel stuff
+#define FLYWHEEL_IDLE 60
+
+#define FLYWHEEL_RED_START_B_MID 400
+#define FLYWHEEL_RED_START_B_HIGH 450
+
+
+
 #include "HC/benzene.hpp"
 #include "HC/propene.hpp"
 #include "HC/methane.hpp"

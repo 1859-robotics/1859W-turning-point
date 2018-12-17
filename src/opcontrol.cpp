@@ -11,10 +11,10 @@ void opcontrol() {
 
 		if(master.get_digital(DIGITAL_A)) {
       FLYWHEEL_SET(127);
-      if(FLYWHEEL_GET_VEL > 410) {
+      if(FLYWHEEL_GET_VEL > FLYWHEEL_RED_START_B) {
         master.rumble(".");
         robot.feedBall();
-        FLYWHEEL_SET(60);
+        FLYWHEEL_SET(FLYWHEEL_IDLE);
         autonOverwrite = true;
       }
     } else if(master.get_digital(DIGITAL_B)) {
@@ -22,7 +22,7 @@ void opcontrol() {
       if(FLYWHEEL_GET_VEL > 300) {
         master.rumble(".");
         robot.feedBall();
-        FLYWHEEL_SET(60);
+        FLYWHEEL_SET(FLYWHEEL_IDLE);
         autonOverwrite = true;
       }
     } else if(master.get_digital(DIGITAL_Y)) {
@@ -30,12 +30,11 @@ void opcontrol() {
       if(FLYWHEEL_GET_VEL > 300) {
         master.rumble(".");
         robot.feedBall();
-        FLYWHEEL_SET(60);
+        FLYWHEEL_SET(FLYWHEEL_IDLE);
         autonOverwrite = true;
       }
     } else {
-      // if(FLYWHEEL_GET_VEL < 257)
-        FLYWHEEL_SET(60);
+      FLYWHEEL_SET(FLYWHEEL_IDLE);
     }
 
     if(!autonOverwrite) {
