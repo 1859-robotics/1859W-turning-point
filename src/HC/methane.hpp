@@ -27,6 +27,7 @@ namespace hc {
             tracker(tracker), pid(pid) {};
       void seek(float x, float y, float a, bool end);
       void reset();
+      void feedBall();
       // auton functions
       void moveTo(::hc::benzene::Point target, float targetA); // moves to a point
       void moveFor(float dist);

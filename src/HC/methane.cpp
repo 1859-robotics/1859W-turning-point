@@ -59,7 +59,7 @@ namespace hc {
     float initialEL = lTrackerWheel.get_value();
     float initialER = rTrackerWheel.get_value();
 
-    pid->doPID(dist, 50, [=]() -> float {
+    pid->doPID(dist, 50 , [=]() -> float {
       return (initialEL - lTrackerWheel.get_value() + initialER - rTrackerWheel.get_value()) / 2;
     }, [](float output) -> void {
       RIGHT_DRIVE_SET(output);
@@ -82,6 +82,10 @@ namespace hc {
 
   void methane::Robot::turnToFace(::hc::benzene::Point point) {
     turnToFace(TODEG(atan2(point.x, point.y)));
+  }
+
+  void methane::Robot::feedBall() {
+    INTAKE_SET(127);
   }
 
   void methane::Robot::reset() {
