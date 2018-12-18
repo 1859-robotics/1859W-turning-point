@@ -11,7 +11,7 @@ void opcontrol() {
 
 		if(master.get_digital(DIGITAL_A)) {
       FLYWHEEL_SET(127);
-      if(FLYWHEEL_GET_VEL > FLYWHEEL_RED_START_B) {
+      if(FLYWHEEL_GET_VEL > FLYWHEEL_START_B_MID) {
         master.rumble(".");
         robot.feedBall();
         FLYWHEEL_SET(FLYWHEEL_IDLE);
@@ -19,7 +19,7 @@ void opcontrol() {
       }
     } else if(master.get_digital(DIGITAL_B)) {
       FLYWHEEL_SET(127);
-      if(FLYWHEEL_GET_VEL > 300) {
+      if(FLYWHEEL_GET_VEL > FLYWHEEL_START_B_HIGH) {
         master.rumble(".");
         robot.feedBall();
         FLYWHEEL_SET(FLYWHEEL_IDLE);
