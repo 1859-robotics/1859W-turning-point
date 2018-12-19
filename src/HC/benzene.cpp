@@ -15,11 +15,6 @@ namespace hc {
     float dR = (rEncoderVal - newR) / 41.69;
     float dC = (mEncoderVal - newC) / 41.69;
 
-    std::cout << "dL: " << dL << std::endl;
-    std::cout << "dR: " << dR << std::endl;
-    std::cout << "dC: " << dC << std::endl;
-
-
     lEncoderVal = newL;
     rEncoderVal = newR;
     mEncoderVal = newC;
@@ -39,24 +34,13 @@ namespace hc {
       localOffY = dR;
     }
 
-    std::cout << "localOffX: " << localOffX << std::endl;
-    std::cout << "localOffY: " << localOffY << std::endl;
-
-
     float avgA = a + (dA / 2);
 
     float polarR = sqrt((localOffX * localOffX) + (localOffY * localOffY));
     float polarA = atan2(localOffY, localOffX) - avgA;
 
-    std::cout << "polarR: " << polarR << std::endl;
-    std::cout << "polarA: " << polarA << std::endl;
-
-
     float dX = cos(polarA) * polarR;
     float dY = sin(polarA) * polarR;
-
-    std::cout << "dX: " << dX << std::endl;
-    std::cout << "dY: " << dY << std::endl;
 
     x += dX;
     y += dY;

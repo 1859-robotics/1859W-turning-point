@@ -7,7 +7,7 @@
 #include "../robot-config.hpp"
 
 // robot specification macros
-#define ZERO_SPEED 10
+#define ZERO_SPEED 30
 #define A_ERR 5
 #define P_ERR 3.5
 
@@ -25,7 +25,7 @@ namespace hc {
       Robot(::hc::benzene::Tracker *tracker,
             ::hc::propene::PID *pid) :
             tracker(tracker), pid(pid) {};
-      void seek(float x, float y, float a, bool end);
+      void seek(float x, float y, ::hc::propene::PID *transPID, ::hc::propene::PID *rotPID);
       void reset();
       void feedBall();
       // auton functions

@@ -6,11 +6,10 @@ bool withinRange(float target, float current, float error) {
   return abs(target - current) < error;
 }
 
-bool withinErr(float cX, float cY, float cA, float tX, float tY, float tA, float eP = P_ERR, float eA = A_ERR) {
+bool withinErr(float cX, float cY, float tX, float tY, float eP = P_ERR) {
   return (
     withinRange(tX, cX, eP) &&
-    withinRange(tY, cY, eP) &&
-    withinRange(tA, cA, eA)
+    withinRange(tY, cY, eP)
   );
 }
 
@@ -30,13 +29,13 @@ float remap (float value, float from1, float to1, float from2, float to2) {
 
 
 namespace hc {
-  void methane::Robot::seek(float x, float y, float a, bool end = true) {
+  void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
+    float dotter = dot(x, y, posTracker.x, posTracker.y);
+    float trans = transPID->calculate(dist(x, y, posTracker.x, posTracker.y), 0) * (dotter != 0 ? dotter : 1);
+    float rot = rotPID->calculate(TODEG(posTracker.a - atan2(x - posTracker.x, y - posTracker.y)), 0);
 
-    propene::PID *rotPID = propene::deepCopy(pid);
-    propene::PID *transPID = propene::deepCopy(pid);
-
-    float trans = transPID->calculate(dist(x, y, posTracker.x, posTracker.y), 0) * dot(x, y, posTracker.x, posTracker.y);
-    float rot = rotPID->calculate(posTracker.a - a, 0);
+    std::cout << "trans: " << trans << std::endl;
+    std::cout << "rot:   " << rot << std::endl;
 
 
     RIGHT_DRIVE_SET(trans + rot);
@@ -44,9 +43,13 @@ namespace hc {
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    while(!withinErr(posTracker.x, posTracker.y, posTracker.a, target.x, target.y, targetA)) {
-      seek(target.x, target.y, targetA);
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(3, 0, 0.15, 0.1, 5);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(3, 0, 0.15, 3, 30);
+
+    while(!withinErr(posTracker.x, posTracker.y, target.x, target.y)) {
+      seek(target.x, target.y, transPID, rotPID);
     }
+    turnToFace(targetA);
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
   }
@@ -73,8 +76,8 @@ namespace hc {
     pid->doPID(deg, 3, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
-      RIGHT_DRIVE_SET(-output);
-      LEFT_DRIVE_SET(output);
+      RIGHT_DRIVE_SET(output);
+      LEFT_DRIVE_SET(-output);
     });
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);

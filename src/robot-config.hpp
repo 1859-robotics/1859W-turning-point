@@ -53,7 +53,7 @@ extern pros::ADIEncoder cTrackerWheel;
 
 #include "HC/benzene.hpp"
 #include "HC/propene.hpp"
-#include "HC/methane.hpp"
+// #include "HC/methane.hpp"
 
 // abstractions
 extern hc::benzene::Tracker posTracker;
