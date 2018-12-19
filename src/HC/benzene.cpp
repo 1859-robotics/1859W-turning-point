@@ -32,8 +32,8 @@ namespace hc {
     float localOffX, localOffY;
 
     if(dA != 0) {
-      localOffX = 2 * sin(a / 2) * ((dC / dA) + SS);
-      localOffY = 2 * sin(a / 2) * ((dR / dA) + SR);
+      localOffX = 2 * sin(dA / 2) * ((dC / dA) + SS);
+      localOffY = 2 * sin(dA / 2) * ((dR / dA) + SR);
     } else {
       localOffX = dC;
       localOffY = dR;
