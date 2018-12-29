@@ -35,50 +35,40 @@ float angleDiff(float angle1, float angle2) {
 
 namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
-    // float dotter = SGN(dot(x, y, posTracker.x, posTracker.y));
-    // float trans = transPID->calculate(-dist(x, y, posTracker.x, posTracker.y), 0) * (dotter != 0 ? dotter : 1);
-    // float rot = rotPID->calculate(TODEG(posTracker.a - atan2(x - posTracker.x, y - posTracker.y)), 0);
-    //
-    // std::cout << "trans: " << trans << std::endl;
-    // std::cout << "rot:   " << rot << std::endl;
-    //
-    // float idealVR = (trans + rot);
-    // float idealVL = (trans - rot);
+    float dotter = SGN(dot(x, y, posTracker.x, posTracker.y));
+    float trans = transPID->calculate(-dist(x, y, posTracker.x, posTracker.y), 0) * (dotter != 0 ? dotter : 1);
+    float rot = rotPID->calculate(TODEG(posTracker.a - atan2(x - posTracker.x, y - posTracker.y)), 0);
 
-    float tA = atan2(y - posTracker.y, x - posTracker.x);
+    float idealVR = (trans + rot);
+    float idealVL = (trans - rot);
 
-    float V = dist(posTracker.x, posTracker.y, x, y);
-    V = (abs(V) > 1) ? (SGN(V)) : V;
-
-    float W = angleDiff(tA, posTracker.a);
-    float Vr = V + W;
-    float Vl = V - W;
-
-    float maxMag = fmax(abs(Vl), abs(Vr));
+    float maxMag = fmax(abs(idealVL), abs(idealVR));
+    float minMag = fmin(abs(idealVL), abs(idealVR));
 
     if (maxMag > 1)  {
-      Vr /= maxMag;
-      Vl /= maxMag;
+      idealVR /= maxMag;
+      idealVL /= maxMag;
     }
 
-    RIGHT_DRIVE_SET(Vr * 60);
-    LEFT_DRIVE_SET(Vl * 60);
+    RIGHT_DRIVE_SET(idealVR * 127);
+    LEFT_DRIVE_SET(idealVL * 127);
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(3, 0, 0.15, 0.1, 5);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(3, 0, 0.15, 3, 30);
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(0.048, 0, 0.0, 0.0001, 0.00001, 1, -1);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(0.013, 0, 0.002, 0.0001, 0.00001, 1, -1);
 
-    std::cout << "before seek" << std::endl;
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y)) {
-
       // std::cout << "posTracker.x: " << posTracker.x << std::endl;
       // std::cout << "posTracker.y: " << posTracker.y << std::endl;
 
       seek(target.x, target.y, transPID, rotPID);
     }
-    std::cout << "end seek" << std::endl;
-    turnToFace(targetA);
+
+
+    if(!withinRange(TODEG(posTracker.a), targetA, A_ERR))
+      turnToFace(targetA);
+
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
   }

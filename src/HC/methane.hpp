@@ -3,12 +3,13 @@
 
 #include "main.h"
 #include "benzene.hpp"
+#include "pentane.hpp"
 #include "propene.hpp"
 #include "../robot-config.hpp"
 
 // robot specification macros
 #define ZERO_SPEED 30
-#define A_ERR 6
+#define A_ERR 4
 #define P_ERR 1
 
 namespace hc {
