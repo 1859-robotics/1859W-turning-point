@@ -18,6 +18,11 @@
 
 namespace hc {
   namespace benzene {
+    typedef struct {
+      float x;
+      float y;
+    } Point;
+
     class Tracker {
     private:
       pros::ADIEncoder *lEncoder;
@@ -44,14 +49,12 @@ namespace hc {
       void debug();
       void track();
       void setPos(float x, float y, float a);
+      void setPos(Point pt, float a);
       void reset();
     };
     void track(void *tracker);
 
-    typedef struct {
-      float x;
-      float y;
-    } Point;
+
   }
 }
 

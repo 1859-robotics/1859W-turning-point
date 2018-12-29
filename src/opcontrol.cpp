@@ -2,10 +2,15 @@
 #include "app.hpp"
 
 void opcontrol() {
-	while (true) {
+  pros::Task track(hc::benzene::track, &posTracker);
 
+	while (true) {
 		RIGHT_DRIVE_SET(master.get_analog(ANALOG_RIGHT_Y));
 		LEFT_DRIVE_SET(master.get_analog(ANALOG_LEFT_Y));
+
+    if(master.get_digital(DIGITAL_UP)) {
+      robot.turnToFace({ 60, 9 });
+    }
 
     bool autonOverwrite = false;
 

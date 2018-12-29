@@ -11,6 +11,10 @@ namespace hc {
     float newR = rEncoder->get_value();
     float newC = mEncoder->get_value();
 
+    std::cout << "newL : " << newL << std::endl;
+    std::cout << "newR : " << newR << std::endl;
+    std::cout << "newC : " << newC << std::endl;
+
     float dL = (lEncoderVal - newL) / 41.69;
     float dR = (rEncoderVal - newR) / 41.69;
     float dC = (mEncoderVal - newC) / 41.69;
@@ -51,6 +55,13 @@ namespace hc {
     std::cout << "seting pos" << std::endl;
     this->x = x;
     this->y = y;
+    this->a = a;
+  }
+
+  void benzene::Tracker::setPos(benzene::Point pt, float a) {
+    std::cout << "seting pos" << std::endl;
+    this->x = pt.x;
+    this->y = pt.y;
     this->a = a;
   }
 
