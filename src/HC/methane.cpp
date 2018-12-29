@@ -27,7 +27,7 @@ float remap (float value, float from1, float to1, float from2, float to2) {
 
 
 float angleDiff(float angle1, float angle2) {
-  float diff = fmod( angle2 - angle1 + PI, TAU ) - PI;
+  float diff = fmod(angle2 - angle1 + PI, TAU) - (PI / 2);
   return diff < -PI ? diff + TAU : diff;
 }
 // end util functions

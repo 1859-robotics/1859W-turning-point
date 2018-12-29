@@ -8,8 +8,8 @@
 
 // robot specification macros
 #define ZERO_SPEED 30
-#define A_ERR 5
-#define P_ERR 3.5
+#define A_ERR 6
+#define P_ERR 1
 
 namespace hc {
   namespace methane {
