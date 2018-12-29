@@ -42,15 +42,16 @@ namespace hc {
     float dX = cos(polarA) * polarR;
     float dY = sin(polarA) * polarR;
 
-    x += dX;
-    y += dY;
-    a = newA;
+    this->x -= dX;
+    this->y -= dY;
+    this->a = newA;
   }
 
   void benzene::Tracker::setPos(float x, float y, float a) {
-    x = x;
-    y = y;
-    a = a;
+    std::cout << "seting pos" << std::endl;
+    this->x = x;
+    this->y = y;
+    this->a = a;
   }
 
   void benzene::Tracker::reset() {
@@ -60,13 +61,11 @@ namespace hc {
   }
 
   void benzene::track(void *ptr) {
-    std::cout << "tracking began" << std::endl;
     benzene::Tracker* tracker = static_cast<benzene::Tracker*>(ptr);
     while(true) {
       tracker->track();
       tracker->debug();
       pros::delay(20);
     }
-    std::cout << "tracking ended?" << std::endl;
   }
 }

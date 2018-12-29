@@ -42,6 +42,7 @@
 #include <cmath>
 
 #define PI M_PI
+#define TAU (PI * 2)
 
 /**
  * You should add more #includes here
