@@ -92,6 +92,8 @@ namespace hc {
   }
 
   void methane::Robot::turnToFace(float deg) {
+    if(withinRange(posTracker.a, deg, A_ERR)) return;
+    
     pid->doPID(deg, 3, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
@@ -103,7 +105,7 @@ namespace hc {
   }
 
   void methane::Robot::turnToFace(::hc::benzene::Point point) {
-    turnToFace(TODEG(atan2(point.x, point.y)));
+    turnToFace(TODEG(atan2(point.y - posTracker.y, point.x - posTracker.x)));
   }
 
   void methane::Robot::feedBall() {
