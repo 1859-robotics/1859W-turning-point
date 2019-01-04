@@ -5,12 +5,12 @@
 #include "main.h"
 
 // port defines
-#define LEFT_DRIVE_PORT 1
-#define RIGHT_DRIVE_PORT 2
+#define LEFT_DRIVE_PORT 12
+#define RIGHT_DRIVE_PORT 11
 
-#define LEFT_FLYWHEEL_PORT 11
-#define RIGHT_FLYWHEEL_PORT 12
-#define INTAKE_PORT 20
+#define LEFT_FLYWHEEL_PORT 19
+#define RIGHT_FLYWHEEL_PORT 20
+#define INTAKE_PORT 13
 
 #define TRACKER_LEFT_PORT 7
 #define TRACKER_RIGHT_PORT 3

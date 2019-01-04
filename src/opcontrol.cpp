@@ -2,6 +2,9 @@
 #include "app.hpp"
 
 void opcontrol() {
+  robot.reset();
+  // posTracker.setPos({ 60, 9 }, 0);
+
   pros::Task track(hc::benzene::track, &posTracker);
     lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_text(label, ("("
@@ -9,6 +12,7 @@ void opcontrol() {
       + std::to_string(posTracker.y) + ")  |  "
       + std::to_string(posTracker.a)).c_str());
     lv_obj_align(label, NULL, LV_ALIGN_IN_TOP_MID, 0, 5);
+
 	while (true) {
 		RIGHT_DRIVE_SET(master.get_analog(ANALOG_RIGHT_Y));
 		LEFT_DRIVE_SET(master.get_analog(ANALOG_LEFT_Y));

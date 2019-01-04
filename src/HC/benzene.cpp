@@ -28,14 +28,16 @@ namespace hc {
 
     // std::cout << "dA: " << dA << std::endl;
 
+    float dS = (dL + dR) / 2;
+
     float localOffX, localOffY;
 
     if(dA != 0) {
       localOffX = 2 * sin(dA / 2) * ((dC / dA) + SS);
-      localOffY = 2 * sin(dA / 2) * ((dR / dA) + SR);
+      localOffY = 2 * sin(dA / 2) * ((dS / dA) + SR);
     } else {
       localOffX = dC;
-      localOffY = dR;
+      localOffY = dS;
     }
 
     float avgA = a + (dA / 2);
@@ -46,7 +48,20 @@ namespace hc {
     float dX = cos(polarA) * polarR;
     float dY = sin(polarA) * polarR;
 
-    this->x -= dX;
+    if(dX > 20) {
+      lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
+      lv_label_set_text(label, "stop everything has gone horribly wrong X");
+      lv_obj_align(label, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 5);
+    }
+
+    if(dY > 20) {
+      lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
+      lv_label_set_text(label, "stop everything has gone horribly wrong Y");
+      lv_obj_align(label, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 5);
+    }
+
+
+    this->x += dX;
     this->y -= dY;
     this->a = newA;
   }
