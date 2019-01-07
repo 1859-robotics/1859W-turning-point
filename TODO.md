@@ -1,10 +1,14 @@
-- [ ] button ui
-- [ ] styles
-- [ ] general text ui
 - [ ] option ui
 - [x] tracking
 - [x] turn to angle func
 - [x] turn to face func
-- [ ] methane::Robot::seek
-- [ ] methane::Robot::moveTo
-- [ ] methane::Robot::moveAlong
+- [x] methane::Robot::seek
+- [x] methane::Robot::moveTo
+- [ ] have hannah take photo
+- [ ] figure out 4b
+- [ ] build 4b
+- [ ] write drive build instructions for notebook
+- [ ] write shooter breakdown
+- [ ] write shooter build instructions
+- [ ] write lift breakdown
+
