@@ -45,7 +45,7 @@ extern pros::ADIEncoder cTrackerWheel;
 
 // flywheel stuff
 #define FLYWHEEL_IDLE 60
-
+#define FLYWHEEL_ERR 10
 #define FLYWHEEL_START_B_HIGH 390
 #define FLYWHEEL_START_B_MID 410
 

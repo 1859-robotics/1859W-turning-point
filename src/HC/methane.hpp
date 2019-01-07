@@ -12,6 +12,8 @@
 #define A_ERR 4
 #define P_ERR 1
 
+bool withinRange(float target, float current, float error);
+
 namespace hc {
   namespace methane {
     class Robot { // this class handles all of the auton functions

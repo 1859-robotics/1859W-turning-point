@@ -1,5 +1,6 @@
 #include "main.h"
 #include "app.hpp"
+#include "HC/methane.hpp"
 
 void opcontrol() {
   robot.reset();
@@ -29,7 +30,7 @@ void opcontrol() {
 
 		if(master.get_digital(DIGITAL_A)) {
       FLYWHEEL_SET(127);
-      if(FLYWHEEL_GET_VEL > FLYWHEEL_START_B_MID) {
+      if(withinRange(FLYWHEEL_START_B_MID, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
         master.rumble(".");
         robot.feedBall();
         FLYWHEEL_SET(FLYWHEEL_IDLE);
@@ -37,7 +38,7 @@ void opcontrol() {
       }
     } else if(master.get_digital(DIGITAL_B)) {
       FLYWHEEL_SET(127);
-      if(FLYWHEEL_GET_VEL > FLYWHEEL_START_B_HIGH) {
+      if(withinRange(FLYWHEEL_START_B_HIGH, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
         master.rumble(".");
         robot.feedBall();
         FLYWHEEL_SET(FLYWHEEL_IDLE);
