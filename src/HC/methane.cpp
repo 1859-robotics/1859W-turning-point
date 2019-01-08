@@ -105,7 +105,7 @@ namespace hc {
   }
 
   void methane::Robot::turnToFace(::hc::benzene::Point point) {
-    turnToFace(TODEG(atan2(point.y - posTracker.y, point.x - posTracker.x)));
+    turnToFace(TODEG(atan2(point.x - posTracker.x, point.y - posTracker.y) - posTracker.a));
   }
 
   void methane::Robot::feedBall() {
