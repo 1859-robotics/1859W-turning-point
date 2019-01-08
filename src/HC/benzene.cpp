@@ -48,18 +48,6 @@ namespace hc {
     float dX = cos(polarA) * polarR;
     float dY = sin(polarA) * polarR;
 
-    if(dX > 20) {
-      lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
-      lv_label_set_text(label, "stop everything has gone horribly wrong X");
-      lv_obj_align(label, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 5);
-    }
-
-    if(dY > 20) {
-      lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
-      lv_label_set_text(label, "stop everything has gone horribly wrong Y");
-      lv_obj_align(label, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 5);
-    }
-
 
     this->x += dX;
     this->y -= dY;
