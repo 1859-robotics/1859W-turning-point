@@ -36,11 +36,11 @@ float angleDiff(float angle1, float angle2) {
 namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
     float dotter = SGN(dot(x, y, posTracker.x, posTracker.y));
-    float trans = transPID->calculate(-dist(x, y, posTracker.x, posTracker.y), 0) * (dotter != 0 ? dotter : 1);
-    float rot = rotPID->calculate(TODEG(posTracker.a - atan2(x - posTracker.x, y - posTracker.y)), 0);
+    float trans = transPID->calculate(-dist(x, y, posTracker.x, posTracker.y), 0) * (dotter);
+    float rot = rotPID->calculate(TODEG(angleDiff(posTracker.a, atan2(x - posTracker.x, y - posTracker.y))), 0);
 
-    float idealVR = (trans + rot);
-    float idealVL = (trans - rot);
+    float idealVR = (trans - rot);
+    float idealVL = (trans + rot);
 
     float maxMag = fmax(abs(idealVL), abs(idealVR));
     float minMag = fmin(abs(idealVL), abs(idealVR));
@@ -93,7 +93,7 @@ namespace hc {
 
   void methane::Robot::turnToFace(float deg) {
     if(withinRange(posTracker.a, deg, A_ERR)) return;
-    
+
     pid->doPID(deg, 3, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
@@ -105,7 +105,7 @@ namespace hc {
   }
 
   void methane::Robot::turnToFace(::hc::benzene::Point point) {
-    turnToFace(TODEG(atan2(point.x - posTracker.x, point.y - posTracker.y) - posTracker.a));
+    turnToFace(TODEG(atan2(point.x - posTracker.x, point.y - posTracker.y)));
   }
 
   void methane::Robot::feedBall() {

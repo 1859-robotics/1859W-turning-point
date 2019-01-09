@@ -10,8 +10,8 @@
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
 #define WHEEL_D 41.69
-#define SL 4.25 // TODO: measure all of these
-#define SR 4.25
+#define SL 3.25 // TODO: measure all of these
+#define SR 3.25
 #define SS 0.55
 
 #define POINT_LIST(...) __VA_ARGS__

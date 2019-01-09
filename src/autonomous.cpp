@@ -8,9 +8,9 @@ void autonomous() {
   robot.reset();
   posTracker.setPos({ 60, 9 }, 0);
   pros::Task track(hc::benzene::track, &posTracker);
-  // robot.turnToFace(90);
+  robot.moveTo({ 69, 18 }, 0);
 
-  // robot.turnToFace({1, 1});
+  robot.turnToFace({ 60, 9 });
 
 
   // robot.moveTo({ 0, 36 }, 0);
