@@ -3,7 +3,7 @@
 
 namespace hc {
   void benzene::Tracker::debug() {
-    // std::cout << "(" << x << ", " << y << ")  | " << TODEG(a) << std::endl;
+    std::cout << "(" << x << ", " << y << ")  | " << TODEG(a) << std::endl;
   }
 
   void benzene::Tracker::track() {

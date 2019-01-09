@@ -39,8 +39,8 @@ namespace hc {
     float trans = transPID->calculate(-dist(x, y, posTracker.x, posTracker.y), 0) * (dotter);
     float rot = rotPID->calculate(TODEG(angleDiff(posTracker.a, atan2(x - posTracker.x, y - posTracker.y))), 0);
 
-    float idealVR = (trans - rot);
-    float idealVL = (trans + rot);
+    float idealVR = (trans + rot);
+    float idealVL = (trans - rot);
 
     float maxMag = fmax(abs(idealVL), abs(idealVR));
     float minMag = fmin(abs(idealVL), abs(idealVR));
