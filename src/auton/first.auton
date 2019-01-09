@@ -1,2 +1,2 @@
-robot.moveTo({ 69, 18 }, 0);
+robot.moveTo({ 60, 18 }, 0);
 robot.turnToFace(90);
