@@ -10,6 +10,8 @@ void autonomous() {
 
   posTracker.setPos({ 0, 0 }, 0);
 
+  FLYWHEEL_SET(FLYWHEEL_IDLE);
+
   robot.moveFor(12);
   robot.turnToFace(100);
 }

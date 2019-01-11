@@ -115,6 +115,10 @@ namespace hc {
     turnToFace(TODEG(atan2(point.x - posTracker.x, point.y - posTracker.y)));
   }
 
+  void methane::Robot::combineSet(bool rev) {
+    combine.move(rev ? -127 : 127);
+  }
+
   void methane::Robot::feedBall() {
     INTAKE_SET(127);
   }

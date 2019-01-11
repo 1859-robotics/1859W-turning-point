@@ -11,6 +11,7 @@
 #define LEFT_FLYWHEEL_PORT 2
 #define RIGHT_FLYWHEEL_PORT 1
 #define INTAKE_PORT 10
+#define COMBINE_PORT 9
 
 #define TRACKER_LEFT_PORT 5
 #define TRACKER_RIGHT_PORT 7
@@ -27,6 +28,7 @@ extern pros::Motor flywheelL;
 extern pros::Motor flywheelR;
 
 extern pros::Motor intake;
+extern pros::Motor combine;
 
 extern pros::ADIEncoder lTrackerWheel;
 extern pros::ADIEncoder rTrackerWheel;
@@ -41,7 +43,7 @@ extern pros::ADIEncoder cTrackerWheel;
 
 #define FLYWHEEL_GET_VEL (flywheelR.get_actual_velocity() + flywheelL.get_actual_velocity()) / 2
 
-#define INTAKE_SET(spd) intake.move(spd);
+#define INTAKE_SET(spd) intake.move(spd)
 
 // flywheel stuff
 #define FLYWHEEL_IDLE 60
