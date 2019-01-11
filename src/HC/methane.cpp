@@ -77,12 +77,14 @@ namespace hc {
 
   }
 
-  void methane::Robot::moveFor(float dist) {
-    float initialEL = lTrackerWheel.get_value();
-    float initialER = rTrackerWheel.get_value();
+  void methane::Robot::moveFor(float distIn) {
+    ::hc::benzene::Point start = {
+      posTracker.x,
+      posTracker.y
+    };
 
-    pid->doPID(dist, 50 , [=]() -> float {
-      return (initialEL - lTrackerWheel.get_value() + initialER - rTrackerWheel.get_value()) / 2;
+    pid->doPID(0, 2 , [=]() -> float {
+      return distIn - dist(start.x, start.y, posTracker.x, posTracker.y);
     }, [](float output) -> void {
       RIGHT_DRIVE_SET(output);
       LEFT_DRIVE_SET(output);
