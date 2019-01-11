@@ -1,0 +1,4 @@
+posTracker.setPos({ 0, 0 }, 90)
+robot.turnToFace(90); // 90deg
+robot.moveFor(18); // move 18in
+robot.turnToFace(0); // 90deg
