@@ -1,5 +1,8 @@
 posTracker.setPos({ 0, 0 }, 90) // sets position and 0
-robot.turnToFace(90); // 90deg
-robot.moveFor(18); // move 18in forward
+robot.moveFor(36); // move 18in forward
+robot.moveFor(-24); // move 24in not forward
 robot.turnToFace(0); // faces 0deg
+robot.moveFor(24); // move 24in forward
+
+
 FLYWHEEL_SET_VEL(20); // sets velocity
