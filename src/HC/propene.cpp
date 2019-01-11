@@ -47,17 +47,17 @@ namespace hc {
   void propene::PID::config(float kP,           float kI,           float kD,
               float epsilonInner, float epsilonOuter,
               int maxSpeed = MAX_SPEED, int minSpeed = MIN_SPEED) {
-    kP = kP;
-    kI = kI;
-    kD = kD;
-    epsilonInner = epsilonInner;
-    epsilonOuter = epsilonOuter;
-    maxSpeed = maxSpeed;
-    minSpeed = minSpeed;
+    this->kP = kP;
+    this->kI = kI;
+    this->kD = kD;
+    this->epsilonInner = epsilonInner;
+    this->epsilonOuter = epsilonOuter;
+    this->maxSpeed = maxSpeed;
+    this->minSpeed = minSpeed;
   }
 
   void propene::PID::doPID(float target, float tolerance, std::function <float()> current, std::function <void(float)> action, float kp, float ki, float kd, float epsilonInner, float epsilonOuter, int maxSpeed, int minSpeed) {
-    config(kp, ki, kd, epsilonInner, epsilonOuter, maxSpeed, minSpeed);
+    //config(kp, ki, kd, epsilonInner, epsilonOuter, maxSpeed, minSpeed);
 
     bool atSetPoint = false;
     float atTargetTime = pros::millis();

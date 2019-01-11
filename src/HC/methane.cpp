@@ -83,20 +83,25 @@ namespace hc {
       posTracker.y
     };
 
-    pid->doPID(0, 2 , [=]() -> float {
+    pid->config(8, 0, 0, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
+
+
+    pid->doPID(0, 0.5 , [=]() -> float {
       return distIn - dist(start.x, start.y, posTracker.x, posTracker.y);
     }, [](float output) -> void {
-      RIGHT_DRIVE_SET(output);
-      LEFT_DRIVE_SET(output);
+      RIGHT_DRIVE_SET(-output);
+      LEFT_DRIVE_SET(-output);
     });
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
   }
 
   void methane::Robot::turnToFace(float deg) {
+    pid->config(3, 0.1, 0.15, 3, 30, MAX_SPEED, MIN_SPEED);
+
     if(withinRange(posTracker.a, deg, A_ERR)) return;
 
-    pid->doPID(deg, 3, []() -> float {
+    pid->doPID(deg, 2, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
       RIGHT_DRIVE_SET(output);
