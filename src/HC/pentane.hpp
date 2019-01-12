@@ -7,6 +7,7 @@
 namespace hc {
   namespace pentane {
     void drawFeild();
+    void drawTiles(std::function <void(int)> onChange);
   }
 }
 
