@@ -1,6 +1,6 @@
 posTracker.setPos({ 0, 0 }, 90);
 FLYWHEEL_SET(FLYWHEEL_IDLE);
-robot.combineSet(false);
+robot.combineSet(true);
 robot.moveFor(40); // move 40in forward
 robot.moveFor(-38); // move 55in not forward
 

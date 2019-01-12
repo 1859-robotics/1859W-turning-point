@@ -58,14 +58,14 @@ namespace hc {
     std::cout << "seting pos" << std::endl;
     this->x = x;
     this->y = y;
-    this->a = TORAD(a);
+    this->a = a;
   }
 
   void benzene::Tracker::setPos(benzene::Point pt, float a) {
     std::cout << "seting pos" << std::endl;
     this->x = pt.x;
     this->y = pt.y;
-    this->a = TORAD(a);
+    this->a = a;
   }
 
   void benzene::Tracker::reset() {
