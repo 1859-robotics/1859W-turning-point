@@ -129,15 +129,14 @@ namespace hc {
 
   void methane::Robot::flyUp(int rpm, std::function <void(float)> action) {
     while(true) {
-      if(withinRange(FLYWHEEL_START_B_MID, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
-        robot.feedBall();
+      if(withinRange(rpm, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
         action(FLYWHEEL_GET_VEL);
         FLYWHEEL_SET(FLYWHEEL_IDLE);
         break;
-      } else if(FLYWHEEL_GET_VEL < FLYWHEEL_START_B_MID) {
+      } else if(FLYWHEEL_GET_VEL < rpm) {
         FLYWHEEL_SET(127);
       } else {
-        FLYWHEEL_SET(20)
+        FLYWHEEL_SET(20);
       }
     }
   }
