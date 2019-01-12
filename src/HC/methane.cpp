@@ -116,7 +116,7 @@ namespace hc {
   }
 
   void methane::Robot::combineSet(bool rev) {
-    combine.move(rev ? -127 : 127);
+    combine.move(rev ? 127 : -127);
   }
 
   void methane::Robot::feedBall() {
