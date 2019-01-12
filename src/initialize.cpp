@@ -10,6 +10,7 @@ void init() {
 
 void initialize() {
   init();
+  hc::pentane::drawFeild();
 }
 
 void disabled() {}
