@@ -87,7 +87,7 @@ namespace hc {
 
 
     pid->doPID(0, 0.5 , [=]() -> float {
-      return distIn - dist(start.x, start.y, posTracker.x, posTracker.y);
+      return SGN(distIn) * (distIn - dist(start.x, start.y, posTracker.x, posTracker.y));
     }, [](float output) -> void {
       RIGHT_DRIVE_SET(-output);
       LEFT_DRIVE_SET(-output);
