@@ -1,8 +1,8 @@
-posTracker.setPos({ 0, 0 }, 90); // sets position and 0
-robot.moveFor(36); // move 18in forward
-robot.moveFor(-24); // move 24in not forward
-robot.turnToFace(0); // faces 0deg
-robot.moveFor(24); // move 24in forward
+posTracker.setPos({ 0, 0 }, 90);
+FLYWHEEL_SET(FLYWHEEL_IDLE);
 
-
-FLYWHEEL_SET_VEL(20); // sets velocity
+robot.moveFor(40); // move 40in forward
+pros::delay(20);
+robot.moveFor(-12); // move 55in not forward
+//robot.moveFor(24); // move 24in forward
+//FLYWHEEL_SET_VEL(20); // sets velocity
