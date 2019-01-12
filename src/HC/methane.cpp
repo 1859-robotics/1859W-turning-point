@@ -99,7 +99,7 @@ namespace hc {
   void methane::Robot::turnToFace(float deg) {
     pid->config(3, 0.1, 0.15, 3, 30, MAX_SPEED, MIN_SPEED);
 
-    if(withinRange(posTracker.a, deg, A_ERR)) return;
+    if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
 
     pid->doPID(deg, 2, []() -> float {
       return TODEG(posTracker.a);
@@ -125,6 +125,21 @@ namespace hc {
 
   void methane::Robot::reset() {
     tracker->reset();
+  }
+
+  void methane::Robot::flyUp(int rpm, std::function <void(float)> action) {
+    while(true) {
+      if(withinRange(FLYWHEEL_START_B_MID, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
+        robot.feedBall();
+        action(FLYWHEEL_GET_VEL);
+        FLYWHEEL_SET(FLYWHEEL_IDLE);
+        break;
+      } else if(FLYWHEEL_GET_VEL < FLYWHEEL_START_B_MID) {
+        FLYWHEEL_SET(127);
+      } else {
+        FLYWHEEL_SET(20)
+      }
+    }
   }
 }
 
