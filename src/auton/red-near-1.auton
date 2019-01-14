@@ -14,7 +14,7 @@ robot.flyUp(360, [](float rpm) -> void {
 
 robot.turnToFace(0);
 
-robot.moveFor(35); // move 30in forward
+robot.moveFor(35); // move 35in forward
 robot.feedBall();
 pros::delay(500);
 INTAKE_SET(0);
