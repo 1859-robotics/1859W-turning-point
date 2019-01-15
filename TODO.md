@@ -4,11 +4,11 @@
 - [x] turn to face func
 - [x] methane::Robot::seek
 - [x] methane::Robot::moveTo
-- [ ] have hannah take photo
-- [ ] figure out 4b
-- [ ] build 4b
+- [x] have hannah take photo
 - [ ] write drive build instructions for notebook
 - [ ] write shooter breakdown
 - [ ] write shooter build instructions
 - [ ] write lift breakdown
-
+- [ ] make auton selection ui
+- [ ] script 4 autons
+- [ ] work on scripting the skills auton
