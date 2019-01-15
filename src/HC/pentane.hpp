@@ -6,7 +6,8 @@
 
 namespace hc {
   namespace pentane {
-    int selectedAuton = -1;
+    extern int selectedAuton;
+    extern int selectedTile;
     void drawFeild();
     void drawTiles(std::function <void(int)> onChange);
   }

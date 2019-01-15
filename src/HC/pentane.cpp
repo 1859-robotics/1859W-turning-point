@@ -2,6 +2,8 @@
 
 
 namespace hc {
+  int pentane::selectedAuton = -1;
+  int pentane::selectedTile = -1;
   void pentane::drawFeild() {
     std::cout << "hi" << std::endl;
     // draw feild base
