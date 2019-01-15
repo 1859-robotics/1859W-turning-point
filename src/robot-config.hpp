@@ -51,6 +51,15 @@ extern pros::ADIEncoder cTrackerWheel;
 #define FLYWHEEL_START_B_HIGH 390
 #define FLYWHEEL_START_B_MID 410
 
+#define OPCONTROL_FLYWHEEL_SET(speed) FLYWHEEL_SET(20); \
+if(withinRange(speed, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) { \
+  master.rumble("."); \
+  robot.feedBall(); \
+  FLYWHEEL_SET(FLYWHEEL_IDLE); \
+  autonOverwrite = true; \
+} else if(FLYWHEEL_GET_VEL < speed) { \
+  FLYWHEEL_SET(127); \
+} \
 
 
 #include "HC/benzene.hpp"

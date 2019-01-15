@@ -13,38 +13,14 @@ void opcontrol() {
 
     bool autonOverwrite = false;
 
-    if(master.get_digital(DIGITAL_X)) {
+    if(master.get_digital(DIGITAL_Y)) {
       FLYWHEEL_SET(127);
-    } else if(master.get_digital(DIGITAL_A)) {
-      FLYWHEEL_SET(20);
-      if(withinRange(FLYWHEEL_START_B_MID, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
-        master.rumble(".");
-        robot.feedBall();
-        FLYWHEEL_SET(FLYWHEEL_IDLE);
-        autonOverwrite = true;
-      } else if(FLYWHEEL_GET_VEL < FLYWHEEL_START_B_MID) {
-        FLYWHEEL_SET(127);
-      }
     } else if(master.get_digital(DIGITAL_B)) {
-      FLYWHEEL_SET(20);
-      if(withinRange(FLYWHEEL_START_B_HIGH, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
-        master.rumble(".");
-        robot.feedBall();
-        FLYWHEEL_SET(FLYWHEEL_IDLE);
-        autonOverwrite = true;
-      } else if(FLYWHEEL_GET_VEL < FLYWHEEL_START_B_HIGH) {
-        FLYWHEEL_SET(127);
-      }
-    } else if(master.get_digital(DIGITAL_Y)) {
-      FLYWHEEL_SET(20);
-      if(FLYWHEEL_GET_VEL > 300) {
-        master.rumble(".");
-        robot.feedBall();
-        FLYWHEEL_SET(FLYWHEEL_IDLE);
-        autonOverwrite = true;
-      } else if(FLYWHEEL_GET_VEL < 300) {
-        FLYWHEEL_SET(127);
-      }
+      OPCONTROL_FLYWHEEL_SET(480);
+    } else if(master.get_digital(DIGITAL_X)) {
+      OPCONTROL_FLYWHEEL_SET(520);
+    } else if(master.get_digital(DIGITAL_A)) {
+      OPCONTROL_FLYWHEEL_SET(400);
     } else {
       FLYWHEEL_SET(FLYWHEEL_IDLE);
     }
