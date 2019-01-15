@@ -17,10 +17,10 @@ static lv_res_t list_action(lv_obj_t *ddlist) {
 
 
 void init() {
-  flywheelL.set_brake_mode(E_MOTOR_BRAKE_COAST);
-  flywheelR.set_brake_mode(E_MOTOR_BRAKE_COAST);
+  flywheelL.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  flywheelR.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   posTracker.reset();
-  intake.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+  intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
 void initialize() {
