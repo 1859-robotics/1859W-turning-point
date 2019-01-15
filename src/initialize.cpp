@@ -10,10 +10,10 @@ void init() {
 
 void initialize() {
   init();
-  // hc::pentane::drawFeild();
-  // hc: :pentane::drawTiles([](int output) -> void {
-  //   output + 1;
-  // });
+  hc::pentane::drawFeild();
+  hc::pentane::drawTiles([](int output) -> void {
+    output + 1;
+  });
 }
 
 void disabled() {}
