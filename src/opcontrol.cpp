@@ -13,7 +13,9 @@ void opcontrol() {
 
     bool autonOverwrite = false;
 
-		if(master.get_digital(DIGITAL_A)) {
+    if(master.get_digital(DIGITAL_X)) {
+      FLYWHEEL_SET(127);
+    } else if(master.get_digital(DIGITAL_A)) {
       FLYWHEEL_SET(20);
       if(withinRange(FLYWHEEL_START_B_MID, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
         master.rumble(".");
