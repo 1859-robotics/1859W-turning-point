@@ -1,5 +1,7 @@
 #include "pentane.hpp"
 
+#define AUTON_OPTIONS_RED_A "shoot\n" \
+                            "shoot & climb\n"
 
 namespace hc {
   int pentane::selectedAuton = -1;
@@ -21,11 +23,18 @@ namespace hc {
   }
 
   void pentane::drawTiles(std::function <void(int)> onChange) {
+    // styles
     static lv_style_t redTile;
     lv_style_copy(&redTile, &lv_style_plain_color);
     redTile.body.main_color = LV_COLOR_RED;
     redTile.body.grad_color = LV_COLOR_RED;
 
+    static lv_style_t blueTile;
+    lv_style_copy(&blueTile, &lv_style_plain_color);
+    blueTile.body.main_color = LV_COLOR_BLUE;
+    blueTile.body.grad_color = LV_COLOR_BLUE;
+
+    // apply styles
     lv_obj_t * redA = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_set_size(redA, 40, 40);
     lv_obj_set_pos(redA, 0, 80);
@@ -34,6 +43,43 @@ namespace hc {
     lv_obj_t * redB = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_set_size(redB, 40, 40);
     lv_obj_set_pos(redB, 0, 160);
-    lv_obj_set_style(redA, &redTile);
+    lv_obj_set_style(redB, &redTile);
+
+    lv_obj_t * blueA = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_set_size(blueA, 40, 40);
+    lv_obj_set_pos(blueA, 200, 80);
+    lv_obj_set_style(blueA, &blueTile);
+
+    lv_obj_t * blueB = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_set_size(blueB, 40, 40);
+    lv_obj_set_pos(blueB, 200, 160);
+    lv_obj_set_style(blueB, &blueTile);
+    // change active buttons
+
+    // bind functions to output
+    lv_btn_set_action(blueA, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
+      hc::pentane::selectedTile = 1;
+      lv_obj_get_free_num(btn);
+      std::cout << "hello from 1" << std::endl;
+      return LV_RES_OK;
+    });
+    lv_btn_set_action(blueB, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
+      hc::pentane::selectedTile = 2;
+      lv_obj_get_free_num(btn);
+      std::cout << "hello from 2" << std::endl;
+      return LV_RES_OK;
+    });
+    lv_btn_set_action(redA, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
+      hc::pentane::selectedTile = 3;
+      lv_obj_get_free_num(btn);
+      std::cout << "hello from 3" << std::endl;
+      return LV_RES_OK;
+    });
+    lv_btn_set_action(redB, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
+      hc::pentane::selectedTile = 4;
+      lv_obj_get_free_num(btn);
+      std::cout << "hello from 4" << std::endl;
+      return LV_RES_OK;
+    });
   }
 }
