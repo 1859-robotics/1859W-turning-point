@@ -1,14 +1,5 @@
 #include "pentane.hpp"
 
-static lv_res_t list_action(lv_obj_t * ddlist) {
-  uint8_t id = lv_obj_get_free_num(ddlist);
-
-  char sel_str[32];
-  lv_ddlist_get_selected_str(ddlist, sel_str);
-
-  return LV_RES_OK; /*Return OK if the drop down list is not deleted*/
-}
-
 
 namespace hc {
   std::string pentane::selectedAuton = "";

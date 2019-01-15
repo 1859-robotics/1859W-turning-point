@@ -15,20 +15,21 @@
 #define TILE_BLUE_B 2
 
 // auton names
-#define BLUE_NEAR_1  "alliance post\n"
-#define BLUE_FAR_1 "center post\n"
+#define BLUE_NEAR_1  "alliance post"
+#define BLUE_FAR_1 "center post"
 
-#define RED_NEAR_1  "alliance post\n"
-#define RED_FAR_1  "center post\n"
+#define RED_NEAR_1  "alliance post"
+#define RED_FAR_1  "center post"
 
 // auton lists
-#define AUTON_OPTIONS_RED_A RED_NEAR_1 \
-                            "none"
-#define AUTON_OPTIONS_RED_B RED_FAR_1 \
-                            "none"
-#define AUTON_OPTIONS_BLUE_A BLUE_NEAR_1 \
-                             "none"
-#define AUTON_OPTIONS_BLUE_B BLUE_FAR_1 \
-                             "none"
+#define AUTON_OPTIONS_RED_A "none" "\n" \
+                            RED_NEAR_1 \
+                            "hello\nworld\nor\nsomething\nthis\njust\nneeds\nto\nbe\nreally\nlong"
+#define AUTON_OPTIONS_RED_B "none" "\n" \
+                            RED_FAR_1
+#define AUTON_OPTIONS_BLUE_A "none" "\n" \
+                             BLUE_NEAR_1
+#define AUTON_OPTIONS_BLUE_B "none" "\n" \
+                             BLUE_FAR_1
 
 #endif
