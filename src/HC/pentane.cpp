@@ -1,11 +1,21 @@
 #include "pentane.hpp"
 
-#define AUTON_OPTIONS_RED_A "shoot\n" \
-                            "shoot & climb\n"
+static lv_res_t list_action(lv_obj_t * ddlist) {
+  uint8_t id = lv_obj_get_free_num(ddlist);
+
+  char sel_str[32];
+  lv_ddlist_get_selected_str(ddlist, sel_str);
+
+  return LV_RES_OK; /*Return OK if the drop down list is not deleted*/
+}
+
 
 namespace hc {
-  int pentane::selectedAuton = -1;
+  std::string pentane::selectedAuton = "";
   int pentane::selectedTile = -1;
+  lv_obj_t * pentane::list = lv_ddlist_create(lv_scr_act(), NULL);
+  lv_obj_t * pentane::titleBar = lv_label_create(lv_scr_act(), NULL);
+
   void pentane::drawFeild() {
     std::cout << "hi" << std::endl;
     // draw feild base
@@ -76,34 +86,38 @@ namespace hc {
     lv_btn_set_style(blueB, LV_BTN_STYLE_REL, &blueTile);
     lv_btn_set_style(blueB, LV_BTN_STYLE_PR, &blueTilePR);
     lv_obj_set_free_num(blueB, 4);
-    // change active buttons
 
     // bind functions to output
     lv_btn_set_action(blueA, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::pentane::selectedTile = 1;
-      // lv_btn_set_state(btn, LV_BTN_STATE_TGL_REL);
-      std::cout << "hello from: " << hc::pentane::selectedTile << std::endl;
+      hc::pentane::selectedTile = TILE_BLUE_A;
+
+      lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_BLUE_A);
+      lv_label_set_text(hc::pentane::titleBar, AUTON_NAME_BLUE_A);
+
       return LV_RES_OK;
     });
     lv_btn_set_action(blueB, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::pentane::selectedTile = 2;
-      // lv_btn_set_state(btn, LV_BTN_STATE_TGL_REL);
-      std::cout << "hello from: " << hc::pentane::selectedTile << std::endl;
+      hc::pentane::selectedTile = TILE_BLUE_B;
+
+      lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_BLUE_B);
+      lv_label_set_text(hc::pentane::titleBar, AUTON_NAME_BLUE_A);
+
       return LV_RES_OK;
     });
+
     lv_btn_set_action(redA, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::pentane::selectedTile = 3;
-      // lv_btn_set_state(btn, LV_BTN_STATE_TGL_REL);
-      std::cout << "hello from: " << hc::pentane::selectedTile << std::endl;
+      hc::pentane::selectedTile = TILE_RED_A;
+      lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_RED_A);
+      lv_btn_set_style(btn, LV_BTN_STYLE_REL, &redTile);
+      lv_label_set_text(hc::pentane::titleBar, AUTON_NAME_RED_A);
       return LV_RES_OK;
-      lv_btn_set_style(btn, LV_BTN_STYLE_REL, &blueTile);
     });
     lv_btn_set_action(redB, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::pentane::selectedTile = 4;
-      // lv_btn_set_state(btn, LV_BTN_STATE_REL);
-      std::cout << "hello from: " << hc::pentane::selectedTile << std::endl;
+      hc::pentane::selectedTile = TILE_RED_B;
+      lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_RED_B);
+      lv_btn_set_style(btn, LV_BTN_STYLE_REL, &redTile);
+      lv_label_set_text(hc::pentane::titleBar, AUTON_NAME_RED_B);
       return LV_RES_OK;
-      lv_btn_set_style(btn, LV_BTN_STYLE_REL, &blueTile);
     });
   }
 }

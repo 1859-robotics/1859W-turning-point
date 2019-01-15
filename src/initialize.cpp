@@ -12,12 +12,15 @@ void initialize() {
   init();
   hc::pentane::drawFeild();
   std::cout << "hello from init" << std::endl;
+  static lv_style_t list_style;
+  lv_style_copy(&list_style, &lv_style_plain);
+  list_style.body.radius = 0;
 
-  lv_obj_t * hecker = lv_label_create(lv_scr_act(), NULL);
-  lv_obj_align(hecker, NULL, LV_ALIGN_CENTER, 0, 20);
+  lv_obj_set_style(hc::pentane::list, &list_style);
+  lv_obj_set_pos(hc::pentane::list, 260, 20);
+
+
   hc::pentane::drawTiles([=](int output) {
-    std::cout << "hello" << std::endl;
-    lv_label_set_text(hecker, (std::to_string(output)).c_str());
     hc::pentane::selectedTile = output;
   });
 }

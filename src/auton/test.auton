@@ -1,4 +1,0 @@
-posTracker.setPos({ 0, 0 }, 90);
-
-robot.moveFor(12);
-robot.turnToFace(90);
