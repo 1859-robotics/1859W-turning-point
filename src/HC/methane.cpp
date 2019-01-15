@@ -87,7 +87,11 @@ namespace hc {
 
 
     pid->doPID(0, 0.5 , [=]() -> float {
+<<<<<<< HEAD
       return (distIn - dist(start.x, start.y, posTracker.x, posTracker.y));
+=======
+      return (fabs(distIn) - dist(start.x, start.y, posTracker.x, posTracker.y));
+>>>>>>> cb8248c5294bc5add67fc06aa07f875299d256bc
     }, [=](float output) -> void {
       RIGHT_DRIVE_SET(SGN(-distIn) * output);
       LEFT_DRIVE_SET(SGN(-distIn) * output);
@@ -99,7 +103,7 @@ namespace hc {
   void methane::Robot::turnToFace(float deg) {
     pid->config(3, 0.1, 0.15, 3, 30, MAX_SPEED, MIN_SPEED);
 
-    if(withinRange(posTracker.a, deg, A_ERR)) return;
+    if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
 
     pid->doPID(deg, 2, []() -> float {
       return TODEG(posTracker.a);
@@ -116,7 +120,7 @@ namespace hc {
   }
 
   void methane::Robot::combineSet(bool rev) {
-    combine.move(rev ? -127 : 127);
+    combine.move(rev ? 127 : -127);
   }
 
   void methane::Robot::feedBall() {
@@ -125,6 +129,20 @@ namespace hc {
 
   void methane::Robot::reset() {
     tracker->reset();
+  }
+
+  void methane::Robot::flyUp(int rpm, std::function <void(float)> action) {
+    while(true) {
+      if(withinRange(rpm, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
+        action(FLYWHEEL_GET_VEL);
+        FLYWHEEL_SET(FLYWHEEL_IDLE);
+        break;
+      } else if(FLYWHEEL_GET_VEL < rpm) {
+        FLYWHEEL_SET(127);
+      } else {
+        FLYWHEEL_SET(20);
+      }
+    }
   }
 }
 

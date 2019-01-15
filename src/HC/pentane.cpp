@@ -2,24 +2,36 @@
 
 
 namespace hc {
-  void pentane::alert(const char* message) {
-    lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
-    lv_label_set_text(label, message);
-    lv_obj_align(label, NULL, LV_ALIGN_IN_TOP_MID, 0, 5);
+  void pentane::drawFeild() {
+    std::cout << "hi" << std::endl;
+    // draw feild base
+    lv_obj_t * feildContainer;
+
+    static lv_style_t feildBase;
+    lv_style_copy(&feildBase, &lv_style_plain_color);
+    feildBase.body.main_color = LV_COLOR_HEX3(0x666);
+    feildBase.body.grad_color = LV_COLOR_HEX3(0x666);
+
+    feildContainer = lv_cont_create(lv_scr_act(), NULL);
+
+    lv_obj_set_style(feildContainer, &feildBase);
+    lv_obj_set_size(feildContainer, 240, 240);
   }
 
+  void pentane::drawTiles(std::function <void(int)> onChange) {
+    static lv_style_t redTile;
+    lv_style_copy(&redTile, &lv_style_plain_color);
+    redTile.body.main_color = LV_COLOR_RED;
+    redTile.body.grad_color = LV_COLOR_RED;
 
-  // void pentane::button(const char* message, std::function<lv_res_t(lv_obj_t * btn)> callback) {
-  //   lv_obj_t * label = lv_label_create(lv_scr_act(), NULL);
-  //   lv_obj_t * btn1 = lv_btn_create(lv_scr_act(), NULL);
-  //
-  //   label = lv_label_create(btn1, NULL);
-  //   lv_label_set_text(label, "Normal");
-  //
-  //   lv_cont_set_fit(btn1, true, true); /*Enable resizing horizontally and vertically*/
-  //   lv_obj_align(btn1, label, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-  //   lv_obj_set_free_num(btn1, 1);   /*Set a unique number for the button*/
-  //   // lv_btn_set_action(btn1, LV_BTN_ACTION_CLICK, callback);
-  //   lv_btn_set_action(btn1, LV_BTN_ACTION_CLICK);
-  // }
+    lv_obj_t * redA = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_set_size(redA, 40, 40);
+    lv_obj_set_pos(redA, 0, 80);
+    lv_obj_set_style(redA, &redTile);
+
+    lv_obj_t * redB = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_set_size(redB, 40, 40);
+    lv_obj_set_pos(redB, 0, 160);
+    lv_obj_set_style(redA, &redTile);
+  }
 }
