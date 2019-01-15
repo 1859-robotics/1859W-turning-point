@@ -11,7 +11,7 @@ void init() {
 void initialize() {
   init();
   // hc::pentane::drawFeild();
-  // hc::pentane::drawTiles([](int output) -> void {
+  // hc: :pentane::drawTiles([](int output) -> void {
   //   output + 1;
   // });
 }
