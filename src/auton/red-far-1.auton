@@ -12,10 +12,11 @@ robot.moveFor(35); // move 35in forward
 robot.feedBall();  // picks up ball and
 pros::delay(500);  // waits until the ball is closer to the top of the hood
 INTAKE_SET(0);
-robot.moveFor(-30);  // backs up
+robot.moveFor(-35);  // backs up
+FLYWHEEL_SET(127);
 robot.turnToFace(65); //faces another high flag
 
-robot.flyUp(500, [](float rpm) -> void {
+robot.flyUp(520, [](float rpm) -> void {
   robot.feedBall();
   pros::delay(200);           // hecken shoots
   INTAKE_SET(0);

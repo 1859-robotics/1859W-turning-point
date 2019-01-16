@@ -5,7 +5,7 @@
 void runAuton() {
   if(hc::pentane::selectedAuton == "" || hc::pentane::selectedAuton == "none") {
     std::cout << "did not run auton" << std::endl;
-    return;
+  return;
   }
   if(hc::pentane::selectedTile == TILE_RED_A) {
     std::cout << "runing on tile: " << TILE_RED_A << std::endl;
