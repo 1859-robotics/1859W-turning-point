@@ -1,0 +1,11 @@
+{
+  "name": "auton-builder",
+  "version": "1.0.0",
+  "description": "builds auton",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alexa griffin",
+  "license": "MIT"
+}

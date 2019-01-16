@@ -1,2 +1,4 @@
 bin/
 .vscode/
+
+auton-builder/node_modules
