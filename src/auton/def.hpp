@@ -23,8 +23,7 @@
 
 // auton lists
 #define AUTON_OPTIONS_RED_A "none" "\n" \
-                            RED_NEAR_1 \
-                            "hello\nworld\nor\nsomething\nthis\njust\nneeds\nto\nbe\nreally\nlong"
+                            RED_NEAR_1
 #define AUTON_OPTIONS_RED_B "none" "\n" \
                             RED_FAR_1
 #define AUTON_OPTIONS_BLUE_A "none" "\n" \
