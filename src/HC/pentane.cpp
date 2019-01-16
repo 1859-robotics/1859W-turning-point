@@ -79,7 +79,6 @@ namespace hc {
     lv_btn_set_style(blueB, LV_BTN_STYLE_REL, &blueTile);
     lv_btn_set_style(blueB, LV_BTN_STYLE_PR, &blueTileActive);
     lv_obj_set_free_num(blueB, 4);
-
   }
 
   void pentane::setActiveTile(lv_obj_t *active) {
