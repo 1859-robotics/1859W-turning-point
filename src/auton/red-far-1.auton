@@ -1,7 +1,11 @@
-posTracker.setPos({ 0, 0 }, 65); //sets the starting position of the robot
+posTracker.setPos({ 0, 0 }, 90); //sets the starting position of the robot
 FLYWHEEL_SET(FLYWHEEL_IDLE);  //starts the fly wheel at Idle speed
+robot.combineSet(false);
 
-robot.flyUp(500, [](float rpm) -> void {
+FLYWHEEL_SET(127);
+robot.turnToFace(65); //faces another high flag
+
+robot.flyUp(510, [](float rpm) -> void {
   robot.feedBall();
   pros::delay(200);           // shoots a high flag
   INTAKE_SET(0);
@@ -16,7 +20,7 @@ robot.moveFor(-35);  // backs up
 FLYWHEEL_SET(127);
 robot.turnToFace(65); //faces another high flag
 
-robot.flyUp(520, [](float rpm) -> void {
+robot.flyUp(460, [](float rpm) -> void {
   robot.feedBall();
   pros::delay(200);           // hecken shoots
   INTAKE_SET(0);
