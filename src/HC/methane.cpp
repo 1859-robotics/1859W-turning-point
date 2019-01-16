@@ -35,9 +35,10 @@ float angleDiff(float angle1, float angle2) {
 
 namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
-    float dotter = SGN(dot(x, y, posTracker.x, posTracker.y));
-    float trans = transPID->calculate(dist(x, y, posTracker.x, posTracker.y), 0) * (dotter != 0 ? dotter : 1);
-    float rot = rotPID->calculate(TODEG(angleDiff(posTracker.a, atan2(x - posTracker.x, y - posTracker.y))), 0);
+    // float dotter = SGN(dot(x, y, posTracker.x, posTracker.y));
+
+    float trans = transPID->calculate(dist(x, y, posTracker.x, posTracker.y), 0);
+    float rot = rotPID->calculate(TODEG(angleDiff(posTracker.a, atan2(y - posTracker.y, x - posTracker.x))), 0);
 
     float idealVR = (trans + rot);
     float idealVL = (trans - rot);
