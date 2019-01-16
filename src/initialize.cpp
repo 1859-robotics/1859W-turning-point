@@ -25,8 +25,8 @@ void init() {
 
 void initialize() {
   init();
-  hc::pentane::init();
   hc::pentane::drawFeild();
+  hc::pentane::init();
 
   static lv_style_t list_style;
   lv_style_copy(&list_style, &lv_style_plain);

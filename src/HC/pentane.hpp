@@ -10,7 +10,9 @@ namespace hc {
     extern std::string selectedAuton;
     extern int selectedTile;
     extern lv_obj_t* list;
-    extern lv_obj_t* titleBar;
+
+    // feild
+    extern lv_obj_t* feildContainer;
 
     // tiles
     extern lv_obj_t *redA;
@@ -23,7 +25,7 @@ namespace hc {
     extern lv_style_t redTileActive;
     extern lv_style_t blueTile;
     extern lv_style_t blueTileActive;
-    
+
     extern lv_style_t activeTile;
 
     // functions

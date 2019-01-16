@@ -2,10 +2,11 @@
 
 
 namespace hc {
+  lv_obj_t* pentane::feildContainer = lv_cont_create(lv_scr_act(), NULL);
+
   std::string pentane::selectedAuton = "";
   int pentane::selectedTile = -1;
   lv_obj_t * pentane::list = lv_ddlist_create(lv_scr_act(), NULL);
-  lv_obj_t * pentane::titleBar = lv_label_create(lv_scr_act(), NULL);
 
   lv_obj_t *pentane::redA = lv_btn_create(lv_scr_act(), NULL);
   lv_obj_t *pentane::redB = lv_btn_create(lv_scr_act(), NULL);
@@ -19,16 +20,11 @@ namespace hc {
   lv_style_t pentane::activeTile = {};
 
   void pentane::drawFeild() {
-    std::cout << "hi" << std::endl;
-    // draw feild base
-    lv_obj_t * feildContainer;
-
     static lv_style_t feildBase;
+
     lv_style_copy(&feildBase, &lv_style_plain_color);
     feildBase.body.main_color = LV_COLOR_HEX3(0x666);
     feildBase.body.grad_color = LV_COLOR_HEX3(0x666);
-
-    feildContainer = lv_cont_create(lv_scr_act(), NULL);
 
     lv_obj_set_style(feildContainer, &feildBase);
     lv_obj_set_size(feildContainer, 240, 240);
@@ -56,22 +52,10 @@ namespace hc {
     blueTileActive.body.border.color = LV_COLOR_WHITE;
     blueTileActive.body.border.width = 3;
 
-    lv_style_copy(&redTile, &lv_style_plain_color);
-    redTile.body.main_color = LV_COLOR_MAGENTA;
-    redTile.body.grad_color = LV_COLOR_MAGENTA;
-  }
+    lv_style_copy(&activeTile, &lv_style_plain_color);
+    activeTile.body.main_color = LV_COLOR_MAGENTA;
+    activeTile.body.grad_color = LV_COLOR_MAGENTA;
 
-  void pentane::setActiveTile(lv_obj_t *active) {
-    lv_btn_set_style(redA, LV_BTN_STYLE_REL, &redTile);
-    lv_btn_set_style(redB, LV_BTN_STYLE_REL, &redTile);
-    lv_btn_set_style(blueA, LV_BTN_STYLE_REL, &blueTile);
-    lv_btn_set_style(blueB, LV_BTN_STYLE_REL, &blueTile);
-
-    lv_btn_set_style(active, LV_BTN_STYLE_REL, &activeTile);
-  }
-
-  void pentane::drawTiles(std::function <void(int)> onChange) {
-    // apply styles
     lv_obj_set_size(redA, 40, 40);
     lv_obj_set_pos(redA, 0, 80);
     lv_btn_set_style(redA, LV_BTN_STYLE_REL, &redTile);
@@ -96,6 +80,18 @@ namespace hc {
     lv_btn_set_style(blueB, LV_BTN_STYLE_PR, &blueTileActive);
     lv_obj_set_free_num(blueB, 4);
 
+  }
+
+  void pentane::setActiveTile(lv_obj_t *active) {
+    lv_btn_set_style(redA, LV_BTN_STYLE_REL, &redTile);
+    lv_btn_set_style(redB, LV_BTN_STYLE_REL, &redTile);
+    lv_btn_set_style(blueA, LV_BTN_STYLE_REL, &blueTile);
+    lv_btn_set_style(blueB, LV_BTN_STYLE_REL, &blueTile);
+
+    lv_btn_set_style(active, LV_BTN_STYLE_REL, &activeTile);
+  }
+
+  void pentane::drawTiles(std::function <void(int)> onChange) {
     // bind functions to output
     lv_btn_set_action(blueA, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
       hc::pentane::selectedTile = TILE_BLUE_A;
@@ -119,7 +115,7 @@ namespace hc {
       hc::pentane::selectedTile = TILE_RED_A;
       lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_RED_A);
       lv_btn_set_style(btn, LV_BTN_STYLE_REL, &redTile);
-      lv_btn_set_style(btn, LV_BTN_STYLE_PR, &blueTileActive);
+      lv_btn_set_style(btn, LV_BTN_STYLE_PR, &redTileActive);
       hc::pentane::setActiveTile(btn);
       return LV_RES_OK;
     });
@@ -128,7 +124,7 @@ namespace hc {
       hc::pentane::selectedTile = TILE_RED_B;
       lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_RED_B);
       lv_btn_set_style(btn, LV_BTN_STYLE_REL, &redTile);
-      lv_btn_set_style(btn, LV_BTN_STYLE_PR, &blueTileActive);
+      lv_btn_set_style(btn, LV_BTN_STYLE_PR, &redTileActive);
       hc::pentane::setActiveTile(btn);
       return LV_RES_OK;
     });
