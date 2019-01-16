@@ -12,7 +12,7 @@
 #define WHEEL_D 41.69
 #define SL 4.32 // TODO: measure all of these
 #define SR 4.32
-#define SS 0.55
+#define SS 2.55
 
 #define POINT_LIST(...) __VA_ARGS__
 
