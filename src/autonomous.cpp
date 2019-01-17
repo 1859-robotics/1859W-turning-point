@@ -32,8 +32,8 @@ void runAuton() {
 
 void autonomous() {
   robot.reset();
-  pros::Task track(hc::benzene::track, &posTracker);
+      pros::Task track(hc::benzene::track, &posTracker);
 
-    runAuton();
+  runAuton();
   track.remove();
 }
