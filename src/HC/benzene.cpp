@@ -50,7 +50,7 @@ namespace hc {
 
 
     this->x += dX;
-    this->y -= dY;
+    this->y += dY;
     this->a = newA;
   }
 
