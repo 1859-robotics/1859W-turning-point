@@ -74,7 +74,7 @@ namespace hc {
       if(fabs(target - currentVal) > tolerance) {
         atTargetTime = pros::millis();
       }
-      if(pros::millis() - atTargetTime > 350) {
+      if(pros::millis() - atTargetTime > 200) {
         atSetPoint = true;
       }
     }

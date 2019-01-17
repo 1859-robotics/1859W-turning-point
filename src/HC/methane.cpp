@@ -66,7 +66,6 @@ namespace hc {
       seek(target.x, target.y, transPID, rotPID);
     }
 
-
     if(!withinRange(TODEG(posTracker.a), targetA, A_ERR))
       turnToFace(targetA);
 
@@ -98,7 +97,7 @@ namespace hc {
   }
 
   void methane::Robot::turnToFace(float deg) {
-    pid->config(3, 0.1, 0.3, 3, 30, MAX_SPEED, MIN_SPEED);
+    pid->config(3, 0.01, 0.2, 3, 30, MAX_SPEED, MIN_SPEED);
 
     if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
 
@@ -108,6 +107,7 @@ namespace hc {
       RIGHT_DRIVE_SET(output);
       LEFT_DRIVE_SET(-output);
     });
+
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
   }
