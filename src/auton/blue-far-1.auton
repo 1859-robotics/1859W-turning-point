@@ -1,16 +1,16 @@
-posTracker.setPos({ 0, 0 }, 90); //sets the starting position of the robot
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 FLYWHEEL_SET(FLYWHEEL_IDLE);  //starts the fly wheel at Idle speed
 robot.combineSet(false);
 
 FLYWHEEL_SET(127);
-robot.turnToFace(115); //faces another high flag
+robot.turnToFace(205); //faces another high flag
 
 robot.flyUp(510, [](float rpm) -> void {
   robot.feedBall();
   pros::delay(200);           // shoots a high flag
   INTAKE_SET(0);
 });
-robot.turnToFace(180);  //faces a cap
+robot.turnToFace(270);  //faces a cap
 
 robot.moveFor(35); // move 35in forward
 robot.feedBall();  // picks up ball and
@@ -18,7 +18,7 @@ pros::delay(500);  // waits until the ball is closer to the top of the hood
 INTAKE_SET(0);
 robot.moveFor(-35);  // backs up
 FLYWHEEL_SET(127);
-robot.turnToFace(115); //faces another high flag
+robot.turnToFace(205); //faces another high flag
 
 robot.flyUp(460, [](float rpm) -> void {
   robot.feedBall();
