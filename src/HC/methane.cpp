@@ -98,11 +98,11 @@ namespace hc {
   }
 
   void methane::Robot::turnToFace(float deg) {
-    pid->config(3, 0.1, 0.15, 3, 30, MAX_SPEED, MIN_SPEED);
+    pid->config(3, 0.1, 0.3, 3, 30, MAX_SPEED, MIN_SPEED);
 
     if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
 
-    pid->doPID(deg, 2, []() -> float {
+    pid->doPID(deg, A_ERR, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
       RIGHT_DRIVE_SET(output);
