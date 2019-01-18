@@ -17,7 +17,7 @@ void opcontrol() {
       FLYWHEEL_SET(127);
     } else if(master.get_digital(DIGITAL_B)) {
       OPCONTROL_FLYWHEEL_SET(480);
-    } else if(master.get_digital(DIGITAL_X)) {
+    } else if(master.get_digital(DIGITAL_L2)) {
       OPCONTROL_FLYWHEEL_SET(520);
     } else if(master.get_digital(DIGITAL_A)) {
       OPCONTROL_FLYWHEEL_SET(400);

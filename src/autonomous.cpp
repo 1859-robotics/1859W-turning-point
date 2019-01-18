@@ -23,6 +23,8 @@ void runAuton() {
     std::cout << "runing on tile: " << TILE_RED_B << std::endl;
     if(hc::pentane::selectedAuton == RED_FAR_1) {
       #include "./auton/red-far-1.auton"
+    } else if(hc::pentane::selectedAuton == RED_FAR_2) {
+      #include "./auton/red-far-0.auton"
     }
   } else if(hc::pentane::selectedTile == TILE_BLUE_A) {
     std::cout << "runing on tile: " << TILE_BLUE_A << std::endl;
