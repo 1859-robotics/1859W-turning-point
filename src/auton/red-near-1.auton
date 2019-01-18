@@ -3,9 +3,11 @@ FLYWHEEL_SET(FLYWHEEL_IDLE);
 
 robot.combineSet(false);
 
-robot.moveFor(40); // move 40in forward
+robot.moveFor(39); // move 40in forward
 
-robot.moveFor(-40); // move 40in backwards
+// FLYWHEEL_SET(70);
+
+robot.moveFor(-44); // move 40in backwards
 
 robot.flyUp(360, [](float rpm) -> void {
   robot.feedBall();
@@ -18,12 +20,27 @@ FLYWHEEL_SET(FLYWHEEL_IDLE);
 robot.turnToFace(0);
 
 robot.feedBall();
-robot.moveFor(34); // move 35in forward
-// pros::delay(300);
+robot.moveFor(35); // move 35in forward
+pros::delay(50);
 INTAKE_SET(0);
 robot.moveFor(-34);
+
+FLYWHEEL_SET(127);
+
+robot.turnToFace(90);
+
+robot.moveFor(-18);
+
+robot.flyUp(500, [](float rpm) -> void {
+  robot.feedBall();
+  pros::delay(800);
+  INTAKE_SET(0);
+});
+
+robot.moveFor(18);
 
 robot.turnToFace(45);
 
 robot.combineSet(true);
-robot.moveFor(50); // move 16in forward
+robot.moveFor(45); // move 16in forward
+robot.moveFor(-10); // move 16in forward
