@@ -4,7 +4,7 @@
 
 void runAuton() {
   if(SKILLS_MODE) {
-    #include "./auton/skills.auton"
+      #include "./auton/skills.auton"
 
     return;
   }
