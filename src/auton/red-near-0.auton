@@ -21,7 +21,7 @@ robot.turnToFace(0);
 
 robot.feedBall();
 robot.moveFor(34); // move 35in forward
-pros::delay(180);
+pros::delay(200);
 INTAKE_SET(0);
 robot.moveFor(-34);
 
@@ -29,11 +29,11 @@ FLYWHEEL_SET(127);
 
 robot.turnToFace(90);
 
-robot.moveFor(-16);
+robot.moveFor(-19);
 
 robot.flyUp(500, [](float rpm) -> void {
   robot.feedBall();
-  pros::delay(500);
+  pros::delay(600);
   INTAKE_SET(0);
 });
 
