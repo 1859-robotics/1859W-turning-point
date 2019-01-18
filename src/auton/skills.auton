@@ -59,3 +59,13 @@ robot.moveFor(49);
 robot.turnToFace(92);
 
 robot.moveFor(22);
+robot.moveFor(-22);
+
+robot.turnToFace(-90);
+robot.combineSet(true);
+
+robot.moveFor(24);
+robot.moveFor(-24);
+robot.turnToFace(0);
+
+robot.moveFor(36);
