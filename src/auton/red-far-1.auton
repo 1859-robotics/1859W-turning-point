@@ -18,4 +18,4 @@ pros::delay(500);  // waits until the ball is closer to the top of the hood
 INTAKE_SET(0);
 robot.moveFor(-10);  // backs up
 robot.turnToFace(90);  //faces platform
-robot.moveFor(32);  // climbs
+robot.moveFor(24);  // climbs
