@@ -16,14 +16,16 @@
 
 // auton names
 #define BLUE_NEAR_1  "alliance post"
-#define BLUE_FAR_1 "center post"
+#define BLUE_FAR_1   "center post"
 
-#define RED_NEAR_1  "alliance post & cap"
-#define RED_FAR_1  "center post & cap"
+#define RED_NEAR_1   "alliance post & cap"
+#define RED_NEAR_2   "alliance post"
+#define RED_FAR_1    "center post & cap"
 
 // auton lists
 #define AUTON_OPTIONS_RED_A "none" "\n" \
-                            RED_NEAR_1
+                            RED_NEAR_1 "\n" \
+                            RED_NEAR_2
 #define AUTON_OPTIONS_RED_B "none" "\n" \
                             RED_FAR_1
 #define AUTON_OPTIONS_BLUE_A "none" "\n" \
