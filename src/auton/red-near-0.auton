@@ -19,10 +19,8 @@ FLYWHEEL_SET(FLYWHEEL_IDLE);
 
 robot.turnToFace(0);
 
-robot.feedBall();
 robot.moveFor(35); // move 35in forward
-pros::delay(50);
-INTAKE_SET(0);
+robot.feedBall();
 robot.moveFor(-34);
 
 FLYWHEEL_SET(127);

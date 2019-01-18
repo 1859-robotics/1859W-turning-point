@@ -16,6 +16,8 @@ robot.turnToFace(0);  //faces a cap
 robot.moveFor(35); // move 35in forward
 robot.feedBall();  // picks up ball and
 
+/*
 robot.moveFor(-10);  // backs up
 robot.turnToFace(90);  //faces platform
 robot.moveFor(24);  // climbs
+*/
