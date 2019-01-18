@@ -47,7 +47,7 @@ extern pros::ADIEncoder cTrackerWheel;
 #define COMBINE_SET(spd) combine.move(spd)
 
 // flywheel stuff
-#define FLYWHEEL_IDLE 60
+#define FLYWHEEL_IDLE 70
 #define FLYWHEEL_ERR 30
 #define FLYWHEEL_START_B_HIGH 390
 #define FLYWHEEL_START_B_MID 410

@@ -1,3 +1,20 @@
+/*
+- [x] start facing post
+- [x] move forward toggle low flag
+- [x] move backwards toggle mid flag
+- [x] turn
+- [x] move forward and collect ball
+- [ ] backup slightly
+- [ ] turn to face cap
+- [ ] flip cap
+- [ ] face middle post
+- [ ] toggle low flag
+- [ ] toggle mid flag
+
+*/
+
+
+
 posTracker.setPos({ 0, 0 }, 90);
 FLYWHEEL_SET(FLYWHEEL_IDLE);
 
@@ -20,19 +37,41 @@ FLYWHEEL_SET(FLYWHEEL_IDLE);
 robot.turnToFace(0);
 
 robot.feedBall();
-robot.moveFor(35); // move 35in forward
-pros::delay(300);
+robot.moveFor(36); // move 35in forward
+// pros::delay(100);
 INTAKE_SET(0);
-robot.moveFor(-34);
+robot.moveFor(-35);
 
 FLYWHEEL_SET(127);
 
 robot.turnToFace(90);
 
-robot.moveFor(-18);
+robot.moveFor(-15);
 
 robot.flyUp(500, [](float rpm) -> void {
   robot.feedBall();
-  pros::delay(800);
+  pros::delay(2000);
   INTAKE_SET(0);
 });
+
+robot.turnToFace(43);
+
+robot.moveFor(52);
+
+robot.turnToFace(90);
+
+robot.moveFor(18);
+
+
+
+
+/*
+robot.moveFor(-10);
+robot.turnToFace(115);
+
+robot.combineSet(true);
+robot.moveFor(25);
+robot.moveFor(-10);
+robot.turnToFace(45);
+robot.moveFor(25);
+*/
