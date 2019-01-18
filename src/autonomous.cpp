@@ -3,14 +3,13 @@
 #include "robot-config.hpp"
 
 void runAuton() {
-  if(SKILLS_MODE) {
+  if(hc::pentane::selectedTile == -1) {
+    std::cout << "did not run auton" << std::endl;
+    if(SKILLS_MODE) {
       #include "./auton/skills.auton"
 
-    return;
-  }
-
-  if(hc::pentane::selectedAuton == "" || hc::pentane::selectedAuton == "none") {
-    std::cout << "did not run auton" << std::endl;
+      return;
+    }
     return;
   }
   if(hc::pentane::selectedTile == TILE_RED_A) {
