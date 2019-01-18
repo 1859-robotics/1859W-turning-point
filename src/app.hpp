@@ -1,6 +1,8 @@
 #ifndef APP_HPP
 #define APP_HPP
 
+#define SKILLS_MODE true
+
 #define ASYNC(name, body) pros::Task name([]() { \
   body \
   name.remove(); \

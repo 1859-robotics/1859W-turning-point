@@ -3,6 +3,12 @@
 #include "robot-config.hpp"
 
 void runAuton() {
+  if(SKILLS_MODE) {
+    #include "./auton/skills.auton"
+
+    return;
+  }
+
   if(hc::pentane::selectedAuton == "" || hc::pentane::selectedAuton == "none") {
     std::cout << "did not run auton" << std::endl;
     return;

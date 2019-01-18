@@ -36,8 +36,3 @@ robot.flyUp(500, [](float rpm) -> void {
   pros::delay(800);
   INTAKE_SET(0);
 });
-
-COMBINE_SET(0);
-
-robot.turnToFace(0);
-robot.moveFor(26);

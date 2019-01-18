@@ -44,6 +44,7 @@ extern pros::ADIEncoder cTrackerWheel;
 #define FLYWHEEL_GET_VEL (flywheelR.get_actual_velocity() + flywheelL.get_actual_velocity()) / 2
 
 #define INTAKE_SET(spd) intake.move(spd)
+#define COMBINE_SET(spd) combine.move(spd)
 
 // flywheel stuff
 #define FLYWHEEL_IDLE 60
