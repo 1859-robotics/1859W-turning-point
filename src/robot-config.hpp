@@ -17,6 +17,7 @@
 #define TRACKER_RIGHT_PORT 7
 #define TRACKER_CENTER_PORT 3
 
+#define LIMIT_PORT 1
 
 // components
 
@@ -33,6 +34,8 @@ extern pros::Motor combine;
 extern pros::ADIEncoder lTrackerWheel;
 extern pros::ADIEncoder rTrackerWheel;
 extern pros::ADIEncoder cTrackerWheel;
+
+extern pros::ADIDigitalIn limit;
 
 // robot config macros
 #define RIGHT_DRIVE_SET(spd) rightDrive.move(spd)
@@ -55,7 +58,7 @@ extern pros::ADIEncoder cTrackerWheel;
 #define OPCONTROL_FLYWHEEL_SET(speed) FLYWHEEL_SET(20); \
 if(withinRange(speed, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) { \
   master.rumble("."); \
-  robot.feedBall(); \
+  INTAKE_SET(127); \
   FLYWHEEL_SET(FLYWHEEL_IDLE); \
   autonOverwrite = true; \
 } else if(FLYWHEEL_GET_VEL < speed) { \

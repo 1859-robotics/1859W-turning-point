@@ -121,7 +121,11 @@ namespace hc {
   }
 
   void methane::Robot::feedBall() {
-    INTAKE_SET(127);
+    while(!limit.get_value()) {
+      INTAKE_SET(127);
+    }
+    INTAKE_SET(0);
+
   }
 
   void methane::Robot::reset() {
