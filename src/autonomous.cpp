@@ -27,15 +27,21 @@ void runAuton() {
     } else if(hc::pentane::selectedAuton == RED_FAR_2) {
       #include "./auton/red-far-0.auton"
     }
-  } else if(hc::pentane::selectedTile == TILE_BLUE_A) {
-    std::cout << "runing on tile: " << TILE_BLUE_A << std::endl;
+  } else if(hc::pentane::selectedTile == TILE_BLUE_B) {
+    std::cout << "runing on tile: " << TILE_BLUE_B << std::endl;
+    std::cout << "hc::pentane::selectedAuton: " << hc::pentane::selectedAuton << std::endl;
+    std::cout << "BLUE_FAR_1: " << BLUE_FAR_1 << std::endl;
+    std::cout << "BLUE_FAR_2: " << BLUE_FAR_2 << std::endl;
     if(hc::pentane::selectedAuton == BLUE_FAR_1) {
       #include "./auton/blue-far-1.auton"
     } else if(hc::pentane::selectedAuton == BLUE_FAR_2) {
       #include "./auton/blue-far-0.auton"
     }
-  } else if(hc::pentane::selectedTile == TILE_BLUE_B) {
-    std::cout << "runing on tile: " << TILE_BLUE_B << std::endl;
+  } else if(hc::pentane::selectedTile == TILE_BLUE_A) {
+    std::cout << "runing on tile: " << TILE_BLUE_A << std::endl;
+    std::cout << "hc::pentane::selectedAuton: " << hc::pentane::selectedAuton << std::endl;
+    std::cout << "BLUE_NEAR_1: " << BLUE_NEAR_1 << std::endl;
+    std::cout << "BLUE_NEAR_2: " << BLUE_NEAR_2 << std::endl;
     if(hc::pentane::selectedAuton == BLUE_NEAR_1) {
       #include "./auton/blue-near-1.auton"
     } else if(hc::pentane::selectedAuton == BLUE_NEAR_2) {

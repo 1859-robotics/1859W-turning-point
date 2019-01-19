@@ -3,7 +3,7 @@ FLYWHEEL_SET(FLYWHEEL_IDLE);  //starts the fly wheel at Idle speed
 robot.combineSet(false);
 
 FLYWHEEL_SET(127);
-robot.turnToFace(65); //faces another high flag
+robot.turnToFace(155); //faces another high flag
 
 robot.flyUp(480, [](float rpm) -> void {
   INTAKE_SET(127);
