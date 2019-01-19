@@ -29,16 +29,13 @@ robot.turnToFace(90);
 
 robot.moveFor(-18);
 
-robot.flyUp(460, [](float rpm) -> void {
+robot.flyUp(500, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
 });
 
-robot.moveFor(24);
+COMBINE_SET(0);
 
-robot.turnToFace(135);
-
-robot.combineSet(true);
-robot.moveFor(40); // move 16in forward
-robot.moveFor(-10); // move 16in forward
+robot.turnToFace(180);
+robot.moveFor(26);
