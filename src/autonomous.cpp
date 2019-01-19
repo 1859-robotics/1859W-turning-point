@@ -4,7 +4,7 @@
 
 void runAuton() {
   if(hc::pentane::selectedTile == -1) {
-    std::cout << "did not run auton" << std::endl;
+  std::cout << "did not run auton" << std::endl;
     if(SKILLS_MODE) {
       #include "./auton/skills.auton"
 

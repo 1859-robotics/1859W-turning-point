@@ -48,7 +48,7 @@ robot.moveFor(-12);
 
 robot.flyUp(500, [](float rpm) -> void {
   INTAKE_SET(127);
-  pros::delay(200);
+  pros::delay(400);
   INTAKE_SET(0);
 });
 
@@ -61,11 +61,14 @@ robot.turnToFace(92);
 robot.moveFor(22);
 robot.moveFor(-22);
 
-robot.turnToFace(-90);
+robot.turnToFace(180);
 robot.combineSet(true);
 
 robot.moveFor(24);
 robot.moveFor(-24);
-robot.turnToFace(0);
+robot.turnToFace(-10);
 
-robot.moveFor(36);
+robot.moveFor(48);
+
+robot.turnToFace(90);
+robot.moveFor(24);

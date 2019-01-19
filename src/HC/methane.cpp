@@ -83,10 +83,10 @@ namespace hc {
       posTracker.y
     };
 
-    pid->config(8, 0, 0, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
+    pid->config(8, 0, 0.1, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
 
 
-    pid->doPID(0, 0.5 , [=]() -> float {
+    pid->doPID(0, P_ERR, [=]() -> float {
       return (fabs(distIn) - dist(start.x, start.y, posTracker.x, posTracker.y));
     }, [=](float output) -> void {
       RIGHT_DRIVE_SET(SGN(-distIn) * output);
