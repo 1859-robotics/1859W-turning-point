@@ -31,8 +31,13 @@
             "bin/robot-config.cpp.o",
             "src\\robot-config.cpp"
         ],
+<<<<<<< HEAD
         "directory": "C:\\Users\\agriffin2\\documents\\GitHub\\1859w-turning-point",
         "file": "src\\robot-config.cpp"
+=======
+        "directory": "C:\\Users\\jbanta\\Documents\\GitHub\\1859W-turning-point",
+        "file": "src\\autonomous.cpp"
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
     },
     {
         "arguments": [
@@ -65,6 +70,7 @@
             "-o",
             "bin/HC/pentane.cpp.o",
             "src\\HC\\pentane.cpp"
+<<<<<<< HEAD
         ],
         "directory": "C:\\Users\\agriffin2\\documents\\GitHub\\1859w-turning-point",
         "file": "src\\HC\\pentane.cpp"
@@ -173,6 +179,11 @@
         ],
         "directory": "C:\\Users\\agriffin2\\documents\\GitHub\\1859w-turning-point",
         "file": "src\\initialize.cpp"
+=======
+        ],
+        "directory": "C:\\Users\\jbanta\\Documents\\GitHub\\1859W-turning-point",
+        "file": "src\\HC\\pentane.cpp"
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
     },
     {
         "arguments": [
@@ -191,6 +202,7 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/HC/",
+<<<<<<< HEAD
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -226,6 +238,8 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
+=======
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -238,6 +252,7 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
+<<<<<<< HEAD
             "bin/autonomous.cpp.o",
             "src\\autonomous.cpp"
         ],
@@ -313,6 +328,13 @@
         ],
         "directory": "C:\\Users\\agriffin2\\Documents\\GitHub\\1859W-turning-point",
         "file": "src\\HC\\propene.cpp"
+=======
+            "bin/HC/methane.cpp.o",
+            "src\\HC\\methane.cpp"
+        ],
+        "directory": "C:\\Users\\jbanta\\Documents\\GitHub\\1859W-turning-point",
+        "file": "src\\HC\\methane.cpp"
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
     },
     {
         "arguments": [
@@ -346,8 +368,13 @@
             "bin/robot-config.cpp.o",
             "src\\robot-config.cpp"
         ],
+<<<<<<< HEAD
         "directory": "C:\\Users\\agriffin2\\Documents\\GitHub\\1859W-turning-point",
         "file": "src\\robot-config.cpp"
+=======
+        "directory": "C:\\Users\\jbanta\\Documents\\GitHub\\1859W-turning-point",
+        "file": "src\\HC\\propene.cpp"
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
     },
     {
         "arguments": [
@@ -378,11 +405,19 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
+<<<<<<< HEAD
             "bin/HC/pentane.cpp.o",
             "src\\HC\\pentane.cpp"
         ],
         "directory": "C:\\Users\\agriffin2\\Documents\\GitHub\\1859W-turning-point",
         "file": "src\\HC\\pentane.cpp"
+=======
+            "bin/robot-config.cpp.o",
+            "src\\robot-config.cpp"
+        ],
+        "directory": "C:\\Users\\jbanta\\Documents\\GitHub\\1859W-turning-point",
+        "file": "src\\robot-config.cpp"
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
     },
     {
         "arguments": [
@@ -416,8 +451,13 @@
             "bin/opcontrol.cpp.o",
             "src\\opcontrol.cpp"
         ],
+<<<<<<< HEAD
         "directory": "C:\\Users\\agriffin2\\Documents\\GitHub\\1859W-turning-point",
         "file": "src\\opcontrol.cpp"
+=======
+        "directory": "C:\\Users\\jbanta\\Documents\\GitHub\\1859W-turning-point",
+        "file": "src\\HC\\benzene.cpp"
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
     },
     {
         "arguments": [
@@ -451,8 +491,13 @@
             "bin/HC/benzene.cpp.o",
             "src\\HC\\benzene.cpp"
         ],
+<<<<<<< HEAD
         "directory": "C:\\Users\\agriffin2\\Documents\\GitHub\\1859W-turning-point",
         "file": "src\\HC\\benzene.cpp"
+=======
+        "directory": "C:\\Users\\jbanta\\Documents\\GitHub\\1859W-turning-point",
+        "file": "src\\initialize.cpp"
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
     },
     {
         "arguments": [
@@ -471,6 +516,7 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
+<<<<<<< HEAD
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -541,6 +587,8 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/HC/",
+=======
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -553,10 +601,15 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/HC/methane.cpp.o",
-            "src\\HC\\methane.cpp"
+            "bin/opcontrol.cpp.o",
+            "src\\opcontrol.cpp"
         ],
+<<<<<<< HEAD
         "directory": "C:\\Users\\agriffin2\\Documents\\GitHub\\1859W-turning-point",
         "file": "src\\HC\\methane.cpp"
+=======
+        "directory": "C:\\Users\\jbanta\\Documents\\GitHub\\1859W-turning-point",
+        "file": "src\\opcontrol.cpp"
+>>>>>>> 7377402b446e01355edd184e61b934fd27b8c6bb
     }
 ]

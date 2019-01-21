@@ -6,7 +6,7 @@ void runAuton() {
   if(hc::pentane::selectedTile == -1) {
   std::cout << "did not run auton" << std::endl;
     if(SKILLS_MODE) {
-      #include "./auton/skills.auton"
+      #include "./auton/skills-0.auton"
 
       return;
     }
@@ -58,6 +58,6 @@ void autonomous() {
 
   robot.moveTo({ 9, 9 }, 0);
 
-  //  runAuton();
+  runAuton();
   track.remove();
 }
