@@ -58,6 +58,6 @@ void autonomous() {
 
   robot.moveTo({ 9, 9 }, 0);
 
-  runAuton();
+  // runAuton();
   track.remove();
 }
