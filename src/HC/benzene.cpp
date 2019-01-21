@@ -11,9 +11,9 @@ namespace hc {
     float newR = rEncoder->get_value();
     float newC = mEncoder->get_value();
 
-    std::cout << "newL : " << newL << std::endl;
-    std::cout << "newR : " << newR << std::endl;
-    std::cout << "newC : " << newC << std::endl;
+    // std::cout << "newL : " << newL << std::endl;
+    // std::cout << "newR : " << newR << std::endl;
+    // std::cout << "newC : " << newC << std::endl;
 
     float dL = (lEncoderVal - newL) / 41.69;
     float dR = (rEncoderVal - newR) / 41.69;
