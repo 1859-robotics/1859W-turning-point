@@ -33,40 +33,79 @@ float angleDiff(float angle1, float angle2) {
 // end util functions
 
 
+// vector stuffs
+::hc::benzene::Point add(::hc::benzene::Point a, ::hc::benzene::Point b) {
+  return { a.x + b.x, a.y + b.y };
+}
+::hc::benzene::Point sub(::hc::benzene::Point a, ::hc::benzene::Point b) {
+  return { a.x - b.x, a.y - b.y };
+}
+::hc::benzene::Point mult(::hc::benzene::Point a, ::hc::benzene::Point b) {
+  return { a.x * b.x, a.y * b.y };
+}
+::hc::benzene::Point div(::hc::benzene::Point a, ::hc::benzene::Point b) {
+  return { a.x / b.x, a.y / b.y };
+}
+
+float mag(::hc::benzene::Point a) {
+  return sqrt((a.x * a.x) + (a.y * a.y));
+}
+
+::hc::benzene::Point normalize(::hc::benzene::Point a) {
+  return { a.x / mag(a), a.y / mag(a) };
+}
+
+::hc::benzene::Point multScalar(::hc::benzene::Point a, float b) {
+  return { a.x * b, a.y * b };
+}
+
+::hc::benzene::Point closest(::hc::benzene::Point current, ::hc::benzene::Point head, ::hc::benzene::Point target) {
+  ::hc::benzene::Point n = normalize(head);
+  ::hc::benzene::Point v = sub(target, current);
+  float d = dot(v.x, v.y, n.x, n.y);
+  return add(current, multScalar(n, d));
+}
+
 namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
-    // float dotter = SGN(dot(x, y, posTracker.x, posTracker.y));
-    float eA = angleDiff(posTracker.a, atan2(x - posTracker.x, y - posTracker.y));
+    float eA = angleDiff(posTracker.a, atan2(y - posTracker.y, x - posTracker.x));
 
-    float trans = transPID->calculate(-dist(x, y, posTracker.x, posTracker.y), 0);
+    ::hc::benzene::Point close = closest({
+      posTracker.x, posTracker.y
+    }, { cos(posTracker.a), sin(posTracker.a) }, {
+      x, y
+    });
+
+    float V = dist(close.x, close.y, posTracker.x, posTracker.y) * (mag({ posTracker.x, posTracker.y }) > mag(close) ? 1 : -1);
+
+    float trans = transPID->calculate(V, 0);
     float rot = rotPID->calculate(TODEG(eA), 0);
 
     float idealVR = (trans + rot);
     float idealVL = (trans - rot);
 
-
+    // DEBUG_VAR(trans);
+    // DEBUG_VAR(rot);
 
     float maxMag = fmax(abs(idealVL), abs(idealVR));
     float minMag = fmin(abs(idealVL), abs(idealVR));
 
-    if (maxMag > MAX_SPEED)  {
+    if (maxMag > 1)  {
       idealVR /= maxMag;
       idealVL /= maxMag;
-        // idealVR *= minMag;
-        // idealVL *= minMag;
     }
+
 
     // std::cout << "idealVR : " << idealVR << std::endl;
     // std::cout << "idealVL : " << idealVL << std::endl;
-    // DEBUG_VAR(eA);
 
-    RIGHT_DRIVE_SET(idealVR);
-    LEFT_DRIVE_SET(idealVL);
+    RIGHT_DRIVE_SET(idealVR * 127);
+    LEFT_DRIVE_SET(idealVL * 127);
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(0.048, 0, 0.0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(0.013, 0, 0.002, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(0.048, 0, 0.0, 0.0001, 0.00001, 1, -1);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(0.013, 0, 0.002, 0.0001, 0.00001, 1, -1);
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y)) {
       // std::cout << "posTracker.x: " << posTracker.x << std::endl;

@@ -43,7 +43,7 @@
 
 #define PI M_PI
 #define TAU (PI * 2)
-#define DEBUG_VAR(var) std::cout << "var: " << var << std::endl
+#define DEBUG_VAR(var) std::cout << #var << ": " << var << std::endl
 
 /**
  * You should add more #includes here
