@@ -114,8 +114,9 @@ namespace hc {
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(1, 0, 0.1, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(1, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(1, 0, 0, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(3, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
+
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y)) {
       // std::cout << "posTracker.x: " << posTracker.x << std::endl;
@@ -124,8 +125,8 @@ namespace hc {
       seek(target.x, target.y, transPID, rotPID);
     }
 
-    if(!withinRange(TODEG(posTracker.a), targetA, A_ERR))
-      turnToFace(targetA);
+    // if(!withinRange(TODEG(posTracker.a), targetA, A_ERR))
+    //   turnToFace(targetA);
 
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
