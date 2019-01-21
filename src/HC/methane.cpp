@@ -70,42 +70,52 @@ namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
     float eA = angleDiff(posTracker.a, atan2(y - posTracker.y, x - posTracker.x));
 
+    
+
     ::hc::benzene::Point close = closest({
       posTracker.x, posTracker.y
     }, { cos(posTracker.a), sin(posTracker.a) }, {
       x, y
     });
 
-    float V = dist(close.x, close.y, posTracker.x, posTracker.y) * (mag({ posTracker.x, posTracker.y }) > mag(close) ? 1 : -1);
+
+
+    float V = cos(posTracker.a - atan2(posTracker.x - x, posTracker.y - y));
 
     float trans = transPID->calculate(V, 0);
-    float rot = rotPID->calculate(TODEG(eA), 0);
+    float rot = rotPID->calculate(eA, 0);
 
-    float idealVR = (trans + rot);
-    float idealVL = (trans - rot);
+    float idealVR = ((trans) - (rot));
+    float idealVL = ((trans) + (rot));
 
     // DEBUG_VAR(trans);
-    // DEBUG_VAR(rot);
+    // DEBUG_VAR(eA);
 
     float maxMag = fmax(abs(idealVL), abs(idealVR));
     float minMag = fmin(abs(idealVL), abs(idealVR));
 
-    if (maxMag > 1)  {
+    if (maxMag > 127)  {
       idealVR /= maxMag;
       idealVL /= maxMag;
+
+      RIGHT_DRIVE_SET(idealVR * 127);
+      LEFT_DRIVE_SET(idealVL * 127);
+
+    } else {
+      RIGHT_DRIVE_SET(idealVR);
+      LEFT_DRIVE_SET(idealVL);
     }
 
 
     // std::cout << "idealVR : " << idealVR << std::endl;
     // std::cout << "idealVL : " << idealVL << std::endl;
 
-    RIGHT_DRIVE_SET(idealVR * 127);
-    LEFT_DRIVE_SET(idealVL * 127);
+
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(0.048, 0, 0.0, 0.0001, 0.00001, 1, -1);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(0.013, 0, 0.002, 0.0001, 0.00001, 1, -1);
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(12, 0, 0.1, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(0.1, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y)) {
       // std::cout << "posTracker.x: " << posTracker.x << std::endl;

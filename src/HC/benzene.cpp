@@ -43,13 +43,13 @@ namespace hc {
     float avgA = a + (dA / 2);
 
     float polarR = sqrt((localOffX * localOffX) + (localOffY * localOffY));
-    float polarA = atan2(localOffY, localOffX) - avgA;
+    float polarA = atan2(localOffX, localOffY) - avgA;
 
     float dX = cos(polarA) * polarR;
     float dY = sin(polarA) * polarR;
 
 
-    this->x += dX;
+    this->x -= dX;
     this->y += dY;
     this->a = newA;
   }
