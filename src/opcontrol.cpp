@@ -3,9 +3,9 @@
 #include "HC/methane.hpp"
 
 void opcontrol() {
-  robot.reset();
-
-  pros::Task track(hc::benzene::track, &posTracker);
+  // robot.reset();
+  //
+  // pros::Task track(hc::benzene::track, &posTracker);
 
 	while (true) {
 		RIGHT_DRIVE_SET(master.get_analog(ANALOG_RIGHT_Y));

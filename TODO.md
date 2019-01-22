@@ -1,14 +1,15 @@
-- [ ] option ui
+- [x] option ui
 - [x] tracking
 - [x] turn to angle func
 - [x] turn to face func
-- [x] methane::Robot::seek
+- [ ] methane::Robot::seek
 - [x] methane::Robot::moveTo
 - [x] have hannah take photo
 - [ ] write drive build instructions for notebook
 - [ ] write shooter breakdown
 - [ ] write shooter build instructions
 - [ ] write lift breakdown
-- [ ] make auton selection ui
-- [ ] script 4 autons
-- [ ] work on scripting the skills auton
+- [x] make auton selection ui
+- [x] script 4 autons
+- [x] work on scripting the skills auton
+- [ ] make move to simple func
