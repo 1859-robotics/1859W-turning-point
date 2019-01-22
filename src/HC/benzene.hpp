@@ -53,8 +53,6 @@ namespace hc {
       void reset();
     };
     void track(void *tracker);
-
-
   }
 }
 

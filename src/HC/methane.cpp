@@ -68,7 +68,7 @@ float mag(::hc::benzene::Point a) {
 
 namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
-    float eA = angleDiff(posTracker.a, atan2(y - posTracker.y, x - posTracker.x));
+    float tA = atan2(y - posTracker.y, x - posTracker.x);
 
     ::hc::benzene::Point close = closest({
       posTracker.x, posTracker.y
@@ -76,17 +76,27 @@ namespace hc {
       x, y
     });
 
-    float V = -dist(close.x, close.y, posTracker.x, posTracker.y);
+    float V = dist(close.x, close.y, posTracker.x, posTracker.y);
 
-    if (abs(atan2(close.y - posTracker.y, close.x - posTracker.x) - posTracker.a) > PI/2) {
+    float aP = atan2(y - posTracker.y, x - posTracker.x) - posTracker.a;
+    aP = fmod(aP, (TAU)) * SGN(aP);
+
+    if (abs(aP) > PI / 2) {
+      V = V * -1;
+      tA -= PI * SGN(aP);
+    }
+
+    if (abs(atan2(close.x - posTracker.x, close.y - posTracker.y) - posTracker.a) > PI/2) {
       V *= -1;
     }
 
-    float trans = transPID->calculate(V, 0);
-    float rot = rotPID->calculate(eA, 0);
+    float W = angleDiff(tA, posTracker.a);
 
-    float idealVR = ((trans) - (rot));
-    float idealVL = ((trans) + (rot));
+    float trans = transPID->calculate(V, 0);
+    float rot = rotPID->calculate(W, 0);
+
+    float idealVR = ((trans) + (rot));
+    float idealVL = ((trans) - (rot));
 
     // DEBUG_VAR(trans);
     // DEBUG_VAR(eA);
