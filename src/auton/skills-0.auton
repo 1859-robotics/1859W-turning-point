@@ -26,9 +26,9 @@ FLYWHEEL_SET(127);
 
 robot.turnToFace(90);
 
-robot.moveFor(-12);
+robot.moveFor(-10);
 
-robot.turnToFace(92);
+robot.turnToFace(90);
 
 robot.flyUp(500, [](float rpm) -> void {
   INTAKE_SET(127);
@@ -49,19 +49,19 @@ robot.moveFor(-22);
 robot.turnToFace(180);
 robot.combineSet(true);
 
-robot.moveFor(30);
-robot.moveFor(-30);
+robot.moveFor(35);
+robot.moveFor(-35);
 robot.turnToFace(0);
 
-robot.moveFor(50);
-robot.moveFor(-7);
+robot.moveFor(57);
+robot.moveFor(-17);
 
 robot.turnToFace(90);
-robot.moveFor(16);
+robot.moveFor(18);
 
 
 robot.combineSet(false);
-robot.moveFor(-35);
+robot.moveFor(-37);
 
 robot.turnToFace(0);
 robot.moveFor(20);
