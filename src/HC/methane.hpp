@@ -32,8 +32,8 @@ namespace hc {
       void reset();
       void feedBall();
       void flyUp(int rpm, std::function <void(float)> action);
-      // auton functions
       void moveTo(::hc::benzene::Point target, float targetA); // moves to a point
+      void moveToSimple(::hc::benzene::Point target);
       void moveFor(float dist);
       void combineSet(bool rev);
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg

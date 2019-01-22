@@ -142,6 +142,11 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
+  void methane::Robot::moveToSimple(::hc::benzene::Point target) {
+    turnToFace(target);
+    moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
+  }
+
   void methane::Robot::moveAlong(::hc::benzene::Point wayPoints[], int size, float endA) {
 
   }
@@ -182,7 +187,7 @@ namespace hc {
   }
 
   void methane::Robot::turnToFace(::hc::benzene::Point point) {
-    turnToFace(TODEG(atan2(point.x - posTracker.x, point.y - posTracker.y)));
+    turnToFace(TODEG(atan2(point.y - posTracker.y, point.x - posTracker.x)));
   }
 
   void methane::Robot::combineSet(bool rev) {
