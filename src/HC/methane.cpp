@@ -196,8 +196,10 @@ namespace hc {
     combine.move(rev ? 127 : -127);
   }
 
-  void methane::Robot::feedBall() {
-    while(!limit.get_value()) {
+  void methane::Robot::feedBall(float exit) {
+    std::uint32_t started = pros::millis();
+
+    while(!limit.get_value() || (pros::millis() - started) > exit) {
       INTAKE_SET(127);
     }
     INTAKE_SET(0);

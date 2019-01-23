@@ -62,7 +62,6 @@ robot.moveToSimple({ 10, 64 });
 robot.moveFor(-10);
 
 // flip other cap
-robot.moveToSimple({ 20, 64 }); // split into 4 movements in order to reduce angle err
-robot.moveToSimple({ 40, 64 });
+robot.moveToSimple({ 40, 64 }); // split into 4 movements in order to reduce angle err
 robot.moveToSimple({ 60, 64 });
-robot.moveToSimple({ 80, 72 });
+robot.moveToSimple({ 90, 66 });

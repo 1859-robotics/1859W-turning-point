@@ -30,7 +30,7 @@ namespace hc {
             tracker(tracker), pid(pid) {};
       void seek(float x, float y, ::hc::propene::PID *transPID, ::hc::propene::PID *rotPID);
       void reset();
-      void feedBall();
+      void feedBall(float exit = 10000);
       void flyUp(int rpm, std::function <void(float)> action);
       void moveTo(::hc::benzene::Point target, float targetA); // moves to a point
       void moveToSimple(::hc::benzene::Point target);
