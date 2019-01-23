@@ -13,6 +13,10 @@ robot.flyUp(460, [](float rpm) -> void {
 
 // get ball and go back
 robot.turnToFace(0);
+ASYNC(intake1, {
+  robot.feedBall();
+});
+intake1.remove();
 robot.moveFor(36);
 robot.feedBall();
 robot.moveFor(-34);
@@ -37,12 +41,15 @@ robot.moveFor(-43);
 // get next ball
 robot.combineSet(false);
 robot.moveToSimple({ 22, 45 });
+ASYNC(intake2, {
+  robot.feedBall();
+});
 robot.moveToSimple({ 44, 45 });
 robot.feedBall();
+intake2.remove();
 
 // shoot ball
-robot.moveFor(-5);
-robot.turnToFace(75);
+robot.turnToFace(80);
 robot.moveFor(5);
 robot.flyUp(360, [](float rpm) -> void {
   INTAKE_SET(127);
@@ -52,7 +59,7 @@ robot.flyUp(360, [](float rpm) -> void {
 
 
 // toggle low flag
-robot.turnToFace(80);
+robot.turnToFace(85);
 robot.moveFor(34);
 robot.moveFor(-20);
 
@@ -64,4 +71,19 @@ robot.moveFor(-10);
 // flip other cap
 robot.moveToSimple({ 40, 64 }); // split into 4 movements in order to reduce angle err
 robot.moveToSimple({ 60, 64 });
-robot.moveToSimple({ 90, 66 });
+robot.moveToSimple({ 90, 62 });
+
+// toggle low flag
+robot.moveFor(-10);
+robot.turnToFace(90);
+robot.moveFor(20);
+
+// collect next ball
+robot.moveFor(-30);
+ASYNC(intake3, {
+  robot.feedBall();
+});
+robot.turnToFace(180);
+intake3.remove();
+robot.moveFor(20);
+robot.feedBall();

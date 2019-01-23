@@ -3,10 +3,7 @@
 
 #define SKILLS_MODE true
 
-#define ASYNC(name, body) pros::Task name([]() { \
-  body \
-  name.remove(); \
-});
+#define ASYNC(name, body) pros::Task name([](void*) body);
 
 
 #include "HC/benzene.hpp"

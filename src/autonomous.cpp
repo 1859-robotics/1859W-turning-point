@@ -50,6 +50,6 @@ void autonomous() {
 
   posTracker.setPos({ 0, 0 }, 0);
 
-  runAuton();
+  // runAuton();
   // track.remove();
 }
