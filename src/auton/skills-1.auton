@@ -21,7 +21,7 @@ robot.turnToFace(90);
 // shoot ball
 robot.moveToSimple({ 2, 25 });
 robot.moveToSimple({ 0, 50 });
-robot.turnToFace(92);
+robot.turnToFace(86);
 robot.flyUp(360, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(500);
@@ -29,7 +29,20 @@ robot.flyUp(360, [](float rpm) -> void {
 });
 
 // toggle low flag
+robot.turnToFace(90);
 robot.moveFor(30);
-robot.moveFor(-40);
+robot.moveFor(-41);
 
-robot.moveToSimple({ 46, 46 });
+robot.moveToSimple({ 44, 43 });
+robot.feedBall();
+robot.moveFor(-10);
+robot.turnToFace(100);
+
+robot.flyUp(380, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(500);
+  INTAKE_SET(0);
+});
+
+robot.moveFor(30);
+robot.moveFor(-30);

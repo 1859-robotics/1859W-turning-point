@@ -6,11 +6,11 @@ void runAuton() {
   if(hc::pentane::selectedTile == -1) {
   std::cout << "did not run auton" << std::endl;
   if(SKILLS_MODE) {
-    #include "./auton/skills-1.auton"
+            #include "./auton/skills-1.auton"
 
-      return;
-    }
     return;
+  }
+  return;
   }
 
   if(hc::pentane::selectedTile == TILE_RED_A) {
