@@ -143,7 +143,7 @@ namespace hc {
   }
 
   void methane::Robot::moveToSimple(::hc::benzene::Point target) {
-    turnToFace(target);
+    turnToFace(target, 60);
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
   }
 
@@ -170,8 +170,8 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::turnToFace(float deg) {
-    pid->config(3, 0.01, 0.2, 3, 30, MAX_SPEED, MIN_SPEED);
+  void methane::Robot::turnToFace(float deg, float max) {
+    pid->config(3, 0.01, 0.2, 3, 30, max, MIN_SPEED);
 
     if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
 
@@ -186,8 +186,8 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::turnToFace(::hc::benzene::Point point) {
-    turnToFace(TODEG(atan2(point.y - posTracker.y, point.x - posTracker.x)));
+  void methane::Robot::turnToFace(::hc::benzene::Point point, float max) {
+    turnToFace(TODEG(atan2(point.y - posTracker.y, point.x - posTracker.x)), max);
   }
 
   void methane::Robot::combineSet(bool rev) {

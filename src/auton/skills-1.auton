@@ -19,16 +19,17 @@ robot.moveFor(-35);
 robot.turnToFace(90);
 
 // shoot ball
+robot.moveToSimple({ 2, 25 });
 robot.moveToSimple({ 0, 50 });
 robot.turnToFace(92);
 robot.flyUp(360, [](float rpm) -> void {
   INTAKE_SET(127);
-  pros::delay(200);
+  pros::delay(500);
   INTAKE_SET(0);
 });
 
 // toggle low flag
-robot.moveFor(32);
-robot.moveFor(-20);
+robot.moveFor(30);
+robot.moveFor(-40);
 
-robot.moveToSimple({ 48, 46 });
+robot.moveToSimple({ 46, 46 });
