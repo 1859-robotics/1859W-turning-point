@@ -201,7 +201,6 @@ namespace hc {
       INTAKE_SET(127);
     }
     INTAKE_SET(0);
-
   }
 
   void methane::Robot::reset() {
@@ -209,7 +208,7 @@ namespace hc {
   }
 
   bool methane::Robot::hasBall() {
-    return limit.get_value();
+    return !!limit.get_value();
   }
 
   void methane::Robot::flyUp(int rpm, std::function <void(float)> action) {
@@ -221,7 +220,7 @@ namespace hc {
       } else if(FLYWHEEL_GET_VEL < rpm) {
         FLYWHEEL_SET(127);
       } else {
-        FLYWHEEL_SET(20);
+        FLYWHEEL_SET(-127); //TODO: make this not bad
       }
     }
   }

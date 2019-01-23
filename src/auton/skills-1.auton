@@ -13,12 +13,8 @@ robot.flyUp(460, [](float rpm) -> void {
 
 // get ball and go back
 robot.turnToFace(0);
-ASYNC(intake1, {
-  robot.feedBall();
-});
 robot.moveFor(36);
-while(!robot.hasBall()) {};
-intake1.remove();
+robot.feedBall();
 robot.moveFor(-34);
 robot.turnToFace(90);
 
@@ -41,12 +37,8 @@ robot.moveFor(-43);
 // get next ball
 robot.combineSet(false);
 robot.moveToSimple({ 22, 45 });
-ASYNC(intake2, {
-  robot.feedBall();
-});
 robot.moveToSimple({ 44, 45 });
-while(!robot.hasBall()) {};
-intake2.remove();
+robot.feedBall();
 
 // shoot ball
 robot.turnToFace(80);
@@ -69,9 +61,9 @@ robot.moveToSimple({ 10, 64 });
 robot.moveFor(-10);
 
 // flip other cap
-robot.moveToSimple({ 40, 60 }); // split into 3 movements in order to reduce angle err
-robot.moveToSimple({ 60, 60 });
-robot.moveToSimple({ 90, 60 });
+robot.moveToSimple({ 40, 64 }); // split into 4 movements in order to reduce angle err
+robot.moveToSimple({ 60, 64 });
+robot.moveToSimple({ 90, 62 });
 
 // toggle low flag
 robot.moveFor(-10);
@@ -80,10 +72,6 @@ robot.moveFor(20);
 
 // collect next ball
 robot.moveFor(-30);
-ASYNC(intake3, {
-  robot.feedBall();
-});
 robot.turnToFace(180);
 robot.moveFor(20);
-while(!robot.hasBall()) {};
-intake3.remove();
+robot.feedBall();

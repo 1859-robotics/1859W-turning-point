@@ -4,13 +4,11 @@
 
 void runAuton() {
   if(hc::pentane::selectedTile == -1) {
-  std::cout << "did not run auton" << std::endl;
-  if(SKILLS_MODE) {
+    std::cout << "did not run auton" << std::endl;
+    if(SKILLS_MODE) {
       #include "./auton/skills-1.auton"
-
+    }
     return;
-  }
-  return;
   }
 
   if(hc::pentane::selectedTile == TILE_RED_A) {
@@ -46,9 +44,11 @@ void runAuton() {
 
 void autonomous() {
   robot.reset();
+  std::cout << ("hi") << std::endl;
   pros::Task track(hc::benzene::track, &posTracker);
 
   posTracker.setPos({ 0, 0 }, 0);
+
 
   runAuton();
   // track.remove();
