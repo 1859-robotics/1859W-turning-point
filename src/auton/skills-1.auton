@@ -29,14 +29,16 @@ robot.flyUp(360, [](float rpm) -> void {
 });
 
 // toggle low flag
+robot.combineSet(true); // prevent ball from intaking when going to the wall
 robot.turnToFace(90);
 robot.moveFor(30);
-robot.moveFor(-41);
+robot.moveFor(-43);
 
-robot.moveToSimple({ 44, 43 });
+robot.moveToSimple({ 22, 45 });
+robot.moveToSimple({ 44, 45 });
 robot.feedBall();
 robot.moveFor(-10);
-robot.turnToFace(100);
+robot.turnToFace(90);
 
 robot.flyUp(380, [](float rpm) -> void {
   INTAKE_SET(127);
@@ -44,5 +46,5 @@ robot.flyUp(380, [](float rpm) -> void {
   INTAKE_SET(0);
 });
 
-robot.moveFor(30);
-robot.moveFor(-30);
+robot.moveFor(40);
+robot.moveFor(-40);
