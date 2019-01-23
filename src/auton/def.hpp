@@ -23,6 +23,7 @@
 
 #define RED_NEAR_1  "alliance post & cap"
 #define RED_NEAR_2  "alliance post"
+#define RED_NEAR_3  "APS alliance post"
 
 #define RED_FAR_1   "center post & park"
 #define RED_FAR_2   "center post & cap"
@@ -31,7 +32,8 @@
 // auton lists
 #define AUTON_OPTIONS_RED_A "none" "\n" \
                             RED_NEAR_1 "\n" \
-                            RED_NEAR_2
+                            RED_NEAR_2 "\n" \
+                            RED_NEAR_3
 
 #define AUTON_OPTIONS_RED_B "none" "\n" \
                             RED_FAR_1 "\n" \
