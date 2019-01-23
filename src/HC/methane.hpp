@@ -36,6 +36,7 @@ namespace hc {
       void moveToSimple(::hc::benzene::Point target);
       void moveFor(float dist, float exit = 5000);
       void combineSet(bool rev);
+      bool hasBall();
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg
       // void moveFor(float length); // moves for a distance
         // moveFor(4) - move 4 in forwards

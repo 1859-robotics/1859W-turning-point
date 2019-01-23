@@ -197,9 +197,7 @@ namespace hc {
   }
 
   void methane::Robot::feedBall(float exit) {
-    std::uint32_t started = pros::millis();
-
-    while(!limit.get_value() || (pros::millis() - started) > exit) {
+    while(!limit.get_value()) {
       INTAKE_SET(127);
     }
     INTAKE_SET(0);
@@ -208,6 +206,10 @@ namespace hc {
 
   void methane::Robot::reset() {
     tracker->reset();
+  }
+
+  bool methane::Robot::hasBall() {
+    return limit.get_value();
   }
 
   void methane::Robot::flyUp(int rpm, std::function <void(float)> action) {

@@ -16,9 +16,9 @@ robot.turnToFace(0);
 ASYNC(intake1, {
   robot.feedBall();
 });
-intake1.remove();
 robot.moveFor(36);
-robot.feedBall();
+while(!robot.hasBall()) {};
+intake1.remove();
 robot.moveFor(-34);
 robot.turnToFace(90);
 
@@ -45,7 +45,7 @@ ASYNC(intake2, {
   robot.feedBall();
 });
 robot.moveToSimple({ 44, 45 });
-robot.feedBall();
+while(!robot.hasBall()) {};
 intake2.remove();
 
 // shoot ball
@@ -69,9 +69,9 @@ robot.moveToSimple({ 10, 64 });
 robot.moveFor(-10);
 
 // flip other cap
-robot.moveToSimple({ 40, 64 }); // split into 4 movements in order to reduce angle err
-robot.moveToSimple({ 60, 64 });
-robot.moveToSimple({ 90, 62 });
+robot.moveToSimple({ 40, 60 }); // split into 3 movements in order to reduce angle err
+robot.moveToSimple({ 60, 60 });
+robot.moveToSimple({ 90, 60 });
 
 // toggle low flag
 robot.moveFor(-10);
@@ -84,6 +84,6 @@ ASYNC(intake3, {
   robot.feedBall();
 });
 robot.turnToFace(180);
-intake3.remove();
 robot.moveFor(20);
-robot.feedBall();
+while(!robot.hasBall()) {};
+intake3.remove();
