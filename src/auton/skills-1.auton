@@ -34,17 +34,22 @@ robot.turnToFace(90);
 robot.moveFor(30);
 robot.moveFor(-43);
 
+// get next ball
+robot.combineSet(false);
 robot.moveToSimple({ 22, 45 });
 robot.moveToSimple({ 44, 45 });
 robot.feedBall();
-robot.moveFor(-10);
-robot.turnToFace(90);
 
-robot.flyUp(380, [](float rpm) -> void {
+// shoot ball
+robot.moveFor(-5);
+robot.turnToFace(85);
+robot.moveFor(5);
+robot.flyUp(340, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(500);
   INTAKE_SET(0);
 });
 
-robot.moveFor(40);
+// toggle low flag
+robot.moveFor(34);
 robot.moveFor(-40);
