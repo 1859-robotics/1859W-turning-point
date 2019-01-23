@@ -15,13 +15,13 @@ robot.flyUp(460, [](float rpm) -> void {
 robot.turnToFace(0);
 robot.moveFor(36);
 robot.feedBall();
-robot.moveFor(-35);
+robot.moveFor(-34);
 robot.turnToFace(90);
 
 // shoot ball
 robot.moveToSimple({ 2, 25 });
 robot.moveToSimple({ 0, 50 });
-robot.turnToFace(86);
+robot.turnToFace(80);
 robot.flyUp(360, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(500);
@@ -30,7 +30,7 @@ robot.flyUp(360, [](float rpm) -> void {
 
 // toggle low flag
 robot.combineSet(true); // prevent ball from intaking when going to the wall
-robot.turnToFace(90);
+robot.turnToFace(85);
 robot.moveFor(30);
 robot.moveFor(-43);
 
@@ -50,6 +50,8 @@ robot.flyUp(340, [](float rpm) -> void {
   INTAKE_SET(0);
 });
 
+
 // toggle low flag
+robot.turnToFace(95);
 robot.moveFor(34);
-robot.moveFor(-40);
+robot.moveFor(-20);

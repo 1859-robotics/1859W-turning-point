@@ -34,7 +34,7 @@ namespace hc {
       void flyUp(int rpm, std::function <void(float)> action);
       void moveTo(::hc::benzene::Point target, float targetA); // moves to a point
       void moveToSimple(::hc::benzene::Point target);
-      void moveFor(float dist);
+      void moveFor(float dist, float exit = 5000);
       void combineSet(bool rev);
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg
       // void moveFor(float length); // moves for a distance

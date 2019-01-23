@@ -151,7 +151,7 @@ namespace hc {
 
   }
 
-  void methane::Robot::moveFor(float distIn) {
+  void methane::Robot::moveFor(float distIn, float exit) {
     ::hc::benzene::Point start = {
       posTracker.x,
       posTracker.y
@@ -159,8 +159,10 @@ namespace hc {
 
     pid->config(8, 0, 0.1, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
 
+    std::uint32_t started = pros::millis();
 
     pid->doPID(0, P_ERR, [=]() -> float {
+      if((pros::millis() - started) > exit) return 0;
       return (fabs(distIn) - dist(start.x, start.y, posTracker.x, posTracker.y));
     }, [=](float output) -> void {
       RIGHT_DRIVE_SET(SGN(-distIn) * output);
