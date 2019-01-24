@@ -12,6 +12,7 @@
 #define RIGHT_FLYWHEEL_PORT 1
 #define INTAKE_PORT 10
 #define COMBINE_PORT 9
+#define NONO_PORT 20
 
 #define TRACKER_LEFT_PORT 5
 #define TRACKER_RIGHT_PORT 7
@@ -30,6 +31,7 @@ extern pros::Motor flywheelR;
 
 extern pros::Motor intake;
 extern pros::Motor combine;
+extern pros::Motor nono;
 
 extern pros::ADIEncoder lTrackerWheel;
 extern pros::ADIEncoder rTrackerWheel;
@@ -48,6 +50,7 @@ extern pros::ADIDigitalIn limit;
 
 #define INTAKE_SET(spd) intake.move(spd)
 #define COMBINE_SET(spd) combine.move(spd)
+#define NONO_SET(spd) nono.move(spd)
 
 // flywheel stuff
 #define FLYWHEEL_IDLE 60

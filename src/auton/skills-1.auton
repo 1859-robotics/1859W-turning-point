@@ -13,6 +13,7 @@ robot.flyUp(460, [](float rpm) -> void {
 
 // get ball and go back
 robot.turnToFace(0);
+INTAKE_SET(127);
 robot.moveFor(36);
 robot.feedBall();
 robot.moveFor(-34);
@@ -37,6 +38,7 @@ robot.moveFor(-43);
 // get next ball
 robot.combineSet(false);
 robot.moveToSimple({ 22, 45 });
+INTAKE_SET(127);
 robot.moveToSimple({ 44, 45 });
 robot.feedBall();
 
@@ -72,6 +74,7 @@ robot.moveFor(20);
 
 // collect next ball
 robot.moveFor(-30);
+INTAKE_SET(127);
 robot.turnToFace(180);
 robot.moveFor(20);
 robot.feedBall();
