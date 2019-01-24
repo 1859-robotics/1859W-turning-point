@@ -44,12 +44,12 @@ void runAuton() {
 
 void autonomous() {
   robot.reset();
-  std::cout << ("hi") << std::endl;
   pros::Task track(hc::benzene::track, &posTracker);
 
   posTracker.setPos({ 0, 0 }, 0);
 
+  robot.moveTo({ 10, 0 }, 0);
 
-  runAuton();
+  // runAuton();
   // track.remove();
 }

@@ -68,64 +68,47 @@ float mag(::hc::benzene::Point a) {
 
 namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
-    float tA = atan2(y - posTracker.y, x - posTracker.x);
+    float tA = atan2(posTracker.y - y, posTracker.x - x);
+    // tA = Math.abs(tA) > (4 * PI) ? tA - PI * sgn(tA) : tA
+    // console.log(tA)
 
-    ::hc::benzene::Point close = closest({
-      posTracker.x, posTracker.y
-    }, { cos(posTracker.a), sin(posTracker.a) }, {
-      x, y
-    });
+    ::hc::benzene::Point close = closest(
+      { posTracker.x, posTracker.y },
+      { cos(posTracker.a), sin(posTracker.a) },
+      { x, y }
+    );
 
-    float V = dist(close.x, close.y, posTracker.x, posTracker.y);
+    float V = -dist(close.x, close.y, posTracker.x, posTracker.y);
+    V = std::isnan(V) ? 0 : V;
+    // V = abs(V) > 1 ? SGN(V) : V;
 
-    float aP = atan2(y - posTracker.y, x - posTracker.x) - posTracker.a;
-    aP = fmod(aP, (TAU)) * SGN(aP);
-
-    if (abs(aP) > PI / 2) {
+    float aP = atan2(close.x - posTracker.x, close.y - posTracker.y);
+    aP = fmod(aP, (2 * PI)) * SGN(aP);
+    if (abs(aP) > PI/2) {
       V = V * -1;
       tA -= PI * SGN(aP);
     }
 
-    if (abs(atan2(close.x - posTracker.x, close.y - posTracker.y) - posTracker.a) > PI/2) {
-      V *= -1;
-    }
-
     float W = angleDiff(tA, posTracker.a);
 
-    float trans = transPID->calculate(V, 0);
     float rot = rotPID->calculate(W, 0);
+    float trans = transPID->calculate(V, 0);
 
-    float idealVR = ((trans) + (rot));
-    float idealVL = ((trans) - (rot));
+    float Vr = trans + rot;
+    float Vl = trans - rot;
 
-    // DEBUG_VAR(trans);
-    // DEBUG_VAR(eA);
+    DEBUG_VAR(trans);
+    DEBUG_VAR(rot);
+    DEBUG_VAR(W);
+    DEBUG_VAR(V);
 
-    float maxMag = fmax(abs(idealVL), abs(idealVR));
-    float minMag = fmin(abs(idealVL), abs(idealVR));
-
-    if (maxMag > 127)  {
-      idealVR /= maxMag;
-      idealVL /= maxMag;
-
-      RIGHT_DRIVE_SET(idealVR * 127);
-      LEFT_DRIVE_SET(idealVL * 127);
-
-    } else {
-      RIGHT_DRIVE_SET(idealVR);
-      LEFT_DRIVE_SET(idealVL);
-    }
-
-
-    // std::cout << "idealVR : " << idealVR << std::endl;
-    // std::cout << "idealVL : " << idealVL << std::endl;
-
-
+    LEFT_DRIVE_SET(Vl);
+    RIGHT_DRIVE_SET(Vr);
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(100, 0, 0, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(70, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(1, 0, 0, 0.001, 0.001, MAX_SPEED / 2, MIN_SPEED / 2);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(1, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED / 2);
 
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y)) {
@@ -226,9 +209,9 @@ namespace hc {
   }
 
   void methane::Robot::nono(int s, int time) {
-    NONO_SET(s);
-    pros::delay(time);
-    NONO_SET(0);
+    // NONO_SET(s);
+    // pros::delay(time);
+    // NONO_SET(0);
   }
 }
 

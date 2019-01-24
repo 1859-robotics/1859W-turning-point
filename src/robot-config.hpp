@@ -50,7 +50,7 @@ extern pros::ADIDigitalIn limit;
 
 #define INTAKE_SET(spd) intake.move(spd)
 #define COMBINE_SET(spd) combine.move(spd)
-#define NONO_SET(spd) nono.move(spd)
+// #define NONO_SET(spd) nono.move(spd)
 
 // flywheel stuff
 #define FLYWHEEL_IDLE 60
