@@ -204,12 +204,6 @@ namespace hc {
       }
     }
   }
-
-  void methane::Robot::nono(int s, int time) {
-    // NONO_SET(s);
-    // pros::delay(time);
-    // NONO_SET(0);
-  }
 }
 
 hc::methane::Robot robot = hc::methane::Robot(&posTracker, &mainPID);

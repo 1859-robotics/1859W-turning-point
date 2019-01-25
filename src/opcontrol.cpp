@@ -35,14 +35,6 @@ void opcontrol() {
       }
     }
 
-    if(master.get_digital(DIGITAL_UP)) {
-      NONO_SET(80);
-    } else if(master.get_digital(DIGITAL_DOWN)) {
-      NONO_SET(-80);
-    } else {
-      NONO_SET(0);
-    }
-
     robot.combineSet(master.get_digital(DIGITAL_L1));
 
 
