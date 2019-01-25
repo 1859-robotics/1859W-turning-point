@@ -1,7 +1,7 @@
 {
   "name": "auton-builder",
   "version": "1.0.0",
-  "description": "builds auton",
+  "description": "builds autons",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
