@@ -107,14 +107,11 @@ namespace hc {
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(1, 0, 0, 0.001, 0.001, MAX_SPEED / 2, MIN_SPEED / 2);
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(1, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED / 2);
     ::hc::propene::PID *rotPID = new ::hc::propene::PID(1, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED / 2);
 
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y)) {
-      // std::cout << "posTracker.x: " << posTracker.x << std::endl;
-      // std::cout << "posTracker.y: " << posTracker.y << std::endl;
-
       seek(target.x, target.y, transPID, rotPID);
     }
 

@@ -5,8 +5,11 @@
 #include "main.h"
 
 // port defines
-#define LEFT_DRIVE_PORT 11
-#define RIGHT_DRIVE_PORT 12
+
+#define LEFT_DRIVE_BACK_PORT 11
+#define RIGHT_DRIVE_BACK_PORT 12
+#define LEFT_DRIVE_FRONT_PORT 13
+#define RIGHT_DRIVE_FRONT_PORT 14
 
 #define LEFT_FLYWHEEL_PORT 2
 #define RIGHT_FLYWHEEL_PORT 1
@@ -24,14 +27,16 @@
 
 extern pros::Controller master;
 
-extern pros::Motor leftDrive;
-extern pros::Motor rightDrive;
+extern pros::Motor leftDriveF;
+extern pros::Motor rightDriveF;
+extern pros::Motor leftDriveB;
+extern pros::Motor rightDriveB;
+
 extern pros::Motor flywheelL;
 extern pros::Motor flywheelR;
 
 extern pros::Motor intake;
 extern pros::Motor combine;
-extern pros::Motor nono;
 
 extern pros::ADIEncoder lTrackerWheel;
 extern pros::ADIEncoder rTrackerWheel;
@@ -40,8 +45,8 @@ extern pros::ADIEncoder cTrackerWheel;
 extern pros::ADIDigitalIn limit;
 
 // robot config macros
-#define RIGHT_DRIVE_SET(spd) rightDrive.move(spd)
-#define LEFT_DRIVE_SET(spd) leftDrive.move(spd)
+#define RIGHT_DRIVE_SET(spd) rightDriveF.move(spd); rightDriveB.move(spd)
+#define LEFT_DRIVE_SET(spd) leftDriveF.move(spd); leftDriveB.move(spd)
 
 #define FLYWHEEL_SET(spd) flywheelL.move(spd); flywheelR.move(spd)
 #define FLYWHEEL_SET_VEL(spd) flywheelL.move_velocity(spd); flywheelR.move_velocity(spd)

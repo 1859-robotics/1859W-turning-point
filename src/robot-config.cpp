@@ -2,8 +2,10 @@
 
 pros::Controller master = pros::Controller (CONTROLLER_MASTER);
 
-pros::Motor leftDrive = pros::Motor(LEFT_DRIVE_PORT, pros::E_MOTOR_GEARSET_18);
-pros::Motor rightDrive = pros::Motor(RIGHT_DRIVE_PORT, pros::E_MOTOR_GEARSET_18, 1);
+pros::Motor leftDriveB = pros::Motor(LEFT_DRIVE_BACK_PORT, pros::E_MOTOR_GEARSET_18);
+pros::Motor rightDriveB = pros::Motor(RIGHT_DRIVE_BACK_PORT, pros::E_MOTOR_GEARSET_18, 1);
+pros::Motor leftDriveF = pros::Motor(LEFT_DRIVE_FRONT_PORT, pros::E_MOTOR_GEARSET_18);
+pros::Motor rightDriveF = pros::Motor(RIGHT_DRIVE_FRONT_PORT, pros::E_MOTOR_GEARSET_18, 1);
 
 pros::Motor flywheelR = pros::Motor(RIGHT_FLYWHEEL_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Motor flywheelL = pros::Motor(LEFT_FLYWHEEL_PORT, pros::E_MOTOR_GEARSET_06, 1);
