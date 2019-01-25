@@ -4,22 +4,20 @@
 static lv_res_t list_action(lv_obj_t *ddlist) {
   uint8_t id = lv_obj_get_free_num(ddlist);
 
-  std::cout << id << std::endl;
-
   char sel_str[32];
   lv_ddlist_get_selected_str(ddlist, sel_str);
 
   hc::pentane::selectedAuton = sel_str;
 
-  std::cout << sel_str << std::endl;
   return LV_RES_OK;
 }
 
 
 void init() {
+  posTracker.reset();
+  
   flywheelL.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   flywheelR.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-  posTracker.reset();
   intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
