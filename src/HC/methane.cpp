@@ -104,11 +104,14 @@ namespace hc {
     RIGHT_DRIVE_SET(Vr);
   }
 
-  void methane::Robot::moveTo(::hc::benzene::Point target, float err) {
+  void methane::Robot::moveTo(::hc::benzene::Point target, float err, float exit) {
     ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED);
     ::hc::propene::PID *rotPID = new ::hc::propene::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED);
 
+    std::uint32_t started = pros::millis();
+
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
+      if((pros::millis() - started) > exit) break;
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
@@ -117,11 +120,16 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::moveTo(::hc::benzene::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED);
+  void methane::Robot::moveTo(::hc::benzene::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED);
+    std::cout << tPID.kP << ", " << tPID.kI << ", " << tPID.kD << std::endl;
+    std::cout << rPID.kP << ", " << rPID.kI << ", " << rPID.kD << std::endl;
+
+    std::uint32_t started = pros::millis();
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
+      if((pros::millis() - started) > exit) break;
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
@@ -130,7 +138,7 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::moveTo(::hc::benzene::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID) {
+  void methane::Robot::moveTo(::hc::benzene::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
     ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED);
     ::hc::propene::PID *rotPID = new ::hc::propene::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED);
 

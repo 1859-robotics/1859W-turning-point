@@ -10,17 +10,17 @@ P_ERR = 3 // the acceptable margin of error for positional movement (square shap
 
 ### functions
 moveTo
-moves to a point with an optional PID configuration and error bounds
+moves to a point with an optional PID configuration, error bounds, and exit time (in ms)
 args:
 ```
-( Point target, float err, PIDConfig tPID, PIDConfig rPID )
-( Point target, PIDConfig tPID, PIDConfig rPID )
-( Point target, float err)
+( Point target, float err, PIDConfig tPID, PIDConfig rPID, float exit = 5000 )
+( Point target, PIDConfig tPID, PIDConfig rPID, float exit = 5000 )
+( Point target, float err, float exit = 5000 )
 ```
 usage:
 ```cpp
 robot.moveTo({ 12, 8 }, { 10, 0, 0.2 }, { 0.1, 0, 0.01 });
-robot.moveTo({ 48, 9 }, 2);
+robot.moveTo({ 48, 9 }, 2, 1000);
 robot.moveTo({ 48, 9 }, 1, { 10, 0, 0.2 }, { 0.1, 0, 0.01 });
 ```
 
@@ -29,14 +29,14 @@ turns to face a point then moves the distance required to get there
 don't use this
 
 moveFor
-move for an amount in inches with a backup exit condition of time
+move for an amount in inches with a backup exit condition of time (in ms)
 args:
 ```
-( float dist, float time )
+( float dist, float time = 5000 )
 ```
 usage:
 ```cpp
-robot.moveFor(10)
+robot.moveFor(10);
 ```
 
 
@@ -50,8 +50,8 @@ args:
 
 usage:
 ```cpp
-robot.turnToFace({ 0, 0 })
-robot.turnToFace(90)
+robot.turnToFace({ 0, 0 });
+robot.turnToFace(90);
 ```
 
 
