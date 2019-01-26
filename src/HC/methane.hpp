@@ -36,9 +36,10 @@ namespace hc {
 
       void flyUp(int rpm, std::function <void(float)> action);
 
-      void moveTo(::hc::benzene::Point target, float targetA, float err = P_ERR); // moves to a point
-      void moveTo(::hc::benzene::Point target, float targetA, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID);
-      void moveTo(::hc::benzene::Point target, float targetA, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID);
+      void moveTo(::hc::benzene::Point target, float err = P_ERR); // moves to a point
+      void moveTo(::hc::benzene::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID);
+      void moveTo(::hc::benzene::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID);
+
       void moveToSimple(::hc::benzene::Point target);
       void moveFor(float dist, float exit = 5000);
 
