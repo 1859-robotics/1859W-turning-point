@@ -48,13 +48,7 @@ void autonomous() {
 
   posTracker.setPos({ 0, 0 }, 0);
 
-  while(true) {
-    // std::cout << TODEG(robot.computeAngleToPoint({0, 0})) << std::endl;
-    robot.turnToFace({0, 0});
-    pros::delay(10000);
-  }
-
-  // robot.moveTo({ 0, 0 }, 0);
+  robot.moveTo({ 0, 0 }, 0);
 
   // runAuton();
   // track.remove();
