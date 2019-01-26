@@ -41,7 +41,7 @@ namespace hc {
     // maximum or minimum speed set the output to that speed
     output = ((fabs(output) > maxSpeed) ? (maxSpeed * SGN(output)) :
              ((fabs(output) < minSpeed) ? (minSpeed * SGN(output)) : output));
-  	return fabs(output) > 15 ? output : 0;
+  	return output;
   }
 
   void propene::PID::config(float kP,           float kI,           float kD,

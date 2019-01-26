@@ -67,10 +67,14 @@ float mag(::hc::benzene::Point a) {
 }
 
 namespace hc {
+  float methane::Robot::computeAngleToPoint(::hc::benzene::Point point) {
+    float wantedAngle = atan2(point.x - posTracker.x, point.y - posTracker.y) - posTracker.a;
+
+    return wantedAngle;
+  }
+
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
-    float tA = atan2(posTracker.y - y, posTracker.x - x);
-    // tA = Math.abs(tA) > (4 * PI) ? tA - PI * sgn(tA) : tA
-    // console.log(tA)
+    float tA = computeAngleToPoint({y, x});
 
     ::hc::benzene::Point close = closest(
       { posTracker.x, posTracker.y },
@@ -91,28 +95,26 @@ namespace hc {
 
     float W = angleDiff(tA, posTracker.a);
 
+
+
     float rot = rotPID->calculate(W, 0);
     float trans = transPID->calculate(V, 0);
 
     float Vr = trans + rot;
     float Vl = trans - rot;
 
-    DEBUG_VAR(trans);
-    DEBUG_VAR(rot);
-    DEBUG_VAR(W);
-    DEBUG_VAR(V);
-
     LEFT_DRIVE_SET(Vl);
     RIGHT_DRIVE_SET(Vr);
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(1, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED / 2);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(1, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED / 2);
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(0, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED / 2);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(1000, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED / 2);
 
-
-    while(!withinErr(posTracker.x, posTracker.y, target.x, target.y)) {
+    //!withinErr(posTracker.x, posTracker.y, target.x, target.y)
+    while(true) {
       seek(target.x, target.y, transPID, rotPID);
+      pros::delay(20);
     }
 
     // if(!withinRange(TODEG(posTracker.a), targetA, A_ERR))

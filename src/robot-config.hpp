@@ -7,13 +7,14 @@
 // port defines
 
 #define LEFT_DRIVE_BACK_PORT 11
+#define LEFT_DRIVE_FRONT_PORT 2
+
 #define RIGHT_DRIVE_BACK_PORT 20
-#define LEFT_DRIVE_FRONT_PORT 1
 #define RIGHT_DRIVE_FRONT_PORT 10
 
-#define LEFT_FLYWHEEL_PORT 3
+#define LEFT_FLYWHEEL_PORT 1
 #define RIGHT_FLYWHEEL_PORT 4
-#define INTAKE_PORT 2
+#define INTAKE_PORT 3
 #define COMBINE_PORT 9
 
 #define TRACKER_LEFT_PORT 5
@@ -61,15 +62,16 @@ extern pros::ADIDigitalIn limit;
 #define FLYWHEEL_START_B_HIGH 390
 #define FLYWHEEL_START_B_MID 410
 
-#define OPCONTROL_FLYWHEEL_SET(speed) FLYWHEEL_SET(20); \
-if(withinRange(speed, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) { \
+#define OPCONTROL_FLYWHEEL_SET(speed) if(withinRange(speed, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) { \
   master.rumble("."); \
   INTAKE_SET(127); \
   FLYWHEEL_SET(FLYWHEEL_IDLE); \
   autonOverwrite = true; \
 } else if(FLYWHEEL_GET_VEL < speed) { \
   FLYWHEEL_SET(127); \
-} \
+} else if(FLYWHEEL_GET_VEL > speed) { \
+  FLYWHEEL_SET(20); \
+}
 
 
 #include "HC/benzene.hpp"
