@@ -34,9 +34,9 @@ namespace hc {
       sigma = 0;
     }
 
-  	float output = error *     kP +
-                   sigma *  kI -
-                   deltaPV *   kD;
+  	float output = error *   kP +
+                   sigma *   kI -
+                   deltaPV * kD;
     // if the output is larger or smaller than the
     // maximum or minimum speed set the output to that speed
     output = ((fabs(output) > maxSpeed) ? (maxSpeed * SGN(output)) :

@@ -111,7 +111,7 @@ namespace hc {
     std::uint32_t started = pros::millis();
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
-      if((pros::millis() - started) > exit) break;
+      // if((pros::millis() - started) > exit) break;
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
@@ -129,7 +129,7 @@ namespace hc {
     std::uint32_t started = pros::millis();
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
-      if((pros::millis() - started) > exit) break;
+      // if((pros::millis() - started) > exit) break;
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
@@ -139,9 +139,6 @@ namespace hc {
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED);
-
     methane::Robot::moveTo(target, P_ERR, tPID, rPID);
   }
 
