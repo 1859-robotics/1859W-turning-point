@@ -10,7 +10,7 @@
 // robot specification macros
 #define ZERO_SPEED 30
 #define A_ERR 3
-#define P_ERR 1
+#define P_ERR 3
 
 bool withinRange(float target, float current, float error);
 
@@ -32,7 +32,7 @@ namespace hc {
       void reset();
       void feedBall(float exit = 10000);
       void flyUp(int rpm, std::function <void(float)> action);
-      void moveTo(::hc::benzene::Point target, float targetA); // moves to a point
+      void moveTo(::hc::benzene::Point target, float targetA, float err = P_ERR); // moves to a point
       void moveToSimple(::hc::benzene::Point target);
       void moveFor(float dist, float exit = 5000);
       void combineSet(bool rev);
