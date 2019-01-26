@@ -30,14 +30,19 @@ namespace hc {
             tracker(tracker), pid(pid) {};
       void seek(float x, float y, ::hc::propene::PID *transPID, ::hc::propene::PID *rotPID);
       void reset();
+
       void feedBall(float exit = 10000);
+      bool hasBall();
+
       void flyUp(int rpm, std::function <void(float)> action);
+
       void moveTo(::hc::benzene::Point target, float targetA, float err = P_ERR); // moves to a point
+      void moveTo(::hc::benzene::Point target, float targetA, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID);
+      void moveTo(::hc::benzene::Point target, float targetA, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID);
       void moveToSimple(::hc::benzene::Point target);
       void moveFor(float dist, float exit = 5000);
+
       void combineSet(bool rev);
-      bool hasBall();
-      float computeAngleToPoint(::hc::benzene::Point point);
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg
       // void moveFor(float length); // moves for a distance
         // moveFor(4) - move 4 in forwards

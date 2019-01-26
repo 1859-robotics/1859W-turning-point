@@ -120,6 +120,30 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
+  void methane::Robot::moveTo(::hc::benzene::Point target, float targetA, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID) {
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED);
+
+    while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
+      seek(target.x, target.y, transPID, rotPID);
+      pros::delay(20);
+    }
+
+    // if(!withinRange(TODEG(posTracker.a), targetA, A_ERR))
+    //   turnToFace(targetA);
+
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
+  }
+
+  void methane::Robot::moveTo(::hc::benzene::Point target, float targetA, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID) {
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED);
+
+    methane::Robot::moveTo(target, targetA, P_ERR, tPID, rPID);
+  }
+
+
   void methane::Robot::moveToSimple(::hc::benzene::Point target) {
     turnToFace(target, 60);
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));

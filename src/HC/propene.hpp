@@ -11,6 +11,12 @@
 
 namespace hc {
   namespace propene {
+    typedef struct {
+      float kP;
+      float kI;
+      float kD;
+    } PIDConfig;
+
     class PID {
     private:
 
@@ -33,6 +39,13 @@ namespace hc {
           float epsilonInner, float epsilonOuter,
           int maxSpeed = MAX_SPEED,       int minSpeed = MIN_SPEED) :
           kP(kP),             kI(kI),             kD(kD),
+          epsilonInner(epsilonInner),             epsilonOuter(epsilonOuter),
+          sigma(0),           lastTime(pros::millis()), lastValue(0),
+          maxSpeed(maxSpeed), minSpeed(minSpeed) {};
+      PID(PIDConfig config,
+          float epsilonInner, float epsilonOuter,
+          int maxSpeed = MAX_SPEED,       int minSpeed = MIN_SPEED) :
+          kP(config.kP),             kI(config.kI),             kD(config.kD),
           epsilonInner(epsilonInner),             epsilonOuter(epsilonOuter),
           sigma(0),           lastTime(pros::millis()), lastValue(0),
           maxSpeed(maxSpeed), minSpeed(minSpeed) {};
