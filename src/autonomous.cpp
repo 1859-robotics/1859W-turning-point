@@ -46,9 +46,9 @@ void autonomous() {
   robot.reset();
   pros::Task track(hc::benzene::track, &posTracker);
 
-  posTracker.setPos({ 0, 0 }, 0);
+  posTracker.setPos({ 18, 18 }, 180);
 
-  robot.moveTo({ 0, 0 }, 0);
+  robot.moveTo({ 0, 0 }, 180);
 
   // runAuton();
   // track.remove();

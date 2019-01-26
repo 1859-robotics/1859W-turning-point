@@ -67,15 +67,8 @@ float mag(::hc::benzene::Point a) {
 }
 
 namespace hc {
-  float methane::Robot::computeAngleToPoint(::hc::benzene::Point point) {
-    float wantedAngle = atan2(point.x - posTracker.x, point.y - posTracker.y) - posTracker.a;
-
-    return wantedAngle;
-  }
-
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
-    float tA = computeAngleToPoint({x, y});
-    DEBUG_VAR(TODEG(tA));
+    float tA = atan2(posTracker.y - y, posTracker.x - x);
 
     ::hc::benzene::Point close = closest(
       { posTracker.x, posTracker.y },
@@ -83,11 +76,11 @@ namespace hc {
       { x, y }
     );
 
-    float V = -dist(close.x, close.y, posTracker.x, posTracker.y);
+    float V = dist(close.x, close.y, posTracker.x, posTracker.y);
     V = std::isnan(V) ? 0 : V;
     // V = abs(V) > 1 ? SGN(V) : V;
 
-    float aP = atan2(close.x - posTracker.x, close.y - posTracker.y);
+    float aP = atan2(close.y - posTracker.y, close.x - posTracker.x);
     aP = fmod(aP, (2 * PI)) * SGN(aP);
     if (abs(aP) > PI/2) {
       V = V * -1;
@@ -96,10 +89,13 @@ namespace hc {
 
     float W = angleDiff(tA, posTracker.a);
 
-
-
     float rot = rotPID->calculate(W, 0);
     float trans = transPID->calculate(V, 0);
+
+    DEBUG_VAR(TODEG(tA));
+    DEBUG_VAR(W);
+    DEBUG_VAR(V);
+
 
     float Vr = trans + rot;
     float Vl = trans - rot;
@@ -109,8 +105,8 @@ namespace hc {
   }
 
   void methane::Robot::moveTo(::hc::benzene::Point target, float targetA) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(0, 0, 0, 0.001, 0.0001, MAX_SPEED / 2, MIN_SPEED / 2);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(100, 0, 0, 0.0001, 0.00001, MAX_SPEED / 2, MIN_SPEED / 2);
+    ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED / 8, MIN_SPEED / 8);
+    ::hc::propene::PID *rotPID = new ::hc::propene::PID(10, 0, 0, 0.0001, 0.00001, MAX_SPEED / 8, MIN_SPEED / 8);
 
     //!withinErr(posTracker.x, posTracker.y, target.x, target.y)
     while(true) {

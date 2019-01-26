@@ -3,7 +3,7 @@
 
 namespace hc {
   void benzene::Tracker::debug() {
-    // std::cout << "(" << x << ", " << y << ")  | " << TODEG(a) << std::endl;
+    std::cout << "(" << x << ", " << y << ")  | " << TODEG(a) << std::endl;
   }
 
   void benzene::Tracker::track() {
@@ -33,24 +33,24 @@ namespace hc {
     float localOffX, localOffY;
 
     if(dA != 0) {
-      localOffX = 2 * sin(dA / 2) * ((dC / dA) + SS);
-      localOffY = 2 * sin(dA / 2) * ((dS / dA) + SR);
+      localOffX = 2 * sin(dA / 2) * ((dS / dA) + SR);
+      localOffY = 2 * sin(dA / 2) * ((dC / dA) + SS);
     } else {
-      localOffX = dC;
-      localOffY = dS;
+      localOffX = dS;
+      localOffY = dC;
     }
 
     float avgA = a + (dA / 2);
 
     float polarR = sqrt((localOffX * localOffX) + (localOffY * localOffY));
-    float polarA = atan2(localOffX, localOffY) - avgA;
+    float polarA = atan2(localOffY, localOffX) - avgA;
 
     float dX = cos(polarA) * polarR;
     float dY = sin(polarA) * polarR;
 
 
     this->x -= dX;
-    this->y += dY;
+    this->y -= dY;
     this->a = newA;
   }
 
