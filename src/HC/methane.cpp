@@ -111,7 +111,7 @@ namespace hc {
     std::uint32_t started = pros::millis();
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
-      // if((pros::millis() - started) > exit) break;
+      if((pros::millis() - started) > exit) break;
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
@@ -129,7 +129,7 @@ namespace hc {
     std::uint32_t started = pros::millis();
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
-      // if((pros::millis() - started) > exit) break;
+      if((pros::millis() - started) > exit) break;
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
