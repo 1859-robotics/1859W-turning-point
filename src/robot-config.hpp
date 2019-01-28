@@ -57,7 +57,7 @@ extern pros::ADIDigitalIn limit;
 #define COMBINE_SET(spd) combine.move(spd)
 
 // flywheel stuff
-#define FLYWHEEL_IDLE 60
+#define FLYWHEEL_IDLE 80
 #define FLYWHEEL_ERR 30
 #define FLYWHEEL_START_B_HIGH 390
 #define FLYWHEEL_START_B_MID 410
@@ -70,7 +70,7 @@ extern pros::ADIDigitalIn limit;
 } else if(FLYWHEEL_GET_VEL < speed) { \
   FLYWHEEL_SET(127); \
 } else if(FLYWHEEL_GET_VEL > speed) { \
-  FLYWHEEL_SET(20); \
+  FLYWHEEL_SET(0); \
 }
 
 

@@ -104,6 +104,9 @@ float mag(::hc::benzene::Point a) {
     }
   }
 
+  std::cout << "normal:  (" << normal.x << ", " << normal.y << ")" << std::endl;
+
+
   ::hc::benzene::Point turnless = sub(path[seg + 1], path[seg]);
   turnless = normalize(turnless);
   turnless = multScalar(turnless, along);
@@ -112,21 +115,27 @@ float mag(::hc::benzene::Point a) {
 
   if(dist(normal, turnless) < subDist) return turnless;
 
-  ::hc::benzene::Point lookAhead = normal;
+  ::hc::benzene::Point lookAhead;
   ::hc::benzene::Point prevPoint = normal;
   float n = along;
-
-  DEBUG_VAR(n);
 
   while(0 < n) {
     if(seg + 1 > len) {
       n = 0;
+      std::cout << "set lookAhead 1" << std::endl;
+      DEBUG_VAR(path[seg].x);
+      DEBUG_VAR(path[seg].y);
+      DEBUG_VAR(seg);
       lookAhead = path[seg];
     } else if(n > dist(prevPoint, path[seg + 1])) {
       n -= dist(prevPoint, path[seg + 1]);
       prevPoint = path[seg + 1];
       seg++;
+      std::cout << "seg adder" << std::endl;
+
     } else {
+      std::cout << "set lookAhead 3" << std::endl;
+
       lookAhead = sub(path[seg + 1], prevPoint);
       lookAhead = normalize(lookAhead);
       lookAhead = multScalar(lookAhead, n);
@@ -134,6 +143,10 @@ float mag(::hc::benzene::Point a) {
       n = 0;
     }
   }
+
+  std::cout << "lookAhead:  (" << lookAhead.x << ", " << lookAhead.y << ")" << std::endl;
+
+
   return lookAhead;
 }
 
