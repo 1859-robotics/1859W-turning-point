@@ -2,4 +2,4 @@ posTracker.setPos({ 0, 0 }, 0);
 
 hc::benzene::Point path[] = {{ 0, 5 }, { 5, 5 }, { 5, 10 }};
 
-robot.moveAlong(path, 3, 10, { 10, 0, 0, 60, 0 }, { 10, 0, 0, 60, 0 }, P_ERR, 100000);
+robot.moveAlong(path, 3, 1000, { 10, 0, 0, 60, 0 }, { 10, 0, 0, 60, 0 }, P_ERR, 100000);

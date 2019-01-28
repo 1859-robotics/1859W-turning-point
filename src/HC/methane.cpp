@@ -90,32 +90,31 @@ float mag(::hc::benzene::Point a) {
 }
 
 ::hc::benzene::Point getTarget(::hc::benzene::Point path[], int len, ::hc::benzene::Point current, float along) {
-    ::hc::benzene::Point target;
+  ::hc::benzene::Point target;
 
-    //TODO: make this not bad
-    ::hc::benzene::Point min = { -20000000, -20000000 };
-    int seg = 0;
+  //TODO: make this not bad
+  ::hc::benzene::Point min = { -20000000, -20000000 };
+  int seg = 0;
 
-    for(int i = 0; i < len - 1; i++) {
-      ::hc::benzene::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
-      if((min.x == -20000000 && min.y == -20000000) || (dist(current, normalPoint) < dist(current, min))) {
-        min = normalPoint;
-        seg = i;
-      }
+  for(int i = 0; i < len - 1; i++) {
+    ::hc::benzene::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
+    if((min.x == -20000000 && min.y == -20000000) || (dist(current, normalPoint) < dist(current, min))) {
+      min = normalPoint;
+      seg = i;
     }
+  }
 
-    ::hc::benzene::Point turnless = sub(path[seg + 1], path[seg]);
-    turnless = normalize(turnless);
-    turnless = multScalar(turnless, along);
-    turnless = add(current, turnless);
-    float subDist = dist(current, path[seg + 1]);
+  ::hc::benzene::Point turnless = sub(path[seg + 1], path[seg]);
+  turnless = normalize(turnless);
+  turnless = multScalar(turnless, along);
+  turnless = add(current, turnless);
+  float subDist = dist(current, path[seg + 1]);
 
-    DEBUG_VAR(seg);
+  DEBUG_VAR(seg);
+  DEBUG_VAR(subDist);
+  DEBUG_VAR(dist(current, turnless));
 
-    std::cout << "turnless:  (" << turnless.x << ", " << turnless.y << ")" << std::endl;
-    std::cout << "min:  (" << min.x << ", " << min.y << ")" << std::endl;
-
-    if(!(dist(current, turnless) > subDist)) return turnless;
+  if(!(dist(current, turnless) > subDist)) return turnless;
 
   ::hc::benzene::Point lookAhead = current;
   ::hc::benzene::Point prevPoint = current;
@@ -150,9 +149,6 @@ namespace hc {
       { cos(posTracker.a), sin(posTracker.a) },
       { x, y }
     );
-
-    std::cout << "close:  (" << close.x << ", " << close.y << ")" << std::endl;
-
 
     float V = -dist(close.x, close.y, posTracker.x, posTracker.y);
     V = std::isnan(V) ? 0 : V;
@@ -227,11 +223,13 @@ namespace hc {
       ::hc::benzene::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);
       ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
       ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
+
       std::cout << "target:  (" << target.x << ", " << target.y << ")" << std::endl;
       std::cout << "current: (" << posTracker.x << ", " << posTracker.y << ")" << std::endl;
+
       if((pros::millis() - started) > exit) break;
 
-      seek(target.x, target.y, transPID, rotPID);
+      // seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
 
