@@ -17,9 +17,16 @@ float dist(float x1, float y1, float x2, float y2) {
   return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
+float dist(::hc::benzene::Point a, ::hc::benzene::Point b) {
+    return sqrt((a.x * b.x) + (a.y * b.y));
+}
+
 float dot(float x1, float y1, float x2, float y2) {
   return (x1 * x2) + (y1 * y2);
 }
+
+float dot(::hc::benzene::Point a, ::hc::benzene::Point b) { return a.x * b.x + a.y * b.y; }
+
 
 float remap (float value, float from1, float to1, float from2, float to2) {
   return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
@@ -66,6 +73,73 @@ float mag(::hc::benzene::Point a) {
   return add(current, multScalar(n, d));
 }
 
+::hc::benzene::Point getNormalPoint(::hc::benzene::Point p, ::hc::benzene::Point a, ::hc::benzene::Point b) {
+  ::hc::benzene::Point ap = sub(p, a);
+  ::hc::benzene::Point ab = sub(b, a);
+  ab = normalize(ab);
+  ab = multScalar(ab, dot(ap, ab));
+  ::hc::benzene::Point r = add(a, ab);
+  if ((r.y > std::max(a.y, b.y) && r.x > std::max(a.x, b.x)) ||
+      (r.y < std::min(a.y, b.y) && r.x < std::min(a.x, b.x)) ||
+      (r.y > std::max(a.y, b.y) && r.x < std::min(a.x, b.x)) ||
+      (r.y < std::min(a.y, b.y) && r.x > std::max(a.x, b.x))) {
+    r = dist(p, a) < dist(p, b) ? a : b;
+  }
+  return r;
+}
+
+::hc::benzene::Point getTarget(::hc::benzene::Point path[], int len, ::hc::benzene::Point current, float along) {
+    // let normalPoint = getNormalFromPath(p, path)
+    // let lookAhead = lookAheadOnPath(path, normalPoint, lookAheadDist)
+
+    ::hc::benzene::Point target;
+
+    //TODO: make this not bad
+    ::hc::benzene::Point min = { -1, -1 };
+    int seg = 0;
+
+    for(int i = 0; i < len - 1; i++) {
+        ::hc::benzene::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
+        if((min.x == -1 && min.y == -1) || (dist(current, normalPoint) < dist(current, min))) {
+            min = normalPoint;
+            seg = i;
+        }
+    }
+
+    ::hc::benzene::Point turnless = sub(path[seg + 1], path[seg]);
+    turnless = normalize(turnless);
+    turnless = multScalar(turnless, along);
+    turnless = add(current, turnless);
+    float subDist = dist(current, path[seg + 1]);
+
+    if(!(dist(current, turnless) > subDist)) return turnless;
+
+
+    ::hc::benzene::Point lookAhead = current;
+    ::hc::benzene::Point prevPoint = current;
+    int n = along;
+
+    while(0 < n) {
+        if(seg + 1 > len) {
+            n = 0;
+            lookAhead = path[seg];
+        } else if(n > dist(prevPoint, path[seg + 1])) {
+            n -= dist(prevPoint, path[seg + 1]);
+            prevPoint = path[seg + 1];
+            seg++;
+        } else {
+            lookAhead = sub(path[seg + 1], prevPoint);
+            lookAhead = normalize(lookAhead);
+            lookAhead = multScalar(lookAhead, n);
+            lookAhead = add(path[seg], lookAhead);
+            n = 0;
+        }
+    }
+    return lookAhead;
+
+}
+
+
 namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
     float tA = atan2(posTracker.y - y, posTracker.x - x);
@@ -91,11 +165,6 @@ namespace hc {
 
     float rot = rotPID->calculate(W, 0);
     float trans = transPID->calculate(V, 0);
-
-    DEBUG_VAR(TODEG(tA));
-    DEBUG_VAR(W);
-    DEBUG_VAR(V);
-
 
     float Vr = trans + rot;
     float Vl = trans - rot;
@@ -123,8 +192,6 @@ namespace hc {
   void methane::Robot::moveTo(::hc::benzene::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
     ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
     ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
-    std::cout << tPID.kP << ", " << tPID.kI << ", " << tPID.kD << std::endl;
-    std::cout << rPID.kP << ", " << rPID.kI << ", " << rPID.kD << std::endl;
 
     std::uint32_t started = pros::millis();
 
@@ -142,14 +209,25 @@ namespace hc {
     methane::Robot::moveTo(target, P_ERR, tPID, rPID);
   }
 
-
   void methane::Robot::moveToSimple(::hc::benzene::Point target) {
     turnToFace(target, 60);
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
   }
 
-  void methane::Robot::moveAlong(::hc::benzene::Point wayPoints[], int size, float endA) {
+  void methane::Robot::moveAlong(::hc::benzene::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err) {
 
+    while(!withinErr(posTracker.x, posTracker.y, wayPoints[len - 1].x, wayPoints[len - 1].y, err)) {
+      ::hc::benzene::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);
+      ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
+      ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
+      std::cout << "target:  (" << target.x << ", " << target.y << ")" << std::endl;
+      std::cout << "current: (" << posTracker.x << ", " << posTracker.y << ")" << std::endl;
+
+      seek(target.x, target.y, transPID, rotPID);
+      pros::delay(20);
+    }
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
   }
 
   void methane::Robot::moveFor(float distIn, float exit) {

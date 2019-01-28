@@ -40,6 +40,9 @@ namespace hc {
       void moveTo(::hc::benzene::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit = 10000);
       void moveTo(::hc::benzene::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit = 10000);
 
+      void moveAlong(::hc::benzene::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err = P_ERR);
+      // moves the bot along a set of way points
+
       void moveToSimple(::hc::benzene::Point target);
       void moveFor(float dist, float exit = 5000);
 
@@ -49,7 +52,6 @@ namespace hc {
         // moveFor(4) - move 4 in forwards
       void turnToFace(float deg, float max = MAX_SPEED);
       void turnToFace(::hc::benzene::Point point, float max = MAX_SPEED);
-      void moveAlong(::hc::benzene::Point wayPoints[], int size, float a); // moves the bot along a set of way points
         // moveAlong({{1, 4}, {2, 5}}, 0); // move through the points (1, 4) then (2, 5) and end facing 0deg
       // void raiseLiftTo(int height); // rasie lift to a certain amount
       // void shootBall(int spd); // shoots a ball
