@@ -1,5 +1,5 @@
-posTracker.setPos({ 0, 0 }, 180);
+posTracker.setPos({ 50, 9 }, 180);
 
-hc::benzene::Point path[] = {{ 0, 0 }, { 18, 18 }, { 18, 36 }, { 36, 36 }};
+hc::benzene::Point path[] = {{ 50, 9 }, { 40, 0 }, { 30, 10 }};
 
-robot.moveAlong(path, 2, 10, { 10, 0, 0, 30 }, { 10, 0, 0.0, 30, 0 });
+robot.moveAlong(path, 3, 2, { 10, 0, 0, 30 }, { 10, 0, 0.0, 30, 0 });

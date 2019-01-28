@@ -228,6 +228,7 @@ namespace hc {
     }
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
+    std::cout << "end moveAlong" << std::endl;
   }
 
   void methane::Robot::moveFor(float distIn, float exit) {
