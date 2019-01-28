@@ -40,7 +40,7 @@ namespace hc {
       void moveTo(::hc::benzene::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit = 10000);
       void moveTo(::hc::benzene::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit = 10000);
 
-      void moveAlong(::hc::benzene::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err = P_ERR);
+      void moveAlong(::hc::benzene::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err = P_ERR, float exit = 6000);
       // moves the bot along a set of way points
 
       void moveToSimple(::hc::benzene::Point target);

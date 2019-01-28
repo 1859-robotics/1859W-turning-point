@@ -151,6 +151,9 @@ namespace hc {
       { x, y }
     );
 
+    std::cout << "close:  (" << close.x << ", " << close.y << ")" << std::endl;
+
+
     float V = -dist(close.x, close.y, posTracker.x, posTracker.y);
     V = std::isnan(V) ? 0 : V;
     // V = abs(V) > 1 ? SGN(V) : V;
@@ -216,7 +219,9 @@ namespace hc {
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
   }
 
-  void methane::Robot::moveAlong(::hc::benzene::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err) {
+  void methane::Robot::moveAlong(::hc::benzene::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err, float exit) {
+
+    std::uint32_t started = pros::millis();
 
     while(!withinErr(posTracker.x, posTracker.y, wayPoints[len - 1].x, wayPoints[len - 1].y, err)) {
       ::hc::benzene::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);
@@ -224,10 +229,12 @@ namespace hc {
       ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
       std::cout << "target:  (" << target.x << ", " << target.y << ")" << std::endl;
       std::cout << "current: (" << posTracker.x << ", " << posTracker.y << ")" << std::endl;
+      if((pros::millis() - started) > exit) break;
 
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
+
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
     std::cout << "end moveAlong" << std::endl;
