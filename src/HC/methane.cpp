@@ -67,6 +67,7 @@ float mag(::hc::benzene::Point a) {
   return { a.x * b, a.y * b };
 }
 
+// target stuffs
 ::hc::benzene::Point closest(::hc::benzene::Point current, ::hc::benzene::Point head, ::hc::benzene::Point target) {
   ::hc::benzene::Point n = normalize(head);
   ::hc::benzene::Point v = sub(target, current);
@@ -92,13 +93,13 @@ float mag(::hc::benzene::Point a) {
 ::hc::benzene::Point getTarget(::hc::benzene::Point path[], int len, ::hc::benzene::Point current, float along) {
   ::hc::benzene::Point target;
 
-  ::hc::benzene::Point min;
+  ::hc::benzene::Point normal;
   int seg = 0;
 
   for(int i = 0; i < len - 1; i++) {
     ::hc::benzene::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
-    if(i == 0 || (dist(current, normalPoint) < dist(current, min))) {
-      min = normalPoint;
+    if(i == 0 || (dist(current, normalPoint) < dist(current, normal))) {
+      normal = normalPoint;
       seg = i;
     }
   }
@@ -106,37 +107,31 @@ float mag(::hc::benzene::Point a) {
   ::hc::benzene::Point turnless = sub(path[seg + 1], path[seg]);
   turnless = normalize(turnless);
   turnless = multScalar(turnless, along);
-  turnless = add(min, turnless);
-  float subDist = dist(min, path[seg + 1]);
+  turnless = add(normal, turnless);
+  float subDist = dist(normal, path[seg + 1]);
 
-  if(dist(min, turnless) < subDist) return turnless;
+  if(dist(normal, turnless) < subDist) return turnless;
 
-  ::hc::benzene::Point lookAhead = min;
-  ::hc::benzene::Point prevPoint = min;
+  ::hc::benzene::Point lookAhead = normal;
+  ::hc::benzene::Point prevPoint = normal;
   float n = along;
 
-  DEBUG_VAR(min.x);
-  DEBUG_VAR(min.y);
+  DEBUG_VAR(n);
 
   while(0 < n) {
-    DEBUG_VAR(n);
-    DEBUG_VAR(seg);
     if(seg + 1 > len) {
       n = 0;
       lookAhead = path[seg];
-      std::cout << "hi from 1" << std::endl;
     } else if(n > dist(prevPoint, path[seg + 1])) {
       n -= dist(prevPoint, path[seg + 1]);
       prevPoint = path[seg + 1];
       seg++;
-      std::cout << "hi from 2" << std::endl;
     } else {
       lookAhead = sub(path[seg + 1], prevPoint);
       lookAhead = normalize(lookAhead);
       lookAhead = multScalar(lookAhead, n);
       lookAhead = add(path[seg], lookAhead);
       n = 0;
-      std::cout << "hi from 3" << std::endl;
     }
   }
   return lookAhead;
