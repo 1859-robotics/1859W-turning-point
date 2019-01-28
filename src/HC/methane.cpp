@@ -92,13 +92,12 @@ float mag(::hc::benzene::Point a) {
 ::hc::benzene::Point getTarget(::hc::benzene::Point path[], int len, ::hc::benzene::Point current, float along) {
   ::hc::benzene::Point target;
 
-  //TODO: make this not bad
-  ::hc::benzene::Point min = { -20000000, -20000000 };
+  ::hc::benzene::Point min;
   int seg = 0;
 
   for(int i = 0; i < len - 1; i++) {
     ::hc::benzene::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
-    if((min.x == -20000000 && min.y == -20000000) || (dist(current, normalPoint) < dist(current, min))) {
+    if(i == 0 || (dist(current, normalPoint) < dist(current, min))) {
       min = normalPoint;
       seg = i;
     }
@@ -107,33 +106,37 @@ float mag(::hc::benzene::Point a) {
   ::hc::benzene::Point turnless = sub(path[seg + 1], path[seg]);
   turnless = normalize(turnless);
   turnless = multScalar(turnless, along);
-  turnless = add(current, turnless);
-  float subDist = dist(current, path[seg + 1]);
+  turnless = add(min, turnless);
+  float subDist = dist(min, path[seg + 1]);
 
-  DEBUG_VAR(seg);
-  DEBUG_VAR(subDist);
-  DEBUG_VAR(dist(current, turnless));
+  if(dist(min, turnless) < subDist) return turnless;
 
-  if(!(dist(current, turnless) > subDist)) return turnless;
+  ::hc::benzene::Point lookAhead = min;
+  ::hc::benzene::Point prevPoint = min;
+  float n = along;
 
-  ::hc::benzene::Point lookAhead = current;
-  ::hc::benzene::Point prevPoint = current;
-  int n = along;
+  DEBUG_VAR(min.x);
+  DEBUG_VAR(min.y);
 
   while(0 < n) {
+    DEBUG_VAR(n);
+    DEBUG_VAR(seg);
     if(seg + 1 > len) {
       n = 0;
       lookAhead = path[seg];
+      std::cout << "hi from 1" << std::endl;
     } else if(n > dist(prevPoint, path[seg + 1])) {
       n -= dist(prevPoint, path[seg + 1]);
       prevPoint = path[seg + 1];
       seg++;
+      std::cout << "hi from 2" << std::endl;
     } else {
       lookAhead = sub(path[seg + 1], prevPoint);
       lookAhead = normalize(lookAhead);
       lookAhead = multScalar(lookAhead, n);
       lookAhead = add(path[seg], lookAhead);
       n = 0;
+      std::cout << "hi from 3" << std::endl;
     }
   }
   return lookAhead;
