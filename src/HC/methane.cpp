@@ -18,7 +18,7 @@ float dist(float x1, float y1, float x2, float y2) {
 }
 
 float dist(::hc::benzene::Point a, ::hc::benzene::Point b) {
-    return sqrt((a.x * b.x) + (a.y * b.y));
+  return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
 
 float dot(float x1, float y1, float x2, float y2) {
@@ -59,6 +59,7 @@ float mag(::hc::benzene::Point a) {
 }
 
 ::hc::benzene::Point normalize(::hc::benzene::Point a) {
+  if(mag(a) == 0) return a;
   return { a.x / mag(a), a.y / mag(a) };
 }
 
@@ -89,21 +90,18 @@ float mag(::hc::benzene::Point a) {
 }
 
 ::hc::benzene::Point getTarget(::hc::benzene::Point path[], int len, ::hc::benzene::Point current, float along) {
-    // let normalPoint = getNormalFromPath(p, path)
-    // let lookAhead = lookAheadOnPath(path, normalPoint, lookAheadDist)
-
     ::hc::benzene::Point target;
 
     //TODO: make this not bad
-    ::hc::benzene::Point min = { -1, -1 };
+    ::hc::benzene::Point min = { -20000000, -20000000 };
     int seg = 0;
 
     for(int i = 0; i < len - 1; i++) {
-        ::hc::benzene::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
-        if((min.x == -1 && min.y == -1) || (dist(current, normalPoint) < dist(current, min))) {
-            min = normalPoint;
-            seg = i;
-        }
+      ::hc::benzene::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
+      if((min.x == -20000000 && min.y == -20000000) || (dist(current, normalPoint) < dist(current, min))) {
+        min = normalPoint;
+        seg = i;
+      }
     }
 
     ::hc::benzene::Point turnless = sub(path[seg + 1], path[seg]);
@@ -112,31 +110,34 @@ float mag(::hc::benzene::Point a) {
     turnless = add(current, turnless);
     float subDist = dist(current, path[seg + 1]);
 
-    if(!(dist(current, turnless) > subDist)) return turnless;
+    DEBUG_VAR(seg);
 
+    std::cout << "turnless:  (" << turnless.x << ", " << turnless.y << ")" << std::endl;
+    std::cout << "min:  (" << min.x << ", " << min.y << ")" << std::endl;
+
+    if(!(dist(current, turnless) > subDist)) return turnless;
 
     ::hc::benzene::Point lookAhead = current;
     ::hc::benzene::Point prevPoint = current;
     int n = along;
 
     while(0 < n) {
-        if(seg + 1 > len) {
-            n = 0;
-            lookAhead = path[seg];
-        } else if(n > dist(prevPoint, path[seg + 1])) {
-            n -= dist(prevPoint, path[seg + 1]);
-            prevPoint = path[seg + 1];
-            seg++;
-        } else {
-            lookAhead = sub(path[seg + 1], prevPoint);
-            lookAhead = normalize(lookAhead);
-            lookAhead = multScalar(lookAhead, n);
-            lookAhead = add(path[seg], lookAhead);
-            n = 0;
-        }
+      if(seg + 1 > len) {
+        n = 0;
+        lookAhead = path[seg];
+      } else if(n > dist(prevPoint, path[seg + 1])) {
+        n -= dist(prevPoint, path[seg + 1]);
+        prevPoint = path[seg + 1];
+        seg++;
+      } else {
+        lookAhead = sub(path[seg + 1], prevPoint);
+        lookAhead = normalize(lookAhead);
+        lookAhead = multScalar(lookAhead, n);
+        lookAhead = add(path[seg], lookAhead);
+        n = 0;
+      }
     }
     return lookAhead;
-
 }
 
 
