@@ -41,13 +41,13 @@ void runAuton() {
     }
   }
 }
-  
+
 void autonomous() {
   robot.reset();
   pros::Task track(hc::benzene::track, &posTracker);
 
 
-        #include "./auton/test.auton"
+      #include "./auton/test.auton"
 
   // runAuton();
   // track.remove();
