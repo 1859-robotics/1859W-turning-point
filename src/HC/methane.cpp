@@ -117,33 +117,33 @@ float mag(::hc::benzene::Point a) {
 
     if(!(dist(current, turnless) > subDist)) return turnless;
 
-    ::hc::benzene::Point lookAhead = current;
-    ::hc::benzene::Point prevPoint = current;
-    int n = along;
+  ::hc::benzene::Point lookAhead = current;
+  ::hc::benzene::Point prevPoint = current;
+  int n = along;
 
-    while(0 < n) {
-      if(seg + 1 > len) {
-        n = 0;
-        lookAhead = path[seg];
-      } else if(n > dist(prevPoint, path[seg + 1])) {
-        n -= dist(prevPoint, path[seg + 1]);
-        prevPoint = path[seg + 1];
-        seg++;
-      } else {
-        lookAhead = sub(path[seg + 1], prevPoint);
-        lookAhead = normalize(lookAhead);
-        lookAhead = multScalar(lookAhead, n);
-        lookAhead = add(path[seg], lookAhead);
-        n = 0;
-      }
+  while(0 < n) {
+    if(seg + 1 > len) {
+      n = 0;
+      lookAhead = path[seg];
+    } else if(n > dist(prevPoint, path[seg + 1])) {
+      n -= dist(prevPoint, path[seg + 1]);
+      prevPoint = path[seg + 1];
+      seg++;
+    } else {
+      lookAhead = sub(path[seg + 1], prevPoint);
+      lookAhead = normalize(lookAhead);
+      lookAhead = multScalar(lookAhead, n);
+      lookAhead = add(path[seg], lookAhead);
+      n = 0;
     }
-    return lookAhead;
+  }
+  return lookAhead;
 }
 
 
 namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
-    float tA = atan2(posTracker.y - y, posTracker.x - x);
+    float tA = atan2(y - posTracker.y, x - posTracker.x);
 
     ::hc::benzene::Point close = closest(
       { posTracker.x, posTracker.y },
@@ -151,7 +151,7 @@ namespace hc {
       { x, y }
     );
 
-    float V = dist(close.x, close.y, posTracker.x, posTracker.y);
+    float V = -dist(close.x, close.y, posTracker.x, posTracker.y);
     V = std::isnan(V) ? 0 : V;
     // V = abs(V) > 1 ? SGN(V) : V;
 
@@ -198,6 +198,7 @@ namespace hc {
 
     while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
       if((pros::millis() - started) > exit) break;
+
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
