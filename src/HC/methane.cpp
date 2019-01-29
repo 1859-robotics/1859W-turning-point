@@ -122,20 +122,12 @@ float mag(::hc::benzene::Point a) {
   while(0 < n) {
     if(seg + 1 > len) {
       n = 0;
-      std::cout << "set lookAhead 1" << std::endl;
-      DEBUG_VAR(path[seg].x);
-      DEBUG_VAR(path[seg].y);
-      DEBUG_VAR(seg);
       lookAhead = path[len - 1];
     } else if(n > dist(prevPoint, path[seg + 1])) {
       n -= dist(prevPoint, path[seg + 1]);
       prevPoint = path[seg + 1];
       seg++;
-
-      std::cout << "seg adder" << std::endl;
     } else {
-      std::cout << "set lookAhead 3" << std::endl;
-
       lookAhead = sub(path[seg + 1], prevPoint);
       lookAhead = normalize(lookAhead);
       lookAhead = multScalar(lookAhead, n);
@@ -143,9 +135,6 @@ float mag(::hc::benzene::Point a) {
       n = 0;
     }
   }
-
-  std::cout << "lookAhead:  (" << lookAhead.x << ", " << lookAhead.y << ")" << std::endl;
-
 
   return lookAhead;
 }
