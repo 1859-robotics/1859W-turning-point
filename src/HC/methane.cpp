@@ -126,13 +126,13 @@ float mag(::hc::benzene::Point a) {
       DEBUG_VAR(path[seg].x);
       DEBUG_VAR(path[seg].y);
       DEBUG_VAR(seg);
-      lookAhead = path[seg];
+      lookAhead = path[len - 1];
     } else if(n > dist(prevPoint, path[seg + 1])) {
       n -= dist(prevPoint, path[seg + 1]);
       prevPoint = path[seg + 1];
       seg++;
-      std::cout << "seg adder" << std::endl;
 
+      std::cout << "seg adder" << std::endl;
     } else {
       std::cout << "set lookAhead 3" << std::endl;
 
@@ -240,7 +240,7 @@ namespace hc {
 
       if((pros::millis() - started) > exit) break;
 
-      // seek(target.x, target.y, transPID, rotPID);
+      seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
 
