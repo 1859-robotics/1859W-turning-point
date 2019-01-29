@@ -237,17 +237,18 @@ namespace hc {
 
     std::uint32_t started = pros::millis();
 
-    while(!withinErr(posTracker.x, posTracker.y, wayPoints[len - 1].x, wayPoints[len - 1].y, err)) {
+    while(!withinErr(posTracker.x, posTracker.y, wayPoints[len - 1].x, wayPoints[len - 1].y, 0.001)) {
       ::hc::benzene::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);
       ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
       ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
 
       std::cout << "target:  (" << target.x << ", " << target.y << ")" << std::endl;
       std::cout << "current: (" << posTracker.x << ", " << posTracker.y << ")" << std::endl;
+      std::cout << "last: (" << wayPoints[len - 1].x << ", " << wayPoints[len - 1].y << ")" << std::endl;
 
       if((pros::millis() - started) > exit) break;
 
-      seek(target.x, target.y, transPID, rotPID);
+      // seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
 
