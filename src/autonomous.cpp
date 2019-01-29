@@ -47,8 +47,10 @@ void autonomous() {
   pros::Task track(hc::benzene::track, &posTracker);
 
 
-                        #include "./auton/test.auton"
+  // #include "./auton/test.auton"
 
   // runAuton();
   // track.remove();
+
+  while(true) { pros::delay(20); }
 }

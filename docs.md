@@ -24,6 +24,9 @@ robot.moveTo({ 48, 9 }, 2, 1000);
 robot.moveTo({ 48, 9 }, 1, { 10, 0, 0.2 }, { 0.1, 0, 0.01 });
 ```
 
+moveAlong
+
+
 moveToSimple
 turns to face a point then moves the distance required to get there
 don't use this

@@ -112,9 +112,24 @@ namespace hc {
 
   void benzene::track(void *ptr) {
     benzene::Tracker* tracker = static_cast<benzene::Tracker*>(ptr);
+    lv_obj_t * pos = lv_label_create(lv_scr_act(), NULL);
+    lv_obj_align(pos, NULL, LV_ALIGN_IN_BOTTOM_RIGHT, 0, 20);
+
+    lv_label_set_text(pos,
+      ("(" + std::to_string(tracker->x) + ", " +
+      std::to_string(tracker->y) + ")  | " +
+      std::to_string(TODEG(tracker->a))).c_str());
+
+
     while(true) {
       tracker->track();
       tracker->debug();
+
+      lv_label_set_text(pos,
+        ("(" + std::to_string(tracker->x) + ", " +
+        std::to_string(tracker->y) + ")  | " +
+        std::to_string(TODEG(tracker->a))).c_str());
+
       pros::delay(20);
     }
   }
