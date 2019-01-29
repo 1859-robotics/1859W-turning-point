@@ -268,7 +268,7 @@ namespace hc {
   }
 
   void methane::Robot::turnToFace(float deg, float max) {
-    pid->config(3, 0.01, 0.2, 3, 30, max, MIN_SPEED);
+    pid->config(2.4, 0, 0.6, 3, 30, max, MIN_SPEED);
 
     if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
 
