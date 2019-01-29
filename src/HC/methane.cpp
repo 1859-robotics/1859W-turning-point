@@ -180,6 +180,13 @@ namespace hc {
     float Vr = trans + rot;
     float Vl = trans - rot;
 
+    float maxMag = std::max(Vr, Vl);
+
+    if(maxMag > MAX_SPEED) {
+      Vr = (Vr / maxMag) * MAX_SPEED;
+      Vl = (Vl / maxMag) * MAX_SPEED;
+    }
+
     LEFT_DRIVE_SET(Vl);
     RIGHT_DRIVE_SET(Vr);
   }
