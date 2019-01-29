@@ -1,8 +1,11 @@
-posTracker.setPos({ 0, 0 }, 180);
+posTracker.setPos({ 103, 9 }, 90);
 
 // ::hc::benzene::Point path[] = { { 12, 12 }, { 24, 12 } };
 
 // robot.moveAlong(path, 2, 10, { 6, 0, 0 }, { 18, 0, 0 });
 
-robot.turnToFace(90);
-robot.moveFor(36, 50000);
+
+robot.moveTo({ 103, 45 }, { 1, 0, 0 }, { 1, 0, 0.2 });
+
+// robot.turnToFace(90);
+// robot.moveFor(36, 50000);

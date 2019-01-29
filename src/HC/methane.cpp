@@ -142,7 +142,7 @@ float mag(::hc::benzene::Point a) {
 
 namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
-    float tA = atan2(y - posTracker.y, x - posTracker.x);
+    float tA = atan2(posTracker.x - x, posTracker.y - y);
 
     ::hc::benzene::Point close = closest(
       { posTracker.x, posTracker.y },
@@ -150,7 +150,7 @@ namespace hc {
       { x, y }
     );
 
-    float V = -dist(close.x, close.y, posTracker.x, posTracker.y);
+    float V = dist(close.x, close.y, posTracker.x, posTracker.y);
     V = std::isnan(V) ? 0 : V;
     // V = abs(V) > 1 ? SGN(V) : V;
 
@@ -169,11 +169,11 @@ namespace hc {
     float Vr = trans + rot;
     float Vl = trans - rot;
 
-    float maxMag = std::max(Vr, Vl);
+    float maxMag = std::max(fabs(Vr), fabs(Vl));
 
     if(maxMag > MAX_SPEED) {
-      Vr = (Vr / maxMag) * MAX_SPEED;
-      Vl = (Vl / maxMag) * MAX_SPEED;
+      Vr = (Vr / maxMag) * MAX_SPEED * SGN(Vr);
+      Vl = (Vl / maxMag) * MAX_SPEED * SGN(Vl);
     }
 
     LEFT_DRIVE_SET(Vl);

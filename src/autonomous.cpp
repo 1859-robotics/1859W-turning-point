@@ -47,11 +47,10 @@ void autonomous() {
   pros::Task track(hc::benzene::track, &posTracker);
 
 
-  // #include "./auton/test.auton"
-  robot.turnToFace(90);
+    // #include "./auton/test.auton"
 
-  // runAuton();
-  // track.remove();
+            runAuton();
+  // // track.remove();
 
   while(true) { pros::delay(20); }
 }
