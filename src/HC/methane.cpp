@@ -167,7 +167,7 @@ namespace hc {
 
     float aP = atan2(close.y - posTracker.y, close.x - posTracker.x);
     aP = fmod(aP, (2 * PI)) * SGN(aP);
-    if (abs(aP) > PI/2) {
+    if (abs(aP) > PI / 2) {
       V = V * -1;
       tA -= PI * SGN(aP);
     }
