@@ -1,5 +1,5 @@
-#ifndef pid_HPP
-#define pid_HPP
+#ifndef PID_HPP
+#define PID_HPP
 
 #include "main.h"
 #include <functional>

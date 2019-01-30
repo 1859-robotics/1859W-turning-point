@@ -1,5 +1,5 @@
-#ifndef auton_selector_HPP
-#define auton_selector_HPP
+#ifndef AUTON_SELECTOR_HPP
+#define AUTON_SELECTOR_HPP
 
 #include "main.h"
 #include "../auton/def.hpp"

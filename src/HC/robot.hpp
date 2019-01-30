@@ -1,5 +1,5 @@
-#ifndef robot_HPP
-#define robot_HPP
+#ifndef ROBOT_HPP
+#define ROBOT_HPP
 
 #include "main.h"
 #include "odom.hpp"
