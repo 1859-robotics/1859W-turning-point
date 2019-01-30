@@ -49,7 +49,7 @@ void autonomous() {
 
     // #include "./auton/test.auton"
 
-            runAuton();
+  runAuton();
   // // track.remove();
 
   while(true) { pros::delay(20); }
