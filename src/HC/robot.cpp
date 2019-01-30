@@ -142,7 +142,7 @@ float mag(::w::odom::Point a) {
 
 namespace w {
   void robot::Robot::seek(float x, float y, pid::PID *transPID, pid::PID *rotPID) {
-    float tA = atan2(posTracker.x - x, posTracker.y - y);
+    float tA = atan2(y - posTracker.y, x - posTracker.x);
 
     ::w::odom::Point close = closest(
       { posTracker.x, posTracker.y },

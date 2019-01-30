@@ -14,14 +14,4 @@ FLYWHEEL_SET(FLYWHEEL_IDLE);
 
 robot.combineSet(false);
 
-// shoot high flag
-// robot.flyUp(460, [](float rpm) -> void {
-//   INTAKE_SET(127);
-//   pros::delay(200);
-//   INTAKE_SET(0);
-// });
-
-
-
-// robot.turnToFace(90);
-robot.moveTo({ 0, 36 }, { 1, 0, 0 }, { 1, 0, 0.2 });
+robot.moveTo({ 0, 36 }, { 10, 0, 0, 60 }, { 0, 0, 0, 60 });
