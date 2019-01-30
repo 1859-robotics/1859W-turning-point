@@ -1,12 +1,12 @@
 
-#include "benzene.hpp"
+#include "odom.hpp"
 
 namespace hc {
-  void benzene::Tracker::debug() {
+  void odom::Tracker::debug() {
     // std::cout << "(" << x << ", " << y << ")  | " << TODEG(a) << std::endl;
   }
 
-  void benzene::Tracker::track() {
+  void odom::Tracker::track() {
     float newL = lEncoder->get_value();
     float newR = rEncoder->get_value();
     float newC = mEncoder->get_value();
@@ -42,7 +42,7 @@ namespace hc {
 
 
   // Pilons: your shit is too hard
-  // void benzene::Tracker::track() {
+  // void odom::Tracker::track() {
   //   float newL = lEncoder->get_value();
   //   float newR = rEncoder->get_value();
   //   float newC = mEncoder->get_value();
@@ -90,28 +90,28 @@ namespace hc {
   //   this->a = newA;
   // }
 
-  void benzene::Tracker::setPos(float x, float y, float a) {
+  void odom::Tracker::setPos(float x, float y, float a) {
     std::cout << "seting pos" << std::endl;
     this->x = x;
     this->y = y;
     this->a = TORAD(a);
   }
 
-  void benzene::Tracker::setPos(benzene::Point pt, float a) {
+  void odom::Tracker::setPos(odom::Point pt, float a) {
     std::cout << "seting pos" << std::endl;
     this->x = pt.x;
     this->y = pt.y;
     this->a = TORAD(a);
   }
 
-  void benzene::Tracker::reset() {
+  void odom::Tracker::reset() {
     lEncoder->reset();
     rEncoder->reset();
     mEncoder->reset();
   }
 
-  void benzene::track(void *ptr) {
-    benzene::Tracker* tracker = static_cast<benzene::Tracker*>(ptr);
+  void odom::track(void *ptr) {
+    odom::Tracker* tracker = static_cast<odom::Tracker*>(ptr);
     lv_obj_t * pos = lv_label_create(lv_scr_act(), NULL);
     lv_obj_align(pos, NULL, LV_ALIGN_CENTER, 0, 20);
 

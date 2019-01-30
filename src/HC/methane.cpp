@@ -17,7 +17,7 @@ float dist(float x1, float y1, float x2, float y2) {
   return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
-float dist(::hc::benzene::Point a, ::hc::benzene::Point b) {
+float dist(::hc::odom::Point a, ::hc::odom::Point b) {
   return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
 
@@ -25,7 +25,7 @@ float dot(float x1, float y1, float x2, float y2) {
   return (x1 * x2) + (y1 * y2);
 }
 
-float dot(::hc::benzene::Point a, ::hc::benzene::Point b) { return a.x * b.x + a.y * b.y; }
+float dot(::hc::odom::Point a, ::hc::odom::Point b) { return a.x * b.x + a.y * b.y; }
 
 
 float remap (float value, float from1, float to1, float from2, float to2) {
@@ -41,46 +41,46 @@ float angleDiff(float angle1, float angle2) {
 
 
 // vector stuffs
-::hc::benzene::Point add(::hc::benzene::Point a, ::hc::benzene::Point b) {
+::hc::odom::Point add(::hc::odom::Point a, ::hc::odom::Point b) {
   return { a.x + b.x, a.y + b.y };
 }
-::hc::benzene::Point sub(::hc::benzene::Point a, ::hc::benzene::Point b) {
+::hc::odom::Point sub(::hc::odom::Point a, ::hc::odom::Point b) {
   return { a.x - b.x, a.y - b.y };
 }
-::hc::benzene::Point mult(::hc::benzene::Point a, ::hc::benzene::Point b) {
+::hc::odom::Point mult(::hc::odom::Point a, ::hc::odom::Point b) {
   return { a.x * b.x, a.y * b.y };
 }
-::hc::benzene::Point div(::hc::benzene::Point a, ::hc::benzene::Point b) {
+::hc::odom::Point div(::hc::odom::Point a, ::hc::odom::Point b) {
   return { a.x / b.x, a.y / b.y };
 }
 
-float mag(::hc::benzene::Point a) {
+float mag(::hc::odom::Point a) {
   return sqrt((a.x * a.x) + (a.y * a.y));
 }
 
-::hc::benzene::Point normalize(::hc::benzene::Point a) {
+::hc::odom::Point normalize(::hc::odom::Point a) {
   if(mag(a) == 0) return a;
   return { a.x / mag(a), a.y / mag(a) };
 }
 
-::hc::benzene::Point multScalar(::hc::benzene::Point a, float b) {
+::hc::odom::Point multScalar(::hc::odom::Point a, float b) {
   return { a.x * b, a.y * b };
 }
 
 // target stuffs
-::hc::benzene::Point closest(::hc::benzene::Point current, ::hc::benzene::Point head, ::hc::benzene::Point target) {
-  ::hc::benzene::Point n = normalize(head);
-  ::hc::benzene::Point v = sub(target, current);
+::hc::odom::Point closest(::hc::odom::Point current, ::hc::odom::Point head, ::hc::odom::Point target) {
+  ::hc::odom::Point n = normalize(head);
+  ::hc::odom::Point v = sub(target, current);
   float d = dot(v.x, v.y, n.x, n.y);
   return add(current, multScalar(n, d));
 }
 
-::hc::benzene::Point getNormalPoint(::hc::benzene::Point p, ::hc::benzene::Point a, ::hc::benzene::Point b) {
-  ::hc::benzene::Point ap = sub(p, a);
-  ::hc::benzene::Point ab = sub(b, a);
+::hc::odom::Point getNormalPoint(::hc::odom::Point p, ::hc::odom::Point a, ::hc::odom::Point b) {
+  ::hc::odom::Point ap = sub(p, a);
+  ::hc::odom::Point ab = sub(b, a);
   ab = normalize(ab);
   ab = multScalar(ab, dot(ap, ab));
-  ::hc::benzene::Point r = add(a, ab);
+  ::hc::odom::Point r = add(a, ab);
   if ((r.y > std::max(a.y, b.y) && r.x > std::max(a.x, b.x)) ||
       (r.y < std::min(a.y, b.y) && r.x < std::min(a.x, b.x)) ||
       (r.y > std::max(a.y, b.y) && r.x < std::min(a.x, b.x)) ||
@@ -90,14 +90,14 @@ float mag(::hc::benzene::Point a) {
   return r;
 }
 
-::hc::benzene::Point getTarget(::hc::benzene::Point path[], int len, ::hc::benzene::Point current, float along) {
-  ::hc::benzene::Point target;
+::hc::odom::Point getTarget(::hc::odom::Point path[], int len, ::hc::odom::Point current, float along) {
+  ::hc::odom::Point target;
 
-  ::hc::benzene::Point normal;
+  ::hc::odom::Point normal;
   int seg = 0;
 
   for(int i = 0; i < len - 1; i++) {
-    ::hc::benzene::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
+    ::hc::odom::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
     if(i == 0 || (dist(current, normalPoint) < dist(current, normal))) {
       normal = normalPoint;
       seg = i;
@@ -107,7 +107,7 @@ float mag(::hc::benzene::Point a) {
   std::cout << "normal:  (" << normal.x << ", " << normal.y << ")" << std::endl;
 
 
-  ::hc::benzene::Point turnless = sub(path[seg + 1], path[seg]);
+  ::hc::odom::Point turnless = sub(path[seg + 1], path[seg]);
   turnless = normalize(turnless);
   turnless = multScalar(turnless, along);
   turnless = add(normal, turnless);
@@ -115,8 +115,8 @@ float mag(::hc::benzene::Point a) {
 
   if(dist(normal, turnless) < subDist) return turnless;
 
-  ::hc::benzene::Point lookAhead;
-  ::hc::benzene::Point prevPoint = normal;
+  ::hc::odom::Point lookAhead;
+  ::hc::odom::Point prevPoint = normal;
   float n = along;
 
   while(0 < n) {
@@ -144,7 +144,7 @@ namespace hc {
   void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
     float tA = atan2(posTracker.x - x, posTracker.y - y);
 
-    ::hc::benzene::Point close = closest(
+    ::hc::odom::Point close = closest(
       { posTracker.x, posTracker.y },
       { cos(posTracker.a), sin(posTracker.a) },
       { x, y }
@@ -180,7 +180,7 @@ namespace hc {
     RIGHT_DRIVE_SET(Vr);
   }
 
-  void methane::Robot::moveTo(::hc::benzene::Point target, float err, float exit) {
+  void methane::Robot::moveTo(::hc::odom::Point target, float err, float exit) {
     ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED, MIN_SPEED);
     ::hc::propene::PID *rotPID = new ::hc::propene::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
 
@@ -196,7 +196,7 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::moveTo(::hc::benzene::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
+  void methane::Robot::moveTo(::hc::odom::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
     ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
     ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
 
@@ -213,23 +213,23 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::moveTo(::hc::benzene::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
+  void methane::Robot::moveTo(::hc::odom::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
     methane::Robot::moveTo(target, P_ERR, tPID, rPID);
   }
 
-  void methane::Robot::moveToSimple(::hc::benzene::Point target) {
+  void methane::Robot::moveToSimple(::hc::odom::Point target) {
     turnToFace(target, 60);
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
   }
 
-  void methane::Robot::moveAlong(::hc::benzene::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err, float exit) {
+  void methane::Robot::moveAlong(::hc::odom::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err, float exit) {
 
     std::uint32_t started = pros::millis();
     ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
     ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
 
     while(!withinErr(posTracker.x, posTracker.y, wayPoints[len - 1].x, wayPoints[len - 1].y, 0.001)) {
-      ::hc::benzene::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);
+      ::hc::odom::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);
 
       std::cout << "target:  (" << target.x << ", " << target.y << ")" << std::endl;
       std::cout << "current: (" << posTracker.x << ", " << posTracker.y << ")" << std::endl;
@@ -247,7 +247,7 @@ namespace hc {
   }
 
   void methane::Robot::moveFor(float distIn, float exit) {
-    ::hc::benzene::Point start = {
+    ::hc::odom::Point start = {
       posTracker.x,
       posTracker.y
     };
@@ -283,7 +283,7 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::turnToFace(::hc::benzene::Point point, float max) {
+  void methane::Robot::turnToFace(::hc::odom::Point point, float max) {
     turnToFace(TODEG(atan2(point.y - posTracker.y, point.x - posTracker.x)), max);
   }
 

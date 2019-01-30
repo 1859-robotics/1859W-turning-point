@@ -74,12 +74,12 @@ extern pros::ADIDigitalIn limit;
 }
 
 
-#include "HC/benzene.hpp"
+#include "HC/odom.hpp"
 #include "HC/propene.hpp"
 // #include "HC/methane.hpp"
 
 // abstractions
-extern hc::benzene::Tracker posTracker;
+extern hc::odom::Tracker posTracker;
 extern hc::propene::PID mainPID;
 
 #endif

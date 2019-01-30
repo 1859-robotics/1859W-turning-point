@@ -1,5 +1,5 @@
-#ifndef BENZENE_HPP
-#define BENZENE_HPP
+#ifndef odom_HPP
+#define odom_HPP
 
 #include "main.h"
 #include <math.h>
@@ -17,7 +17,7 @@
 #define POINT_LIST(...) __VA_ARGS__
 
 namespace hc {
-  namespace benzene {
+  namespace odom {
     typedef struct {
       float x;
       float y;

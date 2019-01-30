@@ -19,4 +19,4 @@ pros::ADIEncoder cTrackerWheel = pros::ADIEncoder(TRACKER_CENTER_PORT, TRACKER_C
 pros::ADIDigitalIn limit = pros::ADIDigitalIn(LIMIT_PORT);
 
 hc::propene::PID mainPID = hc::propene::PID(2.0, 0.0, 0.15, 3.0, 30.0, MAX_SPEED, MIN_SPEED);
-hc::benzene::Tracker posTracker = hc::benzene::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel);
+hc::odom::Tracker posTracker = hc::odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel);
