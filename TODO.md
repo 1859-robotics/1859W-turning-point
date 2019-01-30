@@ -2,8 +2,8 @@
 - [x] tracking
 - [x] turn to angle func
 - [x] turn to face func
-- [ ] methane::Robot::seek
-- [x] methane::Robot::moveTo
+- [ ] robot::Robot::seek
+- [x] robot::Robot::moveTo
 - [x] have hannah take photo
 - [ ] write drive build instructions for notebook
 - [ ] write shooter breakdown

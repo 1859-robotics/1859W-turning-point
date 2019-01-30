@@ -9,7 +9,7 @@
 
 #include "HC/odom.hpp"
 #include "HC/propene.hpp"
-#include "HC/methane.hpp"
+#include "HC/robot.hpp"
 #include "HC/pentane.hpp"
 
 #include "robot-config.hpp"

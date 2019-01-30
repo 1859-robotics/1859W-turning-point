@@ -1,5 +1,5 @@
-#ifndef METHANE_HPP
-#define METHANE_HPP
+#ifndef robot_HPP
+#define robot_HPP
 
 #include "main.h"
 #include "odom.hpp"
@@ -15,7 +15,7 @@
 bool withinRange(float target, float current, float error);
 
 namespace hc {
-  namespace methane {
+  namespace robot {
     class Robot { // this class handles all of the auton functions
     private:
       ::hc::odom::Tracker *tracker;
@@ -56,6 +56,6 @@ namespace hc {
   }
 }
 
-extern hc::methane::Robot robot;
+extern hc::robot::Robot robot;
 
 #endif

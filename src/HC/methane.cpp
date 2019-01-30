@@ -1,4 +1,4 @@
-#include "methane.hpp"
+#include "robot.hpp"
 
 
 // util functions
@@ -141,7 +141,7 @@ float mag(::hc::odom::Point a) {
 
 
 namespace hc {
-  void methane::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
+  void robot::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
     float tA = atan2(posTracker.x - x, posTracker.y - y);
 
     ::hc::odom::Point close = closest(
@@ -180,7 +180,7 @@ namespace hc {
     RIGHT_DRIVE_SET(Vr);
   }
 
-  void methane::Robot::moveTo(::hc::odom::Point target, float err, float exit) {
+  void robot::Robot::moveTo(::hc::odom::Point target, float err, float exit) {
     ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED, MIN_SPEED);
     ::hc::propene::PID *rotPID = new ::hc::propene::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
 
@@ -196,7 +196,7 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::moveTo(::hc::odom::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
+  void robot::Robot::moveTo(::hc::odom::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
     ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
     ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
 
@@ -213,16 +213,16 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::moveTo(::hc::odom::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
-    methane::Robot::moveTo(target, P_ERR, tPID, rPID);
+  void robot::Robot::moveTo(::hc::odom::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
+    robot::Robot::moveTo(target, P_ERR, tPID, rPID);
   }
 
-  void methane::Robot::moveToSimple(::hc::odom::Point target) {
+  void robot::Robot::moveToSimple(::hc::odom::Point target) {
     turnToFace(target, 60);
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
   }
 
-  void methane::Robot::moveAlong(::hc::odom::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err, float exit) {
+  void robot::Robot::moveAlong(::hc::odom::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err, float exit) {
 
     std::uint32_t started = pros::millis();
     ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
@@ -246,7 +246,7 @@ namespace hc {
     std::cout << "end moveAlong" << std::endl;
   }
 
-  void methane::Robot::moveFor(float distIn, float exit) {
+  void robot::Robot::moveFor(float distIn, float exit) {
     ::hc::odom::Point start = {
       posTracker.x,
       posTracker.y
@@ -267,7 +267,7 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::turnToFace(float deg, float max) {
+  void robot::Robot::turnToFace(float deg, float max) {
     pid->config(2.4, 0, 0.6, 3, 30, max, MIN_SPEED);
 
     if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
@@ -283,30 +283,30 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void methane::Robot::turnToFace(::hc::odom::Point point, float max) {
+  void robot::Robot::turnToFace(::hc::odom::Point point, float max) {
     turnToFace(TODEG(atan2(point.y - posTracker.y, point.x - posTracker.x)), max);
   }
 
-  void methane::Robot::combineSet(bool rev) {
+  void robot::Robot::combineSet(bool rev) {
     combine.move(rev ? 127 : -127);
   }
 
-  void methane::Robot::feedBall(float exit) {
+  void robot::Robot::feedBall(float exit) {
     while(!limit.get_value()) {
       INTAKE_SET(127);
     }
     INTAKE_SET(0);
   }
 
-  void methane::Robot::reset() {
+  void robot::Robot::reset() {
     tracker->reset();
   }
 
-  bool methane::Robot::hasBall() {
+  bool robot::Robot::hasBall() {
     return !!limit.get_value();
   }
 
-  void methane::Robot::flyUp(int rpm, std::function <void(float)> action) {
+  void robot::Robot::flyUp(int rpm, std::function <void(float)> action) {
     while(true) {
       if(withinRange(rpm, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) {
         action(FLYWHEEL_GET_VEL);
@@ -321,4 +321,4 @@ namespace hc {
   }
 }
 
-hc::methane::Robot robot = hc::methane::Robot(&posTracker, &mainPID);
+hc::robot::Robot robot = hc::robot::Robot(&posTracker, &mainPID);
