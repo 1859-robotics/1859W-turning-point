@@ -252,11 +252,12 @@ namespace hc {
       posTracker.y
     };
 
-    pid->config(8, 0, 0.1, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
+    mainPID.reset();
+    mainPID.config(8, 0, 0.1, 0.001, 0.001, MAX_SPEED, MIN_SPEED);
 
     std::uint32_t started = pros::millis();
 
-    pid->doPID(0, P_ERR, [=]() -> float {
+    mainPID.doPID(0, P_ERR, [=]() -> float {
       if((pros::millis() - started) > exit) return 0;
       return (fabs(distIn) - dist(start.x, start.y, posTracker.x, posTracker.y));
     }, [=](float output) -> void {
@@ -268,11 +269,11 @@ namespace hc {
   }
 
   void robot::Robot::turnToFace(float deg, float max) {
-    pid->config(2.4, 0, 0.6, 3, 30, max, MIN_SPEED);
-
+    mainPID.reset();
+    mainPID.config(2.4, 0, 0.6, 3, 30, max, MIN_SPEED);
     if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
 
-    pid->doPID(deg, A_ERR, []() -> float {
+    mainPID.doPID(deg, A_ERR, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
       RIGHT_DRIVE_SET(output);

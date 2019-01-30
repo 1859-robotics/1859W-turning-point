@@ -22,7 +22,7 @@ namespace hc {
 
     public:
       Robot(::hc::odom::Tracker *tracker,
-            ::hc::pid::PID *pid) :
+            ::hc::pid::PID *mainPID) :
             tracker(tracker) {};
       void seek(float x, float y, ::hc::pid::PID *transPID, ::hc::pid::PID *rotPID);
       void reset();
