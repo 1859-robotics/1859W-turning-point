@@ -10,6 +10,12 @@ namespace hc {
     ", lastSetPoint: " << lastSetPoint << std::endl << std::endl;
   }
 
+  void propene::PID::reset() {
+    lastValue = 0;
+    lastTime = pros::millis();
+    lastSetPoint = 0;
+  }
+
   float propene::PID::calculate(float current, float target) {
     float deltaTime = (float)(pros::millis() - lastTime) / 1000.0;
   	lastTime = pros::millis();

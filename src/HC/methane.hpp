@@ -21,13 +21,9 @@ namespace hc {
       ::hc::benzene::Tracker *tracker;
 
     public:
-      ::hc::propene::PID *pid; // public for convenience
-      //TODO: make not public (and stop being lazy)
-
-
       Robot(::hc::benzene::Tracker *tracker,
             ::hc::propene::PID *pid) :
-            tracker(tracker), pid(pid) {};
+            tracker(tracker) {};
       void seek(float x, float y, ::hc::propene::PID *transPID, ::hc::propene::PID *rotPID);
       void reset();
 
