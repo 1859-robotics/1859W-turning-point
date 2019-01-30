@@ -5,7 +5,7 @@
 #include "../auton/def.hpp"
 #include <functional>
 
-namespace hc {
+namespace w {
   namespace auton_selector {
     extern std::string selectedAuton;
     extern int selectedTile;

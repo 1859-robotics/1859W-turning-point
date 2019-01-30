@@ -79,7 +79,7 @@ extern pros::ADIDigitalIn limit;
 // #include "HC/robot.hpp"
 
 // abstractions
-extern hc::odom::Tracker posTracker;
-extern hc::pid::PID mainPID;
+extern w::odom::Tracker posTracker;
+extern w::pid::PID mainPID;
 
 #endif

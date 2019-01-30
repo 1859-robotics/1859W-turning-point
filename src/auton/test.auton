@@ -1,6 +1,6 @@
 posTracker.setPos({ 103, 9 }, 90);
 
-// ::hc::odom::Point path[] = { { 12, 12 }, { 24, 12 } };
+// ::w::odom::Point path[] = { { 12, 12 }, { 24, 12 } };
 
 // robot.moveAlong(path, 2, 10, { 6, 0, 0 }, { 18, 0, 0 });
 

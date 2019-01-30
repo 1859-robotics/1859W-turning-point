@@ -9,7 +9,7 @@
 #define MIN_SPEED 30
 #define MAX_SPEED 127
 
-namespace hc {
+namespace w {
   namespace pid {
     typedef struct {
       float kP;
@@ -60,7 +60,7 @@ namespace hc {
       float calculate(float target, float current);
     };
 
-    pid::PID *deepCopy(::hc::pid::PID *pid);
+    pid::PID *deepCopy(::w::pid::PID *pid);
   }
 }
 

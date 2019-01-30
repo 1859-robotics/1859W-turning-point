@@ -7,7 +7,7 @@ static lv_res_t list_action(lv_obj_t *ddlist) {
   char sel_str[32];
   lv_ddlist_get_selected_str(ddlist, sel_str);
 
-  hc::auton_selector::selectedAuton = sel_str;
+  w::auton_selector::selectedAuton = sel_str;
 
   return LV_RES_OK;
 }
@@ -23,19 +23,19 @@ void init() {
 
 void initialize() {
   init();
-  hc::auton_selector::drawFeild();
-  hc::auton_selector::init();
+  w::auton_selector::drawFeild();
+  w::auton_selector::init();
 
   static lv_style_t list_style;
   lv_style_copy(&list_style, &lv_style_plain);
   list_style.body.radius = 0;
 
-  lv_obj_set_style(hc::auton_selector::list, &list_style);
-  lv_obj_set_pos(hc::auton_selector::list, 260, 20);
-  lv_ddlist_set_action(hc::auton_selector::list, list_action);
+  lv_obj_set_style(w::auton_selector::list, &list_style);
+  lv_obj_set_pos(w::auton_selector::list, 260, 20);
+  lv_ddlist_set_action(w::auton_selector::list, list_action);
 
-  hc::auton_selector::drawTiles([=](int output) {
-    hc::auton_selector::selectedTile = output;
+  w::auton_selector::drawTiles([=](int output) {
+    w::auton_selector::selectedTile = output;
   });
 }
 

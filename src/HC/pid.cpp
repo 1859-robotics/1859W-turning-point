@@ -1,6 +1,6 @@
 #include "pid.hpp"
 
-namespace hc {
+namespace w {
   void pid::PID::debug(std::string name) {
     std::cout << "PID: " << name << std::endl <<
       "kP: " << kP <<
@@ -86,7 +86,7 @@ namespace hc {
     }
   }
 
-  pid::PID *deepCopy(::hc::pid::PID *pid) {
+  pid::PID *deepCopy(::w::pid::PID *pid) {
     return new pid::PID(pid->kP, pid->kI, pid->kD, pid->epsilonInner, pid->epsilonOuter);
   }
 }

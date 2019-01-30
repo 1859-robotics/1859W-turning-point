@@ -16,7 +16,7 @@
 
 #define POINT_LIST(...) __VA_ARGS__
 
-namespace hc {
+namespace w {
   namespace odom {
     typedef struct {
       float x;

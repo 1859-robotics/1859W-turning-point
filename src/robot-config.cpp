@@ -18,5 +18,5 @@ pros::ADIEncoder cTrackerWheel = pros::ADIEncoder(TRACKER_CENTER_PORT, TRACKER_C
 
 pros::ADIDigitalIn limit = pros::ADIDigitalIn(LIMIT_PORT);
 
-hc::pid::PID mainPID = hc::pid::PID(2.0, 0.0, 0.15, 3.0, 30.0, MAX_SPEED, MIN_SPEED);
-hc::odom::Tracker posTracker = hc::odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel);
+w::pid::PID mainPID = w::pid::PID(2.0, 0.0, 0.15, 3.0, 30.0, MAX_SPEED, MIN_SPEED);
+w::odom::Tracker posTracker = w::odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel);

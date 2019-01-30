@@ -14,17 +14,17 @@
 
 bool withinRange(float target, float current, float error);
 
-namespace hc {
+namespace w {
   namespace robot {
     class Robot { // this class handles all of the auton functions
     private:
-      ::hc::odom::Tracker *tracker;
+      ::w::odom::Tracker *tracker;
 
     public:
-      Robot(::hc::odom::Tracker *tracker,
-            ::hc::pid::PID *mainPID) :
+      Robot(::w::odom::Tracker *tracker,
+            ::w::pid::PID *mainPID) :
             tracker(tracker) {};
-      void seek(float x, float y, ::hc::pid::PID *transPID, ::hc::pid::PID *rotPID);
+      void seek(float x, float y, ::w::pid::PID *transPID, ::w::pid::PID *rotPID);
       void reset();
 
       void feedBall(float exit = 10000);
@@ -32,14 +32,14 @@ namespace hc {
 
       void flyUp(int rpm, std::function <void(float)> action);
 
-      void moveTo(::hc::odom::Point target, float err = P_ERR, float exit = 10000); // moves to a point
-      void moveTo(::hc::odom::Point target, float err, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float exit = 10000);
-      void moveTo(::hc::odom::Point target, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float exit = 10000);
+      void moveTo(::w::odom::Point target, float err = P_ERR, float exit = 10000); // moves to a point
+      void moveTo(::w::odom::Point target, float err, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit = 10000);
+      void moveTo(::w::odom::Point target, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit = 10000);
 
-      void moveAlong(::hc::odom::Point wayPoints[], int len, float lookAhead, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float err = P_ERR, float exit = 6000);
+      void moveAlong(::w::odom::Point wayPoints[], int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err = P_ERR, float exit = 6000);
       // moves the bot along a set of way points
 
-      void moveToSimple(::hc::odom::Point target);
+      void moveToSimple(::w::odom::Point target);
       void moveFor(float dist, float exit = 5000);
 
       void combineSet(bool rev);
@@ -47,7 +47,7 @@ namespace hc {
       // void moveFor(float length); // moves for a distance
         // moveFor(4) - move 4 in forwards
       void turnToFace(float deg, float max = 100);
-      void turnToFace(::hc::odom::Point point, float max = 100);
+      void turnToFace(::w::odom::Point point, float max = 100);
         // moveAlong({{1, 4}, {2, 5}}, 0); // move through the points (1, 4) then (2, 5) and end facing 0deg
       // void raiseLiftTo(int height); // rasie lift to a certain amount
       // void shootBall(int spd); // shoots a ball
@@ -56,6 +56,6 @@ namespace hc {
   }
 }
 
-extern hc::robot::Robot robot;
+extern w::robot::Robot robot;
 
 #endif

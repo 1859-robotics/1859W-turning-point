@@ -1,7 +1,7 @@
 
 #include "odom.hpp"
 
-namespace hc {
+namespace w {
   void odom::Tracker::debug() {
     // std::cout << "(" << x << ", " << y << ")  | " << TODEG(a) << std::endl;
   }

@@ -17,7 +17,7 @@ float dist(float x1, float y1, float x2, float y2) {
   return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
-float dist(::hc::odom::Point a, ::hc::odom::Point b) {
+float dist(::w::odom::Point a, ::w::odom::Point b) {
   return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
 
@@ -25,7 +25,7 @@ float dot(float x1, float y1, float x2, float y2) {
   return (x1 * x2) + (y1 * y2);
 }
 
-float dot(::hc::odom::Point a, ::hc::odom::Point b) { return a.x * b.x + a.y * b.y; }
+float dot(::w::odom::Point a, ::w::odom::Point b) { return a.x * b.x + a.y * b.y; }
 
 
 float remap (float value, float from1, float to1, float from2, float to2) {
@@ -41,46 +41,46 @@ float angleDiff(float angle1, float angle2) {
 
 
 // vector stuffs
-::hc::odom::Point add(::hc::odom::Point a, ::hc::odom::Point b) {
+::w::odom::Point add(::w::odom::Point a, ::w::odom::Point b) {
   return { a.x + b.x, a.y + b.y };
 }
-::hc::odom::Point sub(::hc::odom::Point a, ::hc::odom::Point b) {
+::w::odom::Point sub(::w::odom::Point a, ::w::odom::Point b) {
   return { a.x - b.x, a.y - b.y };
 }
-::hc::odom::Point mult(::hc::odom::Point a, ::hc::odom::Point b) {
+::w::odom::Point mult(::w::odom::Point a, ::w::odom::Point b) {
   return { a.x * b.x, a.y * b.y };
 }
-::hc::odom::Point div(::hc::odom::Point a, ::hc::odom::Point b) {
+::w::odom::Point div(::w::odom::Point a, ::w::odom::Point b) {
   return { a.x / b.x, a.y / b.y };
 }
 
-float mag(::hc::odom::Point a) {
+float mag(::w::odom::Point a) {
   return sqrt((a.x * a.x) + (a.y * a.y));
 }
 
-::hc::odom::Point normalize(::hc::odom::Point a) {
+::w::odom::Point normalize(::w::odom::Point a) {
   if(mag(a) == 0) return a;
   return { a.x / mag(a), a.y / mag(a) };
 }
 
-::hc::odom::Point multScalar(::hc::odom::Point a, float b) {
+::w::odom::Point multScalar(::w::odom::Point a, float b) {
   return { a.x * b, a.y * b };
 }
 
 // target stuffs
-::hc::odom::Point closest(::hc::odom::Point current, ::hc::odom::Point head, ::hc::odom::Point target) {
-  ::hc::odom::Point n = normalize(head);
-  ::hc::odom::Point v = sub(target, current);
+::w::odom::Point closest(::w::odom::Point current, ::w::odom::Point head, ::w::odom::Point target) {
+  ::w::odom::Point n = normalize(head);
+  ::w::odom::Point v = sub(target, current);
   float d = dot(v.x, v.y, n.x, n.y);
   return add(current, multScalar(n, d));
 }
 
-::hc::odom::Point getNormalPoint(::hc::odom::Point p, ::hc::odom::Point a, ::hc::odom::Point b) {
-  ::hc::odom::Point ap = sub(p, a);
-  ::hc::odom::Point ab = sub(b, a);
+::w::odom::Point getNormalPoint(::w::odom::Point p, ::w::odom::Point a, ::w::odom::Point b) {
+  ::w::odom::Point ap = sub(p, a);
+  ::w::odom::Point ab = sub(b, a);
   ab = normalize(ab);
   ab = multScalar(ab, dot(ap, ab));
-  ::hc::odom::Point r = add(a, ab);
+  ::w::odom::Point r = add(a, ab);
   if ((r.y > std::max(a.y, b.y) && r.x > std::max(a.x, b.x)) ||
       (r.y < std::min(a.y, b.y) && r.x < std::min(a.x, b.x)) ||
       (r.y > std::max(a.y, b.y) && r.x < std::min(a.x, b.x)) ||
@@ -90,14 +90,14 @@ float mag(::hc::odom::Point a) {
   return r;
 }
 
-::hc::odom::Point getTarget(::hc::odom::Point path[], int len, ::hc::odom::Point current, float along) {
-  ::hc::odom::Point target;
+::w::odom::Point getTarget(::w::odom::Point path[], int len, ::w::odom::Point current, float along) {
+  ::w::odom::Point target;
 
-  ::hc::odom::Point normal;
+  ::w::odom::Point normal;
   int seg = 0;
 
   for(int i = 0; i < len - 1; i++) {
-    ::hc::odom::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
+    ::w::odom::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
     if(i == 0 || (dist(current, normalPoint) < dist(current, normal))) {
       normal = normalPoint;
       seg = i;
@@ -107,7 +107,7 @@ float mag(::hc::odom::Point a) {
   std::cout << "normal:  (" << normal.x << ", " << normal.y << ")" << std::endl;
 
 
-  ::hc::odom::Point turnless = sub(path[seg + 1], path[seg]);
+  ::w::odom::Point turnless = sub(path[seg + 1], path[seg]);
   turnless = normalize(turnless);
   turnless = multScalar(turnless, along);
   turnless = add(normal, turnless);
@@ -115,8 +115,8 @@ float mag(::hc::odom::Point a) {
 
   if(dist(normal, turnless) < subDist) return turnless;
 
-  ::hc::odom::Point lookAhead;
-  ::hc::odom::Point prevPoint = normal;
+  ::w::odom::Point lookAhead;
+  ::w::odom::Point prevPoint = normal;
   float n = along;
 
   while(0 < n) {
@@ -140,11 +140,11 @@ float mag(::hc::odom::Point a) {
 }
 
 
-namespace hc {
+namespace w {
   void robot::Robot::seek(float x, float y, pid::PID *transPID, pid::PID *rotPID) {
     float tA = atan2(posTracker.x - x, posTracker.y - y);
 
-    ::hc::odom::Point close = closest(
+    ::w::odom::Point close = closest(
       { posTracker.x, posTracker.y },
       { cos(posTracker.a), sin(posTracker.a) },
       { x, y }
@@ -180,9 +180,9 @@ namespace hc {
     RIGHT_DRIVE_SET(Vr);
   }
 
-  void robot::Robot::moveTo(::hc::odom::Point target, float err, float exit) {
-    ::hc::pid::PID *transPID = new ::hc::pid::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED, MIN_SPEED);
-    ::hc::pid::PID *rotPID = new ::hc::pid::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
+  void robot::Robot::moveTo(::w::odom::Point target, float err, float exit) {
+    ::w::pid::PID *transPID = new ::w::pid::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED, MIN_SPEED);
+    ::w::pid::PID *rotPID = new ::w::pid::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
 
     std::uint32_t started = pros::millis();
 
@@ -196,9 +196,9 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void robot::Robot::moveTo(::hc::odom::Point target, float err, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float exit) {
-    ::hc::pid::PID *transPID = new ::hc::pid::PID(tPID, 0.001, 0.0001);
-    ::hc::pid::PID *rotPID = new ::hc::pid::PID(rPID, 0.0001, 0.00001);
+  void robot::Robot::moveTo(::w::odom::Point target, float err, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit) {
+    ::w::pid::PID *transPID = new ::w::pid::PID(tPID, 0.001, 0.0001);
+    ::w::pid::PID *rotPID = new ::w::pid::PID(rPID, 0.0001, 0.00001);
 
     std::uint32_t started = pros::millis();
 
@@ -213,23 +213,23 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void robot::Robot::moveTo(::hc::odom::Point target, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float exit) {
+  void robot::Robot::moveTo(::w::odom::Point target, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit) {
     robot::Robot::moveTo(target, P_ERR, tPID, rPID);
   }
 
-  void robot::Robot::moveToSimple(::hc::odom::Point target) {
+  void robot::Robot::moveToSimple(::w::odom::Point target) {
     turnToFace(target, 60);
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
   }
 
-  void robot::Robot::moveAlong(::hc::odom::Point wayPoints[], int len, float lookAhead, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float err, float exit) {
+  void robot::Robot::moveAlong(::w::odom::Point wayPoints[], int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err, float exit) {
 
     std::uint32_t started = pros::millis();
-    ::hc::pid::PID *transPID = new ::hc::pid::PID(tPID, 0.001, 0.0001);
-    ::hc::pid::PID *rotPID = new ::hc::pid::PID(rPID, 0.0001, 0.00001);
+    ::w::pid::PID *transPID = new ::w::pid::PID(tPID, 0.001, 0.0001);
+    ::w::pid::PID *rotPID = new ::w::pid::PID(rPID, 0.0001, 0.00001);
 
     while(!withinErr(posTracker.x, posTracker.y, wayPoints[len - 1].x, wayPoints[len - 1].y, 0.001)) {
-      ::hc::odom::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);
+      ::w::odom::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);
 
       std::cout << "target:  (" << target.x << ", " << target.y << ")" << std::endl;
       std::cout << "current: (" << posTracker.x << ", " << posTracker.y << ")" << std::endl;
@@ -247,7 +247,7 @@ namespace hc {
   }
 
   void robot::Robot::moveFor(float distIn, float exit) {
-    ::hc::odom::Point start = {
+    ::w::odom::Point start = {
       posTracker.x,
       posTracker.y
     };
@@ -284,7 +284,7 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void robot::Robot::turnToFace(::hc::odom::Point point, float max) {
+  void robot::Robot::turnToFace(::w::odom::Point point, float max) {
     turnToFace(TODEG(atan2(point.y - posTracker.y, point.x - posTracker.x)), max);
   }
 
@@ -322,4 +322,4 @@ namespace hc {
   }
 }
 
-hc::robot::Robot robot = hc::robot::Robot(&posTracker, &mainPID);
+w::robot::Robot robot = w::robot::Robot(&posTracker, &mainPID);

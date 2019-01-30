@@ -1,7 +1,7 @@
 #include "auton_selector.hpp"
 
 
-namespace hc {
+namespace w {
   lv_obj_t* auton_selector::feildContainer = lv_cont_create(lv_scr_act(), NULL);
 
   std::string auton_selector::selectedAuton = "";
@@ -93,38 +93,38 @@ namespace hc {
   void auton_selector::drawTiles(std::function <void(int)> onChange) {
     // bind functions to output
     lv_btn_set_action(blueA, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::auton_selector::selectedTile = TILE_BLUE_A;
+      w::auton_selector::selectedTile = TILE_BLUE_A;
 
-      lv_ddlist_set_options(hc::auton_selector::list, AUTON_OPTIONS_BLUE_A);
+      lv_ddlist_set_options(w::auton_selector::list, AUTON_OPTIONS_BLUE_A);
       lv_btn_set_style(btn, LV_BTN_STYLE_PR, &blueTileActive);
-      hc::auton_selector::setActiveTile(btn);
+      w::auton_selector::setActiveTile(btn);
       return LV_RES_OK;
     });
 
     lv_btn_set_action(blueB, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::auton_selector::selectedTile = TILE_BLUE_B;
+      w::auton_selector::selectedTile = TILE_BLUE_B;
 
-      lv_ddlist_set_options(hc::auton_selector::list, AUTON_OPTIONS_BLUE_B);
+      lv_ddlist_set_options(w::auton_selector::list, AUTON_OPTIONS_BLUE_B);
       lv_btn_set_style(btn, LV_BTN_STYLE_PR, &blueTileActive);
-      hc::auton_selector::setActiveTile(btn);
+      w::auton_selector::setActiveTile(btn);
       return LV_RES_OK;
     });
 
     lv_btn_set_action(redA, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::auton_selector::selectedTile = TILE_RED_A;
-      lv_ddlist_set_options(hc::auton_selector::list, AUTON_OPTIONS_RED_A);
+      w::auton_selector::selectedTile = TILE_RED_A;
+      lv_ddlist_set_options(w::auton_selector::list, AUTON_OPTIONS_RED_A);
       lv_btn_set_style(btn, LV_BTN_STYLE_REL, &redTile);
       lv_btn_set_style(btn, LV_BTN_STYLE_PR, &redTileActive);
-      hc::auton_selector::setActiveTile(btn);
+      w::auton_selector::setActiveTile(btn);
       return LV_RES_OK;
     });
 
     lv_btn_set_action(redB, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::auton_selector::selectedTile = TILE_RED_B;
-      lv_ddlist_set_options(hc::auton_selector::list, AUTON_OPTIONS_RED_B);
+      w::auton_selector::selectedTile = TILE_RED_B;
+      lv_ddlist_set_options(w::auton_selector::list, AUTON_OPTIONS_RED_B);
       lv_btn_set_style(btn, LV_BTN_STYLE_REL, &redTile);
       lv_btn_set_style(btn, LV_BTN_STYLE_PR, &redTileActive);
-      hc::auton_selector::setActiveTile(btn);
+      w::auton_selector::setActiveTile(btn);
       return LV_RES_OK;
     });
   }
