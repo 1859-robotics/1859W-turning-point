@@ -3,7 +3,7 @@
 #include "robot-config.hpp"
 
 void runAuton() {
-  if(hc::pentane::selectedTile == -1) {
+  if(hc::auton_selector::selectedTile == -1) {
     std::cout << "did not run auton" << std::endl;
     if(SKILLS_MODE) {
       #include "./auton/skills-2.auton"
@@ -11,32 +11,32 @@ void runAuton() {
     return;
   }
 
-  if(hc::pentane::selectedTile == TILE_RED_A) {
+  if(hc::auton_selector::selectedTile == TILE_RED_A) {
     std::cout << "runing on tile: " << TILE_RED_A << std::endl;
-    if(hc::pentane::selectedAuton == RED_NEAR_1) {
+    if(hc::auton_selector::selectedAuton == RED_NEAR_1) {
       #include "./auton/red-near-1.auton"
-    } else if(hc::pentane::selectedAuton == RED_NEAR_2) {
+    } else if(hc::auton_selector::selectedAuton == RED_NEAR_2) {
       #include "./auton/red-near-0.auton"
-    } else if(hc::pentane::selectedAuton == RED_NEAR_3) {
+    } else if(hc::auton_selector::selectedAuton == RED_NEAR_3) {
       #include "./auton/red-near-2.auton"
     }
-  } else if(hc::pentane::selectedTile == TILE_RED_B) {
+  } else if(hc::auton_selector::selectedTile == TILE_RED_B) {
     std::cout << "runing on tile: " << TILE_RED_B << std::endl;
-    if(hc::pentane::selectedAuton == RED_FAR_1) {
+    if(hc::auton_selector::selectedAuton == RED_FAR_1) {
       #include "./auton/red-far-1.auton"
-    } else if(hc::pentane::selectedAuton == RED_FAR_2) {
+    } else if(hc::auton_selector::selectedAuton == RED_FAR_2) {
       #include "./auton/red-far-0.auton"
     }
-  } else if(hc::pentane::selectedTile == TILE_BLUE_B) {
-    if(hc::pentane::selectedAuton == BLUE_FAR_1) {
+  } else if(hc::auton_selector::selectedTile == TILE_BLUE_B) {
+    if(hc::auton_selector::selectedAuton == BLUE_FAR_1) {
       #include "./auton/blue-far-1.auton"
-    } else if(hc::pentane::selectedAuton == BLUE_FAR_2) {
+    } else if(hc::auton_selector::selectedAuton == BLUE_FAR_2) {
       #include "./auton/blue-far-0.auton"
     }
-  } else if(hc::pentane::selectedTile == TILE_BLUE_A) {
-    if(hc::pentane::selectedAuton == BLUE_NEAR_1) {
+  } else if(hc::auton_selector::selectedTile == TILE_BLUE_A) {
+    if(hc::auton_selector::selectedAuton == BLUE_NEAR_1) {
       #include "./auton/blue-near-1.auton"
-    } else if(hc::pentane::selectedAuton == BLUE_NEAR_2) {
+    } else if(hc::auton_selector::selectedAuton == BLUE_NEAR_2) {
       #include "./auton/blue-near-0.auton"
     }
   }

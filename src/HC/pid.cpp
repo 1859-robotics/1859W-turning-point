@@ -1,7 +1,7 @@
-#include "propene.hpp"
+#include "pid.hpp"
 
 namespace hc {
-  void propene::PID::debug(std::string name) {
+  void pid::PID::debug(std::string name) {
     std::cout << "PID: " << name << std::endl <<
       "kP: " << kP <<
     ", kI: " << kI <<
@@ -10,13 +10,13 @@ namespace hc {
     ", lastSetPoint: " << lastSetPoint << std::endl << std::endl;
   }
 
-  void propene::PID::reset() {
+  void pid::PID::reset() {
     lastValue = 0;
     lastTime = pros::millis();
     lastSetPoint = 0;
   }
 
-  float propene::PID::calculate(float current, float target) {
+  float pid::PID::calculate(float current, float target) {
     float deltaTime = (float)(pros::millis() - lastTime) / 1000.0;
   	lastTime = pros::millis();
 
@@ -50,7 +50,7 @@ namespace hc {
   	return output;
   }
 
-  void propene::PID::config(float kP,           float kI,           float kD,
+  void pid::PID::config(float kP,           float kI,           float kD,
               float epsilonInner, float epsilonOuter,
               int maxSpeed = MAX_SPEED, int minSpeed = MIN_SPEED) {
     this->kP = kP;
@@ -62,7 +62,7 @@ namespace hc {
     this->minSpeed = minSpeed;
   }
 
-  void propene::PID::doPID(float target, float tolerance, std::function <float()> current, std::function <void(float)> action, float kp, float ki, float kd, float epsilonInner, float epsilonOuter, int maxSpeed, int minSpeed) {
+  void pid::PID::doPID(float target, float tolerance, std::function <float()> current, std::function <void(float)> action, float kp, float ki, float kd, float epsilonInner, float epsilonOuter, int maxSpeed, int minSpeed) {
     //config(kp, ki, kd, epsilonInner, epsilonOuter, maxSpeed, minSpeed);
 
     bool atSetPoint = false;
@@ -86,7 +86,7 @@ namespace hc {
     }
   }
 
-  propene::PID *deepCopy(::hc::propene::PID *pid) {
-    return new propene::PID(pid->kP, pid->kI, pid->kD, pid->epsilonInner, pid->epsilonOuter);
+  pid::PID *deepCopy(::hc::pid::PID *pid) {
+    return new pid::PID(pid->kP, pid->kI, pid->kD, pid->epsilonInner, pid->epsilonOuter);
   }
 }

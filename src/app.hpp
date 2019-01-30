@@ -8,9 +8,9 @@
 #define REMOVE_TASK(name) name.remove(); while(name.get_state() != TASK_STATE_DELETED) {}
 
 #include "HC/odom.hpp"
-#include "HC/propene.hpp"
+#include "HC/pid.hpp"
 #include "HC/robot.hpp"
-#include "HC/pentane.hpp"
+#include "HC/auton_selector.hpp"
 
 #include "robot-config.hpp"
 

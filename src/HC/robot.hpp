@@ -3,8 +3,8 @@
 
 #include "main.h"
 #include "odom.hpp"
-#include "pentane.hpp"
-#include "propene.hpp"
+#include "auton_selector.hpp"
+#include "pid.hpp"
 #include "../robot-config.hpp"
 
 // robot specification macros
@@ -22,9 +22,9 @@ namespace hc {
 
     public:
       Robot(::hc::odom::Tracker *tracker,
-            ::hc::propene::PID *pid) :
+            ::hc::pid::PID *pid) :
             tracker(tracker) {};
-      void seek(float x, float y, ::hc::propene::PID *transPID, ::hc::propene::PID *rotPID);
+      void seek(float x, float y, ::hc::pid::PID *transPID, ::hc::pid::PID *rotPID);
       void reset();
 
       void feedBall(float exit = 10000);
@@ -33,10 +33,10 @@ namespace hc {
       void flyUp(int rpm, std::function <void(float)> action);
 
       void moveTo(::hc::odom::Point target, float err = P_ERR, float exit = 10000); // moves to a point
-      void moveTo(::hc::odom::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit = 10000);
-      void moveTo(::hc::odom::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit = 10000);
+      void moveTo(::hc::odom::Point target, float err, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float exit = 10000);
+      void moveTo(::hc::odom::Point target, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float exit = 10000);
 
-      void moveAlong(::hc::odom::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err = P_ERR, float exit = 6000);
+      void moveAlong(::hc::odom::Point wayPoints[], int len, float lookAhead, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float err = P_ERR, float exit = 6000);
       // moves the bot along a set of way points
 
       void moveToSimple(::hc::odom::Point target);

@@ -75,11 +75,11 @@ extern pros::ADIDigitalIn limit;
 
 
 #include "HC/odom.hpp"
-#include "HC/propene.hpp"
+#include "HC/pid.hpp"
 // #include "HC/robot.hpp"
 
 // abstractions
 extern hc::odom::Tracker posTracker;
-extern hc::propene::PID mainPID;
+extern hc::pid::PID mainPID;
 
 #endif

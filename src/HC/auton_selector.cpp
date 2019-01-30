@@ -1,25 +1,25 @@
-#include "pentane.hpp"
+#include "auton_selector.hpp"
 
 
 namespace hc {
-  lv_obj_t* pentane::feildContainer = lv_cont_create(lv_scr_act(), NULL);
+  lv_obj_t* auton_selector::feildContainer = lv_cont_create(lv_scr_act(), NULL);
 
-  std::string pentane::selectedAuton = "";
-  int pentane::selectedTile = -1;
-  lv_obj_t * pentane::list = lv_ddlist_create(lv_scr_act(), NULL);
+  std::string auton_selector::selectedAuton = "";
+  int auton_selector::selectedTile = -1;
+  lv_obj_t * auton_selector::list = lv_ddlist_create(lv_scr_act(), NULL);
 
-  lv_obj_t *pentane::redA = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *pentane::redB = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *pentane::blueA = lv_btn_create(lv_scr_act(), NULL);
-  lv_obj_t *pentane::blueB = lv_btn_create(lv_scr_act(), NULL);
+  lv_obj_t *auton_selector::redA = lv_btn_create(lv_scr_act(), NULL);
+  lv_obj_t *auton_selector::redB = lv_btn_create(lv_scr_act(), NULL);
+  lv_obj_t *auton_selector::blueA = lv_btn_create(lv_scr_act(), NULL);
+  lv_obj_t *auton_selector::blueB = lv_btn_create(lv_scr_act(), NULL);
 
-  lv_style_t pentane::redTile = {};
-  lv_style_t pentane::redTileActive = {};
-  lv_style_t pentane::blueTile = {};
-  lv_style_t pentane::blueTileActive = {};
-  lv_style_t pentane::activeTile = {};
+  lv_style_t auton_selector::redTile = {};
+  lv_style_t auton_selector::redTileActive = {};
+  lv_style_t auton_selector::blueTile = {};
+  lv_style_t auton_selector::blueTileActive = {};
+  lv_style_t auton_selector::activeTile = {};
 
-  void pentane::drawFeild() {
+  void auton_selector::drawFeild() {
     static lv_style_t feildBase;
 
     lv_style_copy(&feildBase, &lv_style_plain_color);
@@ -30,7 +30,7 @@ namespace hc {
     lv_obj_set_size(feildContainer, 240, 240);
   }
 
-  void pentane::init() {
+  void auton_selector::init() {
     // style init
     lv_style_copy(&redTile, &lv_style_plain_color);
     redTile.body.main_color = LV_COLOR_RED;
@@ -81,7 +81,7 @@ namespace hc {
     lv_obj_set_free_num(blueB, 4);
   }
 
-  void pentane::setActiveTile(lv_obj_t *active) {
+  void auton_selector::setActiveTile(lv_obj_t *active) {
     lv_btn_set_style(redA, LV_BTN_STYLE_REL, &redTile);
     lv_btn_set_style(redB, LV_BTN_STYLE_REL, &redTile);
     lv_btn_set_style(blueA, LV_BTN_STYLE_REL, &blueTile);
@@ -90,41 +90,41 @@ namespace hc {
     lv_btn_set_style(active, LV_BTN_STYLE_REL, &activeTile);
   }
 
-  void pentane::drawTiles(std::function <void(int)> onChange) {
+  void auton_selector::drawTiles(std::function <void(int)> onChange) {
     // bind functions to output
     lv_btn_set_action(blueA, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::pentane::selectedTile = TILE_BLUE_A;
+      hc::auton_selector::selectedTile = TILE_BLUE_A;
 
-      lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_BLUE_A);
+      lv_ddlist_set_options(hc::auton_selector::list, AUTON_OPTIONS_BLUE_A);
       lv_btn_set_style(btn, LV_BTN_STYLE_PR, &blueTileActive);
-      hc::pentane::setActiveTile(btn);
+      hc::auton_selector::setActiveTile(btn);
       return LV_RES_OK;
     });
 
     lv_btn_set_action(blueB, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::pentane::selectedTile = TILE_BLUE_B;
+      hc::auton_selector::selectedTile = TILE_BLUE_B;
 
-      lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_BLUE_B);
+      lv_ddlist_set_options(hc::auton_selector::list, AUTON_OPTIONS_BLUE_B);
       lv_btn_set_style(btn, LV_BTN_STYLE_PR, &blueTileActive);
-      hc::pentane::setActiveTile(btn);
+      hc::auton_selector::setActiveTile(btn);
       return LV_RES_OK;
     });
 
     lv_btn_set_action(redA, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::pentane::selectedTile = TILE_RED_A;
-      lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_RED_A);
+      hc::auton_selector::selectedTile = TILE_RED_A;
+      lv_ddlist_set_options(hc::auton_selector::list, AUTON_OPTIONS_RED_A);
       lv_btn_set_style(btn, LV_BTN_STYLE_REL, &redTile);
       lv_btn_set_style(btn, LV_BTN_STYLE_PR, &redTileActive);
-      hc::pentane::setActiveTile(btn);
+      hc::auton_selector::setActiveTile(btn);
       return LV_RES_OK;
     });
 
     lv_btn_set_action(redB, LV_BTN_ACTION_PR, [](lv_obj_t * btn) -> lv_res_t {
-      hc::pentane::selectedTile = TILE_RED_B;
-      lv_ddlist_set_options(hc::pentane::list, AUTON_OPTIONS_RED_B);
+      hc::auton_selector::selectedTile = TILE_RED_B;
+      lv_ddlist_set_options(hc::auton_selector::list, AUTON_OPTIONS_RED_B);
       lv_btn_set_style(btn, LV_BTN_STYLE_REL, &redTile);
       lv_btn_set_style(btn, LV_BTN_STYLE_PR, &redTileActive);
-      hc::pentane::setActiveTile(btn);
+      hc::auton_selector::setActiveTile(btn);
       return LV_RES_OK;
     });
   }

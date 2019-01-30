@@ -141,7 +141,7 @@ float mag(::hc::odom::Point a) {
 
 
 namespace hc {
-  void robot::Robot::seek(float x, float y, propene::PID *transPID, propene::PID *rotPID) {
+  void robot::Robot::seek(float x, float y, pid::PID *transPID, pid::PID *rotPID) {
     float tA = atan2(posTracker.x - x, posTracker.y - y);
 
     ::hc::odom::Point close = closest(
@@ -181,8 +181,8 @@ namespace hc {
   }
 
   void robot::Robot::moveTo(::hc::odom::Point target, float err, float exit) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED, MIN_SPEED);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
+    ::hc::pid::PID *transPID = new ::hc::pid::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED, MIN_SPEED);
+    ::hc::pid::PID *rotPID = new ::hc::pid::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
 
     std::uint32_t started = pros::millis();
 
@@ -196,9 +196,9 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void robot::Robot::moveTo(::hc::odom::Point target, float err, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
+  void robot::Robot::moveTo(::hc::odom::Point target, float err, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float exit) {
+    ::hc::pid::PID *transPID = new ::hc::pid::PID(tPID, 0.001, 0.0001);
+    ::hc::pid::PID *rotPID = new ::hc::pid::PID(rPID, 0.0001, 0.00001);
 
     std::uint32_t started = pros::millis();
 
@@ -213,7 +213,7 @@ namespace hc {
     LEFT_DRIVE_SET(0);
   }
 
-  void robot::Robot::moveTo(::hc::odom::Point target, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float exit) {
+  void robot::Robot::moveTo(::hc::odom::Point target, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float exit) {
     robot::Robot::moveTo(target, P_ERR, tPID, rPID);
   }
 
@@ -222,11 +222,11 @@ namespace hc {
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
   }
 
-  void robot::Robot::moveAlong(::hc::odom::Point wayPoints[], int len, float lookAhead, ::hc::propene::PIDConfig tPID, ::hc::propene::PIDConfig rPID, float err, float exit) {
+  void robot::Robot::moveAlong(::hc::odom::Point wayPoints[], int len, float lookAhead, ::hc::pid::PIDConfig tPID, ::hc::pid::PIDConfig rPID, float err, float exit) {
 
     std::uint32_t started = pros::millis();
-    ::hc::propene::PID *transPID = new ::hc::propene::PID(tPID, 0.001, 0.0001);
-    ::hc::propene::PID *rotPID = new ::hc::propene::PID(rPID, 0.0001, 0.00001);
+    ::hc::pid::PID *transPID = new ::hc::pid::PID(tPID, 0.001, 0.0001);
+    ::hc::pid::PID *rotPID = new ::hc::pid::PID(rPID, 0.0001, 0.00001);
 
     while(!withinErr(posTracker.x, posTracker.y, wayPoints[len - 1].x, wayPoints[len - 1].y, 0.001)) {
       ::hc::odom::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);

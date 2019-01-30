@@ -1,5 +1,5 @@
-#ifndef PROPENE_HPP
-#define PROPENE_HPP
+#ifndef pid_HPP
+#define pid_HPP
 
 #include "main.h"
 #include <functional>
@@ -10,7 +10,7 @@
 #define MAX_SPEED 127
 
 namespace hc {
-  namespace propene {
+  namespace pid {
     typedef struct {
       float kP;
       float kI;
@@ -60,7 +60,7 @@ namespace hc {
       float calculate(float target, float current);
     };
 
-    propene::PID *deepCopy(::hc::propene::PID *pid);
+    pid::PID *deepCopy(::hc::pid::PID *pid);
   }
 }
 
