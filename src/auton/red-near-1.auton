@@ -7,8 +7,8 @@ robot.combineSet(false);
 robot.moveFor(39); // move 40in forward
 
 // shoot mid flag
-robot.moveFor(-44); // move 40in backwards
-robot.flyUp(360, [](float rpm) -> void {
+robot.moveFor(-39); // move 40in backwards
+robot.flyUp(340, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
@@ -32,8 +32,6 @@ robot.flyUp(460, [](float rpm) -> void {
   pros::delay(200);
   INTAKE_SET(0);
 });
-
-robot.moveFor(24);
 
 robot.turnToFace(135);
 

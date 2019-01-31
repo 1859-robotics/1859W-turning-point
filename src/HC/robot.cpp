@@ -278,12 +278,12 @@ namespace w {
     mainPID.doPID(deg, A_ERR, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
-      RIGHT_DRIVE_SET_AUTO(output);
-      LEFT_DRIVE_SET_AUTO(-output);
+      RIGHT_DRIVE_SET(output);
+      LEFT_DRIVE_SET(-output);
     });
 
-    RIGHT_DRIVE_SET_AUTO(0);
-    LEFT_DRIVE_SET_AUTO(0);
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
   }
 
   void robot::Robot::turnToFace(::w::odom::Point point, float max) {
