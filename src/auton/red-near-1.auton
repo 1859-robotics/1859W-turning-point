@@ -1,32 +1,42 @@
 // setup
-posTracker.setPos({ 60, 9 }, 180);
-FLYWHEEL_SET(FLYWHEEL_IDLE);
+posTracker.setPos({ 9, 64 }, 180);
+FLYWHEEL_SET(FLYWHEEL_IDLE - 20);
 robot.combineSet(false);
 
-// toggle low flat
-robot.moveTo({ 24, 9 }, { 10, 0, 1, 80 }, { 0.5, 0, 0, 10, 0 }, 2000);
+// toggle low flag
+robot.moveFor(39); // move 40in forward
 
-// go back & turn
-pros::delay(400);
-robot.moveTo({ 60, 9 }, { 10, 0, 1, 80 }, { 0.5, 0, 0, 10, 0 }, 2000);
-
-// shoot ball
+// shoot mid flag
+robot.moveFor(-44); // move 40in backwards
 robot.flyUp(360, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
 });
 
+FLYWHEEL_SET(FLYWHEEL_IDLE);
 
-// pick up ball
 robot.turnToFace(90);
-robot.moveTo({ 60, 45 }, { 10, 0, 1, 80 }, { 0.5, 0, 0, 10, 0 }, 2000);
-robot.feedBall();
 
-// shoot next flag
-robot.moveTo({ 60, 9 }, { 10, 0, 1, 80 }, { 0.5, 0, 0, 10, 0 }, 2000);
-robot.flyUp(510, [](float rpm) -> void {
+robot.moveFor(35); // move 35in forward
+robot.feedBall();
+robot.moveFor(-34);
+
+FLYWHEEL_SET(127);
+
+robot.turnToFace(180);
+
+
+robot.flyUp(460, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
 });
+
+robot.moveFor(24);
+
+robot.turnToFace(135);
+
+robot.combineSet(true);
+robot.moveFor(40);
+robot.moveFor(-10);

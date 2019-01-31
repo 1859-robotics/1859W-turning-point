@@ -48,6 +48,9 @@ extern pros::ADIDigitalIn limit;
 #define RIGHT_DRIVE_SET(spd) rightDriveF.move(spd); rightDriveB.move(spd)
 #define LEFT_DRIVE_SET(spd) leftDriveF.move(spd); leftDriveB.move(spd)
 
+#define RIGHT_DRIVE_SET_AUTO(spd) rightDriveF.move(spd);
+#define LEFT_DRIVE_SET_AUTO(spd) leftDriveF.move(spd);
+
 #define FLYWHEEL_SET(spd) flywheelL.move(spd); flywheelR.move(spd)
 #define FLYWHEEL_SET_VEL(spd) flywheelL.move_velocity(spd); flywheelR.move_velocity(spd)
 

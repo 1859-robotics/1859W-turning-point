@@ -178,8 +178,8 @@ namespace w {
       Vl = (Vl / maxMag) * MAX_SPEED * SGN(Vl);
     }
 
-    LEFT_DRIVE_SET(Vl);
-    RIGHT_DRIVE_SET(Vr);
+    LEFT_DRIVE_SET_AUTO(Vl);
+    RIGHT_DRIVE_SET_AUTO(Vr);
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, float err, float exit) {
@@ -194,8 +194,8 @@ namespace w {
       pros::delay(20);
     }
 
-    RIGHT_DRIVE_SET(0);
-    LEFT_DRIVE_SET(0);
+    RIGHT_DRIVE_SET_AUTO(0);
+    LEFT_DRIVE_SET_AUTO(0);
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, float err, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit) {
@@ -211,8 +211,8 @@ namespace w {
       pros::delay(20);
     }
 
-    RIGHT_DRIVE_SET(0);
-    LEFT_DRIVE_SET(0);
+    RIGHT_DRIVE_SET_AUTO(0);
+    LEFT_DRIVE_SET_AUTO(0);
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit) {
@@ -243,8 +243,8 @@ namespace w {
       pros::delay(20);
     }
 
-    RIGHT_DRIVE_SET(0);
-    LEFT_DRIVE_SET(0);
+    RIGHT_DRIVE_SET_AUTO(0);
+    LEFT_DRIVE_SET_AUTO(0);
     std::cout << "end moveAlong" << std::endl;
   }
 
@@ -263,11 +263,11 @@ namespace w {
       if((pros::millis() - started) > exit) return 0;
       return (fabs(distIn) - dist(start.x, start.y, posTracker.x, posTracker.y));
     }, [=](float output) -> void {
-      RIGHT_DRIVE_SET(SGN(-distIn) * output);
-      LEFT_DRIVE_SET(SGN(-distIn) * output);
+      RIGHT_DRIVE_SET_AUTO(SGN(-distIn) * output);
+      LEFT_DRIVE_SET_AUTO(SGN(-distIn) * output);
     });
-    RIGHT_DRIVE_SET(0);
-    LEFT_DRIVE_SET(0);
+    RIGHT_DRIVE_SET_AUTO(0);
+    LEFT_DRIVE_SET_AUTO(0);
   }
 
   void robot::Robot::turnToFace(float deg, float max) {
@@ -278,12 +278,12 @@ namespace w {
     mainPID.doPID(deg, A_ERR, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
-      RIGHT_DRIVE_SET(output);
-      LEFT_DRIVE_SET(-output);
+      RIGHT_DRIVE_SET_AUTO(output);
+      LEFT_DRIVE_SET_AUTO(-output);
     });
 
-    RIGHT_DRIVE_SET(0);
-    LEFT_DRIVE_SET(0);
+    RIGHT_DRIVE_SET_AUTO(0);
+    LEFT_DRIVE_SET_AUTO(0);
   }
 
   void robot::Robot::turnToFace(::w::odom::Point point, float max) {
