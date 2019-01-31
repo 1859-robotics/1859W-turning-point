@@ -46,11 +46,12 @@ void autonomous() {
   robot.reset();
   pros::Task track(w::odom::track, &posTracker);
 
+  #include "./auton/red-near-1.auton"
 
-              // #include "./auton/test.auton"
+                // #include "./auton/test.auton"
 
-  runAuton();
-  // // track.remove();
+  // runAuton();
+  // // // track.remove();
 
   while(true) { pros::delay(20); }
 }

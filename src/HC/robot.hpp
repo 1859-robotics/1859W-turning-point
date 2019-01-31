@@ -32,11 +32,11 @@ namespace w {
 
       void flyUp(int rpm, std::function <void(float)> action);
 
-      void moveTo(::w::odom::Point target, float err = P_ERR, float exit = 10000); // moves to a point
-      void moveTo(::w::odom::Point target, float err, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit = 10000);
-      void moveTo(::w::odom::Point target, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit = 10000);
+      void moveTo(::w::odom::Point target, float err = P_ERR, float exit = 5000); // moves to a point
+      void moveTo(::w::odom::Point target, float err, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit = 5000);
+      void moveTo(::w::odom::Point target, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit = 5000);
 
-      void moveAlong(::w::odom::Point wayPoints[], int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err = P_ERR, float exit = 6000);
+      void moveAlong(::w::odom::Point wayPoints[], int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err = P_ERR, float exit = 10000);
       // moves the bot along a set of way points
 
       void moveToSimple(::w::odom::Point target);
