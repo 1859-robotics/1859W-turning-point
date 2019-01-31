@@ -184,7 +184,7 @@ namespace w {
 
   void robot::Robot::moveTo(::w::odom::Point target, float err, float exit) {
     ::w::pid::PID *transPID = new ::w::pid::PID(10, 0, 0, 0.001, 0.0001, MAX_SPEED, MIN_SPEED);
-    ::w::pid::PID *rotPID = new ::w::pid::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED, MIN_SPEED);
+    ::w::pid::PID *rotPID = new ::w::pid::PID(2, 0, 0, 0.0001, 0.00001, MAX_SPEED, 0);
 
     std::uint32_t started = pros::millis();
 
