@@ -41,15 +41,15 @@ void runAuton() {
     }
   }
 }
-
+  
 void autonomous() {
   robot.reset();
   pros::Task track(w::odom::track, &posTracker);
 
-  #include "./auton/test.auton"
-        
-  // runAuton();
-  // // // track.remove();
+  // #include "./auton/test.auton"
+
+  runAuton();
+      // // // track.remove();
 
   while(true) { pros::delay(20); }
 }

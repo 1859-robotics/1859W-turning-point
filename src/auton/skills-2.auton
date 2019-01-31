@@ -11,8 +11,8 @@
 
 posTracker.setPos({ 0, 0 }, 90);
 
-FLYWHEEL_SET(FLYWHEEL_IDLE);
+// FLYWHEEL_SET(FLYWHEEL_IDLE);
 
-robot.combineSet(false);
+// robot.combineSet(false);
 
-robot.moveTo({ 18, 18 }, { 1, 0, 0, 127 }, { 20, 0, 0, 127, 0 });
+robot.moveTo({ 0, 20 }, { 0, 0, 0, 127 }, { 10, 0, 0, 127, 0 }, 100000);

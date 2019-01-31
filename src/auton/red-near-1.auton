@@ -10,7 +10,7 @@ robot.moveFor(39); // move 40in forward
 robot.moveFor(-39); // move 40in backwards
 robot.flyUp(340, [](float rpm) -> void {
   INTAKE_SET(127);
-  pros::delay(200);
+  pros::delay(400);
   INTAKE_SET(0);
 });
 
@@ -29,7 +29,7 @@ robot.turnToFace(180);
 
 robot.flyUp(460, [](float rpm) -> void {
   INTAKE_SET(127);
-  pros::delay(200);
+  pros::delay(400);
   INTAKE_SET(0);
 });
 
