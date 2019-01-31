@@ -160,7 +160,7 @@ namespace w {
     aP = fmod(aP, (2 * PI)) * SGN(aP);
     if (abs(aP) > (PI / 2)) {
       V = -V;
-      tA -= PI * SGN(aP);
+        tA -= (PI * SGN(aP));
     }
 
     float W = angleDiff(tA, posTracker.a);
@@ -171,12 +171,12 @@ namespace w {
     float Vr = trans + rot;
     float Vl = trans - rot;
 
-    // float maxMag = std::max(fabs(Vr), fabs(Vl));
-    //
-    // if(maxMag > MAX_SPEED) {
-    //   Vr = (Vr / maxMag) * MAX_SPEED * SGN(Vr);
-    //   Vl = (Vl / maxMag) * MAX_SPEED * SGN(Vl);
-    // }
+    float maxMag = std::max(fabs(Vr), fabs(Vl));
+
+    if(maxMag > MAX_SPEED) {
+      Vr = (Vr / maxMag) * MAX_SPEED * SGN(Vr);
+      Vl = (Vl / maxMag) * MAX_SPEED * SGN(Vl);
+    }
 
     LEFT_DRIVE_SET(Vl);
     RIGHT_DRIVE_SET(Vr);

@@ -4,9 +4,9 @@ FLYWHEEL_SET(FLYWHEEL_IDLE);
 robot.combineSet(false);
 
 // toggle low flat
-robot.moveTo({ 22, 9 }, { 10, 0, 0, 60 }, { 1, 0, 0, 20, 0 }, 2000);
+robot.moveTo({ 24, 9 }, { 10, 0, 0, 100 }, { 0.5, 0, 0, 10, 0 }, 2000);
 
-// turn
+// go back & turn
 pros::delay(200);
-robot.moveTo({ 60, 9 }, { 10, 0, 0, 60 }, { 1, 0, 0, 20, 0 }, 2000);
+robot.moveTo({ 60, 9 }, { 10, 0, 0, 100 }, { 0.5, 0, 0, 10, 0 }, 2000);
 robot.turnToFace(90);
