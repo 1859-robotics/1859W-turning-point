@@ -3,4 +3,7 @@ FLYWHEEL_SET(FLYWHEEL_IDLE);
 
 robot.combineSet(false);
 
-robot.moveTo({ 18, 9 }, { 10, 0, 0, 127 }, { 1, 0, 0, 127, 0 });
+
+robot.moveTo({ 20, 9 }, { 10, 0, 0, 127 }, { 1, 0, 0, 60, 0 });
+
+robot.moveTo({ 60, 9 }, { 10, 0, 0, 127 }, { 1, 0, 0, 60, 0 });
