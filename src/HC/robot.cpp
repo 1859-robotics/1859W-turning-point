@@ -188,8 +188,9 @@ namespace w {
 
     std::uint32_t started = pros::millis();
 
-    while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
-      if((pros::millis() - started) > exit) break;
+    // !withinErr(posTracker.x, posTracker.y, target.x, target.y, err)
+    while(true) {
+      // if((pros::millis() - started) > exit) break;
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
@@ -204,8 +205,8 @@ namespace w {
 
     std::uint32_t started = pros::millis();
 
-    while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
-      if((pros::millis() - started) > exit) break;
+    while(true) {
+      // if((pros::millis() - started) > exit) break;
 
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
