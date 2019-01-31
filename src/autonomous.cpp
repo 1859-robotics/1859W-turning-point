@@ -46,7 +46,7 @@ void autonomous() {
   robot.reset();
   pros::Task track(w::odom::track, &posTracker);
 
-  #include "./auton/red-near-1.auton"
+    #include "./auton/red-near-1.auton"
 
                 // #include "./auton/test.auton"
 

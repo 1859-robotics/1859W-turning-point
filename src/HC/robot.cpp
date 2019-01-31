@@ -178,11 +178,6 @@ namespace w {
     //   Vl = (Vl / maxMag) * MAX_SPEED * SGN(Vl);
     // }
 
-    DEBUG_VAR(Vl);
-    DEBUG_VAR(Vr);
-    DEBUG_VAR(trans);
-    DEBUG_VAR(rot);
-
     LEFT_DRIVE_SET(Vl);
     RIGHT_DRIVE_SET(Vr);
   }
