@@ -9,9 +9,9 @@
 - [ ] toggle low flag
 ****/
 
-posTracker.setPos({ 0, 0 }, 90);
-FLYWHEEL_SET(FLYWHEEL_IDLE);
+posTracker.setPos({ 0, 1 }, 90);
+// FLYWHEEL_SET(FLYWHEEL_IDLE);
 
-robot.combineSet(false);
+// robot.combineSet(false);
 
-robot.moveTo({ 0, 36 }, { 10, 0, 0, 60 }, { 0, 0, 0, 60 });
+robot.moveTo({ 0, 18 }, { 10, 0, 0, 60 }, { 1, 0, 0, 60, 0 });

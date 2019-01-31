@@ -150,9 +150,11 @@ namespace w {
       { x, y }
     );
 
+    std::cout << "close:  (" << close.x << ", " << close.y << ")" << std::endl;
+
+
     float V = dist(close.x, close.y, posTracker.x, posTracker.y);
     V = std::isnan(V) ? 0 : V;
-    // V = abs(V) > 1 ? SGN(V) : V;
 
     float aP = atan2(close.y - posTracker.y, close.x - posTracker.x);
     aP = fmod(aP, (2 * PI)) * SGN(aP);
@@ -169,12 +171,17 @@ namespace w {
     float Vr = trans + rot;
     float Vl = trans - rot;
 
-    float maxMag = std::max(fabs(Vr), fabs(Vl));
+    // float maxMag = std::max(fabs(Vr), fabs(Vl));
+    //
+    // if(maxMag > MAX_SPEED) {
+    //   Vr = (Vr / maxMag) * MAX_SPEED * SGN(Vr);
+    //   Vl = (Vl / maxMag) * MAX_SPEED * SGN(Vl);
+    // }
 
-    if(maxMag > MAX_SPEED) {
-      Vr = (Vr / maxMag) * MAX_SPEED * SGN(Vr);
-      Vl = (Vl / maxMag) * MAX_SPEED * SGN(Vl);
-    }
+      DEBUG_VAR(Vl);
+      DEBUG_VAR(Vr);
+      DEBUG_VAR(trans);
+      DEBUG_VAR(rot);
 
     LEFT_DRIVE_SET(Vl);
     RIGHT_DRIVE_SET(Vr);
