@@ -156,10 +156,10 @@ namespace w {
     float V = dist(close.x, close.y, posTracker.x, posTracker.y);
     V = std::isnan(V) ? 0 : V;
 
-    float aP = atan2(close.y - posTracker.y, close.x - posTracker.x);
+    float aP = atan2(close.x - posTracker.x, close.y - posTracker.y);
     aP = fmod(aP, (2 * PI)) * SGN(aP);
-    if (abs(aP) > PI / 2) {
-      V = V * -1;
+    if (abs(aP) > (PI / 2)) {
+      V = -V;
       tA -= PI * SGN(aP);
     }
 
@@ -178,10 +178,10 @@ namespace w {
     //   Vl = (Vl / maxMag) * MAX_SPEED * SGN(Vl);
     // }
 
-      DEBUG_VAR(Vl);
-      DEBUG_VAR(Vr);
-      DEBUG_VAR(trans);
-      DEBUG_VAR(rot);
+    DEBUG_VAR(Vl);
+    DEBUG_VAR(Vr);
+    DEBUG_VAR(trans);
+    DEBUG_VAR(rot);
 
     LEFT_DRIVE_SET(Vl);
     RIGHT_DRIVE_SET(Vr);
