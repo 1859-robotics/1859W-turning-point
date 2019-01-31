@@ -156,7 +156,7 @@ namespace w {
     float V = dist(close.x, close.y, posTracker.x, posTracker.y);
     V = std::isnan(V) ? 0 : V;
 
-    float aP = atan2(close.x - posTracker.x, close.y - posTracker.y);
+    float aP = atan2(close.x - posTracker.x, close.y - posTracker.y) - posTracker.a;
     aP = fmod(aP, (2 * PI)) * SGN(aP);
     if (abs(aP) > (PI / 2)) {
       V = -V;
