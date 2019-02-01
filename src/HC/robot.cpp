@@ -140,6 +140,10 @@ float mag(::w::odom::Point a) {
 namespace w {
   void robot::Robot::seek(float x, float y, pid::PID *transPID, pid::PID *rotPID) {
     float tA = atan2(x - posTracker.x, y - posTracker.y);
+    // float tA = 0;
+
+    DEBUG_VAR(x - posTracker.x);
+    DEBUG_VAR(y - posTracker.y);
 
     ::w::odom::Point close = closest({
       x, y
@@ -150,11 +154,17 @@ namespace w {
     float V = transPID->calculate(0, dist(close, { posTracker.x, posTracker.y }));
     // V = (Math.abs(V) > 1) ? (sgn(V)) : V
 
+    float aP = atan2(close.x - posTracker.x, close.y - posTracker.y);
+    aP = fmod(aP, (TAU)) * SGN(aP);
+    if (abs(aP) > PI/2) {
+      V = V * -1;
+      tA -= PI * SGN(aP);
+    }
+
     V = 0;
 
-    DEBUG_VAR(angleDiff(tA, posTracker.a));
+    float W = rotPID->calculate(posTracker.a, tA);
 
-    float W = rotPID->calculate(0, angleDiff(tA, posTracker.a));
     float Vr = V + W;
     float Vl = V - W;
 

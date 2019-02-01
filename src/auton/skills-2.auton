@@ -15,4 +15,4 @@ posTracker.setPos({ 0, 0 }, 90);
 
 // robot.combineSet(false);
 
-robot.moveTo({ 0, 20 }, { 0, 0, 0, 127 }, { 100, 0, 0, 60, 30 }, 100000);
+robot.moveTo({ 0, 20 }, { 0, 0, 0, 127 }, { 100, 0, 0, 60, 15 }, 100000);
