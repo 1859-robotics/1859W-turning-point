@@ -34,7 +34,7 @@ float remap (float value, float from1, float to1, float from2, float to2) {
 
 
 float angleDiff(float angle1, float angle2) {
-  float diff = fmod(( angle2 - angle1 + PI ), TAU) - PI;
+  float diff = fmod(( (angle2 - angle1) + PI ), TAU) - PI;
   return diff < -PI ? diff + TAU : diff;
 }
 // end util functions
@@ -53,16 +53,13 @@ float angleDiff(float angle1, float angle2) {
 ::w::odom::Point div(::w::odom::Point a, ::w::odom::Point b) {
   return { a.x / b.x, a.y / b.y };
 }
-
 float mag(::w::odom::Point a) {
   return sqrt((a.x * a.x) + (a.y * a.y));
 }
-
 ::w::odom::Point normalize(::w::odom::Point a) {
   if(mag(a) == 0) return a;
   return { a.x / mag(a), a.y / mag(a) };
 }
-
 ::w::odom::Point multScalar(::w::odom::Point a, float b) {
   return { a.x * b, a.y * b };
 }
@@ -146,14 +143,18 @@ namespace w {
 
     ::w::odom::Point close = closest({
       x, y
-    }, {cos(posTracker.a), sin(posTracker.a)}, {
+    }, { cos(posTracker.a), sin(posTracker.a)}, {
       posTracker.x, posTracker.y
     });
 
-    float V = dist(close, { posTracker.x, posTracker.y });
+    float V = transPID->calculate(0, dist(close, { posTracker.x, posTracker.y }));
     // V = (Math.abs(V) > 1) ? (sgn(V)) : V
 
-    float W = angleDiff(tA, posTracker.a);
+    V = 0;
+
+    DEBUG_VAR(angleDiff(tA, posTracker.a));
+
+    float W = rotPID->calculate(0, angleDiff(tA, posTracker.a));
     float Vr = V + W;
     float Vl = V - W;
 
@@ -166,8 +167,6 @@ namespace w {
 
     RIGHT_DRIVE_SET_AUTO(Vr);
     LEFT_DRIVE_SET_AUTO(Vl);
-
-
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, float err, float exit) {

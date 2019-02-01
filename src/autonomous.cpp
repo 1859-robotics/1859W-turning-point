@@ -48,8 +48,8 @@ void autonomous() {
 
   // #include "./auton/test.auton"
 
-    runAuton();
-    // // // track.remove();
+      runAuton();
+      // // // track.remove();
 
   while(true) { pros::delay(20); }
 }
