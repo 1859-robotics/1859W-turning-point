@@ -4,18 +4,18 @@ FLYWHEEL_SET(FLYWHEEL_IDLE - 20);
 robot.combineSet(false);
 
 // toggle low flag
-robot.moveFor(39); // move 40in forward
+//robot.moveFor(-4); // move 40in forward
 
 // shoot mid flag
-robot.moveFor(-39); // move 40in backwards
-robot.flyUp(340, [](float rpm) -> void {
+//robot.moveFor(-39); // move 40in backwards
+robot.flyUp(335, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(400);
   INTAKE_SET(0);
 });
 
 FLYWHEEL_SET(FLYWHEEL_IDLE);
-
+//robot.moveFor(5);
 robot.turnToFace(90);
 
 robot.moveFor(35); // move 35in forward
@@ -27,7 +27,7 @@ FLYWHEEL_SET(127);
 robot.turnToFace(180);
 
 
-robot.flyUp(460, [](float rpm) -> void {
+robot.flyUp(530, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(400);
   INTAKE_SET(0);
@@ -36,5 +36,11 @@ robot.flyUp(460, [](float rpm) -> void {
 robot.turnToFace(135);
 
 robot.combineSet(true);
-robot.moveFor(40);
+robot.moveFor(37);
 robot.moveFor(-10);
+
+robot.turnToFace(15);
+robot.moveFor(10);
+
+robot.turnToFace(-5);
+robot.moveFor(20);
