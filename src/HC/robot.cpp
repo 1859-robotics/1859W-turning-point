@@ -160,7 +160,7 @@ namespace w {
     aP = fmod(aP, (2 * PI)) * SGN(aP);
     if (abs(aP) > (PI / 2)) {
       V = -V;
-        tA -= (PI * SGN(aP));
+      tA -= (PI * SGN(aP));
     }
 
     float W = angleDiff(tA, posTracker.a);
