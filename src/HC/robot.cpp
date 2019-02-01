@@ -276,8 +276,8 @@ namespace w {
     mainPID.doPID(deg, A_ERR, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
-      RIGHT_DRIVE_SET(output);
-      LEFT_DRIVE_SET(-output);
+      RIGHT_DRIVE_SET_AUTO(output);
+      LEFT_DRIVE_SET_AUTO(-output);
     });
 
     RIGHT_DRIVE_SET(0);
