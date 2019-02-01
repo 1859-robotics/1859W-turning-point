@@ -142,44 +142,32 @@ float mag(::w::odom::Point a) {
 
 namespace w {
   void robot::Robot::seek(float x, float y, pid::PID *transPID, pid::PID *rotPID) {
-    float tA = atan2(y - posTracker.y, x - posTracker.x);
+    float tA = atan2(x - posTracker.x, y - posTracker.y);
 
-    ::w::odom::Point close = closest(
-      { posTracker.x, posTracker.y },
-      { cos(posTracker.a), sin(posTracker.a) },
-      { x, y }
-    );
+    ::w::odom::Point close = closest({
+      x, y
+    }, {cos(posTracker.a), sin(posTracker.a)}, {
+      posTracker.x, posTracker.y
+    });
 
-    std::cout << "close:  (" << close.x << ", " << close.y << ")" << std::endl;
-
-
-    float V = dist(close.x, close.y, posTracker.x, posTracker.y);
-    V = std::isnan(V) ? 0 : V;
-
-    float aP = atan2(close.x - posTracker.x, close.y - posTracker.y) - posTracker.a;
-    aP = fmod(aP, (2 * PI)) * SGN(aP);
-    if (abs(aP) > (PI / 2)) {
-      V = -V;
-      tA -= (PI * SGN(aP));
-    }
+    float V = dist(close, { posTracker.x, posTracker.y });
+    // V = (Math.abs(V) > 1) ? (sgn(V)) : V
 
     float W = angleDiff(tA, posTracker.a);
+    float Vr = V + W;
+    float Vl = V - W;
 
-    float rot = rotPID->calculate(W, 0);
-    float trans = transPID->calculate(V, 0);
-
-    float Vr = trans + rot;
-    float Vl = trans - rot;
-
-    float maxMag = std::max(fabs(Vr), fabs(Vl));
+    float maxMag = std::max(abs(Vr), abs(Vl));
 
     if(maxMag > MAX_SPEED) {
-      Vr = (Vr / maxMag) * MAX_SPEED * SGN(Vr);
-      Vl = (Vl / maxMag) * MAX_SPEED * SGN(Vl);
+      Vl = (Vl / maxMag) * MAX_SPEED;
+      Vr = (Vr / maxMag) * MAX_SPEED;
     }
 
-    LEFT_DRIVE_SET_AUTO(Vl);
     RIGHT_DRIVE_SET_AUTO(Vr);
+    LEFT_DRIVE_SET_AUTO(Vl);
+
+
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, float err, float exit) {
