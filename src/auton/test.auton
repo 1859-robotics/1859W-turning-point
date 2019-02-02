@@ -1,6 +1,6 @@
 posTracker.setPos({ 103, 9 }, 90);
 
-robot.moveTo({ 103, 45 }, { 1, 0, 0, 127, 30 }, { 1, 0, 0, 127, 0 }, 0);
+robot.moveTo({ 103, 45 }, { 0, 0, 0, 127, 30 }, { 10, 0, 0, 127, 30 });
 
 // robot.turnToFace(90);
 // robot.moveFor(36, 50000);
