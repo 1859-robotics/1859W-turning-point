@@ -31,8 +31,8 @@ void runAuton() {
     if(w::auton_selector::selectedAuton == BLUE_FAR_1) {
       #include "./auton/blue-far-1.auton"
     } else if(w::auton_selector::selectedAuton == BLUE_FAR_2) {
-      #include "./auton/blue-far-0.auton"
-    }
+        #include "./auton/blue-far-0.auton"
+      }
   } else if(w::auton_selector::selectedTile == TILE_BLUE_A) {
     if(w::auton_selector::selectedAuton == BLUE_NEAR_1) {
       #include "./auton/blue-near-1.auton"
@@ -51,5 +51,5 @@ void autonomous() {
   runAuton();
   // // // track.remove();
 
-    while(true) { pros::delay(20); }
+  while(true) { pros::delay(20); }
 }

@@ -9,7 +9,7 @@
 
 // robot specification macros
 #define ZERO_SPEED 30
-#define A_ERR 3
+#define A_ERR 2.5
 #define P_ERR 4
 
 bool withinRange(float target, float current, float error);

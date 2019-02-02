@@ -11,7 +11,7 @@ robot.flyUp(335, [](float rpm) -> void {
 });
 
 FLYWHEEL_SET(FLYWHEEL_IDLE);
-robot.turnToFace(100);
+robot.turnToFace(95);
 
 robot.moveFor(35); // move 35in forward
 robot.feedBall();
@@ -19,7 +19,7 @@ robot.moveFor(-34);
 
 FLYWHEEL_SET(127);
 
-robot.turnToFace(190);
+robot.turnToFace(180);
 
 robot.flyUp(530, [](float rpm) -> void {
   INTAKE_SET(127);
@@ -27,6 +27,6 @@ robot.flyUp(530, [](float rpm) -> void {
   INTAKE_SET(0);
 });
 
-robot.moveFor(-23);
-robot.turnToFace(90);
+robot.moveFor(-18);
+robot.turnToFace(95);
 robot.moveFor(30);
