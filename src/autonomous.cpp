@@ -46,12 +46,11 @@ void autonomous() {
   robot.reset();
   pros::Task track(w::odom::track, &posTracker);
 
-  // #include "./auton/test.auton"
-
   // robot.turnToFace(90);
 
+  // robot.turnToFace(90, 60);
+
   runAuton();
-// // // track.remove();
 
   while(true) { pros::delay(20); }
 }
