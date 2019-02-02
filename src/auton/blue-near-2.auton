@@ -1,11 +1,5 @@
+posTracker.setPos({ 0, 0 }, 0); //sets the starting position of the robot
 
-posTracker.setPos({ 0, 0 }, 90);
-FLYWHEEL_SET(FLYWHEEL_IDLE);
-
- robot.moveFor(-10);
-
- robot.flyUp(500, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(200);
-  INTAKE_SET(0);
-});
+robot.moveFor(20);  // backs up
+robot.turnToFace(-90);  //faces platform
+robot.moveFor(36);  // climbs
