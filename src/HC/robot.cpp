@@ -59,7 +59,6 @@ float mag(::w::odom::Point a) {
   float d = dot(v.x, v.y, n.x, n.y);
   return add(current, multScalar(n, d));
 }
-
 ::w::odom::Point getNormalPoint(::w::odom::Point p, ::w::odom::Point a, ::w::odom::Point b) {
   ::w::odom::Point ap = sub(p, a);
   ::w::odom::Point ab = sub(b, a);
@@ -74,7 +73,6 @@ float mag(::w::odom::Point a) {
   }
   return r;
 }
-
 ::w::odom::Point getTarget(::w::odom::Point path[], int len, ::w::odom::Point current, float along) {
   ::w::odom::Point target;
 
@@ -130,10 +128,13 @@ namespace w {
     float tA = atan2(posTracker.x - x, posTracker.y - y);
 
     ::w::odom::Point close = closest({
-      x, y
-    }, { cos(posTracker.a), sin(posTracker.a)}, {
       posTracker.x, posTracker.y
-    });
+    }, {
+      x, y
+    }, { cos(posTracker.a), sin(posTracker.a)});
+
+    std::cout << "close: (" << close.x << ", " << close.y << ")" << std::endl;
+
 
     float V = transPID->calculate(-dist(close, { posTracker.x, posTracker.y }), 0);
 
@@ -159,11 +160,6 @@ namespace w {
       Vl = (Vl / maxMag) * MAX_SPEED;
       Vr = (Vr / maxMag) * MAX_SPEED;
     }
-
-    DEBUG_VAR(Vl);
-    DEBUG_VAR(Vr);
-    DEBUG_VAR(V);
-    DEBUG_VAR(W);
 
     // RIGHT_DRIVE_SET(Vr);
     // LEFT_DRIVE_SET(Vl);
