@@ -129,12 +129,9 @@ namespace w {
 
     ::w::odom::Point close = closest({
       posTracker.x, posTracker.y
-    }, {
+    }, { cos(posTracker.a), sin(posTracker.a)}, {
       x, y
-    }, { cos(posTracker.a), sin(posTracker.a)});
-
-    std::cout << "close: (" << close.x << ", " << close.y << ")" << std::endl;
-
+    });
 
     float V = transPID->calculate(dist(close, { posTracker.x, posTracker.y }), 0);
 
@@ -172,15 +169,14 @@ namespace w {
 
     std::uint32_t started = pros::millis();
 
-    // !withinErr(posTracker.x, posTracker.y, target.x, target.y, err)
-    while(true) {
+    while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
       // if((pros::millis() - started) > exit) break;
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
 
-    RIGHT_DRIVE_SET_AUTO(0);
-    LEFT_DRIVE_SET_AUTO(0);
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, float err, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit) {
@@ -189,15 +185,15 @@ namespace w {
 
     std::uint32_t started = pros::millis();
 
-    while(true) {
+    while(!withinErr(posTracker.x, posTracker.y, target.x, target.y, err)) {
       // if((pros::millis() - started) > exit) break;
 
       seek(target.x, target.y, transPID, rotPID);
       pros::delay(20);
     }
 
-    RIGHT_DRIVE_SET_AUTO(0);
-    LEFT_DRIVE_SET_AUTO(0);
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit) {
