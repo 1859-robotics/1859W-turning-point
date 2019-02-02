@@ -30,15 +30,15 @@
 // auton lists
 #define AUTON_OPTIONS_RED_A "none" "\n" \
                             RED_NEAR_1 "\n" \
-                            RED_NEAR_2 "\n" \
                             RED_NEAR_3
+                            // RED_NEAR_2 "\n" \
 
 #define AUTON_OPTIONS_RED_B "none" "\n" \
                             RED_FAR_1
 
 #define AUTON_OPTIONS_BLUE_A "none" "\n" \
                              BLUE_NEAR_1 "\n" \
-                             BLUE_NEAR_2
+                             BLUE_NEAR_3
 
 #define AUTON_OPTIONS_BLUE_B "none" "\n" \
                              BLUE_FAR_1
