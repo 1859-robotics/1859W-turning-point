@@ -29,7 +29,7 @@ void runAuton() {
     }
   }
 }
-
+  
 void autonomous() {
   robot.reset();
   pros::Task track(w::odom::track, &posTracker);
@@ -37,6 +37,6 @@ void autonomous() {
   #include "./auton/test.auton"
 
   std::cout << "end" << std::endl;
-    
+
   while(true) { pros::delay(20); }
 }
