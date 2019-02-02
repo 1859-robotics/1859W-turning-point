@@ -280,8 +280,8 @@ namespace w {
       LEFT_DRIVE_SET_AUTO(-output);
     });
 
-    RIGHT_DRIVE_SET(0);
-    LEFT_DRIVE_SET(0);
+    RIGHT_DRIVE_SET_AUTO(0);
+    LEFT_DRIVE_SET_AUTO(0);
   }
 
   void robot::Robot::turnToFace(::w::odom::Point point, float max) {

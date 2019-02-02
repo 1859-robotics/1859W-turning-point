@@ -48,8 +48,10 @@ void autonomous() {
 
   // #include "./auton/test.auton"
 
+  // robot.turnToFace(90);
+
   runAuton();
-  // // // track.remove();
+// // // track.remove();
 
   while(true) { pros::delay(20); }
 }
