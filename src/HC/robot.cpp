@@ -1,44 +1,32 @@
 #include "robot.hpp"
 
-
 // util functions
 bool withinRange(float target, float current, float error) {
   return abs(target - current) < error;
 }
-
 bool withinErr(float cX, float cY, float tX, float tY, float eP = P_ERR) {
   return (
     withinRange(tX, cX, eP) &&
     withinRange(tY, cY, eP)
   );
 }
-
 float dist(float x1, float y1, float x2, float y2) {
   return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
-
 float dist(::w::odom::Point a, ::w::odom::Point b) {
   return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
-
 float dot(float x1, float y1, float x2, float y2) {
   return (x1 * x2) + (y1 * y2);
 }
-
 float dot(::w::odom::Point a, ::w::odom::Point b) { return a.x * b.x + a.y * b.y; }
-
-
 float remap (float value, float from1, float to1, float from2, float to2) {
   return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
 }
-
-
 float angleDiff(float angle1, float angle2) {
   float diff = fmod(( (angle2 - angle1) + PI ), TAU) - PI;
   return diff < -PI ? diff + TAU : diff;
 }
-// end util functions
-
 
 // vector stuffs
 ::w::odom::Point add(::w::odom::Point a, ::w::odom::Point b) {
@@ -159,7 +147,7 @@ namespace w {
     }
 
     DEBUG_VAR(tA);
-    
+
     float W = rotPID->calculate(angleDiff(tA, posTracker.a), 0);
 
     float Vr = V + W;
