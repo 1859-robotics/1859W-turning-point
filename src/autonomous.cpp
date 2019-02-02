@@ -35,6 +35,6 @@ void autonomous() {
   pros::Task track(w::odom::track, &posTracker);
 
   runAuton();
-
+  
   while(true) { pros::delay(20); }
 }
