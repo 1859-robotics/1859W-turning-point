@@ -27,6 +27,6 @@ robot.flyUp(530, [](float rpm) -> void {
   INTAKE_SET(0);
 });
 
-robot.moveFor(-20);
+robot.moveFor(-18);
 robot.turnToFace(95);
 robot.moveFor(30);
