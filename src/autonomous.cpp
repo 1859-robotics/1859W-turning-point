@@ -46,10 +46,6 @@ void autonomous() {
   robot.reset();
   pros::Task track(w::odom::track, &posTracker);
 
-  // robot.turnToFace(90);
-
-  // robot.turnToFace(90, 60);
-
   runAuton();
 
   while(true) { pros::delay(20); }
