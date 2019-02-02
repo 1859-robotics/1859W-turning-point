@@ -154,11 +154,11 @@ namespace w {
       Vr = (Vr / maxMag) * MAX_SPEED;
     }
 
-    DEBUG_VAR(tA);
+    DEBUG_VAR(TODEG(tA));
     DEBUG_VAR(W);
 
-    RIGHT_DRIVE_SET(Vr);
-    LEFT_DRIVE_SET(Vl);
+    // RIGHT_DRIVE_SET(Vr);
+    // LEFT_DRIVE_SET(Vl);
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, float err, float exit) {
