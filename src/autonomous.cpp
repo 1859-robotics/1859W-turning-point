@@ -1,7 +1,7 @@
 #include "main.h"
 #include "app.hpp"
 #include "robot-config.hpp"
-
+  
 void runAuton() {
   if(w::auton_selector::selectedTile == TILE_RED_A) {
     if(w::auton_selector::selectedAuton == RED_NEAR_1) {

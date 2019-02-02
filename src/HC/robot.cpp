@@ -136,9 +136,7 @@ namespace w {
     std::cout << "close: (" << close.x << ", " << close.y << ")" << std::endl;
 
 
-    float V = transPID->calculate(-dist(close, { posTracker.x, posTracker.y }), 0);
-
-    DEBUG_VAR(dist(close, { posTracker.x, posTracker.y }));
+    float V = transPID->calculate(dist(close, { posTracker.x, posTracker.y }), 0);
 
     float aP = atan2(close.x - posTracker.x, close.y - posTracker.y) - posTracker.a;
     aP = fmod(aP, (TAU)) * SGN(aP);
@@ -146,8 +144,6 @@ namespace w {
       V = V * -1;
       tA -= PI * SGN(aP);
     }
-
-    DEBUG_VAR(tA);
 
     float W = rotPID->calculate(angleDiff(tA, posTracker.a), 0);
 
@@ -161,8 +157,13 @@ namespace w {
       Vr = (Vr / maxMag) * MAX_SPEED;
     }
 
-    // RIGHT_DRIVE_SET(Vr);
-    // LEFT_DRIVE_SET(Vl);
+    DEBUG_VAR(Vl);
+    DEBUG_VAR(Vr);
+    DEBUG_VAR(V);
+    DEBUG_VAR(W);
+
+    RIGHT_DRIVE_SET(Vr);
+    LEFT_DRIVE_SET(Vl);
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, float err, float exit) {
