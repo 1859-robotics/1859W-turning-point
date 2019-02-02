@@ -14,6 +14,7 @@ namespace w {
     // std::cout << "newL : " << newL << std::endl;
     // std::cout << "newR : " << newR << std::endl;
     // std::cout << "newC : " << newC << std::endl;
+    
     float dL = (lEncoderVal - newL) / 41.69;
     float dR = (rEncoderVal - newR) / 41.69;
     float dC = (mEncoderVal - newC) / 41.69;
