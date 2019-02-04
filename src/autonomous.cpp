@@ -29,7 +29,7 @@ void runAuton() {
     }
   }
 }
-  
+
 void autonomous() {
   robot.reset();
   pros::Task track(w::odom::track, &posTracker);
