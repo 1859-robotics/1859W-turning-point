@@ -140,11 +140,7 @@ namespace w {
     if (abs(aP) > PI / 2) {
       V = -V;
       tA -= PI * SGN(aP);
-      std::cout << "is reversed" << std::endl;
     }
-    // DEBUG_POINT(close);
-    // // DEBUG_POINT(posTracker);
-    // DEBUG_VAR(aP);
 
     float W = rotPID->calculate(tA, 0);
 

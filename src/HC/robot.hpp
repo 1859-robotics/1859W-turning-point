@@ -10,7 +10,7 @@
 // robot specification macros
 #define ZERO_SPEED 30
 #define A_ERR 3
-#define P_ERR 2
+#define P_ERR 10
 
 bool withinRange(float target, float current, float error);
 
@@ -36,7 +36,7 @@ namespace w {
       void moveTo(::w::odom::Point target, float err, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit = 5000);
       void moveTo(::w::odom::Point target, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float exit = 5000);
 
-      void moveAlong(::w::odom::Point wayPoints[], int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err = P_ERR, float exit = 10000);
+      void moveAlong(::w::odom::Point wayPoints[], int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err = P_ERR, float exit = 100000);
       // moves the bot along a set of way points
 
       void moveToSimple(::w::odom::Point target);
