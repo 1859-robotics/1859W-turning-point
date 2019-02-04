@@ -1,3 +1,6 @@
+#meta name alliance-post-&-park
+#meta tile BLUE_A
+
 posTracker.setPos({ 0, 0 }, 90);
 FLYWHEEL_SET(FLYWHEEL_IDLE);
 
