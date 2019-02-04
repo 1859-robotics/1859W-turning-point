@@ -36,8 +36,6 @@ autons.forEach(file => {
     } else {
       console.log("auton file must contain a valid start tile | " + file)
     }
-
-    console.log(metaData)
   }
 })
 
