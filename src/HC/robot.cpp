@@ -135,14 +135,13 @@ namespace w {
 
     float V = transPID->calculate(-dist(close, { posTracker.x, posTracker.y }), 0);
 
-    DEBUG_POINT(close);
-
-    float aP = atan2(close.x - posTracker.x, close.y - posTracker.y) - posTracker.a;
+    float aP = atan2(close.y - posTracker.y, close.x - posTracker.x) - posTracker.a;
     aP = fmod(aP, (TAU)) * SGN(aP);
     if (abs(aP) > PI / 2) {
       V = V * -1;
       // tA -= PI * SGN(aP);
-      // std::cout << "is reversed" << std::endl;
+      std::cout << "is reversed" << std::endl;
+      DEBUG_POINT(close);
     }
 
     float W = rotPID->calculate(tA, 0);
