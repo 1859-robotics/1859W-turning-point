@@ -10,7 +10,7 @@
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
 #define WHEEL_D 41.69
-#define SL 4.4 // TODO: measure all of these
+#define SL 4.4
 #define SR 4.4
 #define SS 2.55
 
