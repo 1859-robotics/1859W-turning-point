@@ -10,10 +10,10 @@ void autonomous() {
   pros::Task track(w::odom::track, &posTracker);
 
   #include "./auton/test.auton"
-        
+
               // runAuton();
 
-  std::cout << "end" << std::endl;
+  std::cout << "end" << std::endl;      
 
   while(true) { pros::delay(20); }
 }
