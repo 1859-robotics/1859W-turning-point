@@ -65,10 +65,10 @@ float mag(::w::odom::Point a) {
   ab = normalize(ab);
   ab = multScalar(ab, dot(ap, ab));
   ::w::odom::Point r = add(a, ab);
-  if ((r.y > std::max(a.y, b.y) && r.x > std::max(a.x, b.x)) ||
-      (r.y < std::min(a.y, b.y) && r.x < std::min(a.x, b.x)) ||
-      (r.y > std::max(a.y, b.y) && r.x < std::min(a.x, b.x)) ||
-      (r.y < std::min(a.y, b.y) && r.x > std::max(a.x, b.x))) {
+  if ((r.y > std::max(a.y, b.y) || r.x > std::max(a.x, b.x)) ||
+      (r.y < std::min(a.y, b.y) || r.x < std::min(a.x, b.x)) ||
+      (r.y > std::max(a.y, b.y) || r.x < std::min(a.x, b.x)) ||
+      (r.y < std::min(a.y, b.y) || r.x > std::max(a.x, b.x))) {
     r = dist(p, a) < dist(p, b) ? a : b;
   }
   return r;
@@ -139,12 +139,12 @@ namespace w {
     aP = fmod(aP, (TAU)) * SGN(aP);
     if (abs(aP) > PI / 2) {
       V = -V;
-      // tA -= PI * SGN(aP);
+      tA -= PI * SGN(aP);
       std::cout << "is reversed" << std::endl;
     }
-    DEBUG_POINT(close);
-    // DEBUG_POINT(posTracker);
-    DEBUG_VAR(aP);
+    // DEBUG_POINT(close);
+    // // DEBUG_POINT(posTracker);
+    // DEBUG_VAR(aP);
 
     float W = rotPID->calculate(tA, 0);
 
@@ -204,18 +204,14 @@ namespace w {
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
   }
 
-  void robot::Robot::moveAlong(::w::odom::Point wayPoints[], int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err, float exit) {
+  void robot::Robot::moveAlong(::w::odom::Point wayPoints[], ::w::odom::Point last, int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err, float exit) {
 
     std::uint32_t started = pros::millis();
     ::w::pid::PID *transPID = new ::w::pid::PID(tPID, 0.001, 0.0001);
     ::w::pid::PID *rotPID = new ::w::pid::PID(rPID, 0.0001, 0.00001);
 
-    while(!withinErr(posTracker.x, posTracker.y, wayPoints[len - 1].x, wayPoints[len - 1].y, 0.001)) {
+    while(!withinErr(posTracker.x, posTracker.y, wayPoints[len - 1].x, wayPoints[len - 1].y, err)) {
       ::w::odom::Point target = getTarget(wayPoints, len, { posTracker.x, posTracker.y }, lookAhead);
-
-      std::cout << "target:  (" << target.x << ", " << target.y << ")" << std::endl;
-      std::cout << "current: (" << posTracker.x << ", " << posTracker.y << ")" << std::endl;
-      std::cout << "last: (" << wayPoints[len - 1].x << ", " << wayPoints[len - 1].y << ")" << std::endl;
 
       if((pros::millis() - started) > exit) break;
 
@@ -223,9 +219,8 @@ namespace w {
       pros::delay(20);
     }
 
-    RIGHT_DRIVE_SET_AUTO(0);
-    LEFT_DRIVE_SET_AUTO(0);
-    std::cout << "end moveAlong" << std::endl;
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
   }
 
   void robot::Robot::moveFor(float distIn, float exit) {
@@ -258,12 +253,12 @@ namespace w {
     mainPID.doPID(deg, A_ERR, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
-      RIGHT_DRIVE_SET_AUTO(output);
-      LEFT_DRIVE_SET_AUTO(-output);
+      RIGHT_DRIVE_SET(output);
+      LEFT_DRIVE_SET(-output);
     });
 
-    RIGHT_DRIVE_SET_AUTO(0);
-    LEFT_DRIVE_SET_AUTO(0);
+    RIGHT_DRIVE_SET(0);
+    LEFT_DRIVE_SET(0);
   }
 
   void robot::Robot::turnToFace(::w::odom::Point point, float max) {
