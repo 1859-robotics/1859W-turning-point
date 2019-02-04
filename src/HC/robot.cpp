@@ -56,7 +56,7 @@ float mag(::w::odom::Point a) {
 ::w::odom::Point closest(::w::odom::Point current, ::w::odom::Point head, ::w::odom::Point target) {
   ::w::odom::Point n = normalize(head);
   ::w::odom::Point v = sub(target, current);
-  float d = dot(v.x, v.y, n.x, n.y);
+  float d = dot(v, n);
   return add(current, multScalar(n, d));
 }
 ::w::odom::Point getNormalPoint(::w::odom::Point p, ::w::odom::Point a, ::w::odom::Point b) {
@@ -128,21 +128,22 @@ namespace w {
     float tA = atan2(x - posTracker.x, y - posTracker.y);
 
     ::w::odom::Point close = closest({
-      posTracker.x, posTracker.y
-    }, { cos(posTracker.a), sin(posTracker.a)}, {
-      x, y
+      posTracker.x, posTracker.y                   // current
+    }, { cos(posTracker.a), sin(posTracker.a)}, {  // head
+      x, y                                         // target
     });
 
-    float V = transPID->calculate(dist(close, { posTracker.x, posTracker.y }), 0);
+    float V = transPID->calculate(-dist(close, { posTracker.x, posTracker.y }), 0);
 
     float aP = atan2(close.y - posTracker.y, close.x - posTracker.x) - posTracker.a;
     aP = fmod(aP, (TAU)) * SGN(aP);
     if (abs(aP) > PI / 2) {
       V = -V;
-      tA -= PI * SGN(aP);
+      // tA -= PI * SGN(aP);
       std::cout << "is reversed" << std::endl;
-      DEBUG_POINT(close);
     }
+    DEBUG_POINT(close);
+    // DEBUG_POINT(posTracker);
     DEBUG_VAR(aP);
 
     float W = rotPID->calculate(tA, 0);
@@ -156,11 +157,6 @@ namespace w {
       Vl = (Vl / maxMag) * MAX_SPEED;
       Vr = (Vr / maxMag) * MAX_SPEED;
     }
-
-    // DEBUG_VAR(TODEG(tA));
-    // DEBUG_VAR(W);
-    // DEBUG_VAR(angleDiff(tA, posTracker.a));
-    // DEBUG_VAR(posTracker.a);
 
     RIGHT_DRIVE_SET(Vr);
     LEFT_DRIVE_SET(Vl);

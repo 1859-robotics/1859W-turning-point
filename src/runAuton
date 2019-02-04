@@ -208,11 +208,4 @@ posTracker.setPos({ 0, 0 }, 0); //sets the starting position of the robot
 robot.moveFor(20);  // backs up
 robot.turnToFace(90);  //faces platform
 robot.moveFor(36);  // climbs
-} else if(w::auton_selector::selectedTile == TILE_RED_A && "test" == w::auton_selector::selectedAuton) {
-
-
-
-// posTracker.setPos({ 103, 9 }, 90);
-
-// robot.moveTo({ 103, 19 }, { 1, 0, 0, 127, 30 }, { 0.05, 0, 0, 127, 0 });
 }}
