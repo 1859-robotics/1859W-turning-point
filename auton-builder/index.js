@@ -69,7 +69,7 @@ fs.writeFileSync(config.outputDef, def)
 
 // create run auton command
 let runAuton = `void runAuton() {\n` + autonList.reduce((acc, cur) => {
-  const output = "if(w::auton_selector::selectedAuton == TILE_" + cur.tile + " && \"" + cur.name + "\" == w::auton_selector::selectedAuton) {\n" + cur.script + "}"
+  const output = "if(w::auton_selector::selectedTile == TILE_" + cur.tile + " && \"" + cur.name + "\" == w::auton_selector::selectedAuton) {\n" + cur.script + "}"
   if(acc) return acc + " else " + output
   else return output
 }, null) + "}"

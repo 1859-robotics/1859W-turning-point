@@ -1,5 +1,5 @@
 void runAuton() {
-if(w::auton_selector::selectedAuton == TILE_BLUE_B && "park" == w::auton_selector::selectedAuton) {
+if(w::auton_selector::selectedTile == TILE_BLUE_B && "park" == w::auton_selector::selectedAuton) {
 
 
 
@@ -8,7 +8,7 @@ posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 robot.moveFor(20);  // backs up
 robot.turnToFace(-90);  //faces platform
 robot.moveFor(36);  // climbs
-} else if(w::auton_selector::selectedAuton == TILE_BLUE_A && "alliance post & park" == w::auton_selector::selectedAuton) {
+} else if(w::auton_selector::selectedTile == TILE_BLUE_A && "alliance post & park" == w::auton_selector::selectedAuton) {
 
 
 
@@ -53,7 +53,7 @@ COMBINE_SET(0);
 
 robot.turnToFace(180);
 robot.moveFor(26);
-} else if(w::auton_selector::selectedAuton == TILE_BLUE_A && "alliance post" == w::auton_selector::selectedAuton) {
+} else if(w::auton_selector::selectedTile == TILE_BLUE_A && "alliance post" == w::auton_selector::selectedAuton) {
 
 
 
@@ -101,7 +101,7 @@ robot.turnToFace(135);
 robot.combineSet(true);
 robot.moveFor(40); // move 16in forward
 robot.moveFor(-10); // move 16in forward
-} else if(w::auton_selector::selectedAuton == TILE_BLUE_A && "park" == w::auton_selector::selectedAuton) {
+} else if(w::auton_selector::selectedTile == TILE_BLUE_A && "park" == w::auton_selector::selectedAuton) {
 
 
 
@@ -110,7 +110,7 @@ posTracker.setPos({ 0, 0 }, 0); //sets the starting position of the robot
 robot.moveFor(20);  // backs up
 robot.turnToFace(-90);  //faces platform
 robot.moveFor(36);  // climbs
-} else if(w::auton_selector::selectedAuton == TILE_RED_B && "park" == w::auton_selector::selectedAuton) {
+} else if(w::auton_selector::selectedTile == TILE_RED_B && "park" == w::auton_selector::selectedAuton) {
 
 
 
@@ -119,7 +119,7 @@ posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 robot.moveFor(20);  // backs up
 robot.turnToFace(90);  //faces platform
 robot.moveFor(36);  // climbs
-} else if(w::auton_selector::selectedAuton == TILE_RED_A && "alliance post & park" == w::auton_selector::selectedAuton) {
+} else if(w::auton_selector::selectedTile == TILE_RED_A && "alliance post & park" == w::auton_selector::selectedAuton) {
 
 
 
@@ -155,7 +155,7 @@ robot.flyUp(530, [](float rpm) -> void {
 robot.moveFor(-18);
 robot.turnToFace(95);
 robot.moveFor(30);
-} else if(w::auton_selector::selectedAuton == TILE_RED_A && "alliance post" == w::auton_selector::selectedAuton) {
+} else if(w::auton_selector::selectedTile == TILE_RED_A && "alliance post" == w::auton_selector::selectedAuton) {
 
 
 
@@ -199,7 +199,7 @@ robot.turnToFace(135);
 robot.combineSet(true);
 robot.moveFor(37);
 robot.moveFor(-10);
-} else if(w::auton_selector::selectedAuton == TILE_RED_A && "park" == w::auton_selector::selectedAuton) {
+} else if(w::auton_selector::selectedTile == TILE_RED_A && "park" == w::auton_selector::selectedAuton) {
 
 
 
@@ -208,7 +208,7 @@ posTracker.setPos({ 0, 0 }, 0); //sets the starting position of the robot
 robot.moveFor(20);  // backs up
 robot.turnToFace(90);  //faces platform
 robot.moveFor(36);  // climbs
-} else if(w::auton_selector::selectedAuton == TILE_RED_A && "test" == w::auton_selector::selectedAuton) {
+} else if(w::auton_selector::selectedTile == TILE_RED_A && "test" == w::auton_selector::selectedAuton) {
 
 
 
