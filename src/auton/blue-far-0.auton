@@ -1,3 +1,7 @@
+#meta name test2
+#meta tile RED_A
+
+
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 robot.moveFor(20);  // backs up

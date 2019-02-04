@@ -1,5 +1,5 @@
-#meta tile RED_A
 #meta name test
+#meta tile RED_A
 
 // posTracker.setPos({ 103, 9 }, 90);
 

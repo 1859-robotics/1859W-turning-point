@@ -5,6 +5,12 @@ const config = require("./config.js")
 const autons = fs.readdirSync(config.path).filter(file => file.indexOf(".auton") !== -1)
 
 let autonList = []
+let autonLists = {
+  "BLUE_A": [],
+  "BLUE_B": [],
+  "RED_A": [],
+  "RED_B": []
+}
 
 autons.forEach(file => {
   const auton = fs.readFileSync(config.path + file, "utf8")
@@ -25,12 +31,35 @@ autons.forEach(file => {
       content: script
     })
 
+    if(config.validTiles.includes(metaData.tile)) {
+      autonLists[metaData.tile].push(metaData.name)
+    } else {
+      console.log("auton file must contain a valid start tile | " + file)
+    }
+
     console.log(metaData)
   }
 })
 
-console.log(autonList)
 
-let def = ""
+let def = `
+#ifndef AUTON_DEF_HPP
+#define AUTON_DEF_HPP
 
-autonList.forEach()
+// tile names
+#define TILE_BLUE_A 1
+#define TILE_BLUE_B 2
+#define TILE_RED_A 3
+#define TILE_RED_B 4
+
+`
+
+// create list of autons for a square
+Object.entries(autonLists).forEach(list => {
+  def += "#define AUTON_OPTIONS_" + list[0] + " " + list[1].reduce((acc, cur, i) => {
+    if(i !== 0) return acc + ` \\n ` + `"` + cur + `"`
+    else return `"` + cur + `"`
+  }, "") + "\n"
+})
+
+console.log(def)
