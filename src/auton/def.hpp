@@ -7,9 +7,9 @@
 #define TILE_RED_A 3
 #define TILE_RED_B 4
 
-#define AUTON_OPTIONS_BLUE_A "alliance post & park" "\n" "alliance post" "\n" "park"
-#define AUTON_OPTIONS_BLUE_B "park"
-#define AUTON_OPTIONS_RED_A "alliance post & park" "\n" "alliance post" "\n" "park"
-#define AUTON_OPTIONS_RED_B "park"
+#define AUTON_OPTIONS_BLUE_A "nothing" "\n" "alliance post & park" "\n" "alliance post" "\n" "park"
+#define AUTON_OPTIONS_BLUE_B "nothing" "\n" "park"
+#define AUTON_OPTIONS_RED_A "nothing" "\n" "alliance post & park" "\n" "alliance post" "\n" "park"
+#define AUTON_OPTIONS_RED_B "nothing" "\n" "park"
 
 #endif

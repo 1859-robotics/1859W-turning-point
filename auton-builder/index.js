@@ -6,10 +6,10 @@ const autons = fs.readdirSync(config.path).filter(file => file.indexOf(".auton")
 
 let autonList = []
 let autonLists = {
-  "BLUE_A": [],
-  "BLUE_B": [],
-  "RED_A": [],
-  "RED_B": []
+  "BLUE_A": ["nothing"],
+  "BLUE_B": ["nothing"],
+  "RED_A": ["nothing"],
+  "RED_B": ["nothing"]
 }
 
 autons.forEach(file => {
