@@ -14,14 +14,23 @@ autons.forEach(file => {
   let metaData = {}
 
   if(!meta) {
-    console.log("auton file must contain meta name | " + file)
+    console.log("auton file must contain meta data | " + file)
   } else {
     meta.forEach(m => { // extract meta data
       metaData[m.split(" ")[1]] = m.split(" ")[2]
     })
-    console.log(metaData)
 
+    autonList.push({
+      ...metaData,
+      content: script
+    })
+
+    console.log(metaData)
   }
 })
 
-console.log(autons)
+console.log(autonList)
+
+let def = ""
+
+autonList.forEach()

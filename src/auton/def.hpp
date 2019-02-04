@@ -4,11 +4,6 @@
 //TODO: make some kinda script to generate this
 
 // tile names
-#define AUTON_NAME_RED_A "RED A"
-#define AUTON_NAME_RED_B "RED B"
-#define AUTON_NAME_BLUE_A "BLUE A"
-#define AUTON_NAME_BLUE_B "BLUE B"
-
 #define TILE_BLUE_A 1
 #define TILE_BLUE_B 2
 #define TILE_RED_A 3
@@ -31,7 +26,6 @@
 #define AUTON_OPTIONS_RED_A "none" "\n" \
                             RED_NEAR_1 "\n" \
                             RED_NEAR_3
-                            // RED_NEAR_2 "\n" \
 
 #define AUTON_OPTIONS_RED_B "none" "\n" \
                             RED_FAR_1
