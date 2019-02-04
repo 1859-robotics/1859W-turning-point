@@ -9,9 +9,9 @@ void autonomous() {
   robot.reset();
   pros::Task track(w::odom::track, &posTracker);
 
-  // #include "./auton/test.auton"
+  #include "./auton/test.auton"
 
-  runAuton();
+  // runAuton();
 
   std::cout << "end" << std::endl;
 

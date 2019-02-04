@@ -135,14 +135,17 @@ namespace w {
 
     float V = transPID->calculate(-dist(close, { posTracker.x, posTracker.y }), 0);
 
+    DEBUG_POINT(close);
+
     float aP = atan2(close.y - posTracker.y, close.x - posTracker.x) - posTracker.a;
     aP = fmod(aP, (TAU)) * SGN(aP);
     if (abs(aP) > PI/2) {
       V = V * -1;
       tA -= PI * SGN(aP);
+      std::cout << "is reversed" << std::endl;
     }
 
-    float W = rotPID->calculate(angleDiff(tA, posTracker.a), 0);
+    float W = rotPID->calculate(tA, 0);
 
     float Vr = V + W;
     float Vl = V - W;
@@ -154,11 +157,13 @@ namespace w {
       Vr = (Vr / maxMag) * MAX_SPEED;
     }
 
-    DEBUG_VAR(TODEG(tA));
-    DEBUG_VAR(W);
+    // DEBUG_VAR(TODEG(tA));
+    // DEBUG_VAR(W);
+    // DEBUG_VAR(angleDiff(tA, posTracker.a));
+    // DEBUG_VAR(posTracker.a);
 
-    // RIGHT_DRIVE_SET(Vr);
-    // LEFT_DRIVE_SET(Vl);
+    RIGHT_DRIVE_SET(Vr);
+    LEFT_DRIVE_SET(Vl);
   }
 
   void robot::Robot::moveTo(::w::odom::Point target, float err, float exit) {
