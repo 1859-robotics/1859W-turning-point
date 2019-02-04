@@ -1,7 +1,5 @@
-//META
-tile=RED_A
-name=test
-//END_META
+#meta tile RED_A
+#meta name test
 
 // posTracker.setPos({ 103, 9 }, 90);
 
