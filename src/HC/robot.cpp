@@ -204,7 +204,7 @@ namespace w {
     moveFor(dist(posTracker.x, posTracker.y, target.x, target.y));
   }
 
-  void robot::Robot::moveAlong(::w::odom::Point wayPoints[], ::w::odom::Point last, int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err, float exit) {
+  void robot::Robot::moveAlong(::w::odom::Point wayPoints[], int len, float lookAhead, ::w::pid::PIDConfig tPID, ::w::pid::PIDConfig rPID, float err, float exit) {
 
     std::uint32_t started = pros::millis();
     ::w::pid::PID *transPID = new ::w::pid::PID(tPID, 0.001, 0.0001);
