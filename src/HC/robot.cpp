@@ -122,10 +122,14 @@ float mag(::w::odom::Point a) {
   return lookAhead;
 }
 
+float rollPI(float a) {
+  return a - TAU * std::floor((a + PI) * (1.0 / TAU));
+}
+
 
 namespace w {
   void robot::Robot::seek(float x, float y, pid::PID *transPID, pid::PID *rotPID) {
-    float tA = atan2(x - posTracker.x, y - posTracker.y);
+    float tA = rollPI(atan2(x - posTracker.x, y - posTracker.y) - posTracker.a);
 
     ::w::odom::Point close = closest({
       posTracker.x, posTracker.y                   // current
@@ -139,7 +143,7 @@ namespace w {
     aP = fmod(aP, (TAU)) * SGN(aP);
     if (abs(aP) > PI / 2) {
       V = -V;
-      // tA -= PI * SGN(aP);
+      tA -= PI * SGN(aP);
     }
 
     float W = rotPID->calculate(tA, 0);
