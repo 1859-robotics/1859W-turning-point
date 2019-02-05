@@ -24,8 +24,8 @@ namespace w {
     rEncoderVal = newR;
     mEncoderVal = newC;
 
-    float newA = a + ((dL - dR) / (SL + SR)); // TODO: reset nodes?
-    float dA = newA - a;
+    float dA = ((dL - dR) / (SL + SR));
+    float newA = a + dA; // TODO: reset nodes?
 
     // std::cout << "dA: " << dA << std::endl;
 
