@@ -11,10 +11,10 @@ namespace w {
     float newR = rEncoder->get_value();
     float newC = mEncoder->get_value();
 
-    // debuging encoders, uncoment to test if encoders are set up properly
-    // std::cout << "newL : " << newL << std::endl;
-    // std::cout << "newR : " << newR << std::endl;
-    // std::cout << "newC : " << newC << std::endl;
+    // // debuging encoders, uncoment to test if encoders are set up properly
+    std::cout << "newL : " << newL << std::endl;
+    std::cout << "newR : " << newR << std::endl;
+    std::cout << "newC : " << newC << std::endl;
 
     float dL = (lEncoderVal - newL) / 41.69; // wheel diameter constant
     float dR = (rEncoderVal - newR) / 41.69;
@@ -24,13 +24,18 @@ namespace w {
     rEncoderVal = newR;
     mEncoderVal = newC;
 
-    float dA = ((dL - dR) / (SL + SR)); // TODO: reset nodes?
+    float dA = ((dR - dL) / (SL + SR)); // TODO: reset nodes?
+    // dA = 0;
+
     float newA = a + dA;
 
-    if(abs(TODEG(dA)) > 0.5)
-    DEBUG_VAR(TODEG(dA));
-    // DEBUG_VAR(dL);
-    // DEBUG_VAR(dR);
+
+    if(abs(dA) > 0) {
+      DEBUG_VAR(TODEG(dA));
+    //   DEBUG_VAR(dL);
+    //   DEBUG_VAR(dR);
+      DEBUG_VAR(dL - dR);
+    }
 
     float dS = (dL + dR) / 2;
 
@@ -135,9 +140,9 @@ namespace w {
         std::to_string(tracker->y) + ")  | " +
         std::to_string(TODEG(tracker->a))).c_str());
 
-      pros::delay(20);
+      pros::delay(10);
     }
   }
 
-  
+
 }
