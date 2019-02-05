@@ -208,4 +208,15 @@ posTracker.setPos({ 0, 0 }, 0); //sets the starting position of the robot
 robot.moveFor(20);  // backs up
 robot.turnToFace(90);  //faces platform
 robot.moveFor(36);  // climbs
+} else if(w::auton_selector::selectedTile == TILE_RED_B && "skills" == w::auton_selector::selectedAuton) {
+
+
+
+posTracker.setPos({ 107, 9 }, 180); //sets the starting position of the robot
+
+robot.flyUp(510, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(200);
+  INTAKE_SET(0);
+});
 }}

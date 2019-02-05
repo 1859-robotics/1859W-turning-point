@@ -3,7 +3,7 @@
 
 namespace w {
   void odom::Tracker::debug() {
-    // std::cout << "(" << x << ", " << y << ")  | " << TODEG(a) << std::endl;
+    std::cout << "(" << x << ", " << y << ")  | " << TODEG(a) << std::endl;
   }
 
   void odom::Tracker::track() {
@@ -12,11 +12,11 @@ namespace w {
     float newC = mEncoder->get_value();
 
     // debuging encoders, uncoment to test if encoders are set up properly
-    // std::cout << "newL : " << newL << std::endl;
-    // std::cout << "newR : " << newR << std::endl;
-    // std::cout << "newC : " << newC << std::endl;
+    std::cout << "newL : " << newL << std::endl;
+    std::cout << "newR : " << newR << std::endl;
+    std::cout << "newC : " << newC << std::endl;
 
-    float dL = (lEncoderVal - newL) / 41.69;
+    float dL = (lEncoderVal - newL) / 41.69; // wheel diameter constant
     float dR = (rEncoderVal - newR) / 41.69;
     float dC = (mEncoderVal - newC) / 41.69;
 
