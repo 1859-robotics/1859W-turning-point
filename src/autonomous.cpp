@@ -11,9 +11,9 @@ void autonomous() {
 
   #include "./auton/test.auton"
 
-              // runAuton();
+  // runAuton();
 
-  std::cout << "end" << std::endl;      
+  std::cout << "end" << std::endl;
 
   while(true) { pros::delay(20); }
 }

@@ -158,6 +158,9 @@ namespace w {
       Vr = (Vr / maxMag) * MAX_SPEED;
     }
 
+    if(fabs(Vr) < MIN_SPEED) Vr = MIN_SPEED * SGN(Vr);
+    if(fabs(Vl) < MIN_SPEED) Vl = MIN_SPEED * SGN(Vl);
+
     RIGHT_DRIVE_SET(Vr);
     LEFT_DRIVE_SET(Vl);
   }
