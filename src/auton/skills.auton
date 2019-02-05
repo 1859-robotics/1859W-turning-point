@@ -2,16 +2,16 @@
 // #meta tile RED_B
 
 // setup
-posTracker.setPos({ 110, 9 }, 180); //sets the starting position of the robot
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
-// shoot high flag
-robot.flyUp(410, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(200);
-  INTAKE_SET(0);
-});
-
-// get next ball & flip first cap
-robot.turnToFace(105);
-robot.combineSet(false);
-robot.moveTo({ 110, 45 }, 4, { 10, 0, 0, 127, 0 }, { 10, 0, 0, 127, 0 }, 2000);
+// // shoot high flag
+// robot.flyUp(410, [](float rpm) -> void {
+//   INTAKE_SET(127);
+//   pros::delay(200);
+//   INTAKE_SET(0);
+// });
+//
+// // get next ball & flip first cap
+// robot.turnToFace(105);
+// robot.combineSet(false);
+// robot.moveTo({ 110, 45 }, 4, { 10, 0, 0, 127, 0 }, { 10, 0, 0, 127, 0 }, 2000);
