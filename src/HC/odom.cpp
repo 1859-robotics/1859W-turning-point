@@ -27,8 +27,8 @@ namespace w {
     float dA = ((dL - dR) / (SL + SR)); // TODO: reset nodes?
     float newA = a + dA;
 
-
-    DEBUG_VAR(dA);
+    if(abs(TODEG(dA)) > 0.5)
+    DEBUG_VAR(TODEG(dA));
     // DEBUG_VAR(dL);
     // DEBUG_VAR(dR);
 
@@ -39,9 +39,9 @@ namespace w {
     float dX = (cos(avgA) * dS) + (sin(avgA) * dC);
     float dY = (sin(avgA) * dS) + (cos(avgA) * dC);
 
-    this->x -= dX;
+    this->x -= dX; // reversed for coordinate origin
     this->y -= dY;
-    this->a = newA;
+    this->a += dA;
 
   }
 
@@ -120,10 +120,10 @@ namespace w {
     lv_obj_t * pos = lv_label_create(lv_scr_act(), NULL);
     lv_obj_align(pos, NULL, LV_ALIGN_CENTER, 0, 20);
 
-    lv_label_set_text(pos,
-      ("(" + std::to_string(tracker->x) + ", " +
-      std::to_string(tracker->y) + ")  | " +
-      std::to_string(TODEG(tracker->a))).c_str());
+    // lv_label_set_text(pos,
+    //   ("(" + std::to_string(tracker->x) + ", " +
+    //   std::to_string(tracker->y) + ")  | " +
+    //   std::to_string(TODEG(tracker->a))).c_str());
 
 
     while(true) {
@@ -138,4 +138,6 @@ namespace w {
       pros::delay(20);
     }
   }
+
+  
 }

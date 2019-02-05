@@ -10,8 +10,8 @@
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
 #define WHEEL_D 41.69
-#define SL 4.4
-#define SR 4.4
+#define SL 4.25
+#define SR 4.25
 #define SS 2.55
 
 #define POINT_LIST(...) __VA_ARGS__
