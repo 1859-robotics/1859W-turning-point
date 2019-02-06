@@ -249,8 +249,16 @@ namespace w {
   }
 
   void robot::Robot::turnToFace(float deg, float max) {
+
+  }
+
+  void robot::Robot::turnToFace(::w::odom::Point point, ::w::pid::PIDConfig c) {
+    turnToFace(TODEG(atan2(point.y - posTracker.y, point.x - posTracker.x)), c);
+  }
+
+  void robot::Robot::turnToFace(float deg, ::w::pid::PIDConfig c) {
     mainPID.reset();
-    mainPID.config(2.4, 0, 0.6, 3, 30, max, MIN_SPEED);
+    mainPID.config(c);
     if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
 
     mainPID.doPID(deg, A_ERR, []() -> float {

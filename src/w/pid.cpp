@@ -62,6 +62,16 @@ namespace w {
     this->minSpeed = minSpeed;
   }
 
+  void pid::PID::config(::w::pid::PIDConfig config) {
+    this->kP = config.kP;
+    this->kI = config.kI;
+    this->kD = config.kD;
+    this->epsilonInner = config.epsilonInner;
+    this->epsilonOuter = config.epsilonOuter;
+    this->maxSpeed = config.maxSpeed;
+    this->minSpeed = config.minSpeed;
+  }
+
   void pid::PID::doPID(float target, float tolerance, std::function <float()> current, std::function <void(float)> action, float kp, float ki, float kd, float epsilonInner, float epsilonOuter, int maxSpeed, int minSpeed) {
     //config(kp, ki, kd, epsilonInner, epsilonOuter, maxSpeed, minSpeed);
 
