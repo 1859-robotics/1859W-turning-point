@@ -12,9 +12,9 @@ namespace w {
     float newC = mEncoder->get_value();
 
     // // debuging encoders, uncoment to test if encoders are set up properly
-    std::cout << "newL : " << newL << std::endl;
-    std::cout << "newR : " << newR << std::endl;
-    std::cout << "newC : " << newC << std::endl;
+    // std::cout << "newL : " << newL << std::endl;
+    // std::cout << "newR : " << newR << std::endl;
+    // std::cout << "newC : " << newC << std::endl;
 
     float dL = (lEncoderVal - newL) / 41.69; // wheel diameter constant
     float dR = (rEncoderVal - newR) / 41.69;
@@ -26,18 +26,16 @@ namespace w {
 
     // float dA = ((dR - dL) / (SL + SR)); // TODO: reset nodes?
 
-    float dA = TORAD(gyro->get_value() / 10) - a;
+    float newGyro = TORAD(gyro->get_value() / 10);
+
+    // float dA = newGyro - a;
+    float dA = newGyro;
     // dA = 0;
+    gyro->reset();
 
-    float newA = a + dA;
-
-
-    if(abs(dA) > 0) {
-      DEBUG_VAR(TODEG(dA));
-    //   DEBUG_VAR(dL);
-    //   DEBUG_VAR(dR);
-      DEBUG_VAR(dL - dR);
-    }
+    DEBUG_VAR(newGyro);
+    DEBUG_VAR(dA);
+    DEBUG_VAR(this->a);
 
     float dS = (dL + dR) / 2;
 
@@ -120,6 +118,7 @@ namespace w {
     lEncoder->reset();
     rEncoder->reset();
     mEncoder->reset();
+    gyro->reset();
   }
 
   void odom::track(void *ptr) {
