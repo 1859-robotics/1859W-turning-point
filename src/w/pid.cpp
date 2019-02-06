@@ -82,9 +82,6 @@ namespace w {
     while(!atTargetPoint) {
       timer = pros::millis();
       currentVal = current();
-      DEBUG_VAR(currentVal);
-      DEBUG_VAR(target);
-      debug("A");
       // std::cout << currentVal << std::endl;
 
       float output = calculate(currentVal, target);

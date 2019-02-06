@@ -250,7 +250,7 @@ namespace w {
 
   void robot::Robot::turnToFace(float deg, float max) {
       mainPID.reset();
-      robot::Robot::turnToFace(deg, { 2.0, 0, 0.6, max, MIN_SPEED, 3, 30 });
+      robot::Robot::turnToFace(deg, { 1.4, 0, 0.4, max, MIN_SPEED, 3, 30 });
   }
 
   void robot::Robot::turnToFace(::w::odom::Point point, ::w::pid::PIDConfig c) {
@@ -261,15 +261,11 @@ namespace w {
     mainPID.reset();
     mainPID.config(c);
 
-    std::cout << "hi from here" << std::endl;
-
     if(withinRange(TODEG(posTracker.a), deg, A_ERR)) return;
-    std::cout << "hi from here 2" << std::endl;
 
     mainPID.doPID(deg, A_ERR, []() -> float {
       return TODEG(posTracker.a);
     }, [](float output) -> void {
-      std::cout << "hi from here output: " << output << std::endl;
       RIGHT_DRIVE_SET(output);
       LEFT_DRIVE_SET(-output);
     });
