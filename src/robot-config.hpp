@@ -77,9 +77,9 @@ extern pros::ADIDigitalIn limit;
 }
 
 
-#include "HC/odom.hpp"
-#include "HC/pid.hpp"
-// #include "HC/robot.hpp"
+#include "w/odom.hpp"
+#include "w/pid.hpp"
+// #include "w/robot.hpp"
 
 // abstractions
 extern w::odom::Tracker posTracker;
