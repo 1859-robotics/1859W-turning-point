@@ -34,7 +34,7 @@ namespace w {
     float dY = (sin(avgA) * dS) + (cos(avgA) * dC);
 
     this->x -= dX; // reversed for coordinate origin
-    this->y -= dY;
+    this->y += dY;
     this->a += dA;
 
   }

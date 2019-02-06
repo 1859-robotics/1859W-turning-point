@@ -129,7 +129,7 @@ float rollPI(float a) {
 
 namespace w {
   void robot::Robot::seek(float x, float y, pid::PID *transPID, pid::PID *rotPID) {
-    float tA = rollPI(atan2(x - posTracker.x, y - posTracker.y) - posTracker.a);
+    float tA = rollPI(atan2(y - posTracker.y, x - posTracker.x) + posTracker.a);
 
     ::w::odom::Point close = closest({
       posTracker.x, posTracker.y                   // current
@@ -143,8 +143,10 @@ namespace w {
     aP = fmod(aP, (TAU)) * SGN(aP);
     if (abs(aP) > PI / 2) {
       V = -V;
-      tA -= PI * SGN(aP);
+      // tA -= PI * SGN(aP);
     }
+
+    DEBUG_VAR(tA);
 
     float W = rotPID->calculate(tA, 0);
 
@@ -269,8 +271,6 @@ namespace w {
       RIGHT_DRIVE_SET(output);
       LEFT_DRIVE_SET(-output);
     });
-
-    std::cout << "hi from here 3" << std::endl;
 
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);

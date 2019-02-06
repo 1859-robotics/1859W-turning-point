@@ -2,8 +2,11 @@
 // #meta tile RED_B
 
 // setup
-posTracker.setPos({ 110, 9 }, 180); //sets the starting position of the robot
+posTracker.setPos({ 110, 9 }, 90); //sets the starting position of the robot
+robot.moveTo({ 110, 0 }, 2, { 10, 0, 0, 127, 0 }, { 4, 0, 0, 40, 0 }, 2000);
 
+
+/*
 // shoot high flag
 robot.flyUp(410, [](float rpm) -> void {
   INTAKE_SET(127);
@@ -14,4 +17,14 @@ robot.flyUp(410, [](float rpm) -> void {
 // // get next ball & flip first cap
 robot.turnToFace(90);
 robot.combineSet(false);
-robot.moveTo({ 110, 45 }, 4, { 10, 0, 0, 127, 0 }, { 10, 0, 0, 127, 0 }, 2000);
+robot.moveTo({ 110, 36 }, 4, { 10, 0, 0, 127, 0 }, { 4, 0, 0, 40, 0 }, 2000);
+
+// shoot ball
+robot.moveTo({ 110, 9 }, 3, { 10, 0, 0, 127, 0 }, { 4, 0, 0, 40, 0 }, 2000);
+robot.flyUp(320, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(200);
+  INTAKE_SET(0);
+});
+
+*/
