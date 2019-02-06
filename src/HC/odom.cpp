@@ -24,18 +24,18 @@ namespace w {
     rEncoderVal = newR;
     mEncoderVal = newC;
 
-    // float dA = ((dR - dL) / (SL + SR)); // TODO: reset nodes?
+    float dA = ((dR - dL) / (SL + SR)); // TODO: reset nodes?
 
-    float newGyro = TORAD(gyro->get_value() / 10);
+    // float newGyro = TORAD(gyro->get_value() / 10);
 
     // float dA = newGyro - a;
-    float dA = newGyro;
+    // float dA = newGyro;
     // dA = 0;
-    gyro->reset();
+    // gyro->reset();
 
-    DEBUG_VAR(newGyro);
-    DEBUG_VAR(dA);
-    DEBUG_VAR(this->a);
+    // DEBUG_VAR(newGyro);
+    // DEBUG_VAR(dA);
+    // DEBUG_VAR(this->a);
 
     float dS = (dL + dR) / 2;
 
