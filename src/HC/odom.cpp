@@ -24,7 +24,9 @@ namespace w {
     rEncoderVal = newR;
     mEncoderVal = newC;
 
-    float dA = ((dR - dL) / (SL + SR)); // TODO: reset nodes?
+    // float dA = ((dR - dL) / (SL + SR)); // TODO: reset nodes?
+
+    float dA = TORAD(gyro->get_value() / 10) - a;
     // dA = 0;
 
     float newA = a + dA;

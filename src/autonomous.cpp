@@ -4,12 +4,12 @@
 #include "./auton/def.hpp"
 
 #include "runAuton"
-  
+
 void autonomous() {
   robot.reset();
   pros::Task track(w::odom::track, &posTracker);
 
-      #include "./auton/skills.auton"
+  #include "./auton/skills.auton"
 
   // runAuton();
 

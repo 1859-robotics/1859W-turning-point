@@ -28,18 +28,21 @@ namespace w {
       pros::ADIEncoder *lEncoder;
       pros::ADIEncoder *rEncoder;
       pros::ADIEncoder *mEncoder;
+      pros::ADIGyro *gyro;
 
-      float lEncoderVal;
-      float rEncoderVal;
-      float mEncoderVal;
+      int lEncoderVal;
+      int rEncoderVal;
+      int mEncoderVal;
 
     public:
       Tracker(pros::ADIEncoder *lEncoder,
               pros::ADIEncoder *rEncoder,
-              pros::ADIEncoder *mEncoder) :
+              pros::ADIEncoder *mEncoder,
+              pros::ADIGyro *gyro) :
               lEncoder(lEncoder),
               rEncoder(rEncoder),
-              mEncoder(mEncoder) {};
+              mEncoder(mEncoder),
+              gyro(gyro) {};
 
       // for ease of use we make the x, y, and a vars public
       float x;

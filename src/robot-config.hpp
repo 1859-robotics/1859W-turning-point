@@ -22,6 +22,7 @@
 #define TRACKER_CENTER_PORT 3
 
 #define LIMIT_PORT 1
+#define GYRO_PORT 2
 
 // components
 
@@ -43,6 +44,7 @@ extern pros::ADIEncoder rTrackerWheel;
 extern pros::ADIEncoder cTrackerWheel;
 
 extern pros::ADIDigitalIn limit;
+extern pros::ADIGyro gyro;
 
 // robot config macros
 #define RIGHT_DRIVE_SET(spd) rightDriveF.move(spd); rightDriveB.move(spd)
