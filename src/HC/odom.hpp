@@ -36,8 +36,7 @@ namespace w {
     public:
       Tracker(pros::ADIEncoder *lEncoder,
               pros::ADIEncoder *rEncoder,
-              pros::ADIEncoder *mEncoder,
-              pros::ADIGyro *gyro) :
+              pros::ADIEncoder *mEncoder) :
               lEncoder(lEncoder),
               rEncoder(rEncoder),
               mEncoder(mEncoder) {};

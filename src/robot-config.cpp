@@ -17,8 +17,7 @@ pros::ADIEncoder rTrackerWheel = pros::ADIEncoder(TRACKER_RIGHT_PORT, TRACKER_RI
 pros::ADIEncoder cTrackerWheel = pros::ADIEncoder(TRACKER_CENTER_PORT, TRACKER_CENTER_PORT + 1);
 
 pros::ADIDigitalIn limit = pros::ADIDigitalIn(LIMIT_PORT);
-pros::ADIGyro gyro = pros::ADIGyro(GYRO_PORT);
 
 // abstractions
 w::pid::PID mainPID = w::pid::PID(2.0, 0.0, 0.15, 3.0, 30.0, MAX_SPEED, MIN_SPEED);
-w::odom::Tracker posTracker = w::odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, &gyro);
+w::odom::Tracker posTracker = w::odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel);
