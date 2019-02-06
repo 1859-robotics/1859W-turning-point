@@ -75,13 +75,16 @@ namespace w {
   void pid::PID::doPID(float target, float tolerance, std::function <float()> current, std::function <void(float)> action, float kp, float ki, float kd, float epsilonInner, float epsilonOuter, int maxSpeed, int minSpeed) {
     //config(kp, ki, kd, epsilonInner, epsilonOuter, maxSpeed, minSpeed);
 
-    bool atSetPoint = false;
+    bool atTargetPoint = false;
     float atTargetTime = pros::millis();
     float timer = pros::millis();
     float currentVal = current();
-    while(!atSetPoint) {
+    while(!atTargetPoint) {
       timer = pros::millis();
       currentVal = current();
+      DEBUG_VAR(currentVal);
+      DEBUG_VAR(target);
+      debug("A");
       // std::cout << currentVal << std::endl;
 
       float output = calculate(currentVal, target);
@@ -91,7 +94,7 @@ namespace w {
         atTargetTime = pros::millis();
       }
       if(pros::millis() - atTargetTime > 200) {
-        atSetPoint = true;
+        atTargetPoint = true;
       }
     }
   }

@@ -16,8 +16,6 @@ static lv_res_t list_action(lv_obj_t *ddlist) {
 void init() {
   posTracker.reset();
 
-  pros::delay(2000);
-
   flywheelL.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   flywheelR.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
