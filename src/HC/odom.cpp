@@ -26,17 +26,6 @@ namespace w {
 
     float dA = ((dR - dL) / (SL + SR)); // TODO: reset nodes?
 
-    // float newGyro = TORAD(gyro->get_value() / 10);
-
-    // float dA = newGyro - a;
-    // float dA = newGyro;
-    // dA = 0;
-    // gyro->reset();
-
-    // DEBUG_VAR(newGyro);
-    // DEBUG_VAR(dA);
-    // DEBUG_VAR(this->a);
-
     float dS = (dL + dR) / 2;
 
     float avgA = a + (dA / 2);
@@ -118,7 +107,6 @@ namespace w {
     lEncoder->reset();
     rEncoder->reset();
     mEncoder->reset();
-    gyro->reset();
   }
 
   void odom::track(void *ptr) {
@@ -144,6 +132,4 @@ namespace w {
       pros::delay(10);
     }
   }
-
-
 }

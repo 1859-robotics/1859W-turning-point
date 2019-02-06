@@ -28,7 +28,6 @@ namespace w {
       pros::ADIEncoder *lEncoder;
       pros::ADIEncoder *rEncoder;
       pros::ADIEncoder *mEncoder;
-      pros::ADIGyro *gyro;
 
       int lEncoderVal;
       int rEncoderVal;
@@ -41,8 +40,7 @@ namespace w {
               pros::ADIGyro *gyro) :
               lEncoder(lEncoder),
               rEncoder(rEncoder),
-              mEncoder(mEncoder),
-              gyro(gyro) {};
+              mEncoder(mEncoder) {};
 
       // for ease of use we make the x, y, and a vars public
       float x;
