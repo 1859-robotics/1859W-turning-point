@@ -1,35 +1,32 @@
-#meta name alliance-post-&-park
-#meta tile RED_A
+// #meta name alliance-post-&-park
+// #meta tile RED_A
+// #meta name skills
+// #meta tile RED_B
 
 // setup
-posTracker.setPos({ 9, 64 }, 180);
-FLYWHEEL_SET(FLYWHEEL_IDLE - 20);
+posTracker.setPos({ 52, 9 }, 180); //sets the starting position of the robot
+
+
+// shoot high flag
+robot.flyUp(310, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(200);
+  INTAKE_SET(0);
+});
+
+// // get next ball & flip first cap
+robot.turnToFace(90);
 robot.combineSet(false);
+robot.moveTo({ 52, 36 }, 4, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
+robot.feedBall(2000);
 
-// shoot mid flag
-robot.flyUp(335, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(400);
-  INTAKE_SET(0);
-});
+pros::delay(1000);
 
-FLYWHEEL_SET(FLYWHEEL_IDLE);
-robot.turnToFace(97);
-
-robot.moveFor(35); // move 35in forward
-robot.feedBall();
-robot.moveFor(-34);
-
-FLYWHEEL_SET(127);
-
+// shoot ball
+robot.moveTo({ 52, 9 }, 3, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
 robot.turnToFace(180);
-
-robot.flyUp(530, [](float rpm) -> void {
+robot.flyUp(320, [](float rpm) -> void {
   INTAKE_SET(127);
-  pros::delay(400);
+  pros::delay(200);
   INTAKE_SET(0);
 });
-
-robot.moveFor(-18);
-robot.turnToFace(95);
-robot.moveFor(30);

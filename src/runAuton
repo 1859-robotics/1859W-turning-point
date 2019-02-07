@@ -5,7 +5,7 @@ if(w::auton_selector::selectedTile == TILE_BLUE_B && "park" == w::auton_selector
 
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
-robot.moveFor(20);  // backs up
+robot.moveFor(20);  // moves forward
 robot.turnToFace(-90);  //faces platform
 robot.moveFor(36);  // climbs
 } else if(w::auton_selector::selectedTile == TILE_BLUE_A && "alliance post & park" == w::auton_selector::selectedAuton) {
@@ -119,42 +119,38 @@ posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 robot.moveFor(20);  // backs up
 robot.turnToFace(90);  //faces platform
 robot.moveFor(36);  // climbs
-} else if(w::auton_selector::selectedTile == TILE_RED_A && "alliance post & park" == w::auton_selector::selectedAuton) {
-
-
+} else if(w::auton_selector::selectedTile == TILE_RED_B && "skills" == w::auton_selector::selectedAuton) {
+// 
+// 
+// 
+// 
 
 // setup
-posTracker.setPos({ 9, 64 }, 180);
-FLYWHEEL_SET(FLYWHEEL_IDLE - 20);
-robot.combineSet(false);
+posTracker.setPos({ 52, 9 }, 180); //sets the starting position of the robot
 
-// shoot mid flag
+
+// shoot high flag
 robot.flyUp(335, [](float rpm) -> void {
   INTAKE_SET(127);
-  pros::delay(400);
+  pros::delay(200);
   INTAKE_SET(0);
 });
 
-FLYWHEEL_SET(FLYWHEEL_IDLE);
-robot.turnToFace(97);
+// // get next ball & flip first cap
+robot.turnToFace(90);
+robot.combineSet(false);
+robot.moveTo({ 52, 36 }, 4, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
 
-robot.moveFor(35); // move 35in forward
-robot.feedBall();
-robot.moveFor(-34);
+pros::delay(1000);
 
-FLYWHEEL_SET(127);
-
+// shoot ball
+robot.moveTo({ 52, 9 }, 3, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
 robot.turnToFace(180);
-
-robot.flyUp(530, [](float rpm) -> void {
+robot.flyUp(320, [](float rpm) -> void {
   INTAKE_SET(127);
-  pros::delay(400);
+  pros::delay(200);
   INTAKE_SET(0);
 });
-
-robot.moveFor(-18);
-robot.turnToFace(95);
-robot.moveFor(30);
 } else if(w::auton_selector::selectedTile == TILE_RED_A && "alliance post" == w::auton_selector::selectedAuton) {
 
 
@@ -204,17 +200,36 @@ robot.moveFor(-10);
 
 
 posTracker.setPos({ 0, 0 }, 0); //sets the starting position of the robot
-
+  
 robot.moveFor(20);  // backs up
 robot.turnToFace(90);  //faces platform
 robot.moveFor(36);  // climbs
 } else if(w::auton_selector::selectedTile == TILE_RED_B && "skills" == w::auton_selector::selectedAuton) {
+// 
+// 
+
+// setup
+posTracker.setPos({ 110, 9 }, 180); //sets the starting position of the robot
 
 
+// shoot high flag
+robot.flyUp(410, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(200);
+  INTAKE_SET(0);
+});
 
-posTracker.setPos({ 107, 9 }, 180); //sets the starting position of the robot
+// // get next ball & flip first cap
+robot.turnToFace(90);
+robot.combineSet(false);
+robot.moveTo({ 110, 36 }, 4, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
 
-robot.flyUp(510, [](float rpm) -> void {
+pros::delay(1000);
+
+// shoot ball
+robot.moveTo({ 110, 9 }, 3, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
+robot.turnToFace(180);
+robot.flyUp(320, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
