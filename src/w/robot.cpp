@@ -129,7 +129,7 @@ float rollPI(float a) {
 
 namespace w {
   void robot::Robot::seek(float x, float y, pid::PID *transPID, pid::PID *rotPID) {
-    float tA = rollPI(atan2(y - posTracker.y, x - posTracker.x) + posTracker.a);
+    float tA = rollPI(atan2(y - posTracker.y, x - posTracker.x) - posTracker.a);
 
     ::w::odom::Point close = closest({
       posTracker.x, posTracker.y                   // current
@@ -146,7 +146,6 @@ namespace w {
       // tA -= PI * SGN(aP);
     }
 
-    DEBUG_VAR(tA);
 
     float W = rotPID->calculate(tA, 0);
 

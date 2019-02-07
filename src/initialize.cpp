@@ -24,6 +24,12 @@ void init() {
 	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+
+  // leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  // leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  // rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  // rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
 }
 
 void initialize() {
