@@ -1,5 +1,5 @@
-#meta name skills-10
-#meta tile RED_A
+// #meta name skills-10
+// #meta tile RED_A
 
 // setup
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
@@ -31,7 +31,7 @@ robot.flyUp(480, [](float rpm) -> void {
 robot.moveFor(-20);
 robot.turnToFace(90);
 
-robot.moveFor(47);
+robot.moveFor(44);
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

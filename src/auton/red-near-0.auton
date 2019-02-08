@@ -1,8 +1,9 @@
-#meta name alliance-post-&-park
-#meta tile RED_A
+// #meta name alliance-post-&-park
+// #meta tile RED_A
 
 // setup
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
+
 
 // shoot high flag
 robot.flyUp(310, [](float rpm) -> void {
@@ -30,4 +31,4 @@ robot.flyUp(480, [](float rpm) -> void {
 
 robot.moveFor(-20);
 robot.turnToFace(90);
-robot.moveFor(32);
+robot.moveFor(34);

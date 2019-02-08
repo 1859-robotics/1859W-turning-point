@@ -1,5 +1,5 @@
-#meta name alliance-post-&-park
-#meta tile BLUE_A
+// #meta name alliance-post-&-park
+// #meta tile BLUE_A
 
 // setup
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
@@ -12,7 +12,7 @@ robot.flyUp(310, [](float rpm) -> void {
 });
 
 // // get next ball & flip first cap
-robot.turnToFace(-90);
+robot.turnToFace(270);
 robot.combineSet(false);
 robot.moveFor(34);
 robot.feedBall(2000);
@@ -29,5 +29,5 @@ robot.flyUp(480, [](float rpm) -> void {
 });
 
 robot.moveFor(-20);
-robot.turnToFace(-90);
+robot.turnToFace(270);
 robot.moveFor(32);

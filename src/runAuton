@@ -9,8 +9,8 @@ robot.moveFor(20);  // moves forward
 robot.turnToFace(-90);  //faces platform
 robot.moveFor(36);  // climbs
 } else if(w::auton_selector::selectedTile == TILE_BLUE_A && "alliance post & park" == w::auton_selector::selectedAuton) {
-
-
+// 
+// 
 
 // setup
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
@@ -23,7 +23,7 @@ robot.flyUp(310, [](float rpm) -> void {
 });
 
 // // get next ball & flip first cap
-robot.turnToFace(-90);
+robot.turnToFace(270);
 robot.combineSet(false);
 robot.moveFor(34);
 robot.feedBall(2000);
@@ -40,7 +40,7 @@ robot.flyUp(480, [](float rpm) -> void {
 });
 
 robot.moveFor(-20);
-robot.turnToFace(-90);
+robot.turnToFace(270);
 robot.moveFor(32);
 } else if(w::auton_selector::selectedTile == TILE_RED_B && "park" == w::auton_selector::selectedAuton) {
 
@@ -53,11 +53,12 @@ robot.moveFor(20);
 robot.turnToFace(90);
 robot.moveFor(36);
 } else if(w::auton_selector::selectedTile == TILE_RED_A && "alliance post & park" == w::auton_selector::selectedAuton) {
-
-
+// 
+// 
 
 // setup
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
+
 
 // shoot high flag
 robot.flyUp(310, [](float rpm) -> void {
@@ -85,7 +86,7 @@ robot.flyUp(480, [](float rpm) -> void {
 
 robot.moveFor(-20);
 robot.turnToFace(90);
-robot.moveFor(32);
+robot.moveFor(34);
 } else if(w::auton_selector::selectedTile == TILE_RED_A && "skills 10" == w::auton_selector::selectedAuton) {
 
 

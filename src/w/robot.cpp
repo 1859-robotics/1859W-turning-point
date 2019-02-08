@@ -226,7 +226,7 @@ namespace w {
     RIGHT_DRIVE_SET(0);
     LEFT_DRIVE_SET(0);
   }
-
+  
   void robot::Robot::moveFor(float distIn, float exit) {
     ::w::odom::Point start = {
       posTracker.x,
