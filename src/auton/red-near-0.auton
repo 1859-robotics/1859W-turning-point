@@ -23,10 +23,13 @@ robot.feedBall(2000);
 pros::delay(1000);
 
 // shoot ball
-robot.moveTo({ 52, 9 }, 3, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
+
+robot.moveFor(-32);
 robot.turnToFace(180);
-robot.flyUp(320, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(200);
-  INTAKE_SET(0);
-});
+// robot.moveTo({ 64, 9 }, 3, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 40, 0 }, 2000);
+// robot.turnToFace(180);
+// robot.flyUp(320, [](float rpm) -> void {
+//   INTAKE_SET(127);
+//   pros::delay(200);
+//   INTAKE_SET(0);
+// });

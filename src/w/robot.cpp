@@ -143,7 +143,7 @@ namespace w {
     aP = fmod(aP, (TAU)) * SGN(aP);
     if (abs(aP) > PI / 2) {
       V = -V;
-      // tA -= PI * SGN(aP);
+      tA -= PI * SGN(aP);
     }
 
 
