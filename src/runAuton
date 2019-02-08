@@ -12,125 +12,55 @@ robot.moveFor(36);  // climbs
 
 
 
-posTracker.setPos({ 0, 0 }, 90);
-FLYWHEEL_SET(FLYWHEEL_IDLE);
+// setup
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
+// shoot high flag
+robot.flyUp(310, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(200);
+  INTAKE_SET(0);
+});
+
+// // get next ball & flip first cap
+robot.turnToFace(-90);
 robot.combineSet(false);
+robot.moveFor(34);
+robot.feedBall(2000);
 
-robot.moveFor(39); // move 40in forward
+// shoot ball
 
-// FLYWHEEL_SET(70);
-
-robot.moveFor(-44); // move 40in backwards
-
-robot.flyUp(360, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(200);
-  INTAKE_SET(0);
-});
-
-FLYWHEEL_SET(FLYWHEEL_IDLE);
-
-robot.turnToFace(180);
-
-robot.moveFor(35); // move 35in forward
-robot.feedBall();
 robot.moveFor(-34);
-
-FLYWHEEL_SET(127);
-
-robot.turnToFace(90);
-
-robot.moveFor(-18);
-
-robot.flyUp(500, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(200);
-  INTAKE_SET(0);
-});
-
-COMBINE_SET(0);
-
-robot.turnToFace(180);
-robot.moveFor(26);
-} else if(w::auton_selector::selectedTile == TILE_BLUE_A && "alliance post" == w::auton_selector::selectedAuton) {
-
-
-
-posTracker.setPos({ 0, 0 }, 90);
-FLYWHEEL_SET(FLYWHEEL_IDLE);
-
-robot.combineSet(false);
-
-robot.moveFor(39); // move 40in forward
-
-// FLYWHEEL_SET(70);
-
-robot.moveFor(-44); // move 40in backwards
-
-robot.flyUp(360, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(200);
-  INTAKE_SET(0);
-});
-
-FLYWHEEL_SET(FLYWHEEL_IDLE);
-
 robot.turnToFace(180);
 
-robot.moveFor(35); // move 35in forward
-robot.feedBall();
-robot.moveFor(-34);
-
-FLYWHEEL_SET(127);
-
-robot.turnToFace(90);
-
-robot.moveFor(-18);
-
-robot.flyUp(460, [](float rpm) -> void {
+robot.flyUp(480, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
 });
 
-robot.moveFor(24);
-
-robot.turnToFace(135);
-
-robot.combineSet(true);
-robot.moveFor(40); // move 16in forward
-robot.moveFor(-10); // move 16in forward
-} else if(w::auton_selector::selectedTile == TILE_BLUE_A && "park" == w::auton_selector::selectedAuton) {
-
-
-
-posTracker.setPos({ 0, 0 }, 0); //sets the starting position of the robot
-
-robot.moveFor(20);  // backs up
-robot.turnToFace(-90);  //faces platform
-robot.moveFor(36);  // climbs
+robot.moveFor(-20);
+robot.turnToFace(-90);
+robot.moveFor(32);
 } else if(w::auton_selector::selectedTile == TILE_RED_B && "park" == w::auton_selector::selectedAuton) {
 
 
 
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
-robot.moveFor(20);  // backs up
-robot.turnToFace(90);  //faces platform
-robot.moveFor(36);  // climbs
-} else if(w::auton_selector::selectedTile == TILE_RED_B && "skills" == w::auton_selector::selectedAuton) {
-// 
-// 
-// 
-// 
+// park
+robot.moveFor(20);
+robot.turnToFace(90);
+robot.moveFor(36);
+} else if(w::auton_selector::selectedTile == TILE_RED_A && "alliance post & park" == w::auton_selector::selectedAuton) {
+
+
 
 // setup
-posTracker.setPos({ 52, 9 }, 180); //sets the starting position of the robot
-
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 // shoot high flag
-robot.flyUp(335, [](float rpm) -> void {
+robot.flyUp(310, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
@@ -139,71 +69,63 @@ robot.flyUp(335, [](float rpm) -> void {
 // // get next ball & flip first cap
 robot.turnToFace(90);
 robot.combineSet(false);
-robot.moveTo({ 52, 36 }, 4, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
-
-pros::delay(1000);
+robot.moveFor(34);
+robot.feedBall(2000);
 
 // shoot ball
-robot.moveTo({ 52, 9 }, 3, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
+
+robot.moveFor(-34);
 robot.turnToFace(180);
-robot.flyUp(320, [](float rpm) -> void {
+
+robot.flyUp(480, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
 });
-} else if(w::auton_selector::selectedTile == TILE_RED_A && "alliance post" == w::auton_selector::selectedAuton) {
+
+robot.moveFor(-20);
+robot.turnToFace(90);
+robot.moveFor(32);
+} else if(w::auton_selector::selectedTile == TILE_RED_A && "skills 10" == w::auton_selector::selectedAuton) {
 
 
 
 // setup
-posTracker.setPos({ 9, 64 }, 180);
-FLYWHEEL_SET(FLYWHEEL_IDLE - 20);
-robot.combineSet(false);
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
-// toggle low flag
-//robot.moveFor(-4); // move 40in forward
-
-// shoot mid flag
-//robot.moveFor(-39); // move 40in backwards
-robot.flyUp(335, [](float rpm) -> void {
+// shoot high flag
+robot.flyUp(310, [](float rpm) -> void {
   INTAKE_SET(127);
-  pros::delay(400);
+  pros::delay(200);
   INTAKE_SET(0);
 });
 
-FLYWHEEL_SET(FLYWHEEL_IDLE);
-//robot.moveFor(5);
+// // get next ball & flip first cap
 robot.turnToFace(90);
+robot.combineSet(false);
+robot.moveFor(34);
+robot.feedBall(2000);
 
-robot.moveFor(35); // move 35in forward
-robot.feedBall();
+// shoot ball
+
 robot.moveFor(-34);
-
-FLYWHEEL_SET(127);
-
 robot.turnToFace(180);
 
-
-robot.flyUp(530, [](float rpm) -> void {
+robot.flyUp(480, [](float rpm) -> void {
   INTAKE_SET(127);
-  pros::delay(400);
+  pros::delay(200);
   INTAKE_SET(0);
 });
 
-robot.turnToFace(135);
+robot.moveFor(-20);
+robot.turnToFace(90);
 
-robot.combineSet(true);
-robot.moveFor(37);
-robot.moveFor(-10);
-} else if(w::auton_selector::selectedTile == TILE_RED_A && "park" == w::auton_selector::selectedAuton) {
+robot.moveFor(47);
 
-
-
-posTracker.setPos({ 0, 0 }, 0); //sets the starting position of the robot
-  
-robot.moveFor(20);  // backs up
-robot.turnToFace(90);  //faces platform
-robot.moveFor(36);  // climbs
+rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 } else if(w::auton_selector::selectedTile == TILE_RED_B && "skills" == w::auton_selector::selectedAuton) {
 // 
 // 

@@ -6,7 +6,7 @@
 
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
 
-#define MIN_SPEED 30
+#define MIN_SPEED 20
 #define MAX_SPEED 127
 
 namespace w {

@@ -266,7 +266,7 @@ namespace w {
 
     mainPID.doPID(deg, A_ERR, []() -> float {
       return TODEG(posTracker.a);
-    }, [](float output) -> void {
+    }, [=](float output) -> void {
       RIGHT_DRIVE_SET(output);
       LEFT_DRIVE_SET(-output);
     });
@@ -284,7 +284,10 @@ namespace w {
   }
 
   void robot::Robot::feedBall(float exit) {
+    std::uint32_t started = pros::millis();
+
     while(!limit.get_value()) {
+      if((pros::millis() - started) > exit) return;
       INTAKE_SET(127);
     }
     INTAKE_SET(0);

@@ -1,8 +1,0 @@
-#meta name park
-#meta tile BLUE_A
-
-posTracker.setPos({ 0, 0 }, 0); //sets the starting position of the robot
-
-robot.moveFor(20);  // backs up
-robot.turnToFace(-90);  //faces platform
-robot.moveFor(36);  // climbs
