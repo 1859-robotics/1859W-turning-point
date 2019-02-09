@@ -31,7 +31,7 @@ robot.flyUp(480, [](float rpm) -> void {
 robot.moveFor(-20);
 robot.turnToFace(90);
 
-robot.moveFor(44);
+robot.moveFor(42);
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

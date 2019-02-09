@@ -51,6 +51,10 @@ void opcontrol() {
       }
     }
 
+    if(limit.get_value()) {
+      master.rumble("-");
+    }
+
 
 
 		pros::delay(20);

@@ -1,12 +1,11 @@
-// #meta name skills
+// #meta name skills-14
 // #meta tile RED_B
 
 // setup
-posTracker.setPos({ 110, 9 }, 180); //sets the starting position of the robot
-
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 // shoot high flag
-robot.flyUp(410, [](float rpm) -> void {
+robot.flyUp(310, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
@@ -15,15 +14,24 @@ robot.flyUp(410, [](float rpm) -> void {
 // // get next ball & flip first cap
 robot.turnToFace(90);
 robot.combineSet(false);
-robot.moveTo({ 110, 36 }, 4, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
-
-pros::delay(1000);
+robot.moveFor(34);
+robot.feedBall(2000);
 
 // shoot ball
-robot.moveTo({ 110, 9 }, 3, { 10, 0, 0, 80, 0 }, { 4, 0, 0, 20, 0 }, 2000);
+robot.moveFor(-34);
 robot.turnToFace(180);
-robot.flyUp(320, [](float rpm) -> void {
+robot.flyUp(480, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
 });
+
+// park
+robot.moveFor(-20);
+robot.turnToFace(90);
+robot.moveFor(42);
+// set drive breaks
+rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
