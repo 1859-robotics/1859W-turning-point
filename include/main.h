@@ -44,16 +44,17 @@
 
 
 // user defined stuffs
+// imports
+#include "jctc/jctc-lib.hpp"
+
 // constants
 #define PI M_PI
 #define TAU (PI * 2)
-#define MIN_SPEED 25
+#define MIN_SPEED 20
 #define MAX_SPEED 127
 
 // utilities
 #define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
-#define TORAD(deg) ((deg) * (PI / 180))
-#define TODEG(rad) ((rad) * (180 / PI))
 
 
 /**
