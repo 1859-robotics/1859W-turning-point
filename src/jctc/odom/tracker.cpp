@@ -31,6 +31,8 @@ namespace jctc {
       float newAngle = a + (((dL - dR) / (SL + SR)));
       float dA = newAngle - a;
 
+      // std::cout << "dA: " << dA << std::endl;
+
       float dM = (dL + dR) / 2;
 
       float localOffX, localOffY;
