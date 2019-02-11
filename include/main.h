@@ -51,7 +51,7 @@
 // robot constants
 #define MIN_SPEED 25
 #define MAX_SPEED 127
-#define WHEEL_D 41.69
+#define WHEEL_SCALAR 41.69
 #define SL 4.25
 #define SR 4.25
 #define SS 2.55
