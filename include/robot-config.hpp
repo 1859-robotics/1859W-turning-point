@@ -1,5 +1,6 @@
 #pragma once
 #include "main.h"
+#include "wiz/burtrum.hpp"
 
 // port defines
 #define LEFT_DRIVE_BACK_PORT 11
