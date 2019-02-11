@@ -10,14 +10,14 @@ namespace w {
       float a;
     };
 
-    float dist(::w::odom::Point a, ::w::odom::Point b);
-    float dot(::w::odom::Point a, ::w::odom::Point b);
+    float dist(Point a, Point b);
+    float dot(Point a, Point b);
     Point add(Point a, Point b);
     Point sub(Point a, Point b);
     Point mult(Point a, Point b);
     Point mult(Point a, float b);
     Point div(Point a, Point b);
-    float mag(::w::odom::Point a);
+    float mag(Point a);
     Point normalize(Point a);
 
   }
