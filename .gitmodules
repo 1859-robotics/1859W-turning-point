@@ -1,0 +1,3 @@
+[submodule "include/jctc-lib"]
+	path = include/jctc-lib
+	url = https://github.com/1859-robotics/jctc-lib
