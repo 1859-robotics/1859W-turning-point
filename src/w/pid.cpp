@@ -95,8 +95,4 @@ namespace w {
       }
     }
   }
-
-  pid::PID *deepCopy(::w::pid::PID *pid) {
-    return new pid::PID(pid->kP, pid->kI, pid->kD, pid->epsilonInner, pid->epsilonOuter);
-  }
 }

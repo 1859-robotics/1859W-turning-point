@@ -35,21 +35,34 @@
 #define PROS_USE_LITERALS
 
 #include "api.h"
-#include "pros/apix.h"
 
-#define _USE_MATH_DEFINES
-
-#include <cmath>
-
-#define PI M_PI
-#define TAU (PI * 2)
-#define DEBUG_VAR(var) std::cout << #var << ": " << var << std::endl
-#define DEBUG_POINT(var) std::cout << #var << "(" << var.x << ", " << var.y << ")" << std::endl
 /**
  * You should add more #includes here
  */
 //#include "okapi/api.hpp"
 //#include "pros/api_legacy.h"
+
+
+// user defined stuffs
+// constants
+#define PI M_PI
+#define TAU (PI * 2)
+#define MIN_SPEED 20
+#define MAX_SPEED 127
+#define A_ERR 3 // acceptable margin of error for the bot's position
+#define P_ERR 3
+
+// utilities
+#define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
+#define TORAD(deg) ((deg) * (PI / 180))
+#define TODEG(rad) ((rad) * (180 / PI))
+
+// robot constants
+#define WHEEL_D 41.69
+#define SL 4.25
+#define SR 4.25
+#define SS 2.55
+
 
 /**
  * If you find doing pros::Motor() to be tedious and you'd prefer just to do

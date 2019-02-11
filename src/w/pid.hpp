@@ -4,11 +4,6 @@
 #include "main.h"
 #include <functional>
 
-#define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
-
-#define MIN_SPEED 20
-#define MAX_SPEED 127
-
 namespace w {
   namespace pid {
     typedef struct {
@@ -59,11 +54,8 @@ namespace w {
       void doPID(float target, float tolerance, std::function <float()> current, std::function <void(float)> action, float kp = 3, float ki = 0, float kd = 0.15, float epsilonInner = 3, float epsilonOuter = 30, int maxSpeed = MAX_SPEED, int minSpeed = MIN_SPEED);
       void debug(std::string name);
       void reset();
-      PID *clone() { return new PID(*this); }
       float calculate(float target, float current);
     };
-
-    pid::PID *deepCopy(::w::pid::PID *pid);
   }
 }
 

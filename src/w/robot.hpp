@@ -7,11 +7,6 @@
 #include "pid.hpp"
 #include "../robot-config.hpp"
 
-// robot specification macros
-#define ZERO_SPEED 30
-#define A_ERR 3
-#define P_ERR 3
-
 bool withinRange(float target, float current, float error);
 
 namespace w {
