@@ -1,8 +1,6 @@
 #pragma once
 
 #include "main.h"
-#include "position.hpp"
-
 #include <math.h>
 
 #define WHEEL_D 41.69
@@ -12,6 +10,11 @@
 
 namespace jctc {
   namespace odom {
+    typedef struct {
+      float x;
+      float y;
+    } Point;
+
     class Tracker {
     private:
       pros::ADIEncoder *lEncoder;
@@ -22,9 +25,6 @@ namespace jctc {
       int rEncoderVal;
       int mEncoderVal;
 
-      float x;
-      float y;
-      float a;
     public:
       Tracker(pros::ADIEncoder *lEncoder,
               pros::ADIEncoder *rEncoder,
@@ -33,12 +33,17 @@ namespace jctc {
               rEncoder(rEncoder),
               mEncoder(mEncoder) {};
 
+      // for ease of use we make the x, y, and a vars public
+      float x;
+      float y;
+      float a;
+
       void debug();
-      void step();
+      void track();
       void setPos(float x, float y, float a);
       void setPos(Point pt, float a);
-      void setPos(Position pos);
       void reset();
     };
+    void track(void *tracker);
   }
 }

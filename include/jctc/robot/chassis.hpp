@@ -19,7 +19,7 @@ namespace jctc {
 
     virtual void driveVector(float trans, float rot);
 
-    void seek(odom::Point);
+    void tankSeek(odom::Point); // TODO: implement other seeking algs
     odom::Position getPosition();
   };
 }
