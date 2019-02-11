@@ -1,5 +1,4 @@
-#ifndef PID_HPP
-#define PID_HPP
+#pragma once
 
 #include "main.h"
 #include <functional>
@@ -56,5 +55,3 @@ namespace jctc {
     float calculate(float target, float current);
   };
 }
-
-#endif

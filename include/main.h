@@ -44,6 +44,9 @@
 
 
 // user defined stuffs
+// imports
+#include "jctc/jctc-lib.hpp"
+
 // constants
 #define PI M_PI
 #define TAU (PI * 2)
