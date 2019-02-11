@@ -42,18 +42,6 @@
 //#include "okapi/api.hpp"
 //#include "pros/api_legacy.h"
 
-
-// user defined stuffs
-// constants
-#define PI M_PI
-#define TAU (PI * 2)
-#define MIN_SPEED 20
-#define MAX_SPEED 127
-
-// utilities
-#define SGN(in) (in == 0 ? 0 : (in > 0 ? 1 : -1))
-
-
 /**
  * If you find doing pros::Motor() to be tedious and you'd prefer just to do
  * Motor, you can use the namespace with the following commented out line.
