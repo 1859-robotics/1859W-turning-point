@@ -1,4 +1,4 @@
-#include "./jctc/pid/pid.hpp"
+#include "pid.hpp"
 
 namespace jctc {
   void PID::debug(std::string name) {
