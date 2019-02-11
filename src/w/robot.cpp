@@ -10,47 +10,6 @@ bool withinErr(float cX, float cY, float tX, float tY, float eP = P_ERR) {
     withinRange(tY, cY, eP)
   );
 }
-float dist(float x1, float y1, float x2, float y2) {
-  return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-}
-float dist(::w::odom::Point a, ::w::odom::Point b) {
-  return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
-}
-float dot(float x1, float y1, float x2, float y2) {
-  return (x1 * x2) + (y1 * y2);
-}
-float dot(::w::odom::Point a, ::w::odom::Point b) { return a.x * b.x + a.y * b.y; }
-float remap (float value, float from1, float to1, float from2, float to2) {
-  return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
-}
-float angleDiff(float angle1, float angle2) {
-  float diff = fmod(( (angle2 - angle1) + PI ), TAU) - PI;
-  return diff < -PI ? diff + TAU : diff;
-}
-
-// vector stuffs
-::w::odom::Point add(::w::odom::Point a, ::w::odom::Point b) {
-  return { a.x + b.x, a.y + b.y };
-}
-::w::odom::Point sub(::w::odom::Point a, ::w::odom::Point b) {
-  return { a.x - b.x, a.y - b.y };
-}
-::w::odom::Point mult(::w::odom::Point a, ::w::odom::Point b) {
-  return { a.x * b.x, a.y * b.y };
-}
-::w::odom::Point div(::w::odom::Point a, ::w::odom::Point b) {
-  return { a.x / b.x, a.y / b.y };
-}
-float mag(::w::odom::Point a) {
-  return sqrt((a.x * a.x) + (a.y * a.y));
-}
-::w::odom::Point normalize(::w::odom::Point a) {
-  if(mag(a) == 0) return a;
-  return { a.x / mag(a), a.y / mag(a) };
-}
-::w::odom::Point multScalar(::w::odom::Point a, float b) {
-  return { a.x * b, a.y * b };
-}
 
 // target stuffs
 ::w::odom::Point closest(::w::odom::Point current, ::w::odom::Point head, ::w::odom::Point target) {
