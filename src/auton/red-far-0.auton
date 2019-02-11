@@ -1,0 +1,9 @@
+#meta name park
+#meta tile RED_B
+
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
+
+// park
+robot.moveFor(20);
+robot.turnToFace(90);
+robot.moveFor(36);
