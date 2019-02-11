@@ -8,7 +8,7 @@
 #define SR 4.25
 #define SS 2.55
 
-namespace w {
+namespace jctc {
   namespace odom {
     typedef struct {
       float x;

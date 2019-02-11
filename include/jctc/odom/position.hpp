@@ -13,6 +13,7 @@ namespace jctc {
       float a;
     };
 
+    // operators
     Point add(Point, Point);
     Point sub(Point, Point);
     Point mult(Point, Point);
