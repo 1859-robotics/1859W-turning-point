@@ -39,6 +39,9 @@ extern pros::ADIEncoder cTrackerWheel;
 
 extern pros::ADIDigitalIn limit;
 
+// abstractions
+extern odom::Tracker tracker;
+
 // macros
 #define RIGHT_DRIVE_SET(spd) rightDriveF.move(spd); rightDriveB.move(spd)
 #define LEFT_DRIVE_SET(spd) leftDriveF.move(spd); leftDriveB.move(spd)

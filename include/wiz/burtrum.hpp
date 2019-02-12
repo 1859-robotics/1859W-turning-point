@@ -16,13 +16,3 @@ namespace wiz {
     bool hasBall();
   };
 }
-
-
-class Jimmy : public Chassis {
-  void liftTo(float target);
-  virtual void driveVector(float, float);
-};
-
-void Jimmy::driveVector(float fow, float turn) {
-  
-}

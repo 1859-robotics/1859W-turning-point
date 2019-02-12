@@ -35,7 +35,7 @@
 #define PROS_USE_LITERALS
 
 #include "api.h"
-#include "jctc-lib/jctc.hpp"
+#include "./jctc-lib/jctc.hpp"
 
 /**
  * You should add more #includes here
