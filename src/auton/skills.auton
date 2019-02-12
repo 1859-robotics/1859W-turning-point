@@ -5,7 +5,7 @@
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 // shoot high flag
-robot.flyUp(420, [](float rpm) -> void {
+robot.flyUp(310, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
@@ -20,30 +20,12 @@ robot.feedBall(2000);
 // shoot ball
 robot.moveFor(-34);
 robot.turnToFace(180);
-robot.flyUp(340, [](float rpm) -> void {
+robot.flyUp(480, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(200);
   INTAKE_SET(0);
 });
 
-// grab next ball
-robot.moveFor(44);
-robot.turnToFace(90);
-robot.combineSet(false);
-robot.moveFor(34);
-robot.feedBall(2000);
-
-robot.moveFor(-10);
-robot.turnToFace(160);
-robot.flyUp(380, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(200);
-  INTAKE_SET(0);
-});
-
-
-
-/*
 // park
 robot.moveFor(-20);
 robot.turnToFace(90);
@@ -53,4 +35,3 @@ rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-*/
