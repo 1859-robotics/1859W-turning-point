@@ -18,4 +18,4 @@ pros::ADIEncoder cTrackerWheel = pros::ADIEncoder(TRACKER_CENTER_PORT, TRACKER_C
 
 pros::ADIDigitalIn limit = pros::ADIDigitalIn(LIMIT_PORT);
 
-odom::Tracker tracker = odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, 4.4, 4.4, 2.25, 41.69);
+odom::Tracker *tracker = new odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, 4.4, 4.4, 2.25, 41.69);
