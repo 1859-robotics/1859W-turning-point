@@ -1,6 +1,5 @@
 #pragma once
 #include "main.h"
-#include "wiz/burtrum.hpp"
 
 // port defines
 #define LEFT_DRIVE_BACK_PORT 11
@@ -59,3 +58,5 @@ extern pros::ADIDigitalIn limit;
 } else if(FLYWHEEL_GET_VEL > speed) { \
   FLYWHEEL_SET(0); \
 }
+
+#include "wiz/burtrum.hpp"
