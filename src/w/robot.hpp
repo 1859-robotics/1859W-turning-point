@@ -37,7 +37,8 @@ namespace w {
 
       void moveToSimple(::w::odom::Point target);
       void moveFor(float dist, float exit = 5000);
-
+      void moveForSimple(float distIn, float exit);
+      
       void combineSet(bool rev);
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg
       // void moveFor(float length); // moves for a distance
