@@ -6,14 +6,14 @@ float round(float var) {
     return (float)value / 100;
 }
 
-
-
 void opcontrol() {
   pros::Task posTracker(odom::trackTask, tracker);
   Logger posLogger(LV_ALIGN_CENTER, "tracker");
 
   tracker->reset();
   tracker->setPos({ 0, 0, PI / 2 });
+
+  robot.
 
   while(true) {
     RIGHT_DRIVE_SET(master.get_analog(ANALOG_RIGHT_Y));

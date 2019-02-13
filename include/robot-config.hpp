@@ -41,6 +41,11 @@ extern pros::ADIDigitalIn limit;
 
 // abstractions
 extern odom::Tracker *tracker;
+extern wiz::Burtrum robot;
+
+extern PID turnPid;
+extern PID distPid;
+
 
 // macros
 #define RIGHT_DRIVE_SET(spd) rightDriveF.move(spd); rightDriveB.move(spd)
