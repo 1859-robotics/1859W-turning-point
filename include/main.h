@@ -35,7 +35,16 @@
 #define PROS_USE_LITERALS
 
 #include "api.h"
-#include "./jctc-lib/jctc.hpp"
+#include "pros/apix.h"
+
+#include "jctc/chassis/chassis.hpp"
+#include "jctc/logger/logger.hpp"
+#include "jctc/misc/misc.hpp"
+#include "jctc/odom/position.hpp"
+#include "jctc/odom/odom.hpp"
+#include "jctc/pid/pid.hpp"
+
+using namespace jctc;
 
 /**
  * You should add more #includes here
