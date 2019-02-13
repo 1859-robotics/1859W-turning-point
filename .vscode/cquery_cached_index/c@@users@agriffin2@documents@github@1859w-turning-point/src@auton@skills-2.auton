@@ -1,0 +1,18 @@
+/****
+- [ ] shoot high flag
+- [ ] face cap
+- [ ] pick up ball & flip cap
+- [ ] backup, turn & shoot mid flag
+- [ ] toggle low flag
+- [ ] backup & pick up ball & flip cap
+- [ ] turn, shoot mid flag
+- [ ] toggle low flag
+****/
+
+posTracker.setPos({ 0, 0 }, 90);
+
+// FLYWHEEL_SET(FLYWHEEL_IDLE);
+
+// robot.combineSet(false);
+
+robot.moveTo({ 0, 20 }, { 0, 0, 0, 127 }, { 100, 0, 0, 60, 15 }, 100000);

@@ -1,0 +1,21 @@
+posTracker.setPos({ 0, 0 }, 90); //sets the starting position of the robot
+FLYWHEEL_SET(FLYWHEEL_IDLE);  //starts the fly wheel at Idle speed
+robot.combineSet(false);
+
+FLYWHEEL_SET(127);
+robot.turnToFace(115); //faces another high flag
+
+robot.flyUp(480, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(200);
+  INTAKE_SET(0);
+});
+
+robot.turnToFace(180);  //faces a cap
+
+robot.moveFor(35); // move 35in forward
+robot.feedBall();  // picks up ball and
+
+robot.moveFor(-10);  // backs up
+robot.turnToFace(90);  //faces platform
+robot.moveFor(24);  // climbs

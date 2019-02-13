@@ -1,0 +1,44 @@
+posTracker.setPos({ 0, 0 }, 90);
+FLYWHEEL_SET(FLYWHEEL_IDLE);
+
+robot.combineSet(false);
+
+robot.moveFor(39); // move 40in forward
+
+// FLYWHEEL_SET(70);
+
+robot.moveFor(-44); // move 40in backwards
+
+robot.flyUp(360, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(200);
+  INTAKE_SET(0);
+});
+
+FLYWHEEL_SET(FLYWHEEL_IDLE);
+
+robot.turnToFace(180);
+
+robot.moveFor(35); // move 35in forward
+robot.feedBall();
+robot.moveFor(-34);
+
+FLYWHEEL_SET(127);
+
+robot.turnToFace(90);
+
+robot.moveFor(-18);
+
+robot.flyUp(460, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(200);
+  INTAKE_SET(0);
+});
+
+robot.moveFor(24);
+
+robot.turnToFace(135);
+
+robot.combineSet(true);
+robot.moveFor(40); // move 16in forward
+robot.moveFor(-10); // move 16in forward
