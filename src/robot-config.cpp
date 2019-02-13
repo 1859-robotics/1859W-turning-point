@@ -23,4 +23,4 @@ odom::Tracker *tracker = new odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTra
 PID turnPid({ 8, 0, 0.15, MAX_SPEED, MIN_SPEED }, 0, 0.1);
 PID distPid({ 8, 0, 0.15, MAX_SPEED, MIN_SPEED }, 0, 0.1);
 
-wiz::Burtrum robot(&tracker, turnPid, distPid);
+wiz::Burtrum robot(*tracker, turnPid, distPid);

@@ -13,7 +13,7 @@ void opcontrol() {
   tracker->reset();
   tracker->setPos({ 0, 0, PI / 2 });
 
-  robot.
+  // robot.
 
   while(true) {
     RIGHT_DRIVE_SET(master.get_analog(ANALOG_RIGHT_Y));
