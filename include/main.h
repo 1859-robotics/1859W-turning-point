@@ -37,6 +37,12 @@
 #include "api.h"
 #include "pros/apix.h"
 
+#include "jctc/pid/pid.hpp"
+#include "jctc/misc/misc.hpp"
+#include "jctc/odom/position.hpp"
+#include "jctc/odom/odom.hpp"
+#include "jctc/chassis/chassis.hpp"
+
 /**
  * You should add more #includes here
  */
