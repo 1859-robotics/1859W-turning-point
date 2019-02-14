@@ -4,22 +4,26 @@
 
 void opcontrol() {
 	while (true) {
-		RIGHT_DRIVE_SET(master.get_analog(ANALOG_RIGHT_Y));
-		LEFT_DRIVE_SET(master.get_analog(ANALOG_LEFT_Y));
+
+    float rV = master.get_analog(ANALOG_RIGHT_Y);
+    float lV = master.get_analog(ANALOG_LEFT_Y);
+
+		RIGHT_DRIVE_SET(abs(rV) > 15 ? rV : 0);
+		LEFT_DRIVE_SET(abs(lV) > 15 ? lV : 0);
 
     bool autonOverwrite = false;
 
-		//if(master.get_digital(DIGITAL_UP)) {
-		//	rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		//	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		//	leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		//	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		//} else {
-		//	rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		//	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		//	leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		//	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		//}
+		if(master.get_digital(DIGITAL_UP)) {
+			rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+		} else {
+			rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+			rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+			leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+			leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		}
 
 		if(master.get_digital(DIGITAL_R2)) {
 			COMBINE_SET(0);
