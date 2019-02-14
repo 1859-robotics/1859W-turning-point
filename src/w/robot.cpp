@@ -379,7 +379,7 @@ namespace w {
     LEFT_DRIVE_SET_AUTO(0);
   }
 
-  void moveFor(float distIn, ::w::pid::PIDConfig pid, float exit = 5000) {
+  void robot::Robot::moveFor(float distIn, ::w::pid::PIDConfig pid, float exit) {
     w::odom::Point start = {
       posTracker.x,
       posTracker.y
