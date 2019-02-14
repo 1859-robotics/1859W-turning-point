@@ -43,7 +43,7 @@ void opcontrol() {
     }
 
     if(!autonOverwrite) {
-      if(master.get_digital(DIGITAL_R1)) {
+      if(master.get_digital(DIGITAL_R1) || !limit.get_value()) {
         INTAKE_SET(127);
       } else if(master.get_digital(DIGITAL_UP)) {
         INTAKE_SET(-127);

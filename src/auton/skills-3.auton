@@ -51,4 +51,4 @@ robot.moveFor(-40);
 robot.turnToFace(0);
 robot.moveFor(-23);
 robot.turnToFace(90);
-robot.moveFor(40.25);
+robot.moveFor(40, { 8, 0, .1, MAX_SPEED, MIN_SPEED });
