@@ -13,17 +13,17 @@ void opcontrol() {
 
     bool autonOverwrite = false;
 
-		if(master.get_digital(DIGITAL_UP)) {
-			rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-			rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-			leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-			leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		} else {
-			rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-			rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-			leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-			leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		}
+		// if(master.get_digital(DIGITAL_LEFT)) {
+		// 	rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+		// 	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+		// 	leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+		// 	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+		// } else {
+		// 	rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		// 	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		// 	leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		// 	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		// }
 
 		if(master.get_digital(DIGITAL_R2)) {
 			COMBINE_SET(0);
@@ -39,7 +39,7 @@ void opcontrol() {
 	    OPCONTROL_FLYWHEEL_SET(370);
     } else if(master.get_digital(DIGITAL_L1)) {
       OPCONTROL_FLYWHEEL_SET(520);
-    } else if(master.get_digital(DIGITAL_A)) {
+    } else if(master.get_digital(DIGITAL_X)) {
       OPCONTROL_FLYWHEEL_SET(400);
     } else {
       FLYWHEEL_SET(FLYWHEEL_IDLE);
