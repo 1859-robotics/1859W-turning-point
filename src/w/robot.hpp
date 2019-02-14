@@ -36,8 +36,8 @@ namespace w {
       // moves the bot along a set of way points
 
       void moveToSimple(::w::odom::Point target);
-      void moveFor(float dist, float exit = 5000);
-      void moveFor(float dist, ::w::pid::PIDConfig pid, float exit = 5000);
+      void moveFor(float distIn, float exit = 5000);
+      void moveFor(float distIn, ::w::pid::PIDConfig pid, float exit = 5000);
 
       void combineSet(bool rev);
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg
