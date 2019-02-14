@@ -1,4 +1,4 @@
-robot.moveFor(40, { 8, 0, .1, MAX_SPEED, MIN_SPEED });
+robot.moveFor(40, { 20, 0, .1, MAX_SPEED, MIN_SPEED });
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
