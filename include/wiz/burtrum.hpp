@@ -1,7 +1,6 @@
 #pragma once
 
 #include "main.h"
-#include "robot-config.hpp"
 #include <functional>
 #include <algorithm>
 

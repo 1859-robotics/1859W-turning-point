@@ -1,4 +1,5 @@
 #include "wiz/burtrum.hpp"
+#include "robot-config.hpp"
 
 namespace wiz {
   void Burtrum::driveVector(float forward, float turn) {
