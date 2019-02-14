@@ -24,7 +24,7 @@ void opcontrol() {
 		if(master.get_digital(DIGITAL_R2)) {
 			COMBINE_SET(0);
 		} else {
-			robot.combineSet(master.get_digital(DIGITAL_L1));
+			robot.combineSet(master.get_digital(DIGITAL_L2));
 
 	}
 
@@ -34,7 +34,7 @@ void opcontrol() {
       OPCONTROL_FLYWHEEL_SET(480);
 		} else if(master.get_digital(DIGITAL_A)) {
 	    OPCONTROL_FLYWHEEL_SET(370);
-    } else if(master.get_digital(DIGITAL_L2)) {
+    } else if(master.get_digital(DIGITAL_L1)) {
       OPCONTROL_FLYWHEEL_SET(520);
     } else if(master.get_digital(DIGITAL_A)) {
       OPCONTROL_FLYWHEEL_SET(400);
@@ -43,10 +43,10 @@ void opcontrol() {
     }
 
     if(!autonOverwrite) {
-      if(master.get_digital(DIGITAL_R1) || !limit.get_value()) {
-        INTAKE_SET(127);
-      } else if(master.get_digital(DIGITAL_UP)) {
+      if(master.get_digital(DIGITAL_UP)) {
         INTAKE_SET(-127);
+      } else if(master.get_digital(DIGITAL_DOWN) || !limit.get_value()) {
+        INTAKE_SET(127);
       } else {
         INTAKE_SET(0);
       }
