@@ -25,8 +25,7 @@ void opcontrol() {
 			COMBINE_SET(0);
 		} else {
 			robot.combineSet(master.get_digital(DIGITAL_L2));
-
-	}
+    }
 
     if(master.get_digital(DIGITAL_Y)) {
       FLYWHEEL_SET(127);
