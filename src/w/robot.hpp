@@ -6,6 +6,7 @@
 #include "auton_selector.hpp"
 #include "pid.hpp"
 #include "../robot-config.hpp"
+#include <cmath>
 
 bool withinRange(float target, float current, float error);
 

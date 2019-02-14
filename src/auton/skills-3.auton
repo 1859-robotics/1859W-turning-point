@@ -1,0 +1,53 @@
+// #meta name skills-7
+// #meta tile RED_A
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
+
+// shoot high flag
+robot.flyUp(310, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(300);
+  INTAKE_SET(0);
+});
+
+// get next ball & flip first cap
+
+robot.turnToFace(84);
+robot.combineSet(false);
+robot.moveFor(36);
+robot.feedBall(2000);
+robot.turnToFace(90);
+
+robot.moveFor(-33);
+robot.turnToFace(180);
+robot.combineSet(false);
+
+robot.flyUp(480, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(300);
+  INTAKE_SET(0);
+});
+
+robot.moveFor(-41);
+robot.turnToFace(90);
+robot.moveFor(40);
+
+robot.feedBall(2000);
+robot.turnToFace(90);
+robot.combineSet(true);
+// move for 10 no PID
+robot.combineSet(false);
+
+robot.turnToFace(170);
+
+robot.flyUp(400, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(300);
+  INTAKE_SET(0);
+});
+
+robot.turnToFace(90);
+robot.moveFor(-40);
+robot.turnToFace(0);
+robot.moveFor(-24);
+robot.turnToFace(90);
+robot.moveFor(40.25);

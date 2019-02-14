@@ -1,85 +1,260 @@
+
+
 #include "robot.hpp"
 
+
+
 // util functions
+
 bool withinRange(float target, float current, float error) {
+
   return abs(target - current) < error;
+
 }
+
 bool withinErr(float cX, float cY, float tX, float tY, float eP = P_ERR) {
+
   return (
+
     withinRange(tX, cX, eP) &&
+
     withinRange(tY, cY, eP)
+
   );
+
 }
+
+float dist(float x1, float y1, float x2, float y2) {
+
+  return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+
+}
+
+float dist(::w::odom::Point a, ::w::odom::Point b) {
+
+  return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+
+}
+
+float dot(float x1, float y1, float x2, float y2) {
+
+  return (x1 * x2) + (y1 * y2);
+
+}
+
+float dot(::w::odom::Point a, ::w::odom::Point b) { return a.x * b.x + a.y * b.y; }
+
+float remap (float value, float from1, float to1, float from2, float to2) {
+
+  return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+
+}
+
+float angleDiff(float angle1, float angle2) {
+
+  float diff = fmod(( (angle2 - angle1) + PI ), TAU) - PI;
+
+  return diff < -PI ? diff + TAU : diff;
+
+}
+
+
+
+// vector stuffs
+
+::w::odom::Point add(::w::odom::Point a, ::w::odom::Point b) {
+
+  return { a.x + b.x, a.y + b.y };
+
+}
+
+::w::odom::Point sub(::w::odom::Point a, ::w::odom::Point b) {
+
+  return { a.x - b.x, a.y - b.y };
+
+}
+
+::w::odom::Point mult(::w::odom::Point a, ::w::odom::Point b) {
+
+  return { a.x * b.x, a.y * b.y };
+
+}
+
+::w::odom::Point div(::w::odom::Point a, ::w::odom::Point b) {
+
+  return { a.x / b.x, a.y / b.y };
+
+}
+
+float mag(::w::odom::Point a) {
+
+  return sqrt((a.x * a.x) + (a.y * a.y));
+
+}
+
+::w::odom::Point normalize(::w::odom::Point a) {
+
+  if(mag(a) == 0) return a;
+
+  return { a.x / mag(a), a.y / mag(a) };
+
+}
+
+::w::odom::Point multScalar(::w::odom::Point a, float b) {
+
+  return { a.x * b, a.y * b };
+
+}
+
+
 
 // target stuffs
-w::odom::Point closest(w::odom::Point current, w::odom::Point head, w::odom::Point target) {
-  w::odom::Point n = normalize(head);
-  w::odom::Point v = sub(target, current);
-  float d = dot(v, n);
-  return add(current, multScalar(n, d));
-}
-w::odom::Point getNormalPoint(w::odom::Point p, w::odom::Point a, w::odom::Point b) {
-  w::odom::Point ap = sub(p, a);
-  w::odom::Point ab = sub(b, a);
-  ab = normalize(ab);
-  ab = multScalar(ab, dot(ap, ab));
-  w::odom::Point r = add(a, ab);
-  if ((r.y > std::max(a.y, b.y) || r.x > std::max(a.x, b.x)) ||
-      (r.y < std::min(a.y, b.y) || r.x < std::min(a.x, b.x)) ||
-      (r.y > std::max(a.y, b.y) || r.x < std::min(a.x, b.x)) ||
-      (r.y < std::min(a.y, b.y) || r.x > std::max(a.x, b.x))) {
-    r = dist(p, a) < dist(p, b) ? a : b;
-  }
-  return r;
-}
-w::odom::Point getTarget(w::odom::Point path[], int len, w::odom::Point current, float along) {
-  w::odom::Point target;
 
-  w::odom::Point normal;
+::w::odom::Point closest(::w::odom::Point current, ::w::odom::Point head, ::w::odom::Point target) {
+
+  ::w::odom::Point n = normalize(head);
+
+  ::w::odom::Point v = sub(target, current);
+
+  float d = dot(v, n);
+
+  return add(current, multScalar(n, d));
+
+}
+
+::w::odom::Point getNormalPoint(::w::odom::Point p, ::w::odom::Point a, ::w::odom::Point b) {
+
+  ::w::odom::Point ap = sub(p, a);
+
+  ::w::odom::Point ab = sub(b, a);
+
+  ab = normalize(ab);
+
+  ab = multScalar(ab, dot(ap, ab));
+
+  ::w::odom::Point r = add(a, ab);
+
+  if ((r.y > std::max(a.y, b.y) || r.x > std::max(a.x, b.x)) ||
+
+      (r.y < std::min(a.y, b.y) || r.x < std::min(a.x, b.x)) ||
+
+      (r.y > std::max(a.y, b.y) || r.x < std::min(a.x, b.x)) ||
+
+      (r.y < std::min(a.y, b.y) || r.x > std::max(a.x, b.x))) {
+
+    r = dist(p, a) < dist(p, b) ? a : b;
+
+  }
+
+  return r;
+
+}
+
+::w::odom::Point getTarget(::w::odom::Point path[], int len, ::w::odom::Point current, float along) {
+
+  ::w::odom::Point target;
+
+
+
+  ::w::odom::Point normal;
+
   int seg = 0;
 
+
+
   for(int i = 0; i < len - 1; i++) {
-    w::odom::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
+
+    ::w::odom::Point normalPoint = getNormalPoint(current, path[i], path[i + 1]);
+
     if(i == 0 || (dist(current, normalPoint) < dist(current, normal))) {
+
       normal = normalPoint;
+
       seg = i;
+
     }
+
   }
+
+
 
   std::cout << "normal:  (" << normal.x << ", " << normal.y << ")" << std::endl;
 
 
-  w::odom::Point turnless = sub(path[seg + 1], path[seg]);
+
+
+
+  ::w::odom::Point turnless = sub(path[seg + 1], path[seg]);
+
   turnless = normalize(turnless);
+
   turnless = multScalar(turnless, along);
+
   turnless = add(normal, turnless);
+
   float subDist = dist(normal, path[seg + 1]);
+
+
 
   if(dist(normal, turnless) < subDist) return turnless;
 
-  w::odom::Point lookAhead;
-  w::odom::Point prevPoint = normal;
+
+
+  ::w::odom::Point lookAhead;
+
+  ::w::odom::Point prevPoint = normal;
+
   float n = along;
 
+
+
   while(0 < n) {
+
     if(seg + 1 > len) {
+
       n = 0;
+
       lookAhead = path[len - 1];
+
     } else if(n > dist(prevPoint, path[seg + 1])) {
+
       n -= dist(prevPoint, path[seg + 1]);
+
       prevPoint = path[seg + 1];
+
       seg++;
+
     } else {
+
       lookAhead = sub(path[seg + 1], prevPoint);
+
       lookAhead = normalize(lookAhead);
+
       lookAhead = multScalar(lookAhead, n);
+
       lookAhead = add(path[seg], lookAhead);
+
       n = 0;
+
     }
+
   }
 
+
+
   return lookAhead;
+
 }
+
+
+
+float rollPI(float a) {
+
+  return a - TAU * std::floor((a + PI) * (1.0 / TAU));
+
+}
+
+
 
 
 namespace w {
