@@ -49,7 +49,6 @@ namespace w {
       void turnToFace(::w::odom::Point point, ::w::pid::PIDConfig c);
         // moveAlong({{1, 4}, {2, 5}}, 0); // move through the points (1, 4) then (2, 5) and end facing 0deg
       // void raiseLiftTo(int height); // rasie lift to a certain amount
-      // void shootBall(int spd); // shoots a ball
       // void flipCap(); // flips the currently held cap
     };
   }
