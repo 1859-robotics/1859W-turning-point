@@ -1,5 +1,5 @@
- //#meta name post&cap
- //#meta tile RED_A
+ #meta name post&cap
+ #meta tile RED_A
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 // shoot high flag

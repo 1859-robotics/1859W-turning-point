@@ -1,5 +1,5 @@
- //#meta name skills-old
- //#meta tile RED_A
+ #meta name skills-old
+ #meta tile RED_A
 // DO NOT USE
 // setup
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot

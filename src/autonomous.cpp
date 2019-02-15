@@ -8,8 +8,8 @@
 void autonomous() {
   pros::Task track(w::odom::track, &posTracker);
 
-  #include "./auton/red-far-0.auton"
-  //runAuton();
+  //#include "./auton/red-far-0.auton"
+  runAuton();
 
   while(true) { pros::delay(20); }
 }
