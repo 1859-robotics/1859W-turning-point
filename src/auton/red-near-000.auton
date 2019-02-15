@@ -1,21 +1,21 @@
-//#meta name post&park
-//#meta tile RED_A
+// #meta name post-park-no-cap
+ //#meta tile RED_A
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 // shoot high flag
 robot.flyUp(310, [](float rpm) -> void {
- INTAKE_SET(127);
- pros::delay(300);
- INTAKE_SET(0);
+  INTAKE_SET(127);
+  pros::delay(300);
+  INTAKE_SET(0);
 });
 
 // get next ball & flip first cap
 
-robot.turnToFace(276);
+robot.turnToFace(84);
 robot.combineSet(false);
 robot.moveFor(36);
 robot.feedBall(2000);
-robot.turnToFace(270);
+robot.turnToFace(90);
 robot.combineSet(true);
 
 robot.moveFor(-33);
@@ -23,22 +23,15 @@ robot.turnToFace(180);
 robot.combineSet(false);
 
 robot.flyUp(480, [](float rpm) -> void {
- INTAKE_SET(127);
- pros::delay(300);
- INTAKE_SET(0);
+  INTAKE_SET(127);
+  pros::delay(300);
+  INTAKE_SET(0);
 });
 
-robot.turnToFace(225);
-robot.combineSet(true);
-robot.moveFor(34);
-robot.moveFor(-35);
-robot.turnToFace(180);
+robot.moveFor(-21);
+robot.turnToFace(90);
 
-
-robot.moveFor(-22);
-robot.turnToFace(270);
-
-robot.moveFor(20, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
+robot.moveFor(18, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
 
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

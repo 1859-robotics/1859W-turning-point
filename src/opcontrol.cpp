@@ -4,6 +4,11 @@
 
 void opcontrol() {
 	while (true) {
+		rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+
 		RIGHT_DRIVE_SET(master.get_analog(ANALOG_RIGHT_Y));
 		LEFT_DRIVE_SET(master.get_analog(ANALOG_LEFT_Y));
 
