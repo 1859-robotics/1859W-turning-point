@@ -1,4 +1,4 @@
- #meta name skills-14
+ #meta name skills-10
  #meta tile RED_A
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 

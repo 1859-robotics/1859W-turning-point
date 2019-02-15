@@ -1,4 +1,4 @@
- //#meta name post&park
+ //#meta name post&cap
  //#meta tile RED_A
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
@@ -33,15 +33,3 @@ robot.combineSet(true);
 robot.moveFor(34, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
 robot.moveFor(-34);
 robot.turnToFace(180);
-
-
-robot.moveFor(-24);
-robot.turnToFace(90);
-
-robot.moveFor(21, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-
-
-rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

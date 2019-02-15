@@ -37,6 +37,22 @@
 #include "api.h"
 #include "pros/apix.h"
 
+#define MAX_SPEED 127
+#define MIN_SPEED 20
+#define P_ERR 3
+#define A_ERR 3
+
+#define PI M_PI
+#define TAU (PI * 2)
+
+#define SL 4.4
+#define SR 4.4
+#define SS 2.25
+
+#define TODEG(rad) (rad * (180 / PI))
+#define TORAD(deg) (deg * (PI / 180))
+#define SGN(x) ((x) > 0 ? 1 : (x) < 0 ? -1 : 0)
+
 /**
  * You should add more #includes here
  */
