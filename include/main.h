@@ -39,8 +39,8 @@
 
 #define MAX_SPEED 127
 #define MIN_SPEED 20
-#define P_ERR 3
-#define A_ERR 3
+#define P_ERR 2
+#define A_ERR 2
 
 #define PI M_PI
 #define TAU (PI * 2)

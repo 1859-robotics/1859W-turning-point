@@ -1,4 +1,4 @@
- #meta name post&cap
+ #meta name Allpost&cap
  #meta tile RED_A
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
@@ -11,14 +11,14 @@ robot.flyUp(300, [](float rpm) -> void {
 
 // get next ball & flip first cap
 
-robot.turnToFace(84);
+robot.turnToFace(87);
 robot.combineSet(false);
-robot.moveFor(36);
+robot.moveFor(36.25);
 robot.feedBall(2000);
 robot.turnToFace(92);
 robot.combineSet(true);
 
-robot.moveFor(-33);
+robot.moveFor(-33.25);
 robot.turnToFace(180);
 robot.combineSet(false);
 
@@ -28,8 +28,12 @@ robot.flyUp(480, [](float rpm) -> void {
   INTAKE_SET(0);
 });
 
-robot.turnToFace(135);
+robot.turnToFace(190);
+
+robot.moveFor(38);
+robot.moveFor(-24);
+
+robot.turnToFace(90);
 robot.combineSet(true);
-robot.moveFor(34, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-robot.moveFor(-34);
-robot.turnToFace(180);
+robot.moveFor(23, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
+robot.moveFor(-10);
