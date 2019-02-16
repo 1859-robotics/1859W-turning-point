@@ -1,5 +1,5 @@
-#meta name skills-14
-#meta tile RED_B
+ #meta name skills-16
+ #meta tile RED_A
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 // shoot high flag
@@ -19,10 +19,8 @@ robot.turnToFace(90);
 robot.combineSet(true);
 robot.moveFor(12, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
 robot.turnToFace(90);
-robot.moveFor(-12);
-robot.combineSet(false);
-robot.turnToFace(90);
-robot.moveFor(-33);
+
+robot.moveFor(-45);
 robot.turnToFace(180);
 robot.combineSet(false);
 
@@ -32,31 +30,11 @@ robot.flyUp(480, [](float rpm) -> void {
   INTAKE_SET(0);
 });
 
-robot.moveFor(-41);
+robot.moveFor(-21);
 robot.turnToFace(90);
-robot.moveFor(40);
 
-robot.feedBall(2000);
-robot.turnToFace(90);
-robot.combineSet(true);
-robot.moveFor(12, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-robot.combineSet(false);
-robot.turnToFace(100);
-robot.moveFor(-12.5);
-robot.turnToFace(180);
-
-robot.flyUp(370, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-robot.turnToFace(90);
-robot.moveFor(-40);
-robot.turnToFace(0);
-robot.moveFor(-23);
-robot.turnToFace(90);
 robot.moveFor(40, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
+
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
