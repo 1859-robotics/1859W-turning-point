@@ -1,0 +1,5 @@
+robot.flyUp(300, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(300);
+  INTAKE_SET(0);
+});

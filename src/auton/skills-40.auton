@@ -45,16 +45,16 @@ robot.moveFor(-60);
 robot.turnToFace(180);
 robot.combineSet(false);
 
-robot.flyUp(480, [](float rpm) -> void {
+robot.flyUp(300, [](float rpm) -> void {
   INTAKE_SET(127);
   pros::delay(300);
   INTAKE_SET(0);
 });
 
-robot.moveFor(-21);
+robot.moveFor(-22);
 robot.turnToFace(90);
 
-robot.moveFor(40, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
+robot.moveFor(44, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
 
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
