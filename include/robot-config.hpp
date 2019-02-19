@@ -1,5 +1,6 @@
 #pragma once
 #include "main.h"
+#include "wiz/burtrum.hpp"
 
 // port defines
 #define LEFT_DRIVE_BACK_PORT 11
@@ -40,7 +41,12 @@ extern pros::ADIEncoder cTrackerWheel;
 extern pros::ADIDigitalIn limit;
 
 // abstractions
-// extern odom::Tracker *tracker;
+extern odom::Tracker *tracker;
+extern wiz::Burtrum robot;
+
+extern PID turnPid;
+extern PID distPid;
+
 
 // macros
 #define RIGHT_DRIVE_SET(spd) rightDriveF.move(spd); rightDriveB.move(spd)
@@ -61,5 +67,3 @@ extern pros::ADIDigitalIn limit;
 } else if(FLYWHEEL_GET_VEL > speed) { \
   FLYWHEEL_SET(0); \
 }
-
-#include "wiz/burtrum.hpp"

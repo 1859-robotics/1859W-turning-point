@@ -18,4 +18,9 @@ pros::ADIEncoder cTrackerWheel = pros::ADIEncoder(TRACKER_CENTER_PORT, TRACKER_C
 
 pros::ADIDigitalIn limit = pros::ADIDigitalIn(LIMIT_PORT);
 
-// odom::Tracker *tracker = new odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, 4.4, 4.4, 2.25, 41.69);
+odom::Tracker *tracker = new odom::Tracker(&lTrackerWheel, &rTrackerWheel, &cTrackerWheel, 4.4, 4.4, 2.25, 41.69);
+
+PID turnPid({ 8, 0, 0.15, MAX_SPEED, MIN_SPEED }, 0, 0.1);
+PID distPid({ 8, 0, 0.15, MAX_SPEED, MIN_SPEED }, 0, 0.1);
+
+wiz::Burtrum robot(*tracker, turnPid, distPid);
