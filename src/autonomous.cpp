@@ -8,7 +8,7 @@
 void autonomous() {
   pros::Task track(w::odom::track, &posTracker);
 
-  #include "./auton/skills-40.auton"
+  #include "./auton/skills-20.auton"
   //#include "./auton/test2.auton"
   //runAuton();
 
