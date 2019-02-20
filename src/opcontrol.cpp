@@ -11,9 +11,9 @@ void opcontrol() {
   Logger posLogger(LV_ALIGN_CENTER, "tracker");
 
   tracker->reset();
-  tracker->setPos({ 0, 0, PI / 2 });
+  tracker->setPos(0, 0, 90);
 
-  // robot.
+  robot.reset();
 
   while(true) {
     RIGHT_DRIVE_SET(master.get_analog(ANALOG_RIGHT_Y));

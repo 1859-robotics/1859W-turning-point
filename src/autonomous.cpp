@@ -7,5 +7,5 @@ void autonomous() {
   tracker->reset();
   tracker->setPos({ 0, 0, PI / 2 });
 
-  robot.driveTo({ 9, 9 }, 2.5, 0, 5);
+  robot.moveTo({ 9, 9 }, 2.5, 0, 5);
 }

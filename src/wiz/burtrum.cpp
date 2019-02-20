@@ -16,9 +16,17 @@ namespace wiz {
     if (maxInputMag > MAX_SPEED) {
       leftOutput /= maxInputMag;
       rightOutput /= maxInputMag;
-    }
 
-    RIGHT_DRIVE_SET(rightOutput * MAX_SPEED);
-    LEFT_DRIVE_SET(leftOutput * MAX_SPEED);
+      RIGHT_DRIVE_SET(rightOutput * MAX_SPEED);
+      LEFT_DRIVE_SET(leftOutput * MAX_SPEED);
+
+    } else {
+      RIGHT_DRIVE_SET(rightOutput);
+      LEFT_DRIVE_SET(leftOutput);
+    }
+  }
+
+  void Burtrum::reset() {
+    tracker.reset();
   }
 }
