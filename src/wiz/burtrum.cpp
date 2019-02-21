@@ -2,7 +2,7 @@
 #include "robot-config.hpp"
 
 namespace wiz {
-  void Burtrum::driveVector(float forward, float turn) {
+  void Burtrum::driveVector(float forward, float turn) const {
     // This code is taken from WPIlib. All credit goes to them. Link:
     // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
 
