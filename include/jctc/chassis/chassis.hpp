@@ -33,8 +33,8 @@ namespace jctc {
     void moveFor(float distIn, float exit = 5000);
     void moveFor(float distIn, PIDConfig pid, float exit = 5000);
 
-    void turnToFace(float target, int timeout = 5000, float err = P_ERR);
-    void turnToFace(odom::Point target, int timeout = 5000, float err = P_ERR);
+    void turnToFace(float target, int timeout = 5000, float err = P_ERR, PIDConfig config = { 1.4, 0, 0.4, MAX_SPEED, MIN_SPEED, 3, 30 });
+    void turnToFace(odom::Point target, int timeout = 5000, float err = P_ERR, PIDConfig config = { 1.4, 0, 0.4, MAX_SPEED, MIN_SPEED, 3, 30 });
 
     float angleToPoint(odom::Point target);
     float distanceToPoint(odom::Point target);
