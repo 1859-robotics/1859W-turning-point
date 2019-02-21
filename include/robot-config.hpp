@@ -57,6 +57,14 @@ extern PID distPid;
 #define FLYWHEEL_START_B_HIGH 390
 #define FLYWHEEL_START_B_MID 410
 
+#define FLYWHEEL_SET(spd) flywheelL.move(spd); flywheelR.move(spd)
+#define FLYWHEEL_SET_VEL(spd) flywheelL.move_velocity(spd); flywheelR.move_velocity(spd)
+
+#define FLYWHEEL_GET_VEL (flywheelR.get_actual_velocity() + flywheelL.get_actual_velocity()) / 2
+
+#define INTAKE_SET(spd) intake.move(spd)
+#define COMBINE_SET(spd) combine.move(spd)
+
 #define OPCONTROL_FLYWHEEL_SET(speed) if(withinRange(speed, FLYWHEEL_GET_VEL, FLYWHEEL_ERR)) { \
   master.rumble("."); \
   INTAKE_SET(127); \

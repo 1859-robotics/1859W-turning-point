@@ -37,6 +37,13 @@
 #include "api.h"
 #include "pros/apix.h"
 
+#define MAX_SPEED 127
+#define MIN_SPEED 20
+#define P_ERR 2
+#define A_ERR 2
+
+#define TASK_WHILE(c, f) while(c) { f; pros::delay(10); }
+
 #include "jctc/pid/pid.hpp"
 #include "jctc/misc/misc.hpp"
 #include "jctc/logger/logger.hpp"
