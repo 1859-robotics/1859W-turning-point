@@ -6,7 +6,7 @@ void autonomous() {
   Logger posLogger(LV_ALIGN_CENTER, "tracker");
 
   tracker->reset();
-  tracker->setPos(0, 0, 90);
+  tracker->setPos(0, 0, TORAD(90));
 
   robot.reset();
 
