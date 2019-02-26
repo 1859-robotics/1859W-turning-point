@@ -1,0 +1,10 @@
+ #meta name skills-11
+ #meta tile RED_B
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
+
+// shoot high flag
+robot.flyUp(370, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(300);
+  INTAKE_SET(0);
+});

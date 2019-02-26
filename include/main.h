@@ -45,8 +45,8 @@
 #define PI M_PI
 #define TAU (PI * 2)
 
-#define SL 4.4
-#define SR 4.4
+#define SL 4.2
+#define SR 4.2
 #define SS 2.25
 
 #define TODEG(rad) (rad * (180 / PI))

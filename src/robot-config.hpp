@@ -26,6 +26,7 @@
 // components
 
 extern pros::Controller master;
+extern pros::Controller partner;
 
 extern pros::Motor leftDriveF;
 extern pros::Motor rightDriveF;

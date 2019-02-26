@@ -1,0 +1,3 @@
+posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
+
+robot.turnToFace(90);

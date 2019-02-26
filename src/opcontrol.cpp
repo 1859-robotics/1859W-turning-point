@@ -60,6 +60,17 @@ void opcontrol() {
     }
 
 
+		//if(!autonOverwrite) {
+      //if(partner.get_digital(DIGITAL_UP)) {
+      //  INTAKE_SET(-127);
+      //} else if(partner.get_digital(DIGITAL_DOWN) || !limit.get_value()) {
+      //  INTAKE_SET(127);
+      //} else {
+      //  INTAKE_SET(0);
+      //}
+    //}
+
+
     if(limit.get_value()) {
       master.rumble("-");
     }
