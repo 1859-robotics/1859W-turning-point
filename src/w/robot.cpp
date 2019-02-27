@@ -447,6 +447,11 @@ namespace w {
     INTAKE_SET(0);
   }
 
+  //void robot::Robot::intakeSet(bool rev) {
+  //  INTAKE_SET(rev ? 127 : -127);
+//}
+
+
   void robot::Robot::reset() {
     tracker->reset();
   }

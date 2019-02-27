@@ -8,9 +8,9 @@
 void autonomous() {
   pros::Task track(w::odom::track, &posTracker);
 
-  //#include "./auton/skills-NEW.auton"
+  #include "./auton/skills-NEW.auton"
   //#include "./auton/test2.auton"
-   runAuton();
+  // runAuton();
 
   while(true) { pros::delay(20); }
 }

@@ -1,5 +1,5 @@
- #meta name skills-11
- #meta tile RED_B
+ //#meta name skills-NEW14
+ //#meta tile RED_B
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 // shoot high flag
@@ -8,3 +8,61 @@ robot.flyUp(370, [](float rpm) -> void {
   pros::delay(300);
   INTAKE_SET(0);
 });
+
+robot.moveFor(-6);
+robot.turnToFace(90);
+robot.moveFor(36);
+robot.combineSet(false);
+robot.feedBall(2000);
+robot.combineSet(true);
+robot.turnToFace(90);
+robot.moveFor(12, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
+
+robot.turnToFace(90);
+robot.moveFor(-48);
+robot.turnToFace(180);
+robot.moveFor(52);
+robot.turnToFace(183);
+
+robot.flyUp(370, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(300);
+  INTAKE_SET(0);
+});
+robot.turnToFace(180);
+
+robot.moveFor(-16);
+robot.turnToFace(90);
+robot.combineSet(false);
+robot.moveFor(36);
+
+robot.feedBall(2000);
+robot.combineSet(true);
+robot.turnToFace(90);
+robot.moveFor(12, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
+robot.turnToFace(90);
+
+robot.moveFor(-40);
+robot.turnToFace(145);
+robot.moveFor(11);
+
+
+robot.flyUp(520, [](float rpm) -> void {
+  INTAKE_SET(127);
+  pros::delay(300);
+  INTAKE_SET(0);
+});
+
+robot.moveFor(-20);
+robot.turnToFace(180);
+robot.moveFor(-14);
+robot.turnToFace(90);
+robot.moveFor(-8);
+
+robot.moveFor(47, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
+
+
+rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
