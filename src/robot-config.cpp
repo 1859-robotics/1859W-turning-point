@@ -8,7 +8,7 @@ pros::Motor rightDriveB = pros::Motor(RIGHT_DRIVE_BACK_PORT, pros::E_MOTOR_GEARS
 pros::Motor leftDriveF = pros::Motor(LEFT_DRIVE_FRONT_PORT, pros::E_MOTOR_GEARSET_18);
 pros::Motor rightDriveF = pros::Motor(RIGHT_DRIVE_FRONT_PORT, pros::E_MOTOR_GEARSET_18, -1);
 
-//pros::Motor Flipover = pros::Motor(RIGHT_FLYWHEEL_PORT, pros::E_MOTOR_GEARSET_06);
+pros::Motor flipover = pros::Motor(FLIPOVER_PORT, pros::E_MOTOR_GEARSET_06);
 
 pros::Motor flywheelR = pros::Motor(RIGHT_FLYWHEEL_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Motor flywheelL = pros::Motor(LEFT_FLYWHEEL_PORT, pros::E_MOTOR_GEARSET_06, 1);
