@@ -17,17 +17,19 @@ void opcontrol() {
 
     bool autonOverwrite = false;
 
-		// if(master.get_digital(DIGITAL_LEFT)) {
-		// 	rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		// 	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		// 	leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		// 	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-		// } else {
-		// 	rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		// 	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		// 	leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		// 	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		// }
+		 if(partner.get_digital(DIGITAL_LEFT)) {
+			 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			 rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			 leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			 leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			 RIGHT_DRIVE_SET(0);
+			 LEFT_DRIVE_SET(0);
+	 		} else {
+		 	rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		 	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		 	leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		 	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		 	}
 
 		if(master.get_digital(DIGITAL_R2)) {
 			COMBINE_SET(0);
@@ -49,26 +51,26 @@ void opcontrol() {
       FLYWHEEL_SET(FLYWHEEL_IDLE);
     }
 
-    //if(!autonOverwrite) {
-      //if(master.get_digital(DIGITAL_UP)) {
-      //  INTAKE_SET(-127);
-      //} else if(master.get_digital(DIGITAL_DOWN) || !limit.get_value()) {
-      //  INTAKE_SET(127);
-      //} else {
-      //  INTAKE_SET(0);
-      //}
-    //}
-
-
-		if(!autonOverwrite) {
-      if(partner.get_digital(DIGITAL_UP)) {
+    if(!autonOverwrite) {
+      if(master.get_digital(DIGITAL_UP)) {
         INTAKE_SET(-127);
-      } else if(partner.get_digital(DIGITAL_DOWN) || !limit.get_value()) {
+      } else if(master.get_digital(DIGITAL_DOWN) || !limit.get_value()) {
         INTAKE_SET(127);
       } else {
         INTAKE_SET(0);
       }
     }
+
+
+	//	if(!autonOverwrite) {
+  //    if(partner.get_digital(DIGITAL_UP)) {
+  //      INTAKE_SET(-127);
+  //    } else if(partner.get_digital(DIGITAL_DOWN) || !limit.get_value()) {
+  //      INTAKE_SET(127);
+  //    } else {
+  //      INTAKE_SET(0);
+  //    }
+  //  }
 
 
     if(limit.get_value()) {

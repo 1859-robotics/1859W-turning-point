@@ -17,6 +17,8 @@
 #define INTAKE_PORT 3
 #define COMBINE_PORT 8
 
+//#define Flipover_PORT 15
+
 #define TRACKER_LEFT_PORT 5
 #define TRACKER_RIGHT_PORT 7
 #define TRACKER_CENTER_PORT 3
@@ -38,6 +40,8 @@ extern pros::Motor flywheelR;
 
 extern pros::Motor intake;
 extern pros::Motor combine;
+
+extern pros::Motor Flipover;
 
 extern pros::ADIEncoder lTrackerWheel;
 extern pros::ADIEncoder rTrackerWheel;

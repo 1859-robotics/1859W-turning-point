@@ -437,14 +437,22 @@ namespace w {
     combine.move(rev ? 127 : -127);
   }
 
+  //void robot::Robot::FlipoverSet(bool rev) {
+  //  combine.move(rev ? 127 : -127);
+  //}
+
+
+
   void robot::Robot::feedBall(float exit) {
     std::uint32_t started = pros::millis();
 
     while(!limit.get_value()) {
       if((pros::millis() - started) > exit) return;
       INTAKE_SET(127);
+      // COMBINE_SET(127);
     }
     INTAKE_SET(0);
+    //COMBINE_SET(0);
   }
 
   //void robot::Robot::intakeSet(bool rev) {

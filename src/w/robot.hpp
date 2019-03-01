@@ -40,6 +40,8 @@ namespace w {
       void moveFor(float distIn, ::w::pid::PIDConfig pid, float exit = 5000);
 
       void combineSet(bool rev);
+
+    //  void FlipoverSet(bool rev);
         // moveTo({3, 4}, 45) - move to point (3, 4) and face 45deg
       // void moveFor(float length); // moves for a distance
         // moveFor(4) - move 4 in forwards
