@@ -15,5 +15,8 @@ namespace wiz {
     void combineSet(bool rev);
     void feedBall(float exit = 10000);
     bool hasBall();
+
+    // movement functions (to be moved to jctclib)
+    void moveToTest(odom::Point target, float acceptableErr, int timeout = 5000);
   };
 }

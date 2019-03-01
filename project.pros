@@ -5,7 +5,7 @@
         "target": "v5",
         "templates": {
             "jctclib": {
-                "location": "C:\\Users\\agriffin2\\AppData\\Roaming\\PROS\\templates\\jctclib@0.0.4",
+                "location": "C:\\Users\\alexa\\AppData\\Roaming\\PROS\\templates\\jctclib@0.0.4",
                 "metadata": {
                     "origin": "local"
                 },
@@ -26,7 +26,7 @@
                 "version": "0.0.4"
             },
             "kernel": {
-                "location": "C:\\Users\\agriffin2\\AppData\\Roaming\\PROS\\templates\\kernel@3.1.6",
+                "location": "C:\\Users\\alexa\\AppData\\Roaming\\PROS\\templates\\kernel@3.1.6",
                 "metadata": {
                     "cold_addr": "58720256",
                     "cold_output": "bin/cold.package.bin",

@@ -65,4 +65,32 @@ namespace wiz {
       }
     }
   }
+
+
+  void Burtrum::moveToTest(odom::Point target, float acceptableErr, int timeout) {
+    while(!withinErr(target, tracker.getPos().pos, P_ERR)) {
+      const odom::Position state = tracker.getPos();
+
+      odom::Point close = odom::closest({
+        state.pos.x, state.pos.y                         // current
+      }, { (float)cos(state.a), (float)sin(state.a)}, {  // head
+        target.x, target.y                               // target
+      });
+
+      float angleErr = angleToPoint(close);
+      if(std::isnan(angleErr)) angleErr = 0;
+
+      if(fabs(angleErr) < acceptableErr) angleErr = 0;
+
+      float distanceErr = distanceToPoint(close);
+
+      float angleVel = turnPid.calculate(angleErr, 0);
+      float distanceVel = distPid.calculate(distanceErr, 0);
+
+      driveVector(distanceVel, angleVel);
+
+      pros::delay(20);
+    }
+    driveVector(0, 0);
+  }
 }

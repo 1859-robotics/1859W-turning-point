@@ -10,7 +10,7 @@ void autonomous() {
 
   robot.reset();
 
-  robot.moveTo({ 9, 9 }, 2.5, 0, 5);
+  robot.moveToTest({ 9, 9 }, 5);
 
   while(true) {
     posLogger.log(("(" + std::to_string(round(tracker->getPos().pos.x)) + ","
