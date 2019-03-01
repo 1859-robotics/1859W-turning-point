@@ -17,6 +17,6 @@ namespace wiz {
     bool hasBall();
 
     // movement functions (to be moved to jctclib)
-    void moveToTest(odom::Point target, unsigned float acceptableErr, unsigned int timeout = 5000);
+    void moveToTest(odom::Point target, float acceptableErr, unsigned int timeout = 5000);
   };
 }

@@ -67,7 +67,7 @@ namespace wiz {
   }
 
 
-  void Burtrum::moveToTest(odom::Point target, unsigned float acceptableErr, unsigned int timeout) {
+  void Burtrum::moveToTest(odom::Point target, float acceptableErr, unsigned int timeout) {
     while(!withinErr(target, tracker.getPos().pos, P_ERR)) {
       const odom::Position state = tracker.getPos();
 
