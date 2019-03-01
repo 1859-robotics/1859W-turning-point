@@ -1,7 +1,7 @@
 #include "robot-config.hpp"
 
 pros::Controller master = pros::Controller (CONTROLLER_MASTER);
-pros::Controller partner = pros::Controller (pros::E_CONTROLLER_PARTNER);
+pros::Controller partner = pros::Controller (CONTROLLER_PARTNER);
 
 pros::Motor leftDriveB = pros::Motor(LEFT_DRIVE_BACK_PORT, pros::E_MOTOR_GEARSET_18);
 pros::Motor rightDriveB = pros::Motor(RIGHT_DRIVE_BACK_PORT, pros::E_MOTOR_GEARSET_18, -1);

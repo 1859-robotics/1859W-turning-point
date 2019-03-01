@@ -19,6 +19,7 @@ void init() {
   flywheelL.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   flywheelR.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  flipover.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
 	rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
