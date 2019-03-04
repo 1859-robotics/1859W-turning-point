@@ -83,6 +83,13 @@ namespace wiz {
 
       float distanceErr = distanceToPoint(close);
 
+      float aP = atan2(close.y - state.pos.y, close.x - state.pos.x) - state.a;
+      aP = fmod(aP, (TAU)) * SGN(aP);
+      if (abs(aP) > PI / 2) {
+        distanceErr = -distanceErr;
+        angleErr -= PI * SGN(aP);
+      }
+
       float angleVel = turnPid.calculate(angleErr, 0);
       float distanceVel = distPid.calculate(-distanceErr, 0);
 

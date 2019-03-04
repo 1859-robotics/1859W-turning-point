@@ -1,6 +1,7 @@
 #include "robot-config.hpp"
 
 pros::Controller master = pros::Controller (CONTROLLER_MASTER);
+pros::Controller partner = pros::Controller (CONTROLLER_PARTNER);
 
 pros::Motor leftDriveB = pros::Motor(LEFT_DRIVE_BACK_PORT, pros::E_MOTOR_GEARSET_18);
 pros::Motor rightDriveB = pros::Motor(RIGHT_DRIVE_BACK_PORT, pros::E_MOTOR_GEARSET_18, -1);
@@ -11,6 +12,8 @@ pros::Motor flywheelR = pros::Motor(RIGHT_FLYWHEEL_PORT, pros::E_MOTOR_GEARSET_0
 pros::Motor flywheelL = pros::Motor(LEFT_FLYWHEEL_PORT, pros::E_MOTOR_GEARSET_06, 1);
 pros::Motor intake = pros::Motor(INTAKE_PORT, pros::E_MOTOR_GEARSET_18);
 pros::Motor combine = pros::Motor(COMBINE_PORT, pros::E_MOTOR_GEARSET_06);
+
+pros::Motor flipover = pros::Motor(FLIPOVER_PORT, pros::E_MOTOR_GEARSET_06);
 
 pros::ADIEncoder lTrackerWheel = pros::ADIEncoder(TRACKER_LEFT_PORT, TRACKER_LEFT_PORT + 1);
 pros::ADIEncoder rTrackerWheel = pros::ADIEncoder(TRACKER_RIGHT_PORT, TRACKER_RIGHT_PORT + 1);
