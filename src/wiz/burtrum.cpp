@@ -17,12 +17,12 @@ namespace wiz {
     float rightOutput = forwardSpeed - yaw;
     float maxInputMag = std::max<float>(std::abs(leftOutput), std::abs(rightOutput));
 
-    if (maxInputMag > MAX_SPEED) {
+    if (maxInputMag > 40) {
       leftOutput /= maxInputMag;
       rightOutput /= maxInputMag;
 
-      RIGHT_DRIVE_SET(rightOutput * MAX_SPEED);
-      LEFT_DRIVE_SET(leftOutput * MAX_SPEED);
+      RIGHT_DRIVE_SET(rightOutput * 40);
+      LEFT_DRIVE_SET(leftOutput * 40);
 
     } else {
       RIGHT_DRIVE_SET(rightOutput);
@@ -77,9 +77,8 @@ namespace wiz {
         target.x, target.y                                // target
       });
 
-      float angleErr = angleToPoint(close);
+      float angleErr = angleToPoint({ target.x, target.y });
       if(std::isnan(angleErr)) angleErr = 0;
-
       if(fabs(angleErr) < acceptableErr) angleErr = 0;
 
       float distanceErr = distanceToPoint(close);
@@ -87,9 +86,16 @@ namespace wiz {
       float angleVel = turnPid.calculate(angleErr, 0);
       float distanceVel = distPid.calculate(-distanceErr, 0);
 
-      std::cout << "state: "; odom::print(state);
+      LOG_VAR(angleVel);
+      LOG_VAR(angleErr);
+      LOG_VAR(distanceVel);
+      LOG_VAR(distanceErr);
 
-      driveVector(distanceVel, angleVel);
+      std::cout << "state: "; odom::print(state);
+      // std::cout << "target: "; odom::print(target);
+      // std::cout << "close: "; odom::print(close);
+
+      // driveVector(distanceVel, angleVel);
 
       pros::delay(20);
     }
