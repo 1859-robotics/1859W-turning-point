@@ -95,7 +95,7 @@ namespace wiz {
       // std::cout << "target: "; odom::print(target);
       // std::cout << "close: "; odom::print(close);
 
-      // driveVector(distanceVel, angleVel);
+      driveVector(distanceVel, angleVel);
 
       pros::delay(20);
     }
