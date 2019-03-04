@@ -4,13 +4,17 @@
 
 void opcontrol() {
 	while (true) {
-		rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-
     float rV = master.get_analog(ANALOG_RIGHT_Y);
     float lV = master.get_analog(ANALOG_LEFT_Y);
+
+		rV = abs(rV) > 15 ? rV : 0;
+		lV = abs(lV) > 15 ? lV : 0;
+
+		if(rV == 0 && lV == 0) {
+			// reversed to reverse controlls
+			rV = -partner.get_analog(ANALOG_LEFT_Y);
+			lV = -partner.get_analog(ANALOG_RIGHT_Y);
+		}
 
 		RIGHT_DRIVE_SET(abs(rV) > 15 ? rV : 0);
 		LEFT_DRIVE_SET(abs(lV) > 15 ? lV : 0);
@@ -31,11 +35,29 @@ void opcontrol() {
 		 	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	 	}
 
-		if(master.get_digital(DIGITAL_R2)) {
-			COMBINE_SET(0);
+		// if(limit.get_value()) {
+		// 	INTAKE_SET(0);
+		// }
+
+		if(master.get_digital(DIGITAL_R1)) {
+			INTAKE_SET(-127);
+		} else if (limit.get_value() || master.get_digital(DIGITAL_R2)) {
+			INTAKE_SET(0);
 		} else {
-			robot.combineSet(master.get_digital(DIGITAL_R1));
-    }
+			INTAKE_SET(127);
+		}
+
+		std::cout << flipover.get_position() << std::endl;
+
+		if(partner.get_digital(DIGITAL_A)) {
+			flipover.move_absolute(2100, 600);
+		} else if(partner.get_digital(DIGITAL_B)) {
+			flipover.move_absolute(3900, 600);
+		} else if(partner.get_digital(DIGITAL_Y)) {
+			flipover.move_absolute(0, 600);
+		} else if(partner.get_digital(DIGITAL_X)) {
+			flipover.move_absolute(1090, 600);
+		}
 
     if(master.get_digital(DIGITAL_Y)) {
       FLYWHEEL_SET(127);
@@ -51,32 +73,13 @@ void opcontrol() {
       FLYWHEEL_SET(FLYWHEEL_IDLE);
     }
 
-		if(!autonOverwrite) {
-			if(master.get_digital(DIGITAL_UP)) {
-				INTAKE_SET(-127);
-			} else if(master.get_digital(DIGITAL_DOWN) || !limit.get_value()) {
-				INTAKE_SET(127);
-			} else {
-				INTAKE_SET(0);
-			}
-		}
 
 
-		if(partner.get_digital(DIGITAL_LEFT) || master.get_digital(DIGITAL_LEFT)) {
+		if(partner.get_digital(DIGITAL_R1) || master.get_digital(DIGITAL_LEFT)) {
 			flipover.move(-127);
-		} else if(partner.get_digital(DIGITAL_RIGHT) || master.get_digital(DIGITAL_RIGHT)) {
+		} else if(partner.get_digital(DIGITAL_R2) || master.get_digital(DIGITAL_RIGHT)) {
 			flipover.move(127);
     } else flipover.move(0);
-
-	if(!autonOverwrite) {
-    if(master.get_digital(DIGITAL_UP)) {
-     INTAKE_SET(-127);
-	 } else if(master.get_digital(DIGITAL_DOWN) || !limit.get_value()) {
-     INTAKE_SET(127);
-    } else {
-     INTAKE_SET(0);
-    }
-   }
 
     if(limit.get_value()) {
       master.rumble("-");
