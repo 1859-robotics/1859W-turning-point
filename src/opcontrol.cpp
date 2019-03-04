@@ -1,5 +1,7 @@
 #include "main.h"
 #include "robot-config.hpp"
+#include <iostream>
+
 
 static float round(float var) {
     float value = (int)(var * 100 + .5);
@@ -11,7 +13,14 @@ static bool withinRange(float target, float current, float error) {
 }
 
 void opcontrol() {
+  pros::Task posTracker(odom::trackTask, tracker);
+  Logger posLogger(LV_ALIGN_CENTER, "tracker");
+
   TASK_WHILE(true, {
+    posLogger.log(("(" + std::to_string(round(tracker->getPos().pos.x)) + ","
+                       + std::to_string(round(tracker->getPos().pos.y)) + ")  | " +
+                         std::to_string(round(TODEG(tracker->getPos().a)))));
+
     int rV = master.get_analog(ANALOG_RIGHT_Y);
     int lV = master.get_analog(ANALOG_LEFT_Y);
 
@@ -25,6 +34,10 @@ void opcontrol() {
 		} else {
 			robot.combineSet(master.get_digital(DIGITAL_L2));
     }
+
+    // LOG_VAR(lTrackerWheel.get_value());
+    // LOG_VAR(rTrackerWheel.get_value());
+    // LOG_VAR(cTrackerWheel.get_value());
 
     if(master.get_digital(DIGITAL_Y)) {
       FLYWHEEL_SET(127);

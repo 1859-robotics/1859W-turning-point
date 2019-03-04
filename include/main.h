@@ -53,6 +53,9 @@
 
 using namespace jctc;
 
+#define LOG_VAR(v) std::cout << #v << ": " << v << std::endl;
+
+
 /**
  * You should add more #includes here
  */
