@@ -5,7 +5,7 @@
         "target": "v5",
         "templates": {
             "jctclib": {
-                "location": "C:\\Users\\alexa\\AppData\\Roaming\\PROS\\templates\\jctclib@0.0.4",
+                "location": "C:\\Users\\agriffin2\\AppData\\Roaming\\PROS\\templates\\jctclib@0.0.4",
                 "metadata": {
                     "origin": "local"
                 },
@@ -13,11 +13,11 @@
                 "py/object": "pros.conductor.templates.local_template.LocalTemplate",
                 "supported_kernels": "^3.1.6",
                 "system_files": [
-                    "include\\jctc\\odom\\odom.hpp",
-                    "include\\jctc\\misc\\misc.hpp",
-                    "include\\jctc\\odom\\position.hpp",
-                    "include\\jctc\\chassis\\chassis.hpp",
                     "firmware\\jctclib.a",
+                    "include\\jctc\\misc\\misc.hpp",
+                    "include\\jctc\\odom\\odom.hpp",
+                    "include\\jctc\\chassis\\chassis.hpp",
+                    "include\\jctc\\odom\\position.hpp",
                     "include\\jctc\\pid\\pid.hpp",
                     "include\\jctc\\logger\\logger.hpp"
                 ],

@@ -155,7 +155,7 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/wiz/",
+            "-iquote./include/./",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -168,11 +168,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/wiz/burtrum.cpp.o",
-            "src\\wiz\\burtrum.cpp"
+            "bin/opcontrol.cpp.o",
+            "src\\opcontrol.cpp"
         ],
         "directory": "C:\\Users\\agriffin2\\Documents\\GitHub\\1859W-turning-point",
-        "file": "src\\wiz\\burtrum.cpp"
+        "file": "src\\opcontrol.cpp"
     },
     {
         "arguments": [
@@ -225,7 +225,7 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/./",
+            "-iquote./include/wiz/",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -238,10 +238,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/opcontrol.cpp.o",
-            "src\\opcontrol.cpp"
+            "bin/wiz/burtrum.cpp.o",
+            "src\\wiz\\burtrum.cpp"
         ],
         "directory": "C:\\Users\\agriffin2\\Documents\\GitHub\\1859W-turning-point",
-        "file": "src\\opcontrol.cpp"
+        "file": "src\\wiz\\burtrum.cpp"
     }
 ]
