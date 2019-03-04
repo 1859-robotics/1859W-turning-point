@@ -7,7 +7,7 @@
 namespace wiz {
   class Burtrum : public Chassis {
   public:
-    Burtrum(odom::Tracker tracker, PID rPID, PID tPID)
+    Burtrum(odom::Tracker &tracker, PID rPID, PID tPID)
       : Chassis(tracker, rPID, tPID) {};
     void reset();
     virtual void driveVector(float forward, float turn) const;

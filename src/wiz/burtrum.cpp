@@ -87,9 +87,9 @@ namespace wiz {
       float angleVel = turnPid.calculate(angleErr, 0);
       float distanceVel = distPid.calculate(-distanceErr, 0);
 
-      std::cout << "state: ";odom::print(state);
+      std::cout << "state: "; odom::print(state);
 
-      // driveVector(distanceVel, angleVel);
+      driveVector(distanceVel, angleVel);
 
       pros::delay(20);
     }
