@@ -23,11 +23,20 @@ void opcontrol() {
                        + std::to_string(round(tracker->getPos().pos.y)) + ")  | " +
                          std::to_string(round(TODEG(tracker->getPos().a)))));
 
-    int rV = master.get_analog(ANALOG_RIGHT_Y);
-    int lV = master.get_analog(ANALOG_LEFT_Y);
+    float rV = master.get_analog(ANALOG_RIGHT_Y);
+    float lV = master.get_analog(ANALOG_LEFT_Y);
 
-    RIGHT_DRIVE_SET(abs(rV) > 15 ? rV : 0);
-    LEFT_DRIVE_SET(abs(lV) > 15 ? lV : 0);
+ 		rV = abs(rV) > 15 ? rV : 0;
+ 		lV = abs(lV) > 15 ? lV : 0;
+
+ 		if(rV == 0 && lV == 0) {
+ 			// negative to reverse controlls
+ 			rV = -partner.get_analog(ANALOG_LEFT_Y);
+ 			lV = -partner.get_analog(ANALOG_RIGHT_Y);
+ 		}
+
+ 		RIGHT_DRIVE_SET(abs(rV) > 15 ? rV : 0);
+ 		LEFT_DRIVE_SET(abs(lV) > 15 ? lV : 0);
 
     bool autonOverwrite = false;
 
