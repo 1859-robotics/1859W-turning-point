@@ -31,7 +31,7 @@ void opcontrol() {
 	 	} else {
 		 	rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 		 	rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-		 	leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		 	leftDriveF.se t_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 		 	leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	 	}
 
