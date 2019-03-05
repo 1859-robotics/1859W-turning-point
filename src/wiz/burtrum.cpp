@@ -77,7 +77,8 @@ namespace wiz {
         target.x, target.y                                // target
       });
 
-      float angleErr = angleToPoint({ target.x, target.y });
+      // float angleErr = angleToPoint({ target.x, target.y });
+      float angleErr = fmod((atan2(target.y - state.pos.y, target.x - state.pos.x)) - state.a, TAU);
       if(std::isnan(angleErr)) angleErr = 0;
       if(fabs(angleErr) < acceptableErr) angleErr = 0;
 
@@ -93,16 +94,13 @@ namespace wiz {
       float angleVel = turnPid.calculate(angleErr, 0);
       float distanceVel = distPid.calculate(-distanceErr, 0);
 
-      LOG_VAR(angleVel);
-      LOG_VAR(angleErr);
-      LOG_VAR(distanceVel);
-      LOG_VAR(distanceErr);
+      LOG_VAR(TODEG(angleErr));
 
-      std::cout << "state: "; odom::print(state);
+      // std::cout << "state: "; odom::print(state);
       // std::cout << "target: "; odom::print(target);
       // std::cout << "close: "; odom::print(close);
 
-      driveVector(distanceVel, angleVel);
+      // driveVector(distanceVel, angleVel);
 
       pros::delay(20);
     }
