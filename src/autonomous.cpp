@@ -10,7 +10,7 @@ void autonomous() {
 
   // robot.turnToFace(90);
 
-  robot.moveToTest({ 0, 20 }, TORAD(30));
+  robot.moveFor(20);
 
   while(true) {
     pros::delay(20);

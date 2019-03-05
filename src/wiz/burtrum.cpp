@@ -5,6 +5,13 @@ static bool withinRange(float target, float current, float error) {
   return fabs(target - current) < error;
 }
 
+static double constrainAngle(double x){
+    x = fmod(x + PI, TAU);
+    if (x < 0)
+        x += TAU;
+    return x - PI;
+}
+
 namespace wiz {
   void Burtrum::driveVector(float forward, float turn) const {
     // This code is taken from WPIlib. All credit goes to them. Link:
@@ -78,7 +85,7 @@ namespace wiz {
       });
 
       // float angleErr = angleToPoint({ target.x, target.y });
-      float angleErr = fmod((atan2(target.y - state.pos.y, target.x - state.pos.x)) - state.a, TAU);
+      float angleErr = constrainAngle(atan2(target.y - state.pos.y, target.x - state.pos.x) - state.a);
       if(std::isnan(angleErr)) angleErr = 0;
       if(fabs(angleErr) < acceptableErr) angleErr = 0;
 
@@ -96,11 +103,11 @@ namespace wiz {
 
       LOG_VAR(TODEG(angleErr));
 
-      // std::cout << "state: "; odom::print(state);
+      std::cout << "state: "; odom::print(state);
       // std::cout << "target: "; odom::print(target);
       // std::cout << "close: "; odom::print(close);
 
-      // driveVector(distanceVel, angleVel);
+      driveVector(distanceVel, angleVel);
 
       pros::delay(20);
     }
