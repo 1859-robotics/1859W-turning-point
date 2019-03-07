@@ -50,7 +50,7 @@ namespace w {
       void turnToFace(float deg, ::w::pid::PIDConfig c);
       void turnToFace(::w::odom::Point point, ::w::pid::PIDConfig c);
         // moveAlong({{1, 4}, {2, 5}}, 0); // move through the points (1, 4) then (2, 5) and end facing 0deg
-      // void raiseLiftTo(int height); // rasie lift to a certain amount
+      void liftTo(int encoderClicks, int vel = 600, int timeout = 3000); // rasie lift to a certain amount
       // void flipCap(); // flips the currently held cap
     };
   }

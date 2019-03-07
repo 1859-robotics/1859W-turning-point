@@ -7,9 +7,7 @@
 // util functions
 
 bool withinRange(float target, float current, float error) {
-
   return abs(target - current) < error;
-
 }
 
 bool withinErr(float cX, float cY, float tX, float tY, float eP = P_ERR) {
@@ -479,6 +477,15 @@ namespace w {
       } else {
         FLYWHEEL_SET(-127); //TODO: make this not bad
       }
+    }
+  }
+
+  void robot::Robot::liftTo(int encoderClicks, int vel, int timeout) {
+    flipover.move_absolute(encoderClicks, vel);
+    int start = pros::millis();
+    while (!(((flipover.get_position()) < (encoderClicks + 5)) && ((flipover.get_position()) > (encoderClicks - 5)))) {
+      if(pros::millis() - start > timeout) break;
+      pros::delay(20);
     }
   }
 }
