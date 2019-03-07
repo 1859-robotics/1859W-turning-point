@@ -405,7 +405,7 @@ namespace w {
 
   void robot::Robot::turnToFace(float deg, float max) {
       mainPID.reset();
-      robot::Robot::turnToFace(deg, { 1.4, 0, 0.4, max, MIN_SPEED, 3, 30 });
+      robot::Robot::turnToFace(deg, { 1.4, 0, 0.4, MAX_SPEED, MIN_SPEED, 3, 30 });
   }
 
   void robot::Robot::turnToFace(w::odom::Point point, w::pid::PIDConfig c) {

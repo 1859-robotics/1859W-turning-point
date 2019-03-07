@@ -64,11 +64,11 @@ void opcontrol() {
     } else if(master.get_digital(DIGITAL_B)) {
       OPCONTROL_FLYWHEEL_SET(480);
 		} else if(master.get_digital(DIGITAL_L2)) {
-	    OPCONTROL_FLYWHEEL_SET(370);
+	    OPCONTROL_FLYWHEEL_SET(400);
     } else if(master.get_digital(DIGITAL_L1)) {
       OPCONTROL_FLYWHEEL_SET(520);
     } else if(master.get_digital(DIGITAL_X)) {
-      OPCONTROL_FLYWHEEL_SET(400);
+      OPCONTROL_FLYWHEEL_SET(360);
     } else {
       FLYWHEEL_SET(FLYWHEEL_IDLE);
     }
