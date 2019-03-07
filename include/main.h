@@ -38,15 +38,15 @@
 #include "pros/apix.h"
 
 #define MAX_SPEED 127
-#define MIN_SPEED 20
+#define MIN_SPEED 25
 #define P_ERR 2
 #define A_ERR 2
 
 #define PI M_PI
 #define TAU (PI * 2)
 
-#define SL 4.2
-#define SR 4.2
+#define SL 4.27
+#define SR 4.27
 #define SS 2.25
 
 #define TODEG(rad) (rad * (180 / PI))

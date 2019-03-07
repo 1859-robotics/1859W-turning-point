@@ -1,8 +1,19 @@
 posTracker.setPos({ 0, 0 }, 180);
 
-robot.moveTo({-40, 0 });
 
-robot.moveTo({ 0, 0 });
+robot.turnToFace(90);
+pros::delay(200);
+robot.turnToFace(0);
+pros::delay(100);
+robot.turnToFace(180);
+pros::delay(50);
+robot.turnToFace(90);
+pros::delay(25);
+robot.turnToFace(0);
+robot.turnToFace(180);
+robot.turnToFace(90);
+
+
 
 
 //, { 10, 0, 0, 127, 0 }, { 5, 0, 0, 127, 0 });

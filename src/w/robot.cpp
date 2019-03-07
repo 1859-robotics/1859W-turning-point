@@ -434,7 +434,7 @@ namespace w {
   }
 
   void robot::Robot::combineSet(bool rev) {
-    combine.move(rev ? 127 : -127);
+    intake.move(rev ? 127 : -127);
   }
 
   //void robot::Robot::FlipoverSet(bool rev) {

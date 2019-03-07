@@ -12,7 +12,7 @@ robot.flyUp(360, [](float rpm) -> void {
 
 robot.moveFor(-5);
 robot.turnToFace(90);
-robot.combineSet(false);
+robot.combineSet(true);
 robot.moveFor(48, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
 robot.feedBall(2000);
 // robot.combineSet(true);
@@ -22,7 +22,7 @@ robot.turnToFace(90);
 robot.turnToFace(90);
 robot.moveFor(-48);
 robot.turnToFace(180);
-robot.moveFor(52);
+robot.moveFor(54);
 robot.turnToFace(183);
 
 robot.flyUp(380, [](float rpm) -> void {
@@ -34,7 +34,7 @@ robot.turnToFace(180);
 
 robot.moveFor(-14);
 robot.turnToFace(90);
-robot.combineSet(false);
+robot.combineSet(true);
 robot.moveFor(48, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
 
 robot.feedBall(2000);
@@ -43,7 +43,7 @@ robot.turnToFace(90);
 
 robot.moveFor(-40);
 robot.turnToFace(145);
-robot.moveFor(11);
+robot.moveFor(12);
 
 
 robot.flyUp(520, [](float rpm) -> void {
