@@ -18,7 +18,7 @@ void autonomous() {
 
   // #include "./auton/NEWNEW.auton"
   //#include "./auton/test2.auton"
- runAuton();
+   runAuton();
 
   while(true) { pros::delay(20); }
 }
