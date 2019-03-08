@@ -158,25 +158,40 @@ robot.flyUp(520, [](float rpm) -> void {
  pros::delay(350);
  INTAKE_SET(0);
 });
+
+
+
 robot.moveFor(6);
 robot.turnToFace(187);
-
+robot.combineSet(true);
 robot.moveFor(45);
 robot.moveFor(-4);
-robot.turnToFace(180);
+robot.turnToFace(182);
 robot.moveFor(-41);
 
 robot.turnToFace(92);
 robot.combineSet(false);
-robot.moveFor(40);
-robot.moveFor(-24);
+robot.moveFor(48);
+robot.moveFor(-30);
 robot.turnToFace(180);
 
 robot.moveFor(23);
 robot.moveFor(-10);
+
+robot.turnToFace(160);
+robot.moveFor(-35);
+robot.turnToFace(90);
+robot.combineSet(true);
+robot.moveFor(56, { 50, 0, .1, MAX_SPEED, MIN_SPEED });
+
+
+rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 } else if(w::auton_selector::selectedTile == TILE_RED_B && "park" == w::auton_selector::selectedAuton) {
-
-
+//
+//
 
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
@@ -192,8 +207,8 @@ rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 } else if(w::auton_selector::selectedTile == TILE_RED_A && "post&cap" == w::auton_selector::selectedAuton) {
- 
- 
+ //
+ //
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 // shoot high flag
@@ -308,363 +323,6 @@ robot.moveFor(-42);
 robot.turnToFace(90);
 robot.combineSet(true);
 robot.moveFor(30, { 50, 0, .1, MAX_SPEED, MIN_SPEED });
-
-rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-} else if(w::auton_selector::selectedTile == TILE_RED_A && "skills 10" == w::auton_selector::selectedAuton) {
-//
-//
-posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
-
-// shoot high flag
-robot.flyUp(300, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-// get next ball & flip first cap
-
-robot.turnToFace(92);
-robot.combineSet(false);
-robot.moveFor(36);
-robot.feedBall(2000);
-robot.turnToFace(95);
-robot.combineSet(true);
-
-robot.moveFor(-33);
-robot.turnToFace(180);
-robot.combineSet(false);
-
-robot.flyUp(480, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-robot.moveFor(-22.25);
-robot.turnToFace(95);
-
-robot.moveFor(50, { 100, 0, 0.1, MAX_SPEED, MIN_SPEED });
-
-
-rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-} else if(w::auton_selector::selectedTile == TILE_RED_A && "skills 20" == w::auton_selector::selectedAuton) {
- //
- //
-posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
-
-// shoot high flag
-robot.flyUp(430, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(330);
-  INTAKE_SET(0);
-});
-//2
-// get next ball & flip first cap
-
-robot.combineSet(false);
-robot.moveFor(-46);
-robot.turnToFace(95);
-robot.moveFor(36);
-robot.feedBall(2000);
-robot.turnToFace(95);
-robot.combineSet(true);
-robot.moveFor(15, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-//3
-robot.turnToFace(95);
-robot.combineSet(false);
-robot.moveFor(-50);
-robot.turnToFace(180);
-robot.moveFor(52);
-
-robot.flyUp(280, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(310);
-  INTAKE_SET(0);
-});
-//5
-robot.turnToFace(180);
-robot.moveFor(-10);
-robot.turnToFace(90);
-robot.moveFor(38);
-robot.feedBall(2000);
-robot.turnToFace(90);
-robot.combineSet(true);
-robot.moveFor(8, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-//6
-robot.turnToFace(95);
-robot.moveFor(-6);
-robot.turnToFace(180);
-
-robot.flyUp(435, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(310);
-  INTAKE_SET(0);
-});
-//8
-robot.turnToFace(90);
-robot.moveFor(-10);
-
-robot.turnToFace(225);
-robot.combineSet(true);
-robot.moveFor(28, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-//9
-robot.moveFor(-12);
-robot.turnToFace(90);
-robot.combineSet(true);
-robot.moveFor(48);
-//10
-robot.turnToFace(90);
-robot.moveFor(-18);
-robot.turnToFace(45);
-robot.combineSet(false);
-robot.moveFor(36);
-robot.turnToFace(270);
-robot.moveFor(30);
-robot.feedBall(2000);
-robot.combineSet(true);
-robot.moveFor(10, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-//11
-robot.combineSet(false);
-robot.moveFor(-40);
-robot.turnToFace(180);
-robot.flyUp(400, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(310);
-  INTAKE_SET(0);
-});
-//13
-robot.moveFor(-36);
-robot.turnToFace(315);
-robot.combineSet(true);
-robot.moveFor(24, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-//14
-robot.moveFor(-24);
-robot.turnToFace(0);
-robot.moveFor(-24);
-robot.turnToFace(270);
-robot.moveFor(44, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-//20
-rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-} else if(w::auton_selector::selectedTile == TILE_RED_B && "skills 14" == w::auton_selector::selectedAuton) {
-//
-//
-posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
-
-// shoot high flag
-robot.flyUp(310, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-// get next ball & flip first cap
-
-robot.turnToFace(84);
-robot.combineSet(false);
-robot.moveFor(36);
-robot.feedBall(2000);
-robot.turnToFace(90);
-robot.combineSet(true);
-robot.moveFor(12, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-robot.turnToFace(90);
-robot.moveFor(-12);
-robot.combineSet(false);
-robot.turnToFace(90);
-robot.moveFor(-33);
-robot.turnToFace(180);
-robot.combineSet(false);
-
-robot.flyUp(480, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-robot.moveFor(-41);
-robot.turnToFace(90);
-robot.moveFor(40);
-
-robot.feedBall(2000);
-robot.turnToFace(90);
-robot.combineSet(true);
-robot.moveFor(12, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-robot.combineSet(false);
-robot.turnToFace(100);
-robot.moveFor(-12.5);
-robot.turnToFace(180);
-
-robot.flyUp(370, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-robot.turnToFace(90);
-robot.moveFor(-40);
-robot.turnToFace(0);
-robot.moveFor(-23);
-robot.turnToFace(90);
-robot.moveFor(40, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-
-rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-} else if(w::auton_selector::selectedTile == TILE_RED_A && "skills 11" == w::auton_selector::selectedAuton) {
- //
- //
-posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
-
-// shoot high flag
-robot.flyUp(310, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-// get next ball & flip first cap
-
-robot.turnToFace(84);
-robot.combineSet(false);
-robot.moveFor(36);
-robot.feedBall(2000);
-robot.turnToFace(90);
-robot.combineSet(true);
-robot.moveFor(12, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-robot.turnToFace(90);
-
-robot.moveFor(-45);
-robot.turnToFace(180);
-robot.combineSet(false);
-
-robot.flyUp(480, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-robot.moveFor(-21);
-robot.turnToFace(90);
-
-robot.moveFor(40, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-
-
-rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-} else if(w::auton_selector::selectedTile == TILE_RED_A && "skills 14" == w::auton_selector::selectedAuton) {
- //
- //
-posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
-
-// shoot high flag
-robot.flyUp(380, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(330);
-  INTAKE_SET(0);
-});
-
-// get next ball & flip first cap
-
-robot.turnToFace(93);
-robot.combineSet(false);
-robot.moveFor(36);
-robot.feedBall(2000);
-robot.turnToFace(90);
-robot.combineSet(true);
-robot.moveFor(15, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-robot.turnToFace(95);
-robot.combineSet(false);
-robot.moveFor(-11);
-robot.turnToFace(180);
-
-robot.flyUp(400, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(310);
-  INTAKE_SET(0);
-});
-robot.turnToFace(90);
-robot.moveFor(-38);
-robot.turnToFace(180);
-robot.moveFor(44);
-robot.turnToFace(90);
-
-robot.combineSet(false);
-robot.moveFor(36);
-robot.feedBall(2000);
-robot.turnToFace(90);
-robot.combineSet(true);
-robot.moveFor(15, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-robot.turnToFace(90);
-robot.moveFor(-60);
-robot.turnToFace(180);
-robot.combineSet(false);
-
-robot.flyUp(300, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-robot.moveFor(-22);
-robot.turnToFace(90);
-
-robot.moveFor(46, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-
-
-rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-} else if(w::auton_selector::selectedTile == TILE_RED_A && "skills 11" == w::auton_selector::selectedAuton) {
- //
- //
-posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
-
-// shoot high flag
-robot.flyUp(310, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-// get next ball & flip first cap
-
-robot.turnToFace(84);
-robot.combineSet(false);
-robot.moveFor(36);
-robot.feedBall(2000);
-robot.turnToFace(90);
-robot.combineSet(true);
-robot.moveFor(12, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-robot.turnToFace(90);
-
-robot.moveFor(-45);
-robot.turnToFace(180);
-robot.combineSet(false);
-
-robot.flyUp(480, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
-
-robot.moveFor(-21);
-robot.turnToFace(90);
-
-robot.moveFor(40, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
-
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

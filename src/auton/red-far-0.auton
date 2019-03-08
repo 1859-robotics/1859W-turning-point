@@ -1,5 +1,5 @@
-#meta name park
-#meta tile RED_B
+//#meta name park
+//#meta tile RED_B
 
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 

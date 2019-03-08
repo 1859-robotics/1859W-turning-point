@@ -24,19 +24,34 @@ robot.flyUp(520, [](float rpm) -> void {
  pros::delay(350);
  INTAKE_SET(0);
 });
+
+
+
 robot.moveFor(6);
 robot.turnToFace(187);
-
+robot.combineSet(true);
 robot.moveFor(45);
 robot.moveFor(-4);
-robot.turnToFace(180);
+robot.turnToFace(182);
 robot.moveFor(-41);
 
 robot.turnToFace(92);
 robot.combineSet(false);
-robot.moveFor(40);
-robot.moveFor(-24);
+robot.moveFor(48);
+robot.moveFor(-30);
 robot.turnToFace(180);
 
 robot.moveFor(23);
 robot.moveFor(-10);
+
+robot.turnToFace(160);
+robot.moveFor(-35);
+robot.turnToFace(90);
+robot.combineSet(true);
+robot.moveFor(56, { 50, 0, .1, MAX_SPEED, MIN_SPEED });
+
+
+rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
