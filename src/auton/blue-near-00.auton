@@ -1,9 +1,9 @@
-#meta name post&park
+#meta name Allpost&Park
 #meta tile BLUE_A
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
 // shoot high flag
-robot.flyUp(310, [](float rpm) -> void {
+robot.flyUp(290, [](float rpm) -> void {
  INTAKE_SET(127);
  pros::delay(300);
  INTAKE_SET(0);
@@ -11,28 +11,36 @@ robot.flyUp(310, [](float rpm) -> void {
 
 // get next ball & flip first cap
 
-robot.turnToFace(276);
-robot.combineSet(false);
-robot.moveFor(36);
+robot.turnToFace(273);
+robot.moveFor(40);
 robot.feedBall(2000);
 robot.turnToFace(270);
-robot.combineSet(true);
 
-robot.moveFor(-33);
+robot.moveFor(-36);
 robot.turnToFace(180);
-robot.combineSet(false);
-
-robot.flyUp(480, [](float rpm) -> void {
+robot.moveFor(-6);
+robot.flyUp(520, [](float rpm) -> void {
  INTAKE_SET(127);
- pros::delay(300);
+ pros::delay(350);
  INTAKE_SET(0);
 });
+robot.moveFor(6);
+robot.turnToFace(180);
 
-robot.moveFor(-22);
+robot.moveFor(18);
 robot.turnToFace(270);
 
-robot.moveFor(26, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
+robot.combineSet(false);
+robot.moveFor(26);
 
+robot.moveFor(-26);
+robot.turnToFace(180);
+
+robot.moveFor(-42);
+
+robot.turnToFace(270);
+robot.combineSet(true);
+robot.moveFor(30, { 50, 0, .1, MAX_SPEED, MIN_SPEED });
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

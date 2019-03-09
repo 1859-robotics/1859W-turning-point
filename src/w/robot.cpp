@@ -385,6 +385,8 @@ namespace w {
       posTracker.y
     };
 
+
+
     mainPID.reset();
     mainPID.config(pid);
 
@@ -400,6 +402,32 @@ namespace w {
     RIGHT_DRIVE_SET_AUTO(0);
     LEFT_DRIVE_SET_AUTO(0);
   }
+
+void robot::Robot::move(float distIn, ::w::pid::PIDConfig pid, float exit) {
+    w::odom::Point start = {
+      posTracker.x,
+      posTracker.y
+    };
+
+
+
+    mainPID.reset();
+    mainPID.config(pid);
+
+    std::uint32_t started = pros::millis();
+
+    mainPID.doPID(0, P_ERR, [=]() -> float {
+      if((pros::millis() - started) > exit) return 0;
+      return (fabs(distIn) - dist(start.x, start.y, posTracker.x, posTracker.y));
+    }, [=](float output) -> void {
+      RIGHT_DRIVE_SET_AUTO(200);
+      LEFT_DRIVE_SET_AUTO(200);
+    });
+    RIGHT_DRIVE_SET_AUTO(0);
+    LEFT_DRIVE_SET_AUTO(0);
+  }
+
+
 
   void robot::Robot::turnToFace(float deg, float max) {
       mainPID.reset();

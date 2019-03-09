@@ -1,11 +1,6 @@
 #meta name park
 #meta tile BLUE_B
 
-posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
-robot.combineSet(false);
-robot.moveFor(13.6);  // moves forward
-robot.turnToFace(267);  //faces platform
-robot.moveFor(28, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
 
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

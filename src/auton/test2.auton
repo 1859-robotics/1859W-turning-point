@@ -1,5 +1,19 @@
-robot.flyUp(300, [](float rpm) -> void {
-  INTAKE_SET(127);
-  pros::delay(300);
-  INTAKE_SET(0);
-});
+leftDriveB.tare_position();
+leftDriveF.tare_position();
+rightDriveB.tare_position();
+rightDriveF.tare_position();
+robot.combineSet(true);
+while(leftDriveB.get_position() < 4500)
+{
+  LEFT_DRIVE_SET(240);
+  RIGHT_DRIVE_SET(240);
+
+}
+LEFT_DRIVE_SET(0);
+RIGHT_DRIVE_SET(0);
+
+
+rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

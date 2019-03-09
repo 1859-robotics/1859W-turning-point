@@ -37,7 +37,7 @@
 #include "api.h"
 #include "pros/apix.h"
 
-#define MAX_SPEED 127
+#define MAX_SPEED 200
 #define MIN_SPEED 25
 #define P_ERR 2
 #define A_ERR 2

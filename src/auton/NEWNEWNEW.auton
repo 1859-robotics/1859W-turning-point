@@ -1,4 +1,4 @@
-#meta name SkillsAllpost&cap
+#meta name SkillsAAAAAAAAAAAAAA
 #meta tile RED_A
 posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
 
@@ -12,13 +12,14 @@ robot.flyUp(290, [](float rpm) -> void {
 // get next ball & flip first cap
 
 robot.turnToFace(87);
+robot.combineSet(true);
 robot.moveFor(40);
 robot.feedBall(2000);
 robot.turnToFace(90);
 
 robot.moveFor(-36);
 robot.turnToFace(180);
-robot.moveFor(-5);
+robot.moveFor(-6);
 robot.flyUp(520, [](float rpm) -> void {
  INTAKE_SET(127);
  pros::delay(350);
@@ -33,28 +34,43 @@ robot.combineSet(true);
 robot.moveFor(45);
 robot.moveFor(-4, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
 robot.turnToFace(182);
-robot.moveFor(-38);
+robot.moveFor(-40);
 
 robot.turnToFace(92);
 robot.combineSet(false);
-robot.moveFor(48);
-robot.turnToFace(92);
-robot.moveFor(-30);
+robot.moveFor(19);
 robot.turnToFace(180);
+robot.moveFor(20);
+robot.turnToFace(93);
 
-robot.moveFor(23);
-robot.moveFor(-10);
+robot.moveFor(72);
+robot.turnToFace(3);
+robot.moveFor(17);
+robot.turnToFace(275);
+robot.combineSet(true);
+robot.moveFor(30);
+robot.combineSet(true);
+robot.feedBall(2000);
+robot.moveFor(-20);
+robot.turnToFace(180);
+robot.flyUp(520, [](float rpm) -> void {
+ INTAKE_SET(127);
+ pros::delay(350);
+ INTAKE_SET(0);
+});
+robot.turnToFace(215);
 
-robot.turnToFace(160);
-robot.moveFor(-35);
-robot.turnToFace(90);
+robot.moveFor(-20);
+robot.turnToFace(180);
+robot.moveFor(-8);
+robot.turnToFace(270);
 
 leftDriveB.tare_position();
 leftDriveF.tare_position();
 rightDriveB.tare_position();
 rightDriveF.tare_position();
 robot.combineSet(true);
-while(leftDriveB.get_position() < 4650)
+while(leftDriveB.get_position() < 4600)
 {
   LEFT_DRIVE_SET(240);
   RIGHT_DRIVE_SET(240);

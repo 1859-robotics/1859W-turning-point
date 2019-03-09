@@ -1,13 +1,31 @@
 //#meta name park
 //#meta tile RED_B
 
-posTracker.setPos({ 0, 0 }, 180); //sets the starting position of the robot
+posTracker.setPos({ 0, 0 }, 90); //sets the starting position of the robot
 
-// park
-robot.combineSet(false);
-robot.moveFor(14);
+
+
+robot.turnToFace(65);
+robot.liftTo(3975);
+robot.moveFor(39);
+robot.liftTo(3400,175);
+robot.moveFor(-14);
+robot.liftTo(2000,200);
+robot.turnToFace(86);
+robot.moveFor(-34);
+robot.liftTo(1000);
+robot.moveFor(10);
+robot.combineSet(true);
 robot.turnToFace(95);
-robot.moveFor(30, { 25, 0, .1, MAX_SPEED, MIN_SPEED });
+robot.moveFor(20);
+robot.turnToFace(180);
+robot.moveFor(28, { 50, 0, .1, MAX_SPEED, MIN_SPEED });
+
+
+rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+rightDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+leftDriveB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
 
 rightDriveF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
